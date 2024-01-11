@@ -1,6 +1,12 @@
 import type { Metadata } from 'next'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { Inter } from 'next/font/google'
 import './globals.css'
+import NextUi from '@/components/Providers/NextUi'
+import MainNavbar from '@/components/Global/Layout/Navbar'
+import TopHeader from '@/components/Global/Layout/TopHeader'
+import Footer from '@/components/Global/Layout/Footer';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,7 +22,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <NextUi>
+          <TopHeader/>
+          <MainNavbar/>
+        {children}
+        <Footer/>
+        </NextUi>
+      </body>
     </html>
   )
 }
