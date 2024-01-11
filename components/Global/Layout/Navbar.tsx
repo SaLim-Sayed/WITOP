@@ -101,7 +101,7 @@ export default function MainNavbar() {
           <Button
             isIconOnly
             size="lg"
-            className="font-bold w-6 h-10 hidden md:block"
+            className="font-bold w-6 h-10 hidden md:inline"
             variant="light"
           >
             <BiUser size={40} />
