@@ -13,7 +13,8 @@ import {
 } from "@nextui-org/react";
 import Link from "next/link";
 import { links } from "./links";
-import Image from "next/image";
+import Image from "next/legacy/image";
+
 import { usePathname } from "next/navigation";
 import { cn } from "@/libs/cn";
 import { BiHeart, BiSearch, BiUser } from "react-icons/bi";
@@ -26,7 +27,7 @@ export default function MainNavbar() {
   const [isAcive, setIsAcive] = React.useState(1);
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen} isBordered>
+    <Navbar onMenuOpenChange={setIsMenuOpen} isBordered className=" h-24">
       <NavbarContent className="sm:hidden" justify="start">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -36,22 +37,35 @@ export default function MainNavbar() {
 
       <NavbarContent className="sm:hidden pr-3" justify="center">
         <NavbarBrand>
-          <Button size="lg" variant="light" className="w-40 h-10 flex gap-2">
-            <Link href="/" className="font-bold text-xl text-[#00b5bc]">Ecommerce</Link>
+          <Button
+            isIconOnly
+            size="lg"
+            variant="light"
+            className="min-w-[90px] p-0 min-h-[90px]  flex gap-2"
+          >
+            <Link href="/" className="font-bold text-xl text-[#00b5bc]">
+              <Image src="/logo1.png" alt="logo" className=" p-0 m-0" layout="fill"/>
+            </Link>
           </Button>
         </NavbarBrand>
       </NavbarContent>
-
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarBrand>
+      <NavbarContent className="hidden sm:flex gap-4" justify="start">
+      <NavbarBrand>
           <Button
+            isIconOnly
             size="lg"
             variant="light"
-            className="w-60 h-10 flex justify-between gap-2"
+            className="min-w-[90px] p-0 min-h-[90px]  flex justify-between gap-2"
           >
-            <Link href="/" className="font-bold text-3xl text-[#00b5bc]">Ecommerce</Link>
+            <Link href="/" className="font-bold text-3xl text-[#00b5bc]">
+              {" "}
+              <Image src="/logo1.png" alt="logo" className=" p-0 m-0" layout="fill"/>
+            </Link>
           </Button>
         </NavbarBrand>
+        </NavbarContent>
+      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+       
 
         <NavbarItem>
           <Input
@@ -110,8 +124,12 @@ export default function MainNavbar() {
       <NavbarMenu>
         <NavbarMenuItem>
           <Button size="lg" className="w-full flex justify-start left-0 mt-10">
-            <Link passHref className="  flex items-center gap-2 font-bold" href={"#"}>
-            <BiUser size={40} /> Login
+            <Link
+              passHref
+              className="  flex items-center gap-2 font-bold"
+              href={"#"}
+            >
+              <BiUser size={40} /> Login
             </Link>
           </Button>
         </NavbarMenuItem>
