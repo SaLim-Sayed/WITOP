@@ -8,7 +8,7 @@ export default function BetterCare() {
       <div className="flex flex-col  gap-8">
         <Image src="/slider/banner1.jpg" alt="1" width={1500} />
 
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {Array(12)
             .fill(0)
             .map((_, index) => (
