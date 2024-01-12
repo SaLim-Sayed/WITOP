@@ -11,18 +11,12 @@ import Center from "../Ui/Center";
 import Title from "../Ui/Title";
 import { BiArrowFromLeft, BiArrowToRight } from "react-icons/bi";
 import { BsArrowReturnRight } from "react-icons/bs";
+import { settings } from "@/util/GData";
 
 export default function CategorySlider() {
   const [grab, setGrab] = useState(false);
   const slider = useRef<any>();
-  const settings = {
-    dots: true,
-    infinite: true,
-    autoplay: true,
-    speed: 500,
-    slidesToShow: 7,
-    slidesToScroll: 1,
-  };
+ 
   return (
     <Center>
      <div className="mx-auto">
