@@ -6,7 +6,7 @@ export const settings = {
   initialSlide: 0,
   centerPadding: 100,
   centerMode: true,
-  arrows: false,
+  arrows: true,
   adaptiveHeight: true,
   pauseOnHover: true,
   draggable: false,

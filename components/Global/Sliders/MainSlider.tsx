@@ -1,15 +1,13 @@
 "use client";
 
-import React, { ReactNode } from "react";
+import React from "react";
 
 import { cn } from "@/libs/cn";
-import arrowLeftIcon from "@/public/icons/arrow-left.svg";
-import arrowRightIcon from "@/public/icons/arrow-right.svg";
-import Slider from "@ant-design/react-slick";
-import { Button, Image } from "@nextui-org/react";
 
-import Center from "../Ui/Center";
-import Title from "../Ui/Title";
+import Slider from "@ant-design/react-slick";
+import { Image } from "@nextui-org/react";
+
+import Link from "next/link";
 
 export default function SimpleSlider() {
   const settings = {
@@ -23,18 +21,18 @@ export default function SimpleSlider() {
   return (
     <div className="w-[96%] mx-auto mt-4">
       <Slider {...settings}>
-        <div>
+    <Link href="/c/bestprice">
           <Image src="/slider/banner1.jpg" alt="1" width={1500} />
-        </div>
-        <div>
+        </Link>
+        <Link href="/c/bestprice">
           <Image src="/slider/banner4.jpg" alt="1" width={1500} />
-        </div>
-        <div>
+         </Link>
+        <Link href="/c/bestprice">
           <Image src="/slider/banner3.jpg" alt="1" width={1500} />
-        </div>
-        <div>
+         </Link>
+        <Link href="/c/bestprice">
           <Image src="/slider/banner3.webp" alt="1" width={1500} />
-        </div>
+         </Link>
       </Slider>
     </div>
   );

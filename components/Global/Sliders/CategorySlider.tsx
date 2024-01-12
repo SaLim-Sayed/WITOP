@@ -11,7 +11,7 @@ import Center from "../Ui/Center";
 import Title from "../Ui/Title";
 import { BiArrowFromLeft, BiArrowToRight } from "react-icons/bi";
 import { BsArrowReturnRight } from "react-icons/bs";
-import { settings } from "@/util/GData";
+import { settings } from "@/util/slickSettings";
 
 export default function CategorySlider() {
   const [grab, setGrab] = useState(false);

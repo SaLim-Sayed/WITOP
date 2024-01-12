@@ -37,7 +37,7 @@ export default function MainNavbar() {
       <NavbarContent className="sm:hidden pr-3" justify="center">
         <NavbarBrand>
           <Button size="lg" variant="light" className="w-40 h-10 flex gap-2">
-            <p className="font-bold text-xl text-[#00b5bc]">Ecommerce</p>
+            <Link href="/" className="font-bold text-xl text-[#00b5bc]">Ecommerce</Link>
           </Button>
         </NavbarBrand>
       </NavbarContent>
@@ -49,7 +49,7 @@ export default function MainNavbar() {
             variant="light"
             className="w-60 h-10 flex justify-between gap-2"
           >
-            <div className="font-bold text-3xl text-[#00b5bc]">Ecommerce</div>
+            <Link href="/" className="font-bold text-3xl text-[#00b5bc]">Ecommerce</Link>
           </Button>
         </NavbarBrand>
 
