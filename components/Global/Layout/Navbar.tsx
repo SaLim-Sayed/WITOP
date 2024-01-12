@@ -54,20 +54,18 @@ export default function MainNavbar() {
         </NavbarBrand>
 
         <NavbarItem>
-          
           <Input
-             label="Search"
-             
-             radius="lg"
-             classNames={{
-               label: "text-black/50 dark:text-white/90",
-               input: [
+            label="Search"
+            radius="lg"
+            classNames={{
+              label: "text-black/50 dark:text-white/90",
+              input: [
                 "w-96",
-                 "bg-transparent",
-                 "text-black/90 dark:text-white/90",
-                 "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-               ],
-              }}
+                "bg-transparent",
+                "text-black/90 dark:text-white/90",
+                "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+              ],
+            }}
             color="default"
             variant="bordered"
             type="search"
@@ -110,28 +108,13 @@ export default function MainNavbar() {
       </NavbarContent>
 
       <NavbarMenu>
-        {links.map((item) => (
-          <>
-            <NavbarMenuItem key={item.id}>
-              <Button
-                onClick={() => setIsAcive(item.id)}
-                size="lg"
-                className="w-full flex justify-start left-0"
-                as={Link}
-                href={item.url}
-                color={item.id === isAcive ? "warning" : "default"}
-              >
-                <Link
-                  passHref
-                  className="  flex gap-2 font-bold"
-                  href={item.url}
-                >
-                  {item.icon} {item.title}
-                </Link>
-              </Button>
-            </NavbarMenuItem>
-          </>
-        ))}
+        <NavbarMenuItem>
+          <Button size="lg" className="w-full flex justify-start left-0 mt-10">
+            <Link passHref className="  flex items-center gap-2 font-bold" href={"#"}>
+            <BiUser size={40} /> Login
+            </Link>
+          </Button>
+        </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
   );
