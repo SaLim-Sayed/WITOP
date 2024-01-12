@@ -21,7 +21,7 @@ export default function SimpleSlider() {
     slidesToScroll: 1,
   };
   return (
-    <div className="w-[96%] mx-auto">
+    <div className="w-[96%] mx-auto mt-4">
       <Slider {...settings}>
         <div>
           <Image src="/slider/banner1.jpg" alt="1" width={1500} />
