@@ -19,13 +19,14 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/libs/cn";
 import { BiHeart, BiSearch, BiUser } from "react-icons/bi";
 import { BsCart, BsShop } from "react-icons/bs";
+import { useTranslations } from "next-intl";
 
 export default function MainNavbar() {
   const pathname = usePathname();
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isAcive, setIsAcive] = React.useState(1);
-
+  const translate = useTranslations("Globals");
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen} isBordered className=" h-24">
       <NavbarContent className="sm:hidden" justify="start">
@@ -44,13 +45,18 @@ export default function MainNavbar() {
             className="min-w-[90px] p-0 min-h-[90px]  flex gap-2"
           >
             <Link href="/" className="font-bold text-xl text-[#00b5bc]">
-              <Image src="/logo1.png" alt="logo" className=" p-0 m-0" layout="fill"/>
+              <Image
+                src="/logo1.png"
+                alt="logo"
+                className=" p-0 m-0"
+                layout="fill"
+              />
             </Link>
           </Button>
         </NavbarBrand>
       </NavbarContent>
       <NavbarContent className="hidden sm:flex gap-4" justify="start">
-      <NavbarBrand>
+        <NavbarBrand>
           <Button
             isIconOnly
             size="lg"
@@ -59,17 +65,20 @@ export default function MainNavbar() {
           >
             <Link href="/" className="font-bold text-3xl text-[#00b5bc]">
               {" "}
-              <Image src="/logo1.png" alt="logo" className=" p-0 m-0" layout="fill"/>
+              <Image
+                src="/logo1.png"
+                alt="logo"
+                className=" p-0 m-0"
+                layout="fill"
+              />
             </Link>
           </Button>
         </NavbarBrand>
-        </NavbarContent>
+      </NavbarContent>
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-       
-
         <NavbarItem>
           <Input
-            label="Search"
+            label={translate("Navbar/Search")}
             radius="lg"
             classNames={{
               label: "text-black/50 dark:text-white/90",

@@ -30,7 +30,7 @@
     "leaflet": "^1.9.4",
     "leaflet-defaulticon-compatibility": "^0.1.2",
     "next": "^14.0.4",
-    "next-intl": "^2.21.0",
+    "next-intl": "^2.22.1",
     "react": "latest",
     "react-day-picker": "^8.9.1",
     "react-dom": "latest",

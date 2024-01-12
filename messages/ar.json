@@ -1,0 +1,8 @@
+{
+  "Buttons": {},
+  "Globals": {
+    "Navbar/Search": "بحث",
+    "Navbar/Offer":"شحن مجاني للطلبات التي تزيد عن  200$ ,   " ,
+"Navbar/Offer/Conditions":" انظر للشروط"
+  }
+}
