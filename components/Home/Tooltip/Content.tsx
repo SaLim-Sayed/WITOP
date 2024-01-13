@@ -1,20 +1,26 @@
 import { skincareProducts } from "./content.module";
 
-interface IProps {}
-
-const Content = ({}: IProps) => {
-  return (
-<div className="grid grid-cols-3   md:grid-cols-8 gap-4">
-      {skincareProducts.map((product) => (
-        <div key={product.category}>
-      <p className="font-bold">{product.category}</p>
-      <div className="flex flex-col">
-{
-    product.subcategories.map((subcategory) => (
-      <p key={subcategory}>{subcategory}</p>
-    ))
+type ICat = {
+  name: string;
+  items: string[];
+};
+interface IProps {
+  subCategory: ICat[];
 }
-      </div>
+
+const Content = ({ subCategory }: IProps) => {
+  return (
+    <div className="flex gap-16  ">
+      {subCategory.map((category) => (
+        <div key={category.name} className="flex  flex-col  gap-4  ">
+          <p className="  text-lg font-bold">{category.name}</p>
+          <div className="flex flex-col gap-2">
+            {category.items.map((item) => (
+              <p key={item} className="  ">
+                {item}
+              </p>
+            ))}
+          </div>
         </div>
       ))}
     </div>
