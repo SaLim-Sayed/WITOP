@@ -14,7 +14,7 @@ export const settings = {
       breakpoint: 1400,
       settings: {
         slidesToShow: 6,
-        slidesToScroll: 3,
+        slidesToScroll: 1,
         centerPadding: 5,
         dots: true,
       },
@@ -23,7 +23,7 @@ export const settings = {
       breakpoint: 1024,
       settings: {
         slidesToShow: 5,
-        slidesToScroll: 3,
+        slidesToScroll: 2,
         centerPadding: 0,
         dots: true,
       },
@@ -32,7 +32,7 @@ export const settings = {
       breakpoint: 820,
       settings: {
         slidesToShow: 3,
-        slidesToScroll: 3,
+        slidesToScroll: 2,
         initialSlide: 2,
         centerPadding: 30,
         draggable: true,
