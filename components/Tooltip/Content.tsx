@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { skincareProducts } from "./content.module";
 
 type ICat = {
@@ -13,12 +14,12 @@ const Content = ({ subCategory }: IProps) => {
     <div className="flex gap-16  ">
       {subCategory.map((category) => (
         <div key={category.name} className="flex  flex-col  gap-4  ">
-          <p className="  text-lg font-bold">{category.name}</p>
+          <Link href={"/product"} className="  text-lg font-bold">{category.name}</Link>
           <div className="flex flex-col gap-2">
             {category.items.map((item) => (
-              <p key={item} className="  ">
+              <Link href={"/product"} key={item} className="  ">
                 {item}
-              </p>
+              </Link>
             ))}
           </div>
         </div>

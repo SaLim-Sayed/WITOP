@@ -11,7 +11,14 @@ interface IProps {}
 const Brands = ({}: IProps) => {
   return (
     <Center>
-  <Title title="Our Favorite Brands" subTitle={<Link href="/brands" className=" flex items-center text-[#00b5bc]">See All <BiArrowToRight/> </Link>}/>
+      <Title
+        title="Our Favorite Brands"
+        subTitle={
+          <Link href="/brands" className=" flex items-center text-[#00b5bc]">
+            See All <BiArrowToRight />{" "}
+          </Link>
+        }
+      />
       <div className="flex flex-col justify-center items-center md:flex-row md:justify-between mb-16">
         {brands?.map((brand) => (
           <div
@@ -28,7 +35,7 @@ const Brands = ({}: IProps) => {
               />
             </div>
             <p>{brand.title}</p>
-            <Button size="lg">Shop Now</Button>
+            <Button size="lg" radius="sm" as={Link} href={"/product"}>Shop Now</Button>
           </div>
         ))}
       </div>
@@ -50,19 +57,21 @@ const Brands = ({}: IProps) => {
             <p className=" font-bold">{brand.title}</p>
             <Divider />
             <p>{brand.desc}</p>
-            <Button size="lg" radius="sm">Shop Now</Button>
+            <Button size="lg" radius="sm" as={Link} href={"/product"}>
+              Shop Now
+            </Button>
           </div>
         ))}
       </div>
-       <div className=" mb-10 mx-auto">
-       <Image
-                src="/brands/offer.jpg"
-                alt="1"
-                width={1500}
-                height={1000}
-                className=" cursor-pointer "
-              /> 
-       </div>
+      <div className=" mb-10 mx-auto">
+        <Image
+          src="/brands/offer.jpg"
+          alt="1"
+          width={1500}
+          height={1000}
+          className=" cursor-pointer "
+        />
+      </div>
     </Center>
   );
 };

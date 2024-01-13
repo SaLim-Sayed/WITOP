@@ -35,13 +35,13 @@ export default async function RootLayout({
     try {
       messages = (await import(`../../messages/${locale}.json`)).default;
     } catch (error) {
-      error;
+      console.log(error);
     }
   return (
     <html lang={locale} dir={locale == "en" ? "ltr" : "rtl"}>
 
       <body className={inter.className}>
-      <NextIntlClientProvider locale={locale} messages={messages}>
+      <NextIntlClientProvider locale={locale}  messages={messages}>
 
         <NextUi>
           <TopHeader />

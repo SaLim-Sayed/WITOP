@@ -585,6 +585,7 @@ const MainCategories = ({}: IProps) => {
                 variant="light"
                 color="secondary"
                 className="hover:bg-cyan-300 text-tiny p-1 w-fit text-black"
+            as={Link} href={"/product"}
               >
                 {category.category}
               </Button>

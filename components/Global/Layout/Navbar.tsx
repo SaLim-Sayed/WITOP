@@ -14,18 +14,13 @@ import {
 import Link from "next/link";
 import { links } from "./links";
 import Image from "next/legacy/image";
-
-import { usePathname } from "next/navigation";
-import { cn } from "@/libs/cn";
 import { BiHeart, BiSearch, BiUser } from "react-icons/bi";
-import { BsCart, BsShop } from "react-icons/bs";
+import { BsCart } from "react-icons/bs";
 import { useTranslations } from "next-intl";
 
 export default function MainNavbar() {
-  const pathname = usePathname();
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [isAcive, setIsAcive] = React.useState(1);
   const translate = useTranslations("Globals");
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen} isBordered className=" bg-white shadow-md h-24">
