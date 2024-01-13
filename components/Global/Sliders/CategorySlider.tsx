@@ -25,7 +25,7 @@ export default function CategorySlider() {
         <Button
         isIconOnly
         radius="full"
-          className="p-0 min-w-[40px] h-[40px] z-50 "
+          className=" hidden lg:flex p-0 min-w-[40px]  h-[40px] z-50 "
           onClick={() => {
             locale == "ar"
               ? slider.current.slickNext()
@@ -123,7 +123,7 @@ export default function CategorySlider() {
         <Button
          isIconOnly
          radius="full"
-           className="p-0 min-w-[40px] h-[40px] z-50 "
+           className=" hidden lg:flex p-0 min-w-[40px] h-[40px] z-50 "
           onClick={() => {
             locale == "ar"
               ? slider.current.slickPrev()
