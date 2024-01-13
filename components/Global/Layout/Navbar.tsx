@@ -28,7 +28,7 @@ export default function MainNavbar() {
   const [isAcive, setIsAcive] = React.useState(1);
   const translate = useTranslations("Globals");
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen} isBordered className=" h-24">
+    <Navbar onMenuOpenChange={setIsMenuOpen} isBordered className=" bg-white shadow-md h-24">
       <NavbarContent className="sm:hidden" justify="start">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}

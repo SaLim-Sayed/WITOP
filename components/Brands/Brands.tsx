@@ -547,7 +547,7 @@ export default function Brands() {
                 />
                 </CardBody>
 
-                <CardFooter className="  before:bg-white/10 border-white/20 border-1 overflow-hidden py-1   before:rounded-xl rounded-large bottom-0 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
+                <CardFooter className="  before:bg-white/10 border-white/20 border-1 overflow-hidden py-1   before:rounded-xl rounded-large bottom-0 w-[calc(100%_-_8px)] shadow-small ml-1 z-2">
                   <Button
                     className="text-tiny text-white w-full bg-black/50"
                     variant="flat"

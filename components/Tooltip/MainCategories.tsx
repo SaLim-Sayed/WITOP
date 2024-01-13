@@ -464,7 +464,7 @@ const MainCategories = ({}: IProps) => {
   return (
     <div className=" hidden md:inline bg-[#d9d7d7]">
       <Center>
-        <div className="grid grid-cols-3  md:grid-flow-col gap-0   mb-8">
+        <div className="grid grid-cols-3  md:grid-flow-col gap-0 mt-4   mb-8">
         <Button
               radius="sm"
               size="sm"
@@ -490,8 +490,8 @@ const MainCategories = ({}: IProps) => {
                   "before:bg-neutral-400 dark:before:bg-white ",
                 ],
                 content: [
-                  "  pb-12",
-                  "py-2 px-4 shadow-xl",
+                  " mx-4 mb-4",
+                  "py-4 px-4 shadow-xl",
                   "text-black bg-gradient-to-br from-white to-neutral-100",
                 ],
               }}
