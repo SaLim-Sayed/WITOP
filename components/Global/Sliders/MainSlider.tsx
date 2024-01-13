@@ -22,19 +22,19 @@ export default function SimpleSlider() {
     <div className="w-[96%] mx-auto mt-4">
       <Slider {...settings}>
     <Link href="/c/bestprice">
-          <Image radius="none" src="/slider/banner1.jpg" alt="1" width={1500} />
+          <Image radius="none" src="/slider/banner1.jpg" alt="1" width={1500}  className=" min-h-48" />
         </Link>
     <Link href="/c/bestprice">
-          <Image radius="none" src="/slider/banner2.jpg" alt="1" width={1500} />
+          <Image radius="none" src="/slider/banner2.jpg" alt="1" width={1500}  className=" min-h-48" />
         </Link>
         <Link href="/c/bestprice">
-          <Image radius="none" src="/slider/banner4.jpg" alt="1" width={1500} />
+          <Image radius="none" src="/slider/banner4.jpg" alt="1" width={1500}  className=" min-h-48" />
          </Link>
         <Link href="/c/bestprice">
-          <Image radius="none" src="/slider/banner3.jpg" alt="1" width={1500} />
+          <Image radius="none" src="/slider/banner3.jpg" alt="1" width={1500}  className=" min-h-48" />
          </Link>
         <Link href="/c/bestprice">
-          <Image radius="none" src="/slider/banner3.webp" alt="1" width={1500} />
+          <Image radius="none" src="/slider/banner3.webp" alt="1" width={1500}  className=" min-h-48" />
          </Link>
       </Slider>
     </div>

@@ -12,6 +12,7 @@ import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import { settings } from "@/util/slickSettings";
 import { useLocale } from "next-intl";
 import { Category } from "./data.module";
+import Title from "../Ui/Title";
 export default function CategorySlider() {
   const [grab, setGrab] = useState(false);
   const slider = useRef<any>();
@@ -19,6 +20,7 @@ export default function CategorySlider() {
 
   return (
     <Center>
+      <Title title="All Categories"/>
       <div className="mx-auto  flex items-center  justify-center  ">
         <Button
           isIconOnly
