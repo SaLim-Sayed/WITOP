@@ -8,12 +8,10 @@ import Slider from "@ant-design/react-slick";
 import { Button, Image } from "@nextui-org/react";
 
 import Center from "../Ui/Center";
-import {
-  BiLeftArrow,
-  BiRightArrow,
-} from "react-icons/bi";
+import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import { settings } from "@/util/slickSettings";
 import { useLocale } from "next-intl";
+import { Category } from "./data.module";
 export default function CategorySlider() {
   const [grab, setGrab] = useState(false);
   const slider = useRef<any>();
@@ -23,8 +21,8 @@ export default function CategorySlider() {
     <Center>
       <div className="mx-auto  flex items-center  justify-center  ">
         <Button
-        isIconOnly
-        radius="full"
+          isIconOnly
+          radius="full"
           className=" hidden lg:flex p-0 min-w-[40px]  h-[40px] z-50 "
           onClick={() => {
             locale == "ar"
@@ -37,93 +35,24 @@ export default function CategorySlider() {
         <div className="w-[90%] my-12 mx-auto">
           {/*  @ts-ignore  */}
           <Slider dir="rtl" {...settings} ref={slider} autoplay>
-            <div>
-              <Image
-                radius="full"
-                src="/mainslide/1.webp"
-                alt="1"
-                width={150}
-                height={500}
-              />
-            </div>
-            <div>
-              <Image
-                radius="full"
-                src="/mainslide/2.webp"
-                alt="1"
-                width={150}
-                height={500}
-              />
-            </div>
-            <div>
-              <Image
-                radius="full"
-                src="/mainslide/3.webp"
-                alt="1"
-                width={150}
-                height={500}
-              />
-            </div>
-            <div>
-              <Image
-                radius="full"
-                src="/mainslide/4.webp"
-                alt="1"
-                width={150}
-                height={500}
-              />
-            </div>
-            <div>
-              <Image
-                radius="full"
-                src="/mainslide/5.webp"
-                alt="1"
-                width={150}
-                height={500}
-              />
-            </div>
-            <div>
-              <Image
-                radius="full"
-                src="/mainslide/6.webp"
-                alt="1"
-                width={150}
-                height={500}
-              />
-            </div>
-            <div>
-              <Image
-                radius="full"
-                src="/mainslide/7.webp"
-                alt="1"
-                width={150}
-                height={500}
-              />
-            </div>
-            <div>
-              <Image
-                radius="full"
-                src="/mainslide/8.webp"
-                alt="1"
-                width={150}
-                height={500}
-              />
-            </div>
-            <div>
-              <Image
-                radius="full"
-                src="/mainslide/9.webp"
-                alt="1"
-                width={150}
-                height={500}
-              />
-            </div>
+            {Category.map((category) => (
+              <div key={category.id} className=" flex flex-col gap-2 items-center justify-center">
+                <Image
+                  radius="full"
+                  src={category.img}
+                  alt="1"
+                  width={150}
+                  height={500}
+                />
+                <p className="text-center   text-xl ">{category.title}</p>
+              </div>
+            ))}
           </Slider>
         </div>
         <Button
-         isIconOnly
-         radius="full"
-           className=" hidden lg:flex p-0 min-w-[40px] h-[40px] z-50 "
+          isIconOnly
+          radius="full"
+          className=" hidden lg:flex p-0 min-w-[40px] h-[40px] z-50 "
           onClick={() => {
             locale == "ar"
               ? slider.current.slickPrev()

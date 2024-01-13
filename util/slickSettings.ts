@@ -46,9 +46,10 @@ export const settings = {
       breakpoint: 700,
       settings: {
         slidesToShow: 3,
-        slidesToScroll: 2,
+        slidesToScroll: 10,
         centerPadding: 0,
         draggable: true,
+        dots: false,
       },
     },
   ],

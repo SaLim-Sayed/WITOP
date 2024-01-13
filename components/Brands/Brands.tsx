@@ -1,9 +1,12 @@
+"use client";
 import Center from "../Global/Ui/Center";
 import Title from "../Global/Ui/Title";
 import Link from "next/link";
 import { Card, CardFooter, Image, Button, CardBody } from "@nextui-org/react";
+import { useTranslations } from "next-intl";
 
 export default function Brands() {
+  const translate = useTranslations("Brands");
   const allBrands = [
     {
       id: 1,
@@ -526,7 +529,7 @@ export default function Brands() {
   return (
     <div className=" bg-slate-100 pt-8">
       <Center>
-    <Title exSt="mt-0" title="All Brands" />
+        <Title exSt="mt-0" title={translate("Brands")} />
 
         <div className=" mt-8  grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 items-center justify-center justify-items-center">
           {allBrands.map((brand) => (
@@ -535,16 +538,20 @@ export default function Brands() {
               className="flex flex-col   p-2 rounded-lg justify-between items-center  "
               key={brand.brand}
             >
-              <Card isFooterBlurred radius="lg" className="border-none  w-40 h-[220px]">
+              <Card
+                isFooterBlurred
+                radius="lg"
+                className="border-none  w-40 h-[220px]"
+              >
                 <CardBody className=" flex items-center justify-center overflow-hidden">
-                <Image
-                  alt="Woman listing to music"
-                  className="object-fill  bg-white"
-                  height={200}
-                  src={brand.image}
-                  fallbackSrc="https://via.placeholder.com/"
-                  width={200}
-                />
+                  <Image
+                    alt="Woman listing to music"
+                    className="object-fill  bg-white"
+                    height={200}
+                    src={brand.image}
+                    fallbackSrc="https://via.placeholder.com/"
+                    width={200}
+                  />
                 </CardBody>
 
                 <CardFooter className="  before:bg-white/10 border-white/20 border-1 overflow-hidden py-1   before:rounded-xl rounded-large bottom-0 w-[calc(100%_-_8px)] shadow-small ml-1 z-2">

@@ -1,481 +1,565 @@
+"use client";
 import Center from "@/components/Global/Ui/Center";
 import { Tooltip, Button } from "@nextui-org/react";
 import Content from "./Content";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 interface IProps {}
 
 const MainCategories = ({}: IProps) => {
+  const translate = useTranslations("Categories");
+  const translateSub = useTranslations("Categories.SubCategory");
+  const translateSubDesc = useTranslations("Categories.SubCategory.Desc");
+  const translatee = useTranslations("Brands");
   const useCategory = [
     {
-      category: "Skin Care",
+      category: translate("Category/SkinCare"),
       subCategories: [
         {
-          name: "Premium Care",
+          name: translateSub("PremiumCare"),
           items: [
-            "Night Care",
-            "Day Care",
-            "Face Spray",
-            "Moisturiser & Hydrating",
-            "Skin Treatment",
-            "Whitening",
-            "Firming & Lifting",
-            "Anti Aging",
-            "Shining",
-            "Serum",
-            "Cleanser",
-            "Toner",
+            translateSubDesc("NightCare"),
+            translateSubDesc("DayCare"),
+            translateSubDesc("FaceSpray"),
+            translateSubDesc("MoisturiserHydrating"),
+            translateSubDesc("SkinTreatment"),
+            translateSubDesc("Whitening"),
+            translateSubDesc("FirmingLifting"),
+            translateSubDesc("AntiAging"),
+            translateSubDesc("Shining"),
+            translateSubDesc("Serum"),
+            translateSubDesc("Cleanser"),
+            translateSubDesc("Toner"),
           ],
         },
         {
-          name: "Exfoliator",
-          items: ["Scrub", "Exfoliators"],
+          name: translateSub("Exfoliator"),
+          items: [translateSubDesc("Scrub"), translateSubDesc("Exfoliator")],
         },
         {
-          name: "Masks",
-          items: ["Face Mask"],
+          name: translateSub("Masks"),
+          items: [translateSubDesc("FaceMask")],
         },
         {
-          name: "Ampoles",
-          items: ["Renual Ampoles", "Shining Ampoule"],
-        },
-        {
-          name: "Sun block",
-          items: ["SPF Cream", "SPF Milk", "SPF Spray", "SPF Lotion"],
-        },
-      ],
-    },
-    {
-      category: "Body Care",
-      subCategories: [
-        {
-          name: "Body Moisturising",
+          name: translateSub("Ampoles"),
           items: [
-            "Body Cream",
-            "Body Gel",
-            "Body Firming & Lifting",
-            "Anti Aging",
-            "Body Whitening",
-            "Body Lotion",
-            "Body Mist",
-            "Body Powder",
-            "Ampoles",
-            "Oil Control",
+            translateSubDesc("RenualAmpoles"),
+            translateSubDesc("ShiningAmpoule"),
           ],
         },
         {
-          name: "Bathing & Care",
+          name: translateSub("SunBlock"),
           items: [
-            "Bath Soap",
-            "Bath Salt",
-            "Bath Sponge",
-            "Body Loofah",
-            "Shower Gel",
-          ],
-        },
-        {
-          name: "Personal Care",
-          items: [
-            "Intimate",
-            "Exfoliator",
-            "Body Supplements",
-            "Body Cleansing",
-            "Waxing",
-            "Deodorant",
-            "Hair Removal",
-          ],
-        },
-        {
-          name: "Body Tan",
-          items: ["After Sun", "Self Tanning"],
-        },
-      ],
-    },
-    {
-      category: "Make Up",
-      subCategories: [
-        {
-          name: "Face",
-          items: [
-            "Primer & Base",
-            "Foundation",
-            "Powder",
-            "Concealer",
-            "BB Cream",
-            "CC Cream",
-            "Blush",
-            "Make-Up Suppliments",
-            "Illuminator & Highlighter",
-            "Bronzer",
-            "Contour",
-            "Makeup Brushes",
-            "Sponges",
-            "Make Up Remover",
-            "Make up fixing",
-            "Make up Pads",
-            "Gift Sets",
-          ],
-        },
-        {
-          name: "Eyes",
-          items: [
-            "Eye Shadow",
-            "Brow liner",
-            "Brow Mascara",
-            "Brow Gel",
-            "Mascara",
-            "Eye Liner",
-            "EyeBrows",
-            "Primer & Base",
-            "Eye Palettes",
-            "Eye Lashes & Curlers",
-            "Eye Make Up Remover",
-            "Lenses",
-            "Brow & Lashes Tools",
-            "Gift Sets",
-          ],
-        },
-        {
-          name: "Lips",
-          items: [
-            "Lipstick",
-            "Lip plumper",
-            "Lip scrub",
-            "Liquid Lipstick",
-            "Lip Liner",
-            "Lip Stain",
-            "Gloss",
-            "Gift Sets",
-          ],
-        },
-        {
-          name: "Nails",
-          items: [
-            "Nail Polish",
-            "Nail file",
-            "Nail Tools",
-            "Nail Polish Remover",
-            "Nail Stickers",
-            "Nails Tretment",
-            "Base Coat & Top Coats",
-            "Nail Kits",
-            "Gift Sets",
+            translateSubDesc("SPFCream"),
+            translateSubDesc("SPFMilk"),
+            translateSubDesc("SPFSpray"),
+            translateSubDesc("SPFLotion"),
           ],
         },
       ],
     },
     {
-      category: "Hair Care",
+      category: translate("Category/BodyCare"),
       subCategories: [
         {
-          name: "Bathing & Care",
-          items: ["Shampoo", "Conditioner"],
-        },
-        {
-          name: "Hair Dyes",
+          name: translateSub("BodyMoisturising"),
           items: [
-            "Heena",
-            "Hair Powder",
-            "Hair Colors",
-            "Temperary Hair Colors",
+            translateSubDesc("BodyCream"),
+            translateSubDesc("BodyGel"),
+            translateSubDesc("BodyFirmingLifting"),
+            translateSubDesc("AntiAging"),
+            translateSubDesc("BodyWhitening"),
+            translateSubDesc("BodyLotion"),
+            translateSubDesc("BodyMist"),
+            translateSubDesc("BodyPowder"),
+            translateSubDesc("Ampoles"),
+            translateSubDesc("OilControl"),
           ],
         },
         {
-          name: "Hair Treatment",
+          name: translateSub("BathingCare"),
           items: [
-            "Hair Spray",
-            "Hair Crystal",
-            "Hair Cream",
-            "Hair Oil",
-            "Hair Ampoles",
-            "Hair Serum",
+            translateSubDesc("BathSoap"),
+            translateSubDesc("BathSalt"),
+            translateSubDesc("BathSponge"),
+            translateSubDesc("BodyLoofah"),
+            translateSubDesc("ShowerGel"),
           ],
         },
         {
-          name: "Hair Accessories",
+          name: translateSub("PersonalCare"),
           items: [
-            "Hair Brushes",
-            "Hair Comb",
-            "Hair Bib",
-            "Hair scissors",
-            "Hair Penny",
-            "Hair tweezers",
+            translateSubDesc("Intimate"),
+            translateSubDesc("Exfoliator"),
+            translateSubDesc("BodySupplements"),
+            translateSubDesc("BodyCleansing"),
+            translateSubDesc("Waxing"),
+            translateSubDesc("Deodorant"),
+            translateSubDesc("HairRemoval"),
+          ],
+        },
+        {
+          name: translateSub("BodyTan"),
+          items: [
+            translateSubDesc("AfterSun"),
+            translateSubDesc("SelfTanning"),
           ],
         },
       ],
     },
     {
-      category: "Mouth Care",
+      category: translate("Category/MakeUp"),
       subCategories: [
         {
-          name: "Tooth Care",
-          items: ["Toothpaste", "Tooth Brushes", "Toothpick", "Dental Floss"],
+          name: translateSub("Face"),
+          items: [
+            translateSubDesc("PrimerBase"),
+            translateSubDesc("Foundation"),
+            translateSubDesc("Powder"),
+            translateSubDesc("Concealer"),
+            translateSubDesc("BBCream"),
+            translateSubDesc("CCCream"),
+            translateSubDesc("Blush"),
+            translateSubDesc("MakeUpSuppliments"),
+            translateSubDesc("IlluminatorHighlighter"),
+            translateSubDesc("Bronzer"),
+            translateSubDesc("Contour"),
+            translateSubDesc("MakeupBrushes"),
+            translateSubDesc("Sponges"),
+            translateSubDesc("MakeUpRemover"),
+            translateSubDesc("MakeupFixing"),
+            translateSubDesc("MakeupPads"),
+            translateSubDesc("GiftSets"),
+          ],
         },
         {
-          name: "Gums Care",
-          items: ["Rinse Mouth", "Water Jet"],
+          name: translateSub("Eyes"),
+          items: [
+            translateSubDesc("EyeShadow"),
+            translateSubDesc("BrowLiner"),
+            translateSubDesc("BrowMascara"),
+            translateSubDesc("BrowGel"),
+            translateSubDesc("Mascara"),
+            translateSubDesc("EyeLiner"),
+            translateSubDesc("EyeBrows"),
+            translateSubDesc("PrimerBase"),
+            translateSubDesc("EyePalettes"),
+            translateSubDesc("EyeLashesCurlers"),
+            translateSubDesc("EyeMakeUpRemover"),
+            translateSubDesc("Lenses"),
+            translateSubDesc("BrowLashesTools"),
+            translateSubDesc("GiftSets"),
+          ],
         },
         {
-          name: "Mouth freshener",
-          items: ["Mouth freshener", "Chewing Gums"],
+          name: translateSub("Lips"),
+          items: [
+            translateSubDesc("Lipstick"),
+            translateSubDesc("LipPlumper"),
+            translateSubDesc("LipScrub"),
+            translateSubDesc("LiquidLipstick"),
+            translateSubDesc("LipLiner"),
+            translateSubDesc("LipStain"),
+            translateSubDesc("Gloss"),
+            translateSubDesc("GiftSets"),
+          ],
         },
         {
-          name: "Tooth Whitening",
-          items: ["Whitning Teeth Mask"],
+          name: translateSub("Nails"),
+          items: [
+            translateSubDesc("NailPolish"),
+            translateSubDesc("NailFile"),
+            translateSubDesc("NailTools"),
+            translateSubDesc("NailPolishRemover"),
+            translateSubDesc("NailStickers"),
+            translateSubDesc("NailsTretment"),
+            translateSubDesc("BaseCoatTopCoats"),
+            translateSubDesc("NailKits"),
+            translateSubDesc("GiftSets"),
+          ],
+        },
+      ],
+    },
+    {
+      category: translate("Category/HairCare"),
+      subCategories: [
+        {
+          name: translateSub("BathingCare"),
+          items: [translateSubDesc("Shampoo"), translateSubDesc("Conditioner")],
         },
         {
-          name: "Lips Care",
-          items: ["Lips Mouisturising"],
+          name: translateSub("HairDyes"),
+          items: [
+            translateSubDesc("Heena"),
+            translateSubDesc("HairPowder"),
+            translateSubDesc("HairColors"),
+            translateSubDesc("TemperaryHairColors"),
+          ],
+        },
+        {
+          name: translateSub("HairTreatment"),
+          items: [
+            translateSubDesc("HairSpray"),
+            translateSubDesc("HairCrystal"),
+            translateSubDesc("HairCream"),
+            translateSubDesc("HairOil"),
+            translateSubDesc("HairAmpoles"),
+            translateSubDesc("HairSerum"),
+          ],
+        },
+        {
+          name: translateSub("HairAccessories"),
+          items: [
+            translateSubDesc("HairBrushes"),
+            translateSubDesc("HairComb"),
+            translateSubDesc("HairBib"),
+            translateSubDesc("HairScissors"),
+            translateSubDesc("HairPenny"),
+            translateSubDesc("Hairtweezers"),
+          ],
+        },
+      ],
+    },
+    {
+      category: translate("Category/MouthCare"),
+      subCategories: [
+        {
+          name: translateSub("ToothCare"),
+          items: [
+            translateSubDesc("Toothpaste"),
+            translateSubDesc("ToothBrushes"),
+            translateSubDesc("Toothpick"),
+            translateSubDesc("DentalFloss"),
+          ],
+        },
+        {
+          name: translateSub("GumsCare"),
+          items: [translateSubDesc("RinseMouth"), translateSubDesc("WaterJet")],
+        },
+        {
+          name: translateSub("MouthFreshener"),
+          items: [
+            translateSubDesc("Mouthfreshener"),
+            translateSubDesc("ChewingGums"),
+          ],
+        },
+        {
+          name: translateSub("ToothWhitening"),
+          items: [translateSubDesc("WhitningTeethMask")],
+        },
+        {
+          name: translateSub("LipsCare"),
+          items: [translateSubDesc("LipsMouisturising")],
         },
       ],
     },
 
     {
-      category: "Hands Care",
+      category: translate("Category/HandsCare"),
       subCategories: [
         {
-          name: "Hand Moisturising",
-          items: ["Moisturizing Gloves", "Hand Cream", "Hand Lotion"],
-        },
-        {
-          name: "Nails Care",
-          items: ["Nail Moisturising"],
-        },
-        {
-          name: "Hand Treatment",
-          items: ["Hand Relieves", "Hand Sweat Treatment"],
-        },
-      ],
-    },
-    {
-      category: "Foots Care",
-      subCategories: [
-        {
-          name: "Foot Moisturising",
-          items: ["Foots Cream", "Moisturizing Gloves", "Foots Lotion"],
-        },
-        {
-          name: "Nails Care",
-          items: ["Nails scissors", "Nails skin scissors", "Nails File"],
-        },
-        {
-          name: "Skin Exfoliators",
-          items: ["Foots Scrub"],
-        },
-        {
-          name: "Foots Care Tools",
-          items: ["Foots Care Tools"],
-        },
-        {
-          name: "Foot Treatment",
-          items: ["Foot Relieves", "Foot Sweat Treatment"],
-        },
-        {
-          name: "Foot Baths",
-          items: ["Bath Effervesnt"],
-        },
-      ],
-    },
-    {
-      category: "Mother & Baby Care",
-      subCategories: [
-        {
-          name: "Diapers & Changing",
-          items: ["Diapers", "Wet wipes", "Moisturising Cream"],
-        },
-        {
-          name: "Mommy Care",
-          items: ["Breast pumb", "Feminine Pads", "Breast Cover"],
-        },
-        {
-          name: "Child Care",
-          items: ["Baby Perfume"],
-        },
-        {
-          name: "Baby Food & Tools",
-          items: ["Baby Milk Bottels", "Milk Powder", "Feeding Equipments"],
-        },
-        {
-          name: "Bathing & Care",
+          name: translateSub("HandMoisturising"),
           items: [
-            "Baby lotion",
-            "Baby Shapoo",
-            "Baby Oil",
-            "Baby Wash",
-            "Gift Sets",
-            "Baby Powder",
+            translateSubDesc("MoisturizingGloves"),
+            translateSubDesc("HandCream"),
+            translateSubDesc("HandLotion"),
+          ],
+        },
+        {
+          name: translateSub("NailsCare"),
+          items: [translateSubDesc("NailMoisturising")],
+        },
+        {
+          name: translateSub("HandTreatment"),
+          items: [
+            translateSubDesc("HandRelieves"),
+            translateSubDesc("HandSweatTreatment"),
           ],
         },
       ],
     },
     {
-      category: "Accessories",
+      category: translate("Category/FootsCare"),
       subCategories: [
         {
-          name: "Men Accessories",
+          name: translateSub("FootMoisturising"),
           items: [
-            "Shaving Razor",
-            "Skin Suppliments",
-            "Shaving Products",
-            "After Shave",
-            "Food Supplements + protiens",
-            "Body Spray",
+            translateSubDesc("FootsCream"),
+            translateSubDesc("MoisturizingGloves"),
+            translateSubDesc("FootsLotion"),
           ],
         },
         {
-          name: "Women Accessories",
-          items: ["Shaving Razor", "Souna Suit", "Disposable Brow Razor"],
+          name: translateSub("NailsCare"),
+          items: [
+            translateSubDesc("Nailsscissors"),
+            translateSubDesc("Nailsskinscissors"),
+            translateSubDesc("NailsFile"),
+          ],
         },
         {
-          name: "Baby Accessories",
+          name: translateSub("SkinExfoliators"),
+          items: [translateSubDesc("FootsScrub")],
+        },
+        {
+          name: translateSub("FootsCareTools"),
+          items: [translateSubDesc("FootsCareTools")],
+        },
+        {
+          name: translateSub("FootTreatment"),
           items: [
-            "Ear Ring",
-            "cotton buds",
-            "nasal aspirator",
-            "Cooling Teether",
-            "Baby Nail Scissors",
-            "Bib",
-            "Hair Brushes",
-            "Buckle",
-            "Baby Lofa",
-            "Baby Pacifier",
+            translateSubDesc("FootRelieves"),
+            translateSubDesc("FootSweatTreatment"),
+          ],
+        },
+        {
+          name: translateSub("FootBaths"),
+          items: [translateSubDesc("BathEffervesnt")],
+        },
+      ],
+    },
+    {
+      category: translate("Category/MotherBabyCare"),
+      subCategories: [
+        {
+          name: translateSub("DiapersChanging"),
+          items: [
+            translateSubDesc("Diapers"),
+            translateSubDesc("WetWipes"),
+            translateSubDesc("MoisturisingCream"),
+          ],
+        },
+        {
+          name: translateSub("MommyCare"),
+          items: [
+            translateSubDesc("Breastpumb"),
+            translateSubDesc("FemininePads"),
+            translateSubDesc("BreastCover"),
+          ],
+        },
+        {
+          name: translateSub("ChildCare"),
+          items: [translateSubDesc("BabyPerfume")],
+        },
+        {
+          name: translateSub("BabyFoodTools"),
+          items: [
+            translateSubDesc("BabyMilkBottels"),
+            translateSubDesc("MilkPowder"),
+            translateSubDesc("FeedingEquipments"),
+          ],
+        },
+        {
+          name: translateSub("BathingCare"),
+          items: [
+            translateSubDesc("Babylotion"),
+            translateSubDesc("BabyShampoo"),
+            translateSubDesc("BabyOil"),
+            translateSubDesc("BabyWash"),
+            translateSubDesc("GiftSets"),
+            translateSubDesc("BabyPowder"),
           ],
         },
       ],
     },
     {
-      category: "Perfumes",
+      category: translate("Category/Accessories"),
       subCategories: [
         {
-          name: "EAU DE Toilette (EDT)",
-          items: ["Women Perfums", "Men Perfums", "UniSex Perfums"],
+          name: translateSub("MenAccessories"),
+          items: [
+            translateSubDesc("ShavingRazor"),
+            translateSubDesc("SkinSuppliments"),
+            translateSubDesc("ShavingProducts"),
+            translateSubDesc("AfterShave"),
+            translateSubDesc("FoodSupplements+protiens"),
+            translateSubDesc("BodySpray"),
+          ],
         },
         {
-          name: "Eau DE Perfume",
-          items: ["Women Perfums", "Men Perfums", "UniSex Perfums"],
+          name: translateSub("WomenAccessories"),
+          items: [
+            translateSubDesc("ShavingRazor"),
+            translateSubDesc("SounaSuit"),
+            translateSubDesc("DisposableBrowRazor"),
+          ],
         },
         {
-          name: "Oriantel Perfume",
-          items: ["Private Label", "Local Supplier"],
+          name: translateSub("BabyAccessories"),
+          items: [
+            translateSubDesc("EarRing"),
+            translateSubDesc("cottonbuds"),
+            translateSubDesc("nasalaspirator"),
+            translateSubDesc("CoolingTeether"),
+            translateSubDesc("BabyNailScissors"),
+            translateSubDesc("Bib"),
+            translateSubDesc("HairBrushes"),
+            translateSubDesc("Buckle"),
+            translateSubDesc("BabyLofa"),
+            translateSubDesc("BabyPacifier"),
+          ],
+        },
+      ],
+    },
+    {
+      category: translate("Category/Perfumes"),
+      subCategories: [
+        {
+          name: translateSub("EAUDEToiletteEDT"),
+          items: [
+            translateSubDesc("WomenPerfums"),
+            translateSubDesc("MenPerfums"),
+            translateSubDesc("UniSexPerfums"),
+          ],
         },
         {
-          name: "Gift Sets",
-          items: ["Women Set", "Mens Set"],
+          name: translateSub("EAUDEPerfume"),
+          items: [
+            translateSubDesc("WomenPerfums"),
+            translateSubDesc("MenPerfums"),
+            translateSubDesc("UniSexPerfums"),
+          ],
+        },
+        {
+          name: translateSub("OriantelPerfume"),
+          items: [
+            translateSubDesc("PrivateLabel"),
+            translateSubDesc("LocalSupplier"),
+          ],
+        },
+        {
+          name: translateSub("GiftSets"),
+          items: [translateSubDesc("WomenSet"), translateSubDesc("MensSet")],
         },
       ],
     },
 
     {
-      category: "Medical Products",
+      category: translate("Category/MedicalProducts"),
       subCategories: [
         {
-          name: "Measurement Machines",
+          name: translateSub("MeasurementMachines"),
           items: [
-            "Pressure Devices",
-            "Glucose Meters",
-            "Body Weight Scale",
-            "Thermometer",
+            translateSubDesc("PressureDevices"),
+            translateSubDesc("GlucoseMeters"),
+            translateSubDesc("BodyWeightScale"),
+            translateSubDesc("Thermometer"),
           ],
         },
         {
-          name: "Muscle Relaxation",
-          items: ["Anti Inflamatory Gel +cream"],
+          name: translateSub("MuscleRelaxation"),
+          items: [translateSubDesc("AntiInflamatoryGel+cream")],
         },
         {
-          name: "Medical Devices",
+          name: translateSub("MedicalDevices"),
           items: [
-            "Wound plasters",
-            "Medical Courset",
-            "Pregnancy Test",
-            "Suppliments",
-            "Back Pain Patches",
-            "First Aid Bag",
+            translateSubDesc("Woundplasters"),
+            translateSubDesc("MedicalCourset"),
+            translateSubDesc("PregnancyTest"),
+            translateSubDesc("Suppliments"),
+            translateSubDesc("BackPainPatches"),
+            translateSubDesc("FirstAidBag"),
           ],
         },
       ],
     },
 
     {
-      category: "Home Equipment",
+      category: translate("Category/HomeEquipment"),
       subCategories: [
         {
-          name: "Antiseptics",
+          name: translateSub("Antiseptics"),
           items: [
-            "Floor antiseptics",
-            "Suppliments",
-            "Spray antiseptics",
-            "Surface antiseptics",
+            translateSubDesc("FloorAntiseptics"),
+            translateSubDesc("Suppliments"),
+            translateSubDesc("SprayAntiseptics"),
+            translateSubDesc("SurfaceAntiseptics"),
           ],
         },
         {
-          name: "Fregrance",
-          items: ["Home Fregrance", "Furnutre Fregrance"],
+          name: translateSub("Fregrance"),
+          items: [
+            translateSubDesc("HomeFregrance"),
+            translateSubDesc("FurnutreFregrance"),
+          ],
         },
         {
-          name: "Battaries",
-          items: ["Battaries"],
+          name: translateSub("Battaries"),
+          items: [translateSubDesc("Battaries")],
         },
         {
-          name: "Washing",
-          items: ["Washing Machine Products"],
+          name: translateSub("Washing"),
+          items: [translateSubDesc("WashingMachineProducts")],
         },
         {
-          name: "Tissues",
-          items: ["Perfumed Wipes", "Single use Tissue", "Wet Tissue"],
+          name: translateSub("Tissues"),
+          items: [
+            translateSubDesc("PerfumedWipes"),
+            translateSubDesc("SingleuseTissue"),
+            translateSubDesc("WetTissue"),
+          ],
         },
         {
-          name: "Sticks",
-          items: ["wax wood Sticks", "Cotton Buds"],
+          name: translateSub("Sticks"),
+          items: [
+            translateSubDesc("WaxWoodSticks"),
+            translateSubDesc("CottonBuds"),
+          ],
         },
       ],
     },
     {
-      category: "Electronic Devices",
+      category: translate("Category/ElectronicDevices"),
       subCategories: [
         {
-          name: "Hair Devices",
-          items: ["Dryers & Stylers"],
+          name: translateSub("HairDevices"),
+          items: [translateSubDesc("DryersStylers")],
         },
         {
-          name: "Head Device",
-          items: ["Heat Cap"],
+          name: translateSub("HeadDevice"),
+          items: [translateSubDesc("HeatCap")],
         },
         {
-          name: "Body Devices",
-          items: ["Body Cleaning Devices", "Steam Devices", "Massage Devices"],
+          name: translateSub("BodyDevices"),
+          items: [
+            translateSubDesc("BodyCleaningDevices"),
+            translateSubDesc("SteamDevices"),
+            translateSubDesc("MassageDevices"),
+          ],
         },
         {
-          name: "Facial Devices",
-          items: ["Cutting + Remover"],
+          name: translateSub("FacialDevices"),
+          items: [translateSubDesc("CuttingRemover")],
         },
         {
-          name: "Foot Devices",
-          items: ["Foot Bath"],
+          name: translateSub("FootDevices"),
+          items: [translateSubDesc("FootBath")],
         },
         {
-          name: "Waxing Machine",
-          items: ["Waxing Pool"],
+          name: translateSub("WaxingMachine"),
+          items: [translateSubDesc("WaxingPool")],
         },
       ],
     },
-    // ... (Other categories)
+    //...(Othercategories)
 
-    // ... other main categories
+    //...othermaincategories
   ];
   return (
-    <div className=" hidden md:inline bg-[#d9d7d7]">
+    <div className="hidden md:inline bg-[#d9d7d7]">
       <Center>
-        <div className="grid grid-cols-3  md:grid-flow-col gap-0 mt-4   mb-8">
-        <Button
-              radius="sm"
-              size="sm"
-              variant="light"
-              color="default"
-              className=" hover:bg-cyan-500 text-[10px] font-bold text-black"
-              as={Link}
-              href="/brands"
-            >
-              Brands
-            </Button>
+        <div className="grid grid-cols-3 md:grid-flow-col gap-[1px] mt-4 items-center justify-items-center mb-8">
+          <Button
+            radius="sm"
+            size="sm"
+            variant="light"
+            color="default"
+            className="hover:bg-cyan-500 text-lg text-black"
+            as={Link}
+            href="/brands"
+          >
+            {translatee("Brands")}
+          </Button>
 
           {useCategory.map((category, index) => (
             <Tooltip
@@ -485,12 +569,12 @@ const MainCategories = ({}: IProps) => {
               content={<Content subCategory={category.subCategories} />}
               classNames={{
                 base: [
-                  // arrow color
-                  "min-w-[90%] ",
-                  "before:bg-neutral-400 dark:before:bg-white ",
+                  //arrowcolor
+                  "min-w-[90%]",
+                  "before:bg-neutral-400dark:before:bg-white",
                 ],
                 content: [
-                  " mx-4 mb-4",
+                  "mx-4 mb-4",
                   "py-4 px-4 shadow-xl",
                   "text-black bg-gradient-to-br from-white to-neutral-100",
                 ],
@@ -498,10 +582,9 @@ const MainCategories = ({}: IProps) => {
             >
               <Button
                 radius="sm"
-                size="sm"
                 variant="light"
                 color="secondary"
-                className=" hover:bg-cyan-300 text-[10px] font-bold text-black"
+                className="hover:bg-cyan-300 text-tiny p-1 w-fit text-black"
               >
                 {category.category}
               </Button>
