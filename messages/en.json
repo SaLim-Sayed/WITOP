@@ -5,6 +5,8 @@
   "Globals": {
     "Navbar/Search": "Search",
     "Navbar/Offer": "Free Shipping for orders > 200$ ,",
+    "Welcome": "Welcome",
+    "Wait": "Wait...",
     "Navbar/Offer/Conditions": " See conditions"
   },
   "Categories": {

@@ -10,7 +10,8 @@ import Footer from "@/components/Global/Layout/Footer";
 import MainCategories from "@/components/Tooltip/MainCategories";
 import ToTop from "@/components/Global/Ui/ToTop";
 import { NextIntlClientProvider } from "next-intl";
-
+import ClientHydration from "@/components/Global/Providers/ClientHydration";
+import MainLoader from "@/components/Global/Loaders/MainLoader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,30 +30,30 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
   params: any;
-}){
-    // Language Switcher Client Provider
-    let messages;
-    try {
-      messages = (await import(`../../messages/${locale}.json`)).default;
-    } catch (error) {
-      console.log(error);
-    }
+}) {
+  // Language Switcher Client Provider
+  let messages;
+  try {
+    messages = (await import(`../../messages/${locale}.json`)).default;
+  } catch (error) {
+    console.log(error);
+  }
   return (
     <html lang={locale} dir={locale == "en" ? "ltr" : "rtl"}>
-
       <body className={inter.className}>
-      <NextIntlClientProvider locale={locale}  messages={messages}>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <NextUi>
+            <ClientHydration LoaderComponent={<MainLoader />}>
+              <TopHeader />
+              <MainNavbar />
+              <MainCategories />
 
-        <NextUi>
-          <TopHeader />
-          <MainNavbar />
-          <MainCategories />
+              {children}
+              <ToTop />
 
-          {children}
-          <ToTop />
-
-          <Footer />
-        </NextUi>
+              <Footer />
+            </ClientHydration>
+          </NextUi>
         </NextIntlClientProvider>
       </body>
     </html>

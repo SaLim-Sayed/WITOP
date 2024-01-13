@@ -20,7 +20,7 @@ export default function Product() {
             Avène Physiolift, Avène Hydrance, Avéne Cleanance, Avéne Cicalfate
             or Trixera and many more.
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 mx-4 gap-4">
             {Array(12)
               .fill(0)
               .map((_, index) => (
