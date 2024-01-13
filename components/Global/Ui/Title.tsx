@@ -10,7 +10,7 @@ export default function Title({
   exStSubTitle,
 }: {
   title?: string;
-  subTitle?: string;
+  subTitle?: any;
   desc?: any;
   exSt?: string;
   exStTitle?: string;

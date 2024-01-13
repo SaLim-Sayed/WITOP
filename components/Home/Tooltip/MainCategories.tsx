@@ -1,6 +1,7 @@
 import Center from "@/components/Global/Ui/Center";
 import { Tooltip, Button } from "@nextui-org/react";
 import Content from "./Content";
+import Link from "next/link";
 interface IProps {}
 
 const MainCategories = ({}: IProps) => {
@@ -464,31 +465,17 @@ const MainCategories = ({}: IProps) => {
     <div className=" hidden md:inline bg-[#d9d7d7]">
       <Center>
         <div className="grid grid-cols-3  md:grid-flow-col gap-0   mb-8">
-          <Tooltip
-            showArrow
-            placement="bottom"
-            content="All Brands"
-            classNames={{
-              base: [
-                // arrow color
-                "before:bg-neutral-400 dark:before:bg-white",
-              ],
-              content: [
-                "py-2 px-4 shadow-xl",
-                "text-black bg-gradient-to-br from-white to-neutral-100",
-              ],
-            }}
-          >
-            <Button
+        <Button
               radius="sm"
               size="sm"
               variant="light"
               color="default"
               className=" hover:bg-cyan-500 text-[10px] font-bold text-black"
+              as={Link}
+              href="/brands"
             >
               Brands
             </Button>
-          </Tooltip>
 
           {useCategory.map((category, index) => (
             <Tooltip

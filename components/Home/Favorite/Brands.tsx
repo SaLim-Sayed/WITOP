@@ -3,13 +3,15 @@ import Title from "@/components/Global/Ui/Title";
 import { Button, Divider } from "@nextui-org/react";
 import { brands, subBrands } from "./brands.module";
 import Image from "next/image";
+import Link from "next/link";
+import { BiArrowToRight } from "react-icons/bi";
 
 interface IProps {}
 
 const Brands = ({}: IProps) => {
   return (
     <Center>
-      <Title title="Our Favorite Brands" subTitle="SEE ALL" />
+  <Title title="Our Favorite Brands" subTitle={<Link href="/brands" className=" flex items-center text-[#00b5bc]">See All <BiArrowToRight/> </Link>}/>
       <div className="flex flex-col justify-center items-center md:flex-row md:justify-between mb-16">
         {brands?.map((brand) => (
           <div
