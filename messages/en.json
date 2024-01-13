@@ -1,5 +1,7 @@
 {
-  "Buttons": {},
+  "Buttons": {
+    "Shop":"Shop Now"
+  },
   "Globals": {
     "Navbar/Search": "Search",
     "Navbar/Offer": "Free Shipping for orders > 200$ ,",

@@ -1,8 +1,8 @@
-import { ReactNode } from "react";
-
+"use client";
 import { cn } from "@/libs/cn";
 import { Button, Divider } from "@nextui-org/react";
 import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
+import { useTranslations } from "next-intl";
 import { FaShoppingCart } from "react-icons/fa";
 export default function GCard({
   price,
@@ -19,6 +19,7 @@ export default function GCard({
   exSt?: string;
   id?: any;
 }) {
+  const translate = useTranslations("Buttons");
   return (
     <div className="flex flex-col gap-2 shadow-xl relative ">
       <Button
@@ -54,7 +55,7 @@ export default function GCard({
             radius="sm"
             size="sm"
           >
-            <FaShoppingCart /> Shop Now
+            <FaShoppingCart /> {translate("Shop")}
           </Button>
         </CardFooter>
       </Card>

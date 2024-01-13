@@ -1,5 +1,7 @@
 {
-  "Buttons": {},
+  "Buttons": {
+    "Shop":"أشتري الان"
+  },
   "Globals": {
     "Navbar/Search": "بحث",
     "Navbar/Offer": "شحن مجاني للطلبات التي تزيد عن  200$ ,   ",
