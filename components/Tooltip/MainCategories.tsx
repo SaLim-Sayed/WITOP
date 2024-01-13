@@ -486,11 +486,11 @@ const MainCategories = ({}: IProps) => {
               classNames={{
                 base: [
                   // arrow color
-                  "min-w-[90%]",
+                  "min-w-[90%] ",
                   "before:bg-neutral-400 dark:before:bg-white ",
                 ],
                 content: [
-                  "min-w-[1200px]",
+                  "  pb-12",
                   "py-2 px-4 shadow-xl",
                   "text-black bg-gradient-to-br from-white to-neutral-100",
                 ],

@@ -4,5 +4,21 @@
     "Navbar/Search": "Search",
     "Navbar/Offer": "Free Shipping for orders > 200$ ,",
     "Navbar/Offer/Conditions": " See conditions"
+  },
+  "Categories": {
+    "All": "All",
+    "Category/SkinCare": "Skin Care",
+    "Category/HairCare": "Hair Care",
+    "Category/BodyCare": "Body Care",
+    "Category/MakeUp": "Make Up",
+    "Category/MouthCare": "Mouth Care",
+    "Category/HandsCare": "Hands Care",
+    "Category/FootsCare": "Foots Care",
+    "Category/MotherBabyCare": "Mother & Baby Care",
+    "Category/Accessories": "Accessories",
+    "Category/Perfumes": "Perfumes",
+    "Category/MedicalProducts": "Medical Products",
+    "Category/HomeEquipment": "Home Equipment",
+    "Category/ElectronicDevices": "Electronic Devices"
   }
 }

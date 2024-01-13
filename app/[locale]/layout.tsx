@@ -7,7 +7,7 @@ import NextUi from "@/components/Providers/NextUi";
 import MainNavbar from "@/components/Global/Layout/Navbar";
 import TopHeader from "@/components/Global/Layout/TopHeader";
 import Footer from "@/components/Global/Layout/Footer";
-import MainCategories from "@/components/Home/Tooltip/MainCategories";
+import MainCategories from "@/components/Tooltip/MainCategories";
 import ToTop from "@/components/Global/Ui/ToTop";
 import { NextIntlClientProvider } from "next-intl";
 
