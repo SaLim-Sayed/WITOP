@@ -8,6 +8,7 @@ import { Button } from "@nextui-org/react";
 import Link from "next/link";
 import { FaSignLanguage } from "react-icons/fa";
 import Center from "../Ui/Center";
+import { BiWorld } from "react-icons/bi";
 const TopHeader = () => {
   const locale = useLocale();
   const pathName = usePathname();
@@ -29,22 +30,26 @@ const TopHeader = () => {
   };
   const translate = useTranslations("Globals");
   return (
-    <div className="  items-center justify-between px-10 h-[40px] z-50 bg-slate-300 ">
+    <div className="flex  items-center justify-between px-10 h-[80px] md:h-[40px] z-50 bg-slate-300 ">
       <Center>
-        <div className="flex gap-[9px] items-center justify-between px-10 h-[40px] z-50  ">
+        <div className="flex   md:flex-row gap-[9px] items-center  justify-between px-1 md:px-10 h-[40px] z-50  ">
           <h1>
             {translate("Navbar/Offer")}
             <Link href="" className="text-white">
             {translate("Navbar/Offer/Conditions")}
             </Link>
           </h1>
-          <div className=" w-full lg:w-max lg:mx-[10px]  ">
+          <div className="   lg:w-max lg:mx-[10px]  ">
             <Button
-              className="border-[1px] lg:mx-[10px]justify-start py-[23px] lg:py-0  w-full "
+             
+              
+             variant="shadow"
+            
+              className=" bg-teal-700 w-10 h-8 text-white font-bold px-2 justify-center my-2 flex gap-2  "
               onClick={switchLang}
             >
-              <FaSignLanguage />
-              <div>{locale == "en" ? "Arabic" : "English"}</div>
+              <BiWorld />
+          <div>{locale == "en" ? " | En" :" | ع"  }</div>
             </Button>
           </div>
         </div>

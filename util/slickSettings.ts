@@ -1,3 +1,5 @@
+ 
+
 export const settings = {
   dots: true,
   speed: 500,
@@ -10,6 +12,7 @@ export const settings = {
   adaptiveHeight: true,
   pauseOnHover: true,
   draggable: false,
+   
   responsive: [
     {
       breakpoint: 1400,
