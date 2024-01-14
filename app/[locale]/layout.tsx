@@ -44,12 +44,13 @@ export default async function RootLayout({
         <NextIntlClientProvider locale={locale} messages={messages}>
           <NextUi>
             <ClientHydration LoaderComponent={<MainLoader />}>
-              <TopHeader />
               <MainNavbar />
-              <MainCategories />
+              <div className="mt-[160px]  md:mt-[150px]">
+                <MainCategories />
 
-              {children}
-              <ToTop />
+                {children}
+                <ToTop />
+              </div>
 
               <Footer />
             </ClientHydration>

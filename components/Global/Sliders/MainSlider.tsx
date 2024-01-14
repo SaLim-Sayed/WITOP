@@ -19,23 +19,53 @@ export default function SimpleSlider() {
     slidesToScroll: 1,
   };
   return (
-    <div className="w-[96%] mx-auto mt-4">
+    <div className="w-[85%] md:w-[95%] mx-auto mt-4">
       <Slider {...settings}>
-    <Link href="/c/bestprice">
-          <Image radius="none" src="/slider/banner1.jpg" alt="1" width={1500}  className=" min-h-48" />
+        <Link href="/c/bestprice">
+          <Image
+            radius="none"
+            src="/slider/banner1.jpg"
+            alt="1"
+            width={"100%"}
+            className=" min-h-48"
+          />
         </Link>
-    <Link href="/c/bestprice">
-          <Image radius="none" src="/slider/banner2.jpg" alt="1" width={1500}  className=" min-h-48" />
+        <Link href="/c/bestprice">
+          <Image
+            radius="none"
+            src="/slider/banner2.jpg"
+            alt="1"
+            width={"100%"}
+            className=" min-h-48"
+          />
         </Link>
         <Link href="/c/bestprice">
-          <Image radius="none" src="/slider/banner4.jpg" alt="1" width={1500}  className=" min-h-48" />
-         </Link>
+          <Image
+            radius="none"
+            src="/slider/banner4.jpg"
+            alt="1"
+            width={"100%"}
+            className=" min-h-48"
+          />
+        </Link>
         <Link href="/c/bestprice">
-          <Image radius="none" src="/slider/banner3.jpg" alt="1" width={1500}  className=" min-h-48" />
-         </Link>
+          <Image
+            radius="none"
+            src="/slider/banner3.jpg"
+            alt="1"
+            width={"100%"}
+            className=" min-h-48"
+          />
+        </Link>
         <Link href="/c/bestprice">
-          <Image radius="none" src="/slider/banner3.webp" alt="1" width={1500}  className=" min-h-48" />
-         </Link>
+          <Image
+            radius="none"
+            src="/slider/banner3.webp"
+            alt="1"
+            width={"100%"}
+            className=" min-h-48"
+          />
+        </Link>
       </Slider>
     </div>
   );
