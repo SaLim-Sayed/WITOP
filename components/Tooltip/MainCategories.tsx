@@ -548,7 +548,7 @@ const MainCategories = ({}: IProps) => {
   return (
     <div className="hidden md:inline bg-[#d9d7d7]">
       <Center>
-        <div className="grid grid-cols-3 md:grid-flow-col gap-[1px] mt-4 items-center justify-items-center mb-8">
+        <div className="flex gap-[1px] mt-4 items-center justify-between mb-8">
           <Button
             radius="sm"
             size="sm"
@@ -584,6 +584,7 @@ const MainCategories = ({}: IProps) => {
                 radius="sm"
                 variant="light"
                 color="secondary"
+                size="sm"
                 className="hover:bg-cyan-300 text-tiny p-1 w-fit text-black"
             as={Link} href={"/product"}
               >
