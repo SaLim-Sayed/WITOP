@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -16,14 +16,24 @@ import { links } from "./links";
 import Image from "next/legacy/image";
 import { BiHeart, BiSearch, BiUser } from "react-icons/bi";
 import { BsCart } from "react-icons/bs";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import MainDrawer from "../Drawer/MainDrawer";
+import { useDisclosure } from "@chakra-ui/react";
 
 export default function MainNavbar() {
-
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [placement, setPlacement] = React.useState('right')
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const translate = useTranslations("Globals");
+  const locale=useLocale()
+  useEffect(() => {
+    if (locale==="ar") {
+      setPlacement("left")
+    }
+  },[])
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen} isBordered className=" bg-white shadow-md h-24">
+      <MainDrawer placement={placement} onClose={onClose} isOpen={isOpen}/>
       <NavbarContent className="sm:hidden" justify="start">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -111,6 +121,7 @@ export default function MainNavbar() {
             size="lg"
             className="font-bold w-6 h-10 mx-4"
             variant="light"
+            onClick={onOpen}
           >
             <BsCart size={40} />
           </Button>
