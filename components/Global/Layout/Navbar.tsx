@@ -20,6 +20,7 @@ import { useLocale, useTranslations } from "next-intl";
 import MainDrawer from "../Drawer/MainDrawer";
 import { useDisclosure } from "@chakra-ui/react";
 import TopHeader from "./TopHeader";
+import { cn } from "@/libs/cn";
 
 export default function MainNavbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -32,7 +33,7 @@ export default function MainNavbar() {
     if (locale === "ar") {
       setPlacement("left");
     }
-  }, []);
+  }, [locale]);
   return (
     <div className="flex flex-col fixed top-0 z-50 w-full shadow-md">
       <TopHeader />
@@ -72,7 +73,9 @@ export default function MainNavbar() {
           </NavbarBrand>
         </NavbarContent>
         <NavbarContent
-          className="hidden sm:flex gap-4 ml-0  lg:-ml-[180px] "
+          className={cn("hidden sm:flex gap-4 ",
+            locale==="ar" ?"mr-0  lg:-mr-[180px] ":"ml-0  lg:-ml-[180px] "
+          )}
           justify="start"
         >
           <NavbarBrand>
@@ -121,14 +124,21 @@ export default function MainNavbar() {
         </NavbarContent>
 
         <NavbarContent
-          className="mr-0  lg:-mr-[180px] 2xl:-mr-[240px] "
+          className={cn("mr-0   ",
+          locale==="ar" ? "ml-0 lg:-ml-[180px]   2xl:-ml-[240px]" : " mr-0  lg:-mr-[180px] 2xl:-mr-[240px]"
+          )}
           justify="end"
         >
           <NavbarItem>
-      <Button  className="font-bold w-6 h-10"
-              variant="light" size="lg" onClick={() => setIsSearch(!isSearch)} isIconOnly>
-                  <BiSearch size={40} />
-                </Button>
+            <Button
+            className="font-bold w-6 h-10 md:hidden inline"
+              variant="light"
+              size="lg"
+              onClick={() => setIsSearch(!isSearch)}
+              isIconOnly
+            >
+              <BiSearch size={40} />
+            </Button>
             <Button
               isIconOnly
               size="lg"
@@ -184,13 +194,12 @@ export default function MainNavbar() {
               label: "text-black/50 dark:text-white/90",
               input: [
                 "w-full lg:w-96",
-              
+
                 "text-black/90 dark:text-white/90",
                 "placeholder:text-default-700/50 dark:placeholder:text-white/60",
               ],
             }}
             color="default"
-            
             type="search"
             endContent={
               <Button isIconOnly>
