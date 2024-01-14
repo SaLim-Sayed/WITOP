@@ -5,7 +5,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import NextUi from "@/components/Providers/NextUi";
 import MainNavbar from "@/components/Global/Layout/Navbar";
-import TopHeader from "@/components/Global/Layout/TopHeader";
 import Footer from "@/components/Global/Layout/Footer";
 import MainCategories from "@/components/Tooltip/MainCategories";
 import ToTop from "@/components/Global/Ui/ToTop";
@@ -45,7 +44,7 @@ export default async function RootLayout({
           <NextUi>
             <ClientHydration LoaderComponent={<MainLoader />}>
               <MainNavbar />
-              <div className="mt-[160px]  md:mt-[150px]">
+              <div className="mt-[200px]  md:mt-[170px]">
                 <MainCategories />
 
                 {children}

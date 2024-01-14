@@ -17,7 +17,7 @@ export default function CategorySlider() {
   const [grab, setGrab] = useState(false);
   const slider = useRef<any>();
   const locale = useLocale();
-
+  const dir = locale == "ar" ? true : false;
   return (
     <Center>
       <Title title="All Categories"/>
@@ -25,7 +25,7 @@ export default function CategorySlider() {
         <Button
           isIconOnly
           radius="full"
-          className=" hidden lg:flex p-0 min-w-[40px]  h-[40px] z-10 "
+          className=" hidden lg:flex p-0 min-w-[40px]  h-[40px] z-50 "
           onClick={() => {
             locale == "ar"
               ? slider.current.slickNext()
@@ -36,9 +36,9 @@ export default function CategorySlider() {
         </Button>
         <div className="w-[90%] my-12 mx-auto">
           {/*  @ts-ignore  */}
-          <Slider dir="rtl" {...settings} ref={slider} autoplay>
+          <Slider rtl={dir} {...settings} ref={slider} autoplay>
             {Category.map((category) => (
-              <div key={category.id} className=" flex flex-col gap-2 items-center justify-center">
+              <div   key={category.id} className=" flex flex-col gap-2 items-center justify-center">
                 <Image
                   radius="full"
                   src={category.img}
@@ -54,7 +54,7 @@ export default function CategorySlider() {
         <Button
           isIconOnly
           radius="full"
-          className=" hidden lg:flex p-0 min-w-[40px] h-[40px] z-10 "
+          className=" hidden lg:flex p-0 min-w-[40px] h-[40px] z-50 "
           onClick={() => {
             locale == "ar"
               ? slider.current.slickPrev()
