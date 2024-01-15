@@ -13,7 +13,8 @@ export default function GCard({
   id,
   img,
   exSt,
-  product
+  product,
+  category
 }: {
   price: any;
   title: string;
@@ -21,7 +22,8 @@ export default function GCard({
   img: string;
   exSt?: string;
   id?: string;
-  product?:Product
+  product?:Product;
+  category?:string
 }) {
   const translate = useTranslations("Buttons");
   return (
@@ -34,7 +36,7 @@ export default function GCard({
       >
         -50%
       </Button>
-      <Link href={`/product/${id}`}>
+  <Link passHref href={`/product/${category}/${id}`}>
         <Card shadow="sm" isPressable>
           <CardBody className="overflow-visible bg-slate-100/30  p-0 flex flex-col gap-2">
             <Image

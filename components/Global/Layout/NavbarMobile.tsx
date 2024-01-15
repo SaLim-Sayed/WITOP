@@ -1,12 +1,22 @@
 "use client";
 import Center from "@/components/Global/Ui/Center";
 import { Tooltip, Button } from "@nextui-org/react";
-import Content from "./Content";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownSection,
+  NavbarMenuItem,
+  DropdownItem,
+} from "@nextui-org/react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-interface IProps {}
 
-const MainCategories = ({}: IProps) => {
+export default function NavbarMobile({
+  setIsMenuOpen,
+}: {
+  setIsMenuOpen: any;
+}) {
   const translate = useTranslations("Categories");
   const translateSub = useTranslations("Categories.SubCategory");
   const translateSubDesc = useTranslations("Categories.SubCategory.Desc");
@@ -546,57 +556,19 @@ const MainCategories = ({}: IProps) => {
     //...othermaincategories
   ];
   return (
-    <div className="hidden md:inline bg-[#d9d7d7]">
-      <Center>
-        <div className="flex gap-[1px] mt-4 items-center justify-between mb-8">
+    <>
+      {useCategory.map((category, index) => (
+        <NavbarMenuItem key={index}>
           <Button
-            radius="sm"
-            size="sm"
-            variant="light"
-            color="default"
-            className="hover:bg-cyan-500 text-lg text-black"
+            onClick={setIsMenuOpen(false)}
             as={Link}
-            href="/brands"
+            href={`/product/${category.category}`}
+            variant="bordered"
           >
-            {translatee("Brands")}
+            {category.category}
           </Button>
-
-          {useCategory.map((category, index) => (
-            <Tooltip
-              key={index}
-              showArrow
-              placement="bottom"
-              content={<Content subCategory={category.subCategories} />}
-              classNames={{
-                base: [
-                  //arrowcolor
-                  "min-w-[90%]",
-                  "before:bg-neutral-400dark:before:bg-white",
-                ],
-                content: [
-                  "mx-4 mb-4",
-                  "py-4 px-4 shadow-xl",
-                  "text-black bg-gradient-to-br from-white to-neutral-100",
-                ],
-              }}
-            >
-              <Button
-                radius="sm"
-                variant="light"
-                color="secondary"
-                size="sm"
-                className="hover:bg-cyan-300 text-tiny p-1 w-fit text-black"
-                as={Link}
-                href={`/product/${category.category}`}
-              >
-                {category.category}
-              </Button>
-            </Tooltip>
-          ))}
-        </div>
-      </Center>
-    </div>
+        </NavbarMenuItem>
+      ))}
+    </>
   );
-};
-
-export default MainCategories;
+}

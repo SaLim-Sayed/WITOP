@@ -8,13 +8,12 @@ import { Tabs, Tab } from "@nextui-org/react";
 import Title from "../Global/Ui/Title";
 import GCard from "../Global/Ui/GCard";
 import { useEffect, useState } from "react";
-import createUser from "../Home/Favorite/createUser.module";
 import { Product } from "@/types/product";
 import RelatedProducts from "./RelatedProducts";
 import { useParams } from "next/navigation";
 import getProductByID from "@/store/actions/getProductByID.module";
 export default function ProductCard() {
-  const {id}=useParams()
+  const {id,category}=useParams()
   console.log(id)
   const [count, setCount] = useState<number>(1);
 
@@ -30,7 +29,7 @@ export default function ProductCard() {
 
   const [productData, setProductData] = useState<Product>();
   const getProductData = async () => {
-    const server = await getProductByID({id});
+    const server = await getProductByID({id,category});
     setProductData(server?.product);
     console.log(server );
   };
@@ -137,7 +136,7 @@ export default function ProductCard() {
           </Tab>
         </Tabs>
       </div>
-      <Title title="RELATED PRODUCTS " />
+      
    
         <RelatedProducts/>
       

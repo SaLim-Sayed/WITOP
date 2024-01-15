@@ -21,7 +21,14 @@ import MainDrawer from "../Drawer/MainDrawer";
 import { useDisclosure } from "@chakra-ui/react";
 import TopHeader from "./TopHeader";
 import { cn } from "@/libs/cn";
-
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownSection,
+  DropdownItem,
+} from "@nextui-org/react";
+import NavbarMobile from "./NavbarMobile";
 export default function MainNavbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [placement, setPlacement] = React.useState("right");
@@ -73,8 +80,9 @@ export default function MainNavbar() {
           </NavbarBrand>
         </NavbarContent>
         <NavbarContent
-          className={cn("hidden sm:flex gap-4 ",
-            locale==="ar" ?"mr-0  lg:-mr-[180px] ":"ml-0  lg:-ml-[180px] "
+          className={cn(
+            "hidden sm:flex gap-4 ",
+            locale === "ar" ? "mr-0  lg:-mr-[180px] " : "ml-0  lg:-ml-[180px] "
           )}
           justify="start"
         >
@@ -124,14 +132,17 @@ export default function MainNavbar() {
         </NavbarContent>
 
         <NavbarContent
-          className={cn("mr-0   ",
-          locale==="ar" ? "ml-0 lg:-ml-[180px]   2xl:-ml-[240px]" : " mr-0  lg:-mr-[180px] 2xl:-mr-[240px]"
+          className={cn(
+            "mr-0   ",
+            locale === "ar"
+              ? "ml-0 lg:-ml-[180px]   2xl:-ml-[240px]"
+              : " mr-0  lg:-mr-[180px] 2xl:-mr-[240px]"
           )}
           justify="end"
         >
           <NavbarItem>
             <Button
-            className="font-bold w-6 h-10 md:hidden inline"
+              className="font-bold w-6 h-10 md:hidden inline"
               variant="light"
               size="lg"
               onClick={() => setIsSearch(!isSearch)}
@@ -167,20 +178,26 @@ export default function MainNavbar() {
           </NavbarItem>
         </NavbarContent>
 
-        <NavbarMenu>
+    <NavbarMenu className="mt-32">
+     <NavbarMobile setIsMenuOpen={setIsMenuOpen}/>
           <NavbarMenuItem>
-            <Button
-              size="lg"
-              className="w-full flex justify-start left-0 mt-10"
-            >
-              <Link
-                passHref
-                className="  flex items-center gap-2 font-bold"
-                href={"#"}
-              >
-                <BiUser size={40} /> Login
-              </Link>
-            </Button>
+            <Dropdown>
+              <DropdownTrigger>
+                <Button variant="bordered">Open Menu</Button>
+              </DropdownTrigger>
+              <DropdownMenu aria-label="Static Actions">
+                <DropdownItem key="new">New file</DropdownItem>
+                <DropdownItem key="copy">Copy link</DropdownItem>
+                <DropdownItem key="edit">Edit file</DropdownItem>
+                <DropdownItem
+                  key="delete"
+                  className="text-danger"
+                  color="danger"
+                >
+                  Delete file
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
           </NavbarMenuItem>
         </NavbarMenu>
       </Navbar>

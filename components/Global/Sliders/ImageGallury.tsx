@@ -30,8 +30,8 @@ const ImageGallury = ({ alt, images, discount }: IProps) => {
         size="sm"
         radius="sm"
         className={cn(
-          "absolute top-0 right-0 bg-lime-300 shadow-md z-20",
-          locale === "ar" && "left-0"
+          "absolute top-0  bg-lime-300 shadow-md z-20",
+          locale === "ar" ?"left-0":"right-0"
         )}
       >
         {discount}%
