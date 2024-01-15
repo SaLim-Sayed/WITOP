@@ -8,10 +8,14 @@ import Link from "next/link";
 import { BiArrowToRight } from "react-icons/bi";
 import { useTranslations } from "next-intl";
 
+
+
 interface IProps {}
 
 const Brands = ({}: IProps) => {
   const translate = useTranslations("Buttons");
+
+ 
   return (
     <Center>
       <Title
@@ -39,7 +43,7 @@ const Brands = ({}: IProps) => {
             </div>
             <p>{brand.title}</p>
             <Button size="lg" radius="sm" as={Link} href={"/product"}>
-            {translate("Shop")}
+              {translate("Shop")}
             </Button>
           </div>
         ))}

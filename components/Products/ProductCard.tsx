@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Center from "../Global/Ui/Center";
 import ImageGallury from "../Global/Sliders/ImageGallury";
 import { BiHeart, BiStar } from "react-icons/bi";
@@ -7,6 +7,9 @@ import { Button, Card, CardBody } from "@nextui-org/react";
 import { Tabs, Tab } from "@nextui-org/react";
 import Title from "../Global/Ui/Title";
 import GCard from "../Global/Ui/GCard";
+import { useEffect, useState } from "react";
+import createUser from "../Home/Favorite/createUser.module";
+import { Product } from "@/types/product";
 export default function ProductCard() {
   const [count, setCount] = useState<number>(1);
 
@@ -19,6 +22,16 @@ export default function ProductCard() {
       setCount(count - 1);
     }
   };
+
+  const [products, setProducts] = useState<Product[]>();
+  const geData = async () => {
+    const server = await createUser();
+    setProducts(server?.products);
+    console.log(server?.products);
+  };
+  useEffect(() => {
+    geData();
+  }, []);
   return (
     <Center>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
@@ -90,7 +103,7 @@ export default function ProductCard() {
       <div className="flex flex-col items-center justify-center">
         <Tabs variant="underlined" aria-label="Tabs variants">
           <Tab key="photos" title="Features">
-             <Card shadow="none">
+            <Card shadow="none">
               <CardBody>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -100,7 +113,7 @@ export default function ProductCard() {
             </Card>
           </Tab>
           <Tab key="music" title="How to use">
-             <Card shadow="none">
+            <Card shadow="none">
               <CardBody>
                 outdoor sports practitioners. Practical and easy to apply, it
                 does not need to be spread with the hands and is more resistant
@@ -121,21 +134,19 @@ export default function ProductCard() {
           </Tab>
         </Tabs>
       </div>
-      <Title title="RELATED PRODUCTS "/>
+      <Title title="RELATED PRODUCTS " />
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 mx-4 gap-4">
-            {Array(5)
-              .fill(0)
-              .map((_, index) => (
-                <GCard
-                  key={index}
-                  id={2}
-                  price={100}
-                  title="title"
-                  desc="desc"
-                  img="/brands/1.png"
-                />
-              ))}
-          </div>
+        {products?.map((product) => (
+          <GCard
+            key={product?._id}
+            id={product?._id}
+            price={product?.price}
+            title={product?.productName}
+            desc={product?.description}
+            img={product?.images[0]}
+          />
+        ))}
+      </div>
     </Center>
   );
 }

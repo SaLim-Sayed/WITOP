@@ -18,7 +18,7 @@ export default function GCard({
   desc: string;
   img: string;
   exSt?: string;
-  id?: number;
+  id?: string;
 }) {
   const translate = useTranslations("Buttons");
   return (
