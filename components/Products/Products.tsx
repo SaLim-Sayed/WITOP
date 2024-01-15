@@ -40,7 +40,7 @@ export default function Product() {
               Avène Physiolift, Avène Hydrance, Avéne Cleanance, Avéne Cicalfate
               or Trixera and many more.
             </div>
-            <div className="grid grid-cols-2 justify-center items-center w-full md:grid-cols-3 lg:grid-cols-4 mx-4 gap-4">
+            <div className="grid grid-cols-1 justify-center items-center w-full md:grid-cols-3 lg:grid-cols-4 mx-4 gap-4">
               {products?.map((product) => (
                 <GCard
                   key={product?._id}
