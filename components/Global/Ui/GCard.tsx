@@ -1,5 +1,6 @@
 "use client";
 import { cn } from "@/libs/cn";
+import { Product } from "@/types/product";
 import { Button, Divider } from "@nextui-org/react";
 import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 import { useTranslations } from "next-intl";
@@ -12,6 +13,7 @@ export default function GCard({
   id,
   img,
   exSt,
+  product
 }: {
   price: any;
   title: string;
@@ -19,6 +21,7 @@ export default function GCard({
   img: string;
   exSt?: string;
   id?: string;
+  product?:Product
 }) {
   const translate = useTranslations("Buttons");
   return (

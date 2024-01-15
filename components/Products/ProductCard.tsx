@@ -10,7 +10,12 @@ import GCard from "../Global/Ui/GCard";
 import { useEffect, useState } from "react";
 import createUser from "../Home/Favorite/createUser.module";
 import { Product } from "@/types/product";
+import RelatedProducts from "./RelatedProducts";
+import { useParams } from "next/navigation";
+import getProductByID from "@/store/actions/getProductByID.module";
 export default function ProductCard() {
+  const {id}=useParams()
+  console.log(id)
   const [count, setCount] = useState<number>(1);
 
   const handleIncrease = () => {
@@ -23,27 +28,29 @@ export default function ProductCard() {
     }
   };
 
-  const [products, setProducts] = useState<Product[]>();
-  const geData = async () => {
-    const server = await createUser();
-    setProducts(server?.products);
-    console.log(server?.products);
+  const [productData, setProductData] = useState<Product>();
+  const getProductData = async () => {
+    const server = await getProductByID({id});
+    setProductData(server?.product);
+    console.log(server );
   };
+//  
   useEffect(() => {
-    geData();
+    
+    getProductData();
   }, []);
   return (
     <Center>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-        <ImageGallury />
+        <ImageGallury images={productData?.images} alt={productData?.productName} discount={productData?.discountPercentage} />
         <div className="flex flex-col gap-4">
-          <div className="text-3xl relative">Title</div>
+          <div className="text-3xl relative">{productData?.productName}</div>
           <div className="text-2xl font-bold">
-            HELIOCARE 360º SPORT TRANSPARENT STICK SPF50+ 25G
+            {productData?.description}
           </div>
-          <div className="text-2xl font-bold line-through">SAR 112.09</div>
+          <div className="text-2xl font-bold line-through">{productData?.priceBeforeDiscount} $</div>
           <div className="flex justify-between items-center">
-            <div className="text-2xl font-bold">SAR 79.27</div>
+            <div className="text-2xl font-bold">{productData?.price} $</div>
             <div className="flex">
               <BiStar size={30} />
               <BiStar size={30} />
@@ -92,11 +99,7 @@ export default function ProductCard() {
             </Button>
           </div>
           <div className="text-xl text-justify">
-            Heliocare 360º Sport Transparent Stick SPF50+ is a stick with high
-            sun protection for face and body, specially developed for outdoor
-            sports practitioners. Practical and easy to apply, it does not need
-            to be spread with the hands and is more resistant to water and
-            sweat. Ideal for all skin types, even the most sensitive skin.
+           {productData?.description}
           </div>
         </div>
       </div>
@@ -135,18 +138,9 @@ export default function ProductCard() {
         </Tabs>
       </div>
       <Title title="RELATED PRODUCTS " />
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 mx-4 gap-4">
-        {products?.map((product) => (
-          <GCard
-            key={product?._id}
-            id={product?._id}
-            price={product?.price}
-            title={product?.productName}
-            desc={product?.description}
-            img={product?.images[0]}
-          />
-        ))}
-      </div>
+   
+        <RelatedProducts/>
+      
     </Center>
   );
 }
