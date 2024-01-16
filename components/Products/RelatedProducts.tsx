@@ -21,7 +21,7 @@ export default function RelatedProducts() {
     <div>
       <Center>
         <Title title="RELATED PRODUCTS " />
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mx-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 mx-4 gap-4">
       {products?.slice(0, 5).map((product) => (
             <GCard
               key={product?._id}

@@ -560,6 +560,7 @@ export default function NavbarMobile({
       {useCategory.map((category, index) => (
         <NavbarMenuItem key={index}>
           <Button
+className="w-full"
             onClick={setIsMenuOpen(false)}
             as={Link}
             href={`/product/${category.category}`}
