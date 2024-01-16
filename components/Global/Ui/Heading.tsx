@@ -17,7 +17,7 @@ export default function Headings() {
     const cat = catKey ? trans(catKey.replace("Categories/", "")) : "";
   
   return (
-    <Breadcrumbs>
+    <Breadcrumbs className="mx-0 md:mx-10">
           <BreadcrumbItem>
         <Button as={Link} href="/" variant="light">{t("Home")}</Button>
           </BreadcrumbItem>
