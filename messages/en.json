@@ -3,6 +3,8 @@
     "Shop":"Shop Now"
   },
   "Globals": {
+    "Home":"Home",
+    "Category":"Category",
     "Navbar/Search": "Search",
     "Navbar/Offer": "Free Shipping for orders > 200$ ,",
     "Welcome": "Welcome",

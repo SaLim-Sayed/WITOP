@@ -2,9 +2,10 @@
 import { cn } from "@/libs/cn";
 import { Product } from "@/types/product";
 import { Button, Divider } from "@nextui-org/react";
-import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
+import { Card, CardBody, CardFooter } from "@nextui-org/react";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
+import Image from "next/legacy/image";
+import { useRouter } from "next/navigation";
 import { FaShoppingCart } from "react-icons/fa";
 export default function GCard({
   price,
@@ -14,7 +15,7 @@ export default function GCard({
   img,
   exSt,
   product,
-  category
+  category,
 }: {
   price: any;
   title: string;
@@ -22,12 +23,13 @@ export default function GCard({
   img: string;
   exSt?: string;
   id?: string;
-  product?:Product;
-  category?:string
+  product?: Product;
+  category?: string;
 }) {
   const translate = useTranslations("Buttons");
+  const router = useRouter();
   return (
-    <div className="flex flex-col gap-2 shadow-xl relative ">
+    <div className="flex flex-col gap-2 shadow-xl rounded-lg relative ">
       <Button
         key={id}
         size="sm"
@@ -36,37 +38,46 @@ export default function GCard({
       >
         -50%
       </Button>
-  <Link passHref href={`/product/${category}/${id}`}>
-        <Card shadow="sm" isPressable>
-          <CardBody className="overflow-visible bg-slate-100/30  p-0 flex flex-col gap-2">
+
+      <Card
+        isPressable
+        onClick={() => router.push(`/product/${category}/${id}`)}
+      >
+        <CardBody className="overflow-visible    p-0 flex flex-col gap-2">
+          <div className="h-[200px] relative overflow-hidden">
             <Image
-              shadow="sm"
-              radius="lg"
-              width="100%"
+              layout="fill"
               alt={title}
               className="w-full object-cover "
               src={img}
             />
-            <p className=" font-bold px-2">
-              <span className=" line-through">{price + 100}$</span> {price}
-            </p>
-            <Divider />
-            <b className="p-2">{title}</b>
-            <p className="text-default-500 px-2">{desc}</p>
-          </CardBody>
-          <CardFooter className=" overflow-hidden p-0 font-bold     rounded-md bottom-1 w-[calc(100%_-_8px)] shadow-small  ml-1  z-10">
-            <Button
-              className=" w-full text-tiny text-white bg-teal-500 "
-              variant="flat"
-              color="default"
-              radius="sm"
-              size="sm"
-            >
-              <FaShoppingCart /> {translate("Shop")}
-            </Button>
-          </CardFooter>
-        </Card>
-      </Link>
+          </div>
+          <Divider />
+          <div className="flex justify-between items-start mx-2">
+            <div className="flex flex-col items-start">
+              <b className="text-lg text-blue-900">{title}</b>
+              <b className=" text-slate-600">{category}</b>
+            </div>
+            <div className=" flex flex-col font-bold items-end  ">
+              <span className=" line-through text-red-700">{price + 100}</span>
+              <span>{price} SAR</span>
+            </div>
+          </div>
+
+          <p className="text-default-500 px-2">{desc}</p>
+        </CardBody>
+        <CardFooter className=" overflow-hidden p-0 font-bold        shadow-small   z-10">
+          <Button
+            className=" w-full text-lg text-white bg-teal-500 "
+            variant="flat"
+            color="default"
+            radius="none"
+            size="sm"
+          >
+            <FaShoppingCart /> {translate("Shop")}
+          </Button>
+        </CardFooter>
+      </Card>
     </div>
   );
 }
