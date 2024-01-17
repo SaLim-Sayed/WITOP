@@ -8,7 +8,8 @@ import Slider from "@ant-design/react-slick";
 import GCard from "@/components/Global/Ui/GCard";
 import { useLocale } from "next-intl";
 import { settings } from "./setting";
-
+import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
+import { Button } from "@nextui-org/react";
 export default function OurSelection() {
   const slider = useRef<any>();
 
@@ -29,7 +30,20 @@ export default function OurSelection() {
       <Center>
         <Title title="OUR SELECTION" />
         <div>
-          <div className="gap-4 space-x-4">
+        <div className="mx-auto  flex items-center  justify-center  ">
+        <Button
+          isIconOnly
+          radius="full"
+          className="  p-0 min-w-[30px]  h-[30px] z-10 "
+          onClick={() => {
+            locale == "ar"
+              ? slider.current.slickNext()
+              : slider.current.slickPrev();
+          }}
+        >
+          {locale == "en" ? <BiLeftArrow /> : <BiRightArrow />}
+        </Button>
+          <div className="w-[85%] lg:w-full  mx-auto ">
             {/*  @ts-ignore  */}
             <Slider rtl={dir} {...settings} ref={slider} autoplay>
               {products?.map((product) => (
@@ -51,6 +65,19 @@ export default function OurSelection() {
               ))}
             </Slider>
           </div>
+          <Button
+          isIconOnly
+          radius="full"
+          className="  p-0 min-w-[30px] h-[30px] z-10 "
+          onClick={() => {
+            locale == "ar"
+              ? slider.current.slickPrev()
+              : slider.current.slickNext();
+          }}
+        >
+          {locale == "en" ? <BiRightArrow /> : <BiLeftArrow />}
+        </Button>
+      </div>
         </div>
       </Center>
     </div>

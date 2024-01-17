@@ -1,9 +1,7 @@
 "use client";
 
-import React, { ReactNode, useRef, useState } from "react";
-
-import { cn } from "@/libs/cn";
-
+import React, {  useRef, useState } from "react";
+ 
 import Slider from "@ant-design/react-slick";
 import { Button } from "@nextui-org/react";
 
@@ -26,7 +24,7 @@ export default function CategorySlider() {
         <Button
           isIconOnly
           radius="full"
-          className=" hidden lg:flex p-0 min-w-[40px]  h-[40px] z-10 "
+          className=" hidden lg:flex p-0 min-w-[30px]  h-[30px] z-10 "
           onClick={() => {
             locale == "ar"
               ? slider.current.slickNext()
@@ -54,7 +52,7 @@ export default function CategorySlider() {
         <Button
           isIconOnly
           radius="full"
-          className=" hidden lg:flex p-0 min-w-[40px] h-[40px] z-50 "
+          className=" hidden lg:flex p-0 min-w-[30px] h-[30px] z-10 "
           onClick={() => {
             locale == "ar"
               ? slider.current.slickPrev()

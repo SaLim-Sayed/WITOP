@@ -13,9 +13,9 @@ export default async function Home() {
       <SimpleSlider />
       <CategorySlider />
       <Brands />
-      <Trending/>
+        <Trending/>
       <OnSale/>
-      <OurSelection/>
+      <OurSelection/>  
     </div>
   );
 }

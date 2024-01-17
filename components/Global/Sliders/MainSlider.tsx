@@ -72,7 +72,7 @@ export default function SimpleSlider() {
     </div>
    </div>
    <div className="md:hidden flex">
-     <div className="w-full  mx-auto mt-4">
+     <div className="w-[85%]  mx-auto mt-4">
       <Slider {...settings}>
         <Link href="/c/bestprice">
           <Image
