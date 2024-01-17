@@ -19,15 +19,17 @@ export default function SimpleSlider() {
     slidesToScroll: 1,
   };
   return (
-    <div className="w-[85%] md:w-[95%] mx-auto mt-4">
+   <>
+   <div className="hidden md:flex">
+     <div className=" w-[96%] mx-auto mt-4">
       <Slider {...settings}>
         <Link href="/c/bestprice">
           <Image
             radius="none"
             src="/slider/banner1.jpg"
             alt="1"
-            width={"100%"}
-            className=" min-h-48"
+           width={"100%"}
+            height={1000}
           />
         </Link>
         <Link href="/c/bestprice">
@@ -35,8 +37,8 @@ export default function SimpleSlider() {
             radius="none"
             src="/slider/banner2.jpg"
             alt="1"
-            width={"100%"}
-            className=" min-h-48"
+           width={"100%"}
+            height={1000}
           />
         </Link>
         <Link href="/c/bestprice">
@@ -44,8 +46,8 @@ export default function SimpleSlider() {
             radius="none"
             src="/slider/banner4.jpg"
             alt="1"
-            width={"100%"}
-            className=" min-h-48"
+           width={"100%"}
+            height={1000}
           />
         </Link>
         <Link href="/c/bestprice">
@@ -53,8 +55,8 @@ export default function SimpleSlider() {
             radius="none"
             src="/slider/banner3.jpg"
             alt="1"
-            width={"100%"}
-            className=" min-h-48"
+           width={"100%"}
+            height={1000}
           />
         </Link>
         <Link href="/c/bestprice">
@@ -62,11 +64,69 @@ export default function SimpleSlider() {
             radius="none"
             src="/slider/banner3.webp"
             alt="1"
-            width={"100%"}
-            className=" min-h-48"
+           width={"100%"}
+            height={1000}
           />
         </Link>
       </Slider>
     </div>
+   </div>
+   <div className="md:hidden flex">
+     <div className="w-full  mx-auto mt-4">
+      <Slider {...settings}>
+        <Link href="/c/bestprice">
+          <Image
+            radius="none"
+            src="/slider/smbanner1.jpg"
+            alt="1"
+            width={1000}
+            height={1000}
+           
+          />
+        </Link>
+        <Link href="/c/bestprice">
+          <Image
+            radius="none"
+            src="/slider/smbanner2.jpg"
+            alt="1"
+            width={1000}
+            height={1000}
+           
+          />
+        </Link>
+        <Link href="/c/bestprice">
+          <Image
+            radius="none"
+            src="/slider/smbanner4.jpg"
+            alt="1"
+            width={1000}
+            height={1000}
+           
+          />
+        </Link>
+        <Link href="/c/bestprice">
+          <Image
+            radius="none"
+            src="/slider/smbanner3.jpg"
+            alt="1"
+            width={1000}
+            height={1000}
+           
+          />
+        </Link>
+        <Link href="/c/bestprice">
+          <Image
+            radius="none"
+            src="/slider/smbanner3.webp"
+            alt="1"
+            width={1000}
+            height={1000}
+           
+          />
+        </Link>
+      </Slider>
+    </div>
+   </div>
+   </>
   );
 }

@@ -3,7 +3,7 @@ import { cn } from "@/libs/cn";
 import { Product } from "@/types/product";
 import { Button, Divider } from "@nextui-org/react";
 import { Card, CardBody, CardFooter } from "@nextui-org/react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/legacy/image";
 import { useRouter } from "next/navigation";
 import { FaShoppingCart } from "react-icons/fa";
@@ -28,11 +28,13 @@ export default function GCard({
 }) {
   const translate = useTranslations("Buttons");
   const router = useRouter();
+  const locale = useLocale();
+  const dir = locale == "ar" ? "rtl" : "ltr";
   return (
-    <div className="flex flex-col gap-2 shadow-xl rounded-lg relative ">
+    <div dir={dir}  className="flex flex-col gap-2 shadow-xl max-w-[400px] min-w-[250px] rounded-lg relative ">
       <Button
         key={id}
-        size="sm"
+        size="md"
         radius="sm"
         className="absolute -top-2 -left-2 bg-lime-300 shadow-md z-20"
       >
@@ -40,6 +42,8 @@ export default function GCard({
       </Button>
 
       <Card
+      className="w-full"
+      shadow="md"
         isPressable
         onClick={() => router.push(`/product/${category}/${id}`)}
       >
@@ -63,8 +67,7 @@ export default function GCard({
               <span>{price} SAR</span>
             </div>
           </div>
-
-          <p className="text-default-500 px-2">{desc}</p>
+ 
         </CardBody>
         <CardFooter className=" overflow-hidden p-0 font-bold        shadow-small   z-10">
           <Button
@@ -72,7 +75,7 @@ export default function GCard({
             variant="flat"
             color="default"
             radius="none"
-            size="sm"
+            size="md"
           >
             <FaShoppingCart /> {translate("Shop")}
           </Button>

@@ -9,7 +9,10 @@ const createAxiosInstance = (baseURL?: string) => {
     baseURL: baseURL || "https://maro-cares.onrender.com",
     headers: {
       language: lang || "en",
-      Authorization: `Bearer ${token || "123"}`,
+      Authorization: `maroTK${
+        token ||
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTNlZWNkMjAwZTEzNDM0Mjg3M2M4YiIsImlhdCI6MTcwNTI0MjUyN30.RbBrOw_DzBBpsQsTAAMv34xYDKyjiIp61vcgkQVQfLw"
+      }`,
     },
   };
 

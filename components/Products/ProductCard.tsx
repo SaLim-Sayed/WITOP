@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import React from "react";
 import Center from "../Global/Ui/Center";
@@ -5,8 +6,6 @@ import ImageGallury from "../Global/Sliders/ImageGallury";
 import { BiHeart, BiStar } from "react-icons/bi";
 import { Button, Card, CardBody } from "@nextui-org/react";
 import { Tabs, Tab } from "@nextui-org/react";
-import Title from "../Global/Ui/Title";
-import GCard from "../Global/Ui/GCard";
 import { useEffect, useState } from "react";
 import { Product } from "@/types/product";
 import RelatedProducts from "./RelatedProducts";
@@ -14,7 +13,7 @@ import { useParams } from "next/navigation";
 import getProductByID from "@/store/actions/getProductByID.module";
 export default function ProductCard() {
   const {id,category}=useParams()
-  console.log(id)
+   
   const [count, setCount] = useState<number>(1);
 
   const handleIncrease = () => {
@@ -28,14 +27,15 @@ export default function ProductCard() {
   };
 
   const [productData, setProductData] = useState<Product>();
+  const [relatedProducts, setrelatedProducts] = useState<Product[]>();
+   
   const getProductData = async () => {
     const server = await getProductByID({id,category});
     setProductData(server?.product);
-    console.log(server );
+    setrelatedProducts(server?.relatedProducts);
   };
-//  
+  console.log( relatedProducts);
   useEffect(() => {
-    
     getProductData();
   }, []);
   return (
@@ -138,7 +138,7 @@ export default function ProductCard() {
       </div>
       
    
-        <RelatedProducts/>
+    <RelatedProducts productData={relatedProducts}/>
       
     </Center>
   );

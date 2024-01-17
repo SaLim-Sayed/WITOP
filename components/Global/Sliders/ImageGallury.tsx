@@ -37,7 +37,7 @@ const ImageGallury = ({ alt, images, discount }: IProps) => {
         {discount}%
       </Button>
       {/* Image selector */}
-      <div className="  mt-6  w-full ">
+      <div className="  mt-6  w-full flex justify-around  ">
         <Tab.List className="flex flex-col gap-2">
           {images?.map((image, index) => (
             <Tab

@@ -5,7 +5,7 @@ import React, { ReactNode, useRef, useState } from "react";
 import { cn } from "@/libs/cn";
 
 import Slider from "@ant-design/react-slick";
-import { Button, Image } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 
 import Center from "../Ui/Center";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
@@ -13,6 +13,7 @@ import { settings } from "@/util/slickSettings";
 import { useLocale } from "next-intl";
 import { Category } from "./data.module";
 import Title from "../Ui/Title";
+import Image from "next/legacy/image";
 export default function CategorySlider() {
   const [grab, setGrab] = useState(false);
   const slider = useRef<any>();
@@ -20,7 +21,7 @@ export default function CategorySlider() {
   const dir = locale == "ar" ? true : false;
   return (
     <Center>
-      <Title title="All Categories"/>
+      <Title title="All Categories" />
       <div className="mx-auto  flex items-center  justify-center  ">
         <Button
           isIconOnly
@@ -38,15 +39,14 @@ export default function CategorySlider() {
           {/*  @ts-ignore  */}
           <Slider rtl={dir} {...settings} ref={slider} autoplay>
             {Category.map((category) => (
-              <div   key={category.id} className=" flex flex-col gap-2 items-center justify-center">
-                <Image
-                  radius="full"
-                  src={category.img}
-                  alt="1"
-                  width={150}
-                  height={500}
-                />
-                <p className="text-center   text-xl ">{category.title}</p>
+              <div
+                key={category.id}
+                className=" grid grid-cols-1 grid-rows-2 gap-2 w-fit "
+              >
+                <Image src={category.img} alt="1" width={1000} height={1000} />
+                <div className=" text-xl  flex justify-center mx-auto ">
+                  <p>{category.title}</p>
+                </div>
               </div>
             ))}
           </Slider>
@@ -54,7 +54,7 @@ export default function CategorySlider() {
         <Button
           isIconOnly
           radius="full"
-          className=" hidden lg:flex p-0 min-w-[40px] h-[40px] z-10 "
+          className=" hidden lg:flex p-0 min-w-[40px] h-[40px] z-50 "
           onClick={() => {
             locale == "ar"
               ? slider.current.slickPrev()

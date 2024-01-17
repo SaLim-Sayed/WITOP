@@ -1,19 +1,21 @@
 "use server";
 import { useServerRequest as ServerRequest } from "@/store/hooks/serverApi";
 
-export default async function getProducts({
-  category,
+export default async function getProductBySectionType({
+  type,
 }: {
-  category: string | string[];
+  type: any  ;
 }): Promise<any> {
   "use server";
   try {
     const res = await ServerRequest({
-      endPoint: `/product/getProductByCategory/${category}/1`,
+      endPoint: `/product/getProductBySectionType/${type}`,
       method: "get",
     });
+    console.log(res);
     return res;
   } catch (error: any) {
+    console.log(error?.response );
     throw error;
   }
 }
