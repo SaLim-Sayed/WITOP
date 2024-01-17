@@ -19,7 +19,7 @@ export default function CategorySlider() {
   const dir = locale == "ar" ? true : false;
   return (
     <Center>
-      <Title title="All Categories" />
+      <Title exSt="mt-8" title="All Categories" />
       <div className="mx-auto  flex items-center  justify-center  ">
         <Button
           isIconOnly
