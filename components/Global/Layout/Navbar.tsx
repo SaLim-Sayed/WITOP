@@ -39,6 +39,7 @@ import searchProduct from "@/store/actions/searchProduct.module";
 
 import CartSlider from "../Drawer/Slider-Cart";
 import { Product } from "@/types/product";
+import { useRouter } from "next/navigation";
 export default function MainNavbar() {
   const discloserChakra = useDisclosure();
   const discloserNext = DiscloserNext();
@@ -47,6 +48,7 @@ export default function MainNavbar() {
   const [isSearch, setIsSearch] = React.useState(false);
   const translate = useTranslations("Globals");
   const locale = useLocale();
+  const router =useRouter()
   const [cartSliderIsOpen, setCartSliderIsOpen] = React.useState(false);
   const [products, setProducts] = React.useState<any>();
 
@@ -220,13 +222,13 @@ export default function MainNavbar() {
                   key={item?._id}
                 >
                   <Button
+                  onClick={()=>router.push(`/product/${item?.category}/${item?._id}`)}
                     variant="bordered"
                     className="w-full flex text-lg justify-between"
                     endContent={<p>{item?.price} $</p>}
                   >
                     {" "}
-                    <Link
-                      href={`/product/${item.category}/${item?._id}`}
+                    <div
                       className="flex gap-5  text-cyan-800 font-bold  items-center"
                     >
                       {item && (
@@ -239,35 +241,12 @@ export default function MainNavbar() {
                         />
                       )}
                       {item?.productName || "No Items"}
-                    </Link>
+                    </div>
                   </Button>
                 </AutocompleteItem>
               ))}
             </Autocomplete>
-            {/*  <Input
-              label={translate("Navbar/Search")}
-              radius="lg"
-              classNames={{
-                label: "text-black/50 dark:text-white/90",
-                input: [
-                  "w-full lg:w-96",
-                  "bg-transparent",
-                  "text-black/90 dark:text-white/90",
-                  "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-                ],
-              }}
-              onChange={(e) => {
-                setSearchTxt(e.target.value); 
-              }}
-              color="default"
-              variant="bordered"
-              type="search"
-              endContent={
-                <Button isIconOnly onPress={discloserNext.onOpen }>
-                  <BiSearch size={20} />
-                </Button>
-              }
-            /> */}
+          
           </NavbarItem>
         </NavbarContent>
         <NavbarContent
@@ -340,13 +319,13 @@ export default function MainNavbar() {
                 key={item?._id}
               >
                   <Button
+                  onClick={()=>router.push(`/product/${item?.category}/${item?._id}`)}
                     variant="bordered"
                     className="w-full flex text-lg justify-between"
                     endContent={<p>{item?.price} $</p>}
                   >
                     {" "}
-                    <Link
-                      href={`/product/${item.category}/${item?._id}`}
+                    <div
                       className="flex gap-5  text-cyan-800 font-bold  items-center"
                     >
                       {item && (
@@ -359,32 +338,12 @@ export default function MainNavbar() {
                         />
                       )}
                       {item?.productName || "No Items"}
-                    </Link>
+                    </div>
                   </Button>
               </AutocompleteItem>
             ))}
           </Autocomplete>
-          {/* <Input
-            label={translate("Navbar/Search")}
-            radius="lg"
-            className="flex md:hidden"
-            classNames={{
-              label: "text-black/50 dark:text-white/90",
-              input: [
-                "w-full lg:w-96",
-
-                "text-black/90 dark:text-white/90",
-                "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-              ],
-            }}
-            color="default"
-            type="search"
-            endContent={
-              <Button isIconOnly>
-                <BiSearch size={20} />
-              </Button>
-            }
-          /> */}
+          
         </div>
       )}
     </div>
