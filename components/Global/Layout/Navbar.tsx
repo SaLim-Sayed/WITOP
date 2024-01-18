@@ -10,6 +10,14 @@ import {
   NavbarMenuItem,
   Button,
   Input,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  useDisclosure as DiscloserNext,
+  AutocompleteItem,
+  Autocomplete,
 } from "@nextui-org/react";
 import Link from "next/link";
 import { links } from "./links";
@@ -27,16 +35,35 @@ import MainDrawer from "../Drawer/MainDrawer";
 import { useDisclosure } from "@chakra-ui/react";
 import TopHeader from "./TopHeader";
 import { cn } from "@/libs/cn";
+import searchProduct from "@/store/actions/searchProduct.module";
 
 import CartSlider from "../Drawer/Slider-Cart";
+import { Product } from "@/types/product";
 export default function MainNavbar() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const discloserChakra = useDisclosure();
+  const discloserNext = DiscloserNext();
   const [placement, setPlacement] = React.useState("right");
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isSearch, setIsSearch] = React.useState(false);
   const translate = useTranslations("Globals");
   const locale = useLocale();
   const [cartSliderIsOpen, setCartSliderIsOpen] = React.useState(false);
+  const [products, setProducts] = React.useState<any>();
+
+  const [searchTxt, setSearchTxt] = React.useState("");
+  const searchData = async () => {
+    const data = await searchProduct({ txt: searchTxt });
+    setProducts(data?.products);
+    console.log(products);
+  };
+  // console.log(searchTxt);
+  useEffect(() => {
+    if (searchTxt) {
+      searchData();
+    } else {
+      setProducts([""]);
+    }
+  }, [searchTxt]);
   useEffect(() => {
     if (locale === "ar") {
       setPlacement("left");
@@ -54,14 +81,62 @@ export default function MainNavbar() {
         className=" bg-white  h-24"
       >
         {" "}
+        {/* <Modal
+        className="h-64"
+            isOpen={discloserNext.isOpen}
+            onOpenChange={discloserNext.onOpenChange}
+          >
+            <ModalContent>
+              {(onClose) => (
+                <>
+                  <ModalHeader className="flex flex-col gap-1">
+                    Modal Title
+                  </ModalHeader>
+                  <ModalBody>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Nullam pulvinar risus non risus hendrerit venenatis.
+                      Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                    </p>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Nullam pulvinar risus non risus hendrerit venenatis.
+                      Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                    </p>
+                    <p>
+                      Magna exercitation reprehenderit magna aute tempor
+                      cupidatat consequat elit dolor adipisicing. Mollit dolor
+                      eiusmod sunt ex incididunt cillum quis. Velit duis sit
+                      officia eiusmod Lorem aliqua enim laboris do dolor
+                      eiusmod. Et mollit incididunt nisi consectetur esse
+                      laborum eiusmod pariatur proident Lorem eiusmod et. Culpa
+                      deserunt nostrud ad veniam.
+                    </p>
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button color="danger" variant="light" onPress={onClose}>
+                      Close
+                    </Button>
+                    <Button color="primary" onPress={onClose}>
+                      Action
+                    </Button>
+                  </ModalFooter>
+                </>
+              )}
+            </ModalContent>
+          </Modal> */}
         <CartSlider
           open={cartSliderIsOpen}
           setCartSliderIsOpen={setCartSliderIsOpen}
         />
-        <MainDrawer placement={placement} onClose={onClose} isOpen={isOpen} />
+        <MainDrawer
+          placement={placement}
+          onClose={discloserChakra.onClose}
+          isOpen={discloserChakra.isOpen}
+        />
         <NavbarContent className="sm:hidden" justify="start">
           <Button
-            onClick={onOpen}
+            onClick={discloserChakra.onOpen}
             isIconOnly
             size="lg"
             className={cn(
@@ -124,7 +199,54 @@ export default function MainNavbar() {
         </NavbarContent>
         <NavbarContent className="hidden sm:flex gap-4" justify="center">
           <NavbarItem>
-            <Input
+            <Autocomplete
+              label={translate("Navbar/Search")}
+              variant="bordered"
+              onInputChange={(value) => {
+                setSearchTxt(value);
+              }}
+              size="lg"
+              className="sm:flex-1 rounded-[8px] w-[600px]"
+              inputProps={{
+                classNames: {
+                  inputWrapper: "bg-lightColor-900",
+                },
+              }}
+            >
+              {products?.map((item: Product) => (
+                <AutocompleteItem
+                  textValue={item?.productName}
+                  value={item?.productName}
+                  key={item?._id}
+                >
+                  <Button
+                    variant="bordered"
+                    className="w-full text-lg justify-between"
+                    startContent={
+                      item && (
+                        <Image
+                          src={item?.images[0]}
+                          width={20}
+                          height={20}
+                          alt={item?.productName}
+                          className="rounded-full"
+                        />
+                      )
+                    }
+                    endContent={<p>{item?.price}</p>}
+                  >
+                    {" "}
+                    <Link
+                      href={`/product/${item.category}/${item?._id}`}
+                      className="flex gap-5  text-cyan-800 font-bold  items-center"
+                    >
+                      {item?.productName}
+                    </Link>
+                  </Button>
+                </AutocompleteItem>
+              ))}
+            </Autocomplete>
+            {/*  <Input
               label={translate("Navbar/Search")}
               radius="lg"
               classNames={{
@@ -136,15 +258,18 @@ export default function MainNavbar() {
                   "placeholder:text-default-700/50 dark:placeholder:text-white/60",
                 ],
               }}
+              onChange={(e) => {
+                setSearchTxt(e.target.value); 
+              }}
               color="default"
               variant="bordered"
               type="search"
               endContent={
-                <Button isIconOnly>
+                <Button isIconOnly onPress={discloserNext.onOpen }>
                   <BiSearch size={20} />
                 </Button>
               }
-            />
+            /> */}
           </NavbarItem>
         </NavbarContent>
         <NavbarContent
@@ -196,7 +321,54 @@ export default function MainNavbar() {
       </Navbar>
       {isSearch && (
         <div className="flex md:hidden">
-          <Input
+          <Autocomplete
+            label={translate("Navbar/Search")}
+            variant="faded"
+            onInputChange={(value) => {
+              setSearchTxt(value);
+            }}
+            size="lg"
+            className="sm:flex-1 rounded-[8px] z-50 "
+            inputProps={{
+              classNames: {
+                inputWrapper: "bg-white",
+              },
+            }}
+          >
+            {products?.map((item: Product) => (
+              <AutocompleteItem
+                textValue={item?.productName}
+                value={item?.productName}
+                key={item?._id}
+              >
+                <Button
+                  variant="bordered"
+                  className="w-full text-lg justify-between"
+                  startContent={
+                    item && (
+                      <Image
+                        src={item?.images[0]}
+                        width={20}
+                        height={20}
+                        alt={item?.productName}
+                        className="rounded-full"
+                      />
+                    )
+                  }
+                  endContent={<p>{item?.price}</p>}
+                >
+                  {" "}
+                  <Link
+                    href={`/product/${item.category}/${item?._id}`}
+                    className="flex gap-5  text-cyan-800 font-bold  items-center"
+                  >
+                    {item?.productName}
+                  </Link>
+                </Button>
+              </AutocompleteItem>
+            ))}
+          </Autocomplete>
+          {/* <Input
             label={translate("Navbar/Search")}
             radius="lg"
             className="flex md:hidden"
@@ -216,7 +388,7 @@ export default function MainNavbar() {
                 <BiSearch size={20} />
               </Button>
             }
-          />
+          /> */}
         </div>
       )}
     </div>
