@@ -10,6 +10,7 @@ import { useLocale } from "next-intl";
 import { settings } from "./setting";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import { Button } from "@nextui-org/react";
+import GCardSkeleton from "@/components/Global/Loaders/GCardSkeleton";
 export default function Trending() {
   const slider = useRef<any>();
 
@@ -47,24 +48,36 @@ export default function Trending() {
             <div className="w-[85%]   lg:w-full  mx-auto ">
               {/*  @ts-ignore  */}
               <Slider rtl={dir} {...settings} ref={slider} autoplay>
-                {products?.map((product) => (
-                  <div
-                    dir={dir ? "rtl" : "ltr"}
+              {products
+              ?products.map((product) => (
+                <div
+                  dir={dir ? "rtl" : "ltr"}
+                  key={product?._id}
+                  className="mx-auto px-4 flex justify-center"
+                >
+                  <GCard
                     key={product?._id}
-                    className="mx-auto px-4 flex justify-center"
-                  >
-                    <GCard
-                      key={product?._id}
-                      id={product?._id}
-                      price={product?.price}
-                      title={product?.productName}
-                      desc={product?.description}
-                      img={product?.images[0]}
-                      category={product?.category}
-                    />
+                    id={product?._id}
+                    price={product?.price}
+                    title={product?.productName}
+                    desc={product?.description}
+                    img={product?.images[0]}
+                    category={product?.category}
+                  />
+                </div>
+              ))
+              : 
+              
+              Array.from({ length: 4 }).map((_index: any) => (
+                <div
+                dir={dir ? "rtl" : "ltr"}
+                key={_index}
+                className="mx-auto px-4 flex justify-center"
+              >
+                    <GCardSkeleton />
                   </div>
                 ))}
-              </Slider>
+            </Slider>
             </div>
             <Button
               isIconOnly

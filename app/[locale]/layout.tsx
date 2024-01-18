@@ -42,17 +42,13 @@ export default async function RootLayout({
       <body className={inter.className}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <NextUi>
-            <ClientHydration LoaderComponent={<MainLoader />}>
-              <MainNavbar />
-              <div className="mt-[200px]  md:mt-[170px]">
-                <MainCategories />
-
-                {children}
-                <ToTop />
-              </div>
-
-              <Footer />
-            </ClientHydration>
+            <MainNavbar />
+            <div className="mt-[200px]  md:mt-[170px]">
+              <MainCategories />
+              {children}
+              <ToTop />
+            </div>
+            <Footer />
           </NextUi>
         </NextIntlClientProvider>
       </body>

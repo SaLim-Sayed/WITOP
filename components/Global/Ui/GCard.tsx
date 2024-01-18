@@ -7,6 +7,8 @@ import { useLocale, useTranslations } from "next-intl";
 import Image from "next/legacy/image";
 import { useRouter } from "next/navigation";
 import { FaShoppingCart } from "react-icons/fa";
+import ClientHydration from "../Providers/ClientHydration";
+import GCardSkeleton from "../Loaders/GCardSkeleton";
 export default function GCard({
   price,
   title,
@@ -31,56 +33,62 @@ export default function GCard({
   const locale = useLocale();
   const dir = locale == "ar" ? "rtl" : "ltr";
   return (
-    <div dir={dir}  className="flex flex-col gap-2 shadow-xl max-w-[400px] min-w-[250px] rounded-lg relative ">
-      <Button
-        key={id}
-        size="md"
-        radius="sm"
-        className="absolute -top-2 -left-2 bg-lime-300 shadow-md z-20"
+    <ClientHydration LoaderComponent={<GCardSkeleton />}>
+      <div
+        dir={dir}
+        className="flex flex-col gap-2 shadow-xl max-w-[400px] min-w-[250px] rounded-lg relative "
       >
-        -50%
-      </Button>
+        <Button
+          key={id}
+          size="md"
+          radius="sm"
+          className="absolute -top-2 -left-2 bg-lime-300 shadow-md z-20"
+        >
+          -50%
+        </Button>
 
-      <Card
-      className="w-full"
-      shadow="md"
-        isPressable
-        onClick={() => router.push(`/product/${category}/${id}`)}
-      >
-        <CardBody className="overflow-visible    p-0 flex flex-col gap-2">
-          <div className="h-[200px] relative overflow-hidden">
-            <Image
-              layout="fill"
-              alt={title}
-              className="w-full object-cover "
-              src={img}
-            />
-          </div>
-          <Divider />
-          <div className="flex justify-between items-start mx-2">
-            <div className="flex flex-col items-start">
-              <b className="text-lg text-blue-900">{title}</b>
-              <b className=" text-slate-600">{category}</b>
+        <Card
+          className="w-full"
+          shadow="md"
+          isPressable
+          onClick={() => router.push(`/product/${category}/${id}`)}
+        >
+          <CardBody className="overflow-visible    p-0 flex flex-col gap-2">
+            <div className="h-[200px] relative overflow-hidden">
+              <Image
+                layout="fill"
+                alt={title}
+                className="w-full object-cover "
+                src={img}
+              />
             </div>
-            <div className=" flex flex-col font-bold items-end  ">
-              <span className=" line-through text-red-700">{price + 100}</span>
-              <span>{price} SAR</span>
+            <Divider />
+            <div className="flex justify-between items-start mx-2">
+              <div className="flex flex-col items-start">
+                <b className="text-lg text-blue-900">{title}</b>
+                <b className=" text-slate-600">{category}</b>
+              </div>
+              <div className=" flex flex-col font-bold items-end  ">
+                <span className=" line-through text-red-700">
+                  {price + 100}
+                </span>
+                <span>{price} SAR</span>
+              </div>
             </div>
-          </div>
- 
-        </CardBody>
-        <CardFooter className=" overflow-hidden p-0 font-bold        shadow-small   z-10">
-          <Button
-            className=" w-full text-lg text-white bg-teal-500 "
-            variant="flat"
-            color="default"
-            radius="none"
-            size="md"
-          >
-            <FaShoppingCart /> {translate("Shop")}
-          </Button>
-        </CardFooter>
-      </Card>
-    </div>
+          </CardBody>
+          <CardFooter className=" overflow-hidden p-0 font-bold        shadow-small   z-10">
+            <Button
+              className=" w-full text-lg text-white bg-teal-500 "
+              variant="flat"
+              color="default"
+              radius="none"
+              size="md"
+            >
+              <FaShoppingCart /> {translate("Shop")}
+            </Button>
+          </CardFooter>
+        </Card>
+      </div>
+    </ClientHydration>
   );
 }

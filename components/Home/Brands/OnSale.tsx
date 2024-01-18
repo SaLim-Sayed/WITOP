@@ -10,6 +10,7 @@ import { useLocale } from "next-intl";
 import { settings } from "./setting";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import { Button } from "@nextui-org/react";
+import GCardSkeleton from "@/components/Global/Loaders/GCardSkeleton";
 export default function OnSale() {
   const slider = useRef<any>();
 
@@ -47,7 +48,8 @@ export default function OnSale() {
           <div className="w-[85%]   lg:w-full  mx-auto ">
             {/*  @ts-ignore  */}
             <Slider rtl={dir} {...settings} ref={slider} autoplay>
-              {products?.map((product) => (
+              {products
+              ?products.map((product) => (
                 <div
                   dir={dir ? "rtl" : "ltr"}
                   key={product?._id}
@@ -63,7 +65,18 @@ export default function OnSale() {
                     category={product?.category}
                   />
                 </div>
-              ))}
+              ))
+              : 
+              
+              Array.from({ length: 4 }).map((_index: any) => (
+                <div
+                dir={dir ? "rtl" : "ltr"}
+                key={_index}
+                className="mx-auto px-4 flex justify-center"
+              >
+                    <GCardSkeleton />
+                  </div>
+                ))}
             </Slider>
           </div>
           <Button
