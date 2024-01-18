@@ -221,9 +221,15 @@ export default function MainNavbar() {
                 >
                   <Button
                     variant="bordered"
-                    className="w-full text-lg justify-between"
-                    startContent={
-                      item && (
+                    className="w-full flex text-lg justify-between"
+                    endContent={<p>{item?.price} $</p>}
+                  >
+                    {" "}
+                    <Link
+                      href={`/product/${item.category}/${item?._id}`}
+                      className="flex gap-5  text-cyan-800 font-bold  items-center"
+                    >
+                      {item && (
                         <Image
                           src={item?.images[0]}
                           width={20}
@@ -231,16 +237,8 @@ export default function MainNavbar() {
                           alt={item?.productName}
                           className="rounded-full"
                         />
-                      )
-                    }
-                    endContent={<p>{item?.price}</p>}
-                  >
-                    {" "}
-                    <Link
-                      href={`/product/${item.category}/${item?._id}`}
-                      className="flex gap-5  text-cyan-800 font-bold  items-center"
-                    >
-                      {item?.productName}
+                      )}
+                      {item?.productName || "No Items"}
                     </Link>
                   </Button>
                 </AutocompleteItem>
@@ -341,30 +339,28 @@ export default function MainNavbar() {
                 value={item?.productName}
                 key={item?._id}
               >
-                <Button
-                  variant="bordered"
-                  className="w-full text-lg justify-between"
-                  startContent={
-                    item && (
-                      <Image
-                        src={item?.images[0]}
-                        width={20}
-                        height={20}
-                        alt={item?.productName}
-                        className="rounded-full"
-                      />
-                    )
-                  }
-                  endContent={<p>{item?.price}</p>}
-                >
-                  {" "}
-                  <Link
-                    href={`/product/${item.category}/${item?._id}`}
-                    className="flex gap-5  text-cyan-800 font-bold  items-center"
+                  <Button
+                    variant="bordered"
+                    className="w-full flex text-lg justify-between"
+                    endContent={<p>{item?.price} $</p>}
                   >
-                    {item?.productName}
-                  </Link>
-                </Button>
+                    {" "}
+                    <Link
+                      href={`/product/${item.category}/${item?._id}`}
+                      className="flex gap-5  text-cyan-800 font-bold  items-center"
+                    >
+                      {item && (
+                        <Image
+                          src={item?.images[0]}
+                          width={20}
+                          height={20}
+                          alt={item?.productName}
+                          className="rounded-full"
+                        />
+                      )}
+                      {item?.productName || "No Items"}
+                    </Link>
+                  </Button>
               </AutocompleteItem>
             ))}
           </Autocomplete>
