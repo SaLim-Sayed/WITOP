@@ -1,12 +1,12 @@
 {
   "Buttons": {
-    "Shop":"أشتري الان"
-
+    "Shop": "أشتري الان"
   },
   "Globals": {
     "Navbar/Search": "بحث",
-    "Home":"الرئيسية",
-      "Category":"القسم",
+    "Home": "الرئيسية",
+    "Category": "القسم",
+    "Categories": "الاقسام",
     "Navbar/Offer": "شحن مجاني للطلبات التي تزيد عن  200$ ,   ",
     "Welcome": "مرحبا",
     "Wait": "أنتظر.......",
@@ -410,5 +410,4 @@
   "Brands": {
     "Brands": "البرندات"
   }
-  
 }

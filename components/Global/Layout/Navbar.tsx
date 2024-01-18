@@ -14,7 +14,13 @@ import {
 import Link from "next/link";
 import { links } from "./links";
 import Image from "next/legacy/image";
-import { BiHeart, BiSearch, BiUser } from "react-icons/bi";
+import {
+  BiHeart,
+  BiMenuAltLeft,
+  BiMenuAltRight,
+  BiSearch,
+  BiUser,
+} from "react-icons/bi";
 import { BsCart } from "react-icons/bs";
 import { useLocale, useTranslations } from "next-intl";
 import MainDrawer from "../Drawer/MainDrawer";
@@ -54,10 +60,19 @@ export default function MainNavbar() {
       >
         <MainDrawer placement={placement} onClose={onClose} isOpen={isOpen} />
         <NavbarContent className="sm:hidden" justify="start">
-          <NavbarMenuToggle
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-            className="sm:hidden"
-          />
+          <Button
+            onClick={onOpen}
+            isIconOnly
+            size="lg"
+            className="font-bold w-6 h-10 sm:hidden"
+            variant="light"
+          >
+            {locale === "ar" ? (
+              <BiMenuAltRight size={40} />
+            ) : (
+              <BiMenuAltLeft size={40} />
+            )}
+          </Button>
         </NavbarContent>
 
         <NavbarContent className="sm:hidden pr-3  " justify="center">
@@ -66,7 +81,7 @@ export default function MainNavbar() {
               isIconOnly
               size="lg"
               variant="light"
-              className="min-w-[90px] p-0 min-h-[90px]  flex gap-2"
+              className="min-w-[100px] p-0   flex gap-2"
             >
               <Link href="/" className="font-bold text-xl text-[#00b5bc]">
                 <Image
@@ -91,7 +106,7 @@ export default function MainNavbar() {
               isIconOnly
               size="lg"
               variant="light"
-              className="min-w-[90px] p-0 min-h-[90px]  flex justify-between gap-2"
+              className="min-w-[110px] p-0  flex justify-between gap-2"
             >
               <Link href="/" className="font-bold text-3xl text-[#00b5bc]">
                 {" "}
@@ -163,7 +178,6 @@ export default function MainNavbar() {
               size="lg"
               className="font-bold w-6 h-10 mx-4"
               variant="light"
-              onClick={onOpen}
             >
               <BsCart size={40} />
             </Button>
@@ -177,29 +191,7 @@ export default function MainNavbar() {
             </Button>
           </NavbarItem>
         </NavbarContent>
-
-    <NavbarMenu className="mt-32">
-     <NavbarMobile setIsMenuOpen={setIsMenuOpen}/>
-          <NavbarMenuItem>
-            <Dropdown>
-              <DropdownTrigger>
-                <Button variant="bordered">Open Menu</Button>
-              </DropdownTrigger>
-              <DropdownMenu aria-label="Static Actions">
-                <DropdownItem key="new">New file</DropdownItem>
-                <DropdownItem key="copy">Copy link</DropdownItem>
-                <DropdownItem key="edit">Edit file</DropdownItem>
-                <DropdownItem
-                  key="delete"
-                  className="text-danger"
-                  color="danger"
-                >
-                  Delete file
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-          </NavbarMenuItem>
-        </NavbarMenu>
+ 
       </Navbar>
       {isSearch && (
         <div className="flex md:hidden">

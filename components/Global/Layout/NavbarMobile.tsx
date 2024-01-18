@@ -1,26 +1,20 @@
 "use client";
-import Center from "@/components/Global/Ui/Center";
-import { Tooltip, Button } from "@nextui-org/react";
-import {
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownSection,
-  NavbarMenuItem,
-  DropdownItem,
-} from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
+import { Accordion, AccordionItem } from "@nextui-org/react";
+import { NavbarMenuItem } from "@nextui-org/react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
+import { cn } from "@/libs/cn";
 
 export default function NavbarMobile({
   setIsMenuOpen,
 }: {
-  setIsMenuOpen: any;
+  setIsMenuOpen?: any;
 }) {
   const translate = useTranslations("Categories");
   const translateSub = useTranslations("Categories.SubCategory");
   const translateSubDesc = useTranslations("Categories.SubCategory.Desc");
-  const translatee = useTranslations("Brands");
   const useCategory = [
     {
       category: translate("Category/SkinCare"),
@@ -555,19 +549,76 @@ export default function NavbarMobile({
 
     //...othermaincategories
   ];
+  const [selected, setSelected] = useState("");
+  const [selectedItem, setSelectedItem] = useState("");
   return (
     <>
-      {useCategory.map((category, index) => (
+      {/* {useCategory.map((category, index) => (
         <NavbarMenuItem key={index}>
           <Button
-className="w-full"
-            onClick={setIsMenuOpen(false)}
+            className="w-full mb-2"
             as={Link}
             href={`/product/${category.category}`}
             variant="bordered"
           >
             {category.category}
           </Button>
+        </NavbarMenuItem>
+      ))} */}
+      {useCategory.map((category, index) => (
+        <NavbarMenuItem key={index}>
+          <Accordion>
+            <AccordionItem
+              onClick={() => setSelected(category.category)}
+              key="1"
+              aria-label={category.category}
+              title={category.category}
+              className="text-blue-800 text-xl"
+              classNames={{
+                title:
+                  selected === category.category
+                    ? " text-white text-xl font-[500] "
+                    : "text-blue-800 text-xl",
+                heading:
+                  selected === category.category &&
+                  "bg-cyan-600 px-2 rounded-md text-white font-[500]",
+                indicator:
+                  selected === category.category &&
+                  "   text-white text-2xl font-[500]",
+              }}
+            >
+              {category.subCategories.map((subCategory, index) => (
+                <Accordion
+                  key={index}
+                  variant="bordered"
+                  className="w-full mb-2 bg-teal-50/50"
+                >
+                  <AccordionItem
+                    key="1"
+                    aria-label="Accordion 1"
+                    title={subCategory.name}
+                  >
+                    {subCategory.items.map((item, index) => (
+                      <Button
+                        size="md"
+                        onClick={() => setSelectedItem(item)}
+                        key={index}
+                        className={cn(
+                          "w-full mb-2 text-lg",
+                          selectedItem === item &&
+                            "bg-cyan-600 px-2 rounded-md text-white font-[500]"
+                        )}
+                        as={Link}
+                        href={`/product/${category.category}`}
+                      >
+                        {item}
+                      </Button>
+                    ))}
+                  </AccordionItem>
+                </Accordion>
+              ))}
+            </AccordionItem>
+          </Accordion>
         </NavbarMenuItem>
       ))}
     </>
