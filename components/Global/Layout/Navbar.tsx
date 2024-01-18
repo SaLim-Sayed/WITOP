@@ -27,14 +27,8 @@ import MainDrawer from "../Drawer/MainDrawer";
 import { useDisclosure } from "@chakra-ui/react";
 import TopHeader from "./TopHeader";
 import { cn } from "@/libs/cn";
-import {
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownSection,
-  DropdownItem,
-} from "@nextui-org/react";
-import NavbarMobile from "./NavbarMobile";
+
+import CartSlider from "../Drawer/Slider-Cart";
 export default function MainNavbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [placement, setPlacement] = React.useState("right");
@@ -42,6 +36,7 @@ export default function MainNavbar() {
   const [isSearch, setIsSearch] = React.useState(false);
   const translate = useTranslations("Globals");
   const locale = useLocale();
+  const [cartSliderIsOpen, setCartSliderIsOpen] = React.useState(false);
   useEffect(() => {
     if (locale === "ar") {
       setPlacement("left");
@@ -58,13 +53,21 @@ export default function MainNavbar() {
         isBordered
         className=" bg-white  h-24"
       >
+        {" "}
+        <CartSlider
+          open={cartSliderIsOpen}
+          setCartSliderIsOpen={setCartSliderIsOpen}
+        />
         <MainDrawer placement={placement} onClose={onClose} isOpen={isOpen} />
         <NavbarContent className="sm:hidden" justify="start">
           <Button
             onClick={onOpen}
             isIconOnly
             size="lg"
-            className="font-bold w-6 h-10 sm:hidden"
+            className={cn(
+              "font-bold w-6 h-10 sm:hidden",
+              locale === "ar" ? "-mr-8" : "-ml-8"
+            )}
             variant="light"
           >
             {locale === "ar" ? (
@@ -74,7 +77,6 @@ export default function MainNavbar() {
             )}
           </Button>
         </NavbarContent>
-
         <NavbarContent className="sm:hidden pr-3  " justify="center">
           <NavbarBrand>
             <Button
@@ -145,13 +147,12 @@ export default function MainNavbar() {
             />
           </NavbarItem>
         </NavbarContent>
-
         <NavbarContent
           className={cn(
             "mr-0   ",
             locale === "ar"
-              ? "ml-0 lg:-ml-[180px]   2xl:-ml-[240px]"
-              : " mr-0  lg:-mr-[180px] 2xl:-mr-[240px]"
+              ? "ml-2 lg:-ml-[180px]   2xl:-ml-[240px]"
+              : " mr-2  lg:-mr-[180px] 2xl:-mr-[240px]"
           )}
           justify="end"
         >
@@ -163,7 +164,7 @@ export default function MainNavbar() {
               onClick={() => setIsSearch(!isSearch)}
               isIconOnly
             >
-              <BiSearch size={40} />
+              <BiSearch size={30} />
             </Button>
             <Button
               isIconOnly
@@ -171,15 +172,16 @@ export default function MainNavbar() {
               className="font-bold w-6 h-10"
               variant="light"
             >
-              <BiHeart size={40} />
+              <BiHeart size={30} />
             </Button>
             <Button
+              onClick={() => setCartSliderIsOpen((open) => !open)}
               isIconOnly
               size="lg"
               className="font-bold w-6 h-10 mx-4"
               variant="light"
             >
-              <BsCart size={40} />
+              <BsCart size={30} />
             </Button>
             <Button
               isIconOnly
@@ -187,11 +189,10 @@ export default function MainNavbar() {
               className="font-bold w-6 h-10 hidden md:inline"
               variant="light"
             >
-              <BiUser size={40} />
+              <BiUser size={30} />
             </Button>
           </NavbarItem>
         </NavbarContent>
- 
       </Navbar>
       {isSearch && (
         <div className="flex md:hidden">
