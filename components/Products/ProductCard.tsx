@@ -14,6 +14,7 @@ import getProductByID from "@/store/actions/getProductByID.module";
 import axios from "axios";
 import { showToast } from "../Global/Ui/Toast";
 import { cartStore } from "@/store/futures/cartStore";
+import { useLocale } from "next-intl";
 export default function ProductCard() {
   const { id, category } = useParams();
 
@@ -27,6 +28,7 @@ export default function ProductCard() {
   const handleIncrease = () => {
     setCount(count + 1);
   };
+  const lang=useLocale()
 
   const handleDecrease = () => {
     if (count > 1) {
@@ -52,6 +54,7 @@ export default function ProductCard() {
         { count: count },
         {
           headers: {
+            language: lang || "en",
             authrization:
               "maroTKeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTNlZWNkMjAwZTEzNDM0Mjg3M2M4YiIsImlhdCI6MTcwNTI0MjUyN30.RbBrOw_DzBBpsQsTAAMv34xYDKyjiIp61vcgkQVQfLw",
           },

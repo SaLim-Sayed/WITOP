@@ -1,7 +1,7 @@
 export type CartState = {
-  CartAmount: any;
+  CartAmount: number;
 };
 
 export type CartActions = {
-  CartSetter: (CartAmount: any) => void;
+  CartSetter: (CartAmount: number) => void;
 };

@@ -16,6 +16,7 @@ import {
   Autocomplete,
   Badge,
   Spinner,
+  Card,
 } from "@nextui-org/react";
 import Link from "next/link";
 import Image from "next/legacy/image";
@@ -171,29 +172,36 @@ export default function MainNavbar() {
                   textValue={item?.productName || "undefined"}
                   value={item?.productName}
                   key={item?._id}
+                  variant="light"
+                  className=" flex gap-4 z-[2]"
+                  onClick={() =>
+                    router.push(`/product/${item?.category}/${item?._id}`)
+                  }
                 >
-                  <Button
-                    onClick={() =>
-                      router.push(`/product/${item?.category}/${item?._id}`)
-                    }
-                    variant="bordered"
-                    className="w-full flex text-lg justify-between"
-                    endContent={<p>{item?.price} $</p>}
-                  >
-                    {" "}
-                    <div className="flex gap-5  text-cyan-800 font-bold  items-center">
-                      {item && (
+                  <div className="flex gap-4  bg-slate-100/50 w-full p-2 ">
+                    {item && (
+                      <>
                         <Image
                           src={item?.images[0]}
-                          width={20}
-                          height={20}
+                          width={100}
+                          height={50}
                           alt={item?.productName}
-                          className="rounded-full"
                         />
-                      )}
-                      {item?.productName || "No Items"}
-                    </div>
-                  </Button>
+
+                        <div className="flex flex-col ">
+                          <div className=" capitalize text-xl text-cyan-700">
+                            {item?.productName || " "}
+                          </div>
+                          <div className="text-lg font-bold">
+                            {item?.price || " "} $
+                          </div>
+                          <div className="  text-lg line-through">
+                            {item?.priceBeforeDiscount || " "} $
+                          </div>
+                        </div>
+                      </>
+                    )}
+                  </div>
                 </AutocompleteItem>
               ))}
             </Autocomplete>
@@ -281,29 +289,36 @@ export default function MainNavbar() {
                 textValue={item?.productName || "undefined"}
                 value={item?.productName}
                 key={item?._id}
+                variant="light"
+                className=" flex gap-4 z-[2]"
+                onClick={() =>
+                  router.push(`/product/${item?.category}/${item?._id}`)
+                }
               >
-                <Button
-                  onClick={() =>
-                    router.push(`/product/${item?.category}/${item?._id}`)
-                  }
-                  variant="bordered"
-                  className="w-full flex text-lg justify-between"
-                  endContent={<p>{item?.price} $</p>}
-                >
-                  {" "}
-                  <div className="flex gap-5  text-cyan-800 font-bold  items-center">
-                    {item && (
+                <div className="flex gap-4  bg-slate-100/50 w-full p-2 ">
+                  {item && (
+                    <>
                       <Image
                         src={item?.images[0]}
-                        width={20}
-                        height={20}
+                        width={100}
+                        height={50}
                         alt={item?.productName}
-                        className="rounded-full"
                       />
-                    )}
-                    {item?.productName || "No Items"}
-                  </div>
-                </Button>
+
+                      <div className="flex flex-col ">
+                        <div className=" capitalize text-xl text-cyan-700">
+                          {item?.productName || " "}
+                        </div>
+                        <div className="text-lg font-bold">
+                          {item?.price || " "} $
+                        </div>
+                        <div className="  text-lg line-through">
+                          {item?.priceBeforeDiscount || " "} $
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
               </AutocompleteItem>
             ))}
           </Autocomplete>

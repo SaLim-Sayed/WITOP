@@ -3,12 +3,12 @@ import Cookies from "js-cookie";
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-const createAxiosInstance = (baseURL?: string) => {
+export const createAxiosInstance = (baseURL?: string) => {
   const config = {
     baseURL: baseURL || "https://maro-cares.onrender.com/",
     headers: {
       language: Cookies.get("NEXT_LOCALE") || "ar",
-      authorization:
+      authrization:
         "maroTKeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTNlZWNkMjAwZTEzNDM0Mjg3M2M4YiIsImlhdCI6MTcwNTI0MjUyN30.RbBrOw_DzBBpsQsTAAMv34xYDKyjiIp61vcgkQVQfLw",
     },
   };
