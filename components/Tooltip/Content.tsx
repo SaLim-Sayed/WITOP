@@ -14,10 +14,14 @@ const Content = ({ subCategory }: IProps) => {
     <div className="flex gap-16  ">
       {subCategory.map((category) => (
         <div key={category.name} className="flex  flex-col  gap-4  ">
-          <Link href={"/product"} className="  text-lg font-bold">{category.name}</Link>
+          <div className="  text-lg font-bold">{category.name}</div>
           <div className="flex flex-col gap-2">
             {category.items.map((item) => (
-              <Link href={"/product"} key={item} className="  ">
+              <Link
+                href={`/product/${item}`}
+                key={item}
+                className="  "
+              >
                 {item}
               </Link>
             ))}

@@ -18,7 +18,8 @@ export default function Headings() {
   const cats: string | string[] = category;
   const categoryName = Array.isArray(cats) ? cats[0] : cats;
   const catKey = getKeyByValue(jsonData, decodeURIComponent(categoryName));
-  const cat = catKey ? trans(catKey.replace("Categories/", "")) : "";
+  console.log(catKey)
+  const cat = catKey ? trans(catKey.replace("Categories/SubCategory/Desc/", "SubCategory.Desc.")) : "";
 
   return (
     <Breadcrumbs className="mx-0 md:mx-10">
