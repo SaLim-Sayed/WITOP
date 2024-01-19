@@ -34,6 +34,9 @@ const CartSlider = ({ open, setCartSliderIsOpen }: IProps) => {
 
   useEffect(() => {
     getCartData();
+  }, []);
+  useEffect(() => {
+    getCartData();
   }, [open]);
   return (
     <div>
