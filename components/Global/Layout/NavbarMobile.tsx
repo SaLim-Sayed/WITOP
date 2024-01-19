@@ -609,7 +609,7 @@ export default function NavbarMobile({
                             "bg-cyan-600 px-2 rounded-md text-white font-[500]"
                         )}
                         as={Link}
-                        href={`/product/${category.category}`}
+                        href={`/product/${item}`}
                       >
                         {item}
                       </Button>
