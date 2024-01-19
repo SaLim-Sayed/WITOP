@@ -11,6 +11,7 @@ import ToTop from "@/components/Global/Ui/ToTop";
 import { NextIntlClientProvider } from "next-intl";
 import ClientHydration from "@/components/Global/Providers/ClientHydration";
 import MainLoader from "@/components/Global/Loaders/MainLoader";
+import GToast from "@/components/Global/Providers/GToast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -48,6 +49,7 @@ export default async function RootLayout({
               {children}
               <ToTop />
             </div>
+            <GToast/>
             <Footer />
           </NextUi>
         </NextIntlClientProvider>

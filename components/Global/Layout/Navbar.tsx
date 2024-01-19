@@ -18,6 +18,8 @@ import {
   useDisclosure as DiscloserNext,
   AutocompleteItem,
   Autocomplete,
+  Badge,
+  Spinner,
 } from "@nextui-org/react";
 import Link from "next/link";
 import { links } from "./links";
@@ -40,7 +42,10 @@ import searchProduct from "@/store/actions/searchProduct.module";
 import CartSlider from "../Drawer/Slider-Cart";
 import { Product } from "@/types/product";
 import { useRouter } from "next/navigation";
+import { cartStore } from "@/store/futures/cartStore";
+import ClientHydration from "../Providers/ClientHydration";
 export default function MainNavbar() {
+  const {CartAmount}=cartStore()
   const discloserChakra = useDisclosure();
   const discloserNext = DiscloserNext();
   const [placement, setPlacement] = React.useState("right");
@@ -217,7 +222,7 @@ export default function MainNavbar() {
             >
               {products?.map((item: Product) => (
                 <AutocompleteItem
-                  textValue={item?.productName}
+                  textValue={item?.productName||"undefined"}
                   value={item?.productName}
                   key={item?._id}
                 >
@@ -280,10 +285,18 @@ export default function MainNavbar() {
               onClick={() => setCartSliderIsOpen((open) => !open)}
               isIconOnly
               size="lg"
-              className="font-bold w-6 h-10 mx-4"
+              className="font-bold w-6 h-12 mx-4"
               variant="light"
             >
+          <ClientHydration LoaderComponent={
+          <Badge content={<Spinner size="sm"  />}   variant="flat">
+          <BsCart size={30} />
+          </Badge>
+          }>
+              <Badge content={CartAmount||0} color="warning" variant="solid">
               <BsCart size={30} />
+              </Badge>
+              </ClientHydration>
             </Button>
             <Button
               isIconOnly
@@ -314,7 +327,7 @@ export default function MainNavbar() {
           >
             {products?.map((item: Product) => (
               <AutocompleteItem
-                textValue={item?.productName}
+              textValue={item?.productName||"undefined"}
                 value={item?.productName}
                 key={item?._id}
               >
