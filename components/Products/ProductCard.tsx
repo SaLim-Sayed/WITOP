@@ -11,11 +11,6 @@ import { Product } from "@/types/product";
 import RelatedProducts from "./RelatedProducts";
 import { useParams } from "next/navigation";
 import getProductByID from "@/store/actions/getProductByID.module";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { SubmitHandler, useForm } from "react-hook-form";
-
-import { z } from "zod";
-import addToCart from "@/store/actions/addToCart.module";
 import axios from "axios";
 import { showToast } from "../Global/Ui/Toast";
 import { cartStore } from "@/store/futures/cartStore";
@@ -23,7 +18,7 @@ export default function ProductCard() {
   const { id, category } = useParams();
 
   const [count, setCount] = useState<number>(1);
-  const { CartAmount, CartSetter } = cartStore();
+  const { CartSetter } = cartStore();
 
   const showSuccessToast = (message?: string) =>
     showToast({ status: "Success", type: "success", toastMessage: message });
@@ -41,6 +36,7 @@ export default function ProductCard() {
 
   const [productData, setProductData] = useState<Product>();
   const [relatedProducts, setrelatedProducts] = useState<Product[]>();
+  const [isLoading, setIsLoading] = useState(false);
 
   const getProductData = async () => {
     const server = await getProductByID({ id, category });
@@ -48,19 +44,6 @@ export default function ProductCard() {
     setrelatedProducts(server?.relatedProducts);
   };
 
-  const CountSchema = z.object({
-    counts: z.string(),
-  });
-  type CountType = z.infer<typeof CountSchema>;
-  const {
-    register,
-    handleSubmit,
-    watch,
-    control,
-    reset,
-    formState: { errors, isSubmitted },
-  } = useForm<CountType>({ resolver: zodResolver(CountSchema) });
-  const [isLoading, setIsLoading] = useState(false);
   const addToCartHandler = async () => {
     try {
       setIsLoading(true);
@@ -75,7 +58,6 @@ export default function ProductCard() {
         }
       );
       setIsLoading(false);
-      console.log(data);
       if (data?.numberOfItem !== undefined) {
         CartSetter(data?.numberOfItem);
       }
@@ -83,30 +65,9 @@ export default function ProductCard() {
     } catch (err: any) {
       setIsLoading(false);
       console.log(err);
+      showErrorToast("Something Went Wrong , Try Again..");
     }
   };
-  console.log(CartAmount);
-  const onSubmit: SubmitHandler<CountType> = async (count) => {
-    try {
-      setIsLoading(true);
-      const { data } = await axios.post(
-        `https://maro-cares.onrender.com/user/addToCart/${id}`,
-        { count: count.counts },
-        {
-          headers: {
-            authrization:
-              "maroTKeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTNlZWNkMjAwZTEzNDM0Mjg3M2M4YiIsImlhdCI6MTcwNTI0MjUyN30.RbBrOw_DzBBpsQsTAAMv34xYDKyjiIp61vcgkQVQfLw",
-          },
-        }
-      );
-      console.log(data);
-      showSuccessToast(data?.message);
-    } catch (err: any) {
-      setIsLoading(false);
-      console.log(err);
-    }
-  };
-
   useEffect(() => {
     if (id) {
       getProductData();
@@ -137,34 +98,6 @@ export default function ProductCard() {
             </div>
           </div>
           <div className="flex gap-4">
-            {/*  <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="flex items-center  justify-between   gap-2"
-            >
-              <Input
-                variant="bordered"
-                isInvalid={errors.counts ? true : false}
-                {...register("counts")}
-              />
-              <Button
-                 
-                type="submit"
-                radius="sm"
-                className="  text-white uppercase "
-              >
-                Add To Cart
-              </Button>{" "}
-            </form> 
-
-            <Button
-              isIconOnly
-              variant="light"
-              radius="sm"
-              className="h-12 w-12 "
-            >
-              {" "}
-              <BiHeart size={60} />
-            </Button>*/}
             <div className="flex items-center w-[100px] h-12 justify-between border-[2px] gap-2">
               <Button
                 variant="light"

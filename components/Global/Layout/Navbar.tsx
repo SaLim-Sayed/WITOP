@@ -5,9 +5,6 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  NavbarMenuToggle,
-  NavbarMenu,
-  NavbarMenuItem,
   Button,
   Input,
   Modal,
@@ -15,14 +12,12 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  useDisclosure as DiscloserNext,
   AutocompleteItem,
   Autocomplete,
   Badge,
   Spinner,
 } from "@nextui-org/react";
 import Link from "next/link";
-import { links } from "./links";
 import Image from "next/legacy/image";
 import {
   BiHeart,
@@ -38,32 +33,28 @@ import { useDisclosure } from "@chakra-ui/react";
 import TopHeader from "./TopHeader";
 import { cn } from "@/libs/cn";
 import searchProduct from "@/store/actions/searchProduct.module";
-
 import CartSlider from "../Drawer/Slider-Cart";
 import { Product } from "@/types/product";
 import { useRouter } from "next/navigation";
 import { cartStore } from "@/store/futures/cartStore";
 import ClientHydration from "../Providers/ClientHydration";
 export default function MainNavbar() {
-  const {CartAmount}=cartStore()
+  const { CartAmount } = cartStore();
   const discloserChakra = useDisclosure();
-  const discloserNext = DiscloserNext();
   const [placement, setPlacement] = React.useState("right");
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isSearch, setIsSearch] = React.useState(false);
   const translate = useTranslations("Globals");
   const locale = useLocale();
-  const router =useRouter()
+  const router = useRouter();
   const [cartSliderIsOpen, setCartSliderIsOpen] = React.useState(false);
   const [products, setProducts] = React.useState<any>();
-
   const [searchTxt, setSearchTxt] = React.useState("");
   const searchData = async () => {
     const data = await searchProduct({ txt: searchTxt });
     setProducts(data?.products);
     console.log(products);
   };
-  // console.log(searchTxt);
   useEffect(() => {
     if (searchTxt) {
       searchData();
@@ -87,51 +78,6 @@ export default function MainNavbar() {
         isBordered
         className=" bg-white  h-24"
       >
-        {" "}
-        {/* <Modal
-        className="h-64"
-            isOpen={discloserNext.isOpen}
-            onOpenChange={discloserNext.onOpenChange}
-          >
-            <ModalContent>
-              {(onClose) => (
-                <>
-                  <ModalHeader className="flex flex-col gap-1">
-                    Modal Title
-                  </ModalHeader>
-                  <ModalBody>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Nullam pulvinar risus non risus hendrerit venenatis.
-                      Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                    </p>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Nullam pulvinar risus non risus hendrerit venenatis.
-                      Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                    </p>
-                    <p>
-                      Magna exercitation reprehenderit magna aute tempor
-                      cupidatat consequat elit dolor adipisicing. Mollit dolor
-                      eiusmod sunt ex incididunt cillum quis. Velit duis sit
-                      officia eiusmod Lorem aliqua enim laboris do dolor
-                      eiusmod. Et mollit incididunt nisi consectetur esse
-                      laborum eiusmod pariatur proident Lorem eiusmod et. Culpa
-                      deserunt nostrud ad veniam.
-                    </p>
-                  </ModalBody>
-                  <ModalFooter>
-                    <Button color="danger" variant="light" onPress={onClose}>
-                      Close
-                    </Button>
-                    <Button color="primary" onPress={onClose}>
-                      Action
-                    </Button>
-                  </ModalFooter>
-                </>
-              )}
-            </ModalContent>
-          </Modal> */}
         <CartSlider
           open={cartSliderIsOpen}
           setCartSliderIsOpen={setCartSliderIsOpen}
@@ -222,20 +168,20 @@ export default function MainNavbar() {
             >
               {products?.map((item: Product) => (
                 <AutocompleteItem
-                  textValue={item?.productName||"undefined"}
+                  textValue={item?.productName || "undefined"}
                   value={item?.productName}
                   key={item?._id}
                 >
                   <Button
-                  onClick={()=>router.push(`/product/${item?.category}/${item?._id}`)}
+                    onClick={() =>
+                      router.push(`/product/${item?.category}/${item?._id}`)
+                    }
                     variant="bordered"
                     className="w-full flex text-lg justify-between"
                     endContent={<p>{item?.price} $</p>}
                   >
                     {" "}
-                    <div
-                      className="flex gap-5  text-cyan-800 font-bold  items-center"
-                    >
+                    <div className="flex gap-5  text-cyan-800 font-bold  items-center">
                       {item && (
                         <Image
                           src={item?.images[0]}
@@ -251,7 +197,6 @@ export default function MainNavbar() {
                 </AutocompleteItem>
               ))}
             </Autocomplete>
-          
           </NavbarItem>
         </NavbarContent>
         <NavbarContent
@@ -288,14 +233,20 @@ export default function MainNavbar() {
               className="font-bold w-6 h-12 mx-4"
               variant="light"
             >
-          <ClientHydration LoaderComponent={
-          <Badge content={<Spinner size="sm"  />}   variant="flat">
-          <BsCart size={30} />
-          </Badge>
-          }>
-              <Badge content={CartAmount||0} color="warning" variant="solid">
-              <BsCart size={30} />
-              </Badge>
+              <ClientHydration
+                LoaderComponent={
+                  <Badge content={<Spinner size="sm" />} variant="flat">
+                    <BsCart size={30} />
+                  </Badge>
+                }
+              >
+                <Badge
+                  content={CartAmount || 0}
+                  color="warning"
+                  variant="solid"
+                >
+                  <BsCart size={30} />
+                </Badge>
               </ClientHydration>
             </Button>
             <Button
@@ -327,36 +278,35 @@ export default function MainNavbar() {
           >
             {products?.map((item: Product) => (
               <AutocompleteItem
-              textValue={item?.productName||"undefined"}
+                textValue={item?.productName || "undefined"}
                 value={item?.productName}
                 key={item?._id}
               >
-                  <Button
-                  onClick={()=>router.push(`/product/${item?.category}/${item?._id}`)}
-                    variant="bordered"
-                    className="w-full flex text-lg justify-between"
-                    endContent={<p>{item?.price} $</p>}
-                  >
-                    {" "}
-                    <div
-                      className="flex gap-5  text-cyan-800 font-bold  items-center"
-                    >
-                      {item && (
-                        <Image
-                          src={item?.images[0]}
-                          width={20}
-                          height={20}
-                          alt={item?.productName}
-                          className="rounded-full"
-                        />
-                      )}
-                      {item?.productName || "No Items"}
-                    </div>
-                  </Button>
+                <Button
+                  onClick={() =>
+                    router.push(`/product/${item?.category}/${item?._id}`)
+                  }
+                  variant="bordered"
+                  className="w-full flex text-lg justify-between"
+                  endContent={<p>{item?.price} $</p>}
+                >
+                  {" "}
+                  <div className="flex gap-5  text-cyan-800 font-bold  items-center">
+                    {item && (
+                      <Image
+                        src={item?.images[0]}
+                        width={20}
+                        height={20}
+                        alt={item?.productName}
+                        className="rounded-full"
+                      />
+                    )}
+                    {item?.productName || "No Items"}
+                  </div>
+                </Button>
               </AutocompleteItem>
             ))}
           </Autocomplete>
-          
         </div>
       )}
     </div>
