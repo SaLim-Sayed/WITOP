@@ -42,7 +42,7 @@ export default function CategorySlider() {
                 className=" grid grid-cols-1 grid-rows-2 gap-2 w-fit "
               >
                 <Image src={category.img} alt="1" width={1000} height={1000} />
-                <div className=" text-xl  flex justify-center mx-auto ">
+                <div className=" text-tiny  uppercase font-bold  flex justify-center mx-auto ">
                   <p>{category.title}</p>
                 </div>
               </div>

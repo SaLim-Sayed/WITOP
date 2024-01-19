@@ -24,7 +24,7 @@ export default function SimpleSlider() {
   };
   return (
     <>
-      <div className="  ">
+      <div className="hidden md:flex  ">
         <div className=" w-full overflow-hidden mx-auto mt-4">
           {/*  @ts-ignore  */}
           <Slider {...settings}>
@@ -46,48 +46,43 @@ export default function SimpleSlider() {
           </Slider>
         </div>
       </div>
-      <div className=" hidden  ">
-        <div className="w-[85%]  mx-auto mt-4">
+      <div className=" flex md:hidden  ">
+        <div className="w-full overflow-hidden mx-auto mt-4">
           {/*  @ts-ignore  */}
           <Slider {...settings}>
             <Link href="/c/bestprice">
               <Image
                 src="/slider/smbanner1.jpg"
                 alt="1"
-                width={1000}
-                height={1000}
+              
               />
             </Link>
             <Link href="/c/bestprice">
               <Image
                 src="/slider/smbanner2.jpg"
                 alt="1"
-                width={1000}
-                height={1000}
+              
               />
             </Link>
             <Link href="/c/bestprice">
               <Image
                 src="/slider/smbanner4.jpg"
                 alt="1"
-                width={1000}
-                height={1000}
+              
               />
             </Link>
             <Link href="/c/bestprice">
               <Image
                 src="/slider/smbanner3.jpg"
                 alt="1"
-                width={1000}
-                height={1000}
+              
               />
             </Link>
             <Link href="/c/bestprice">
               <Image
-                src="/slider/smbanner3.webp"
+                src="/slider/smbanner5.jpg"
                 alt="1"
-                width={1000}
-                height={1000}
+              
               />
             </Link>
           </Slider>
