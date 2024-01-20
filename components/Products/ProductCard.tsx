@@ -15,10 +15,13 @@ import axios from "axios";
 import { showToast } from "../Global/Ui/Toast";
 import { cartStore } from "@/store/futures/cartStore";
 import { useLocale } from "next-intl";
+import { cn } from "@/libs/cn";
+import { BsStarFill } from "react-icons/bs";
 export default function ProductCard() {
   const { id, category } = useParams();
 
   const [count, setCount] = useState<number>(1);
+  const [star, setStar] = useState<number>(1);
   const { CartSetter } = cartStore();
 
   const showSuccessToast = (message?: string) =>
@@ -28,7 +31,7 @@ export default function ProductCard() {
   const handleIncrease = () => {
     setCount(count + 1);
   };
-  const lang=useLocale()
+  const lang = useLocale();
 
   const handleDecrease = () => {
     if (count > 1) {
@@ -46,6 +49,32 @@ export default function ProductCard() {
     setrelatedProducts(server?.relatedProducts);
   };
 
+const addRatingHandler = async (noOfStar: number) => {
+    try {
+      setIsLoading(true);
+      const { data } = await axios.post(
+        `https://maro-cares.onrender.com/user/addRating/${id}`,
+        {
+          numberOfStar: noOfStar,
+
+          comment: "my comment",
+        },
+        {
+          headers: {
+            language: lang || "en",
+            authrization:
+              "maroTKeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTNlZWNkMjAwZTEzNDM0Mjg3M2M4YiIsImlhdCI6MTcwNTI0MjUyN30.RbBrOw_DzBBpsQsTAAMv34xYDKyjiIp61vcgkQVQfLw",
+          },
+        }
+      );
+      setIsLoading(false);
+      console.log(data);
+    } catch (err: any) {
+      setIsLoading(false);
+      console.log(err);
+      showErrorToast("Something Went Wrong , Try Again..");
+    }
+  };
   const addToCartHandler = async () => {
     try {
       setIsLoading(true);
@@ -76,6 +105,11 @@ export default function ProductCard() {
       getProductData();
     }
   }, [id]);
+  useEffect(() => {
+    
+      getProductData();
+    
+  });
   return (
     <Center>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
@@ -92,12 +126,103 @@ export default function ProductCard() {
           </div>
           <div className="flex justify-between items-center">
             <div className="text-2xl font-bold">{productData?.price} $</div>
-            <div className="flex">
-              <BiStar size={30} />
-              <BiStar size={30} />
-              <BiStar size={30} />
-              <BiStar size={30} />
-              <BiStar size={30} />
+            <div className="flex gap-1">
+              <Button
+                isIconOnly variant="light"
+                onClick={() => {
+                  setStar(1);
+                  addRatingHandler(1);
+                }}
+              >
+                { productData?.totalRating >=  1  ? (
+                  <BsStarFill
+                    size={20}
+                    fill={cn(
+                      ( productData?.totalRating >=  1 ) && " #f4c706"
+                    )}
+                  />
+                ) : (
+                  <BiStar size={20} />
+                )}
+              </Button>
+              <Button
+                isIconOnly variant="light"
+                onClick={() => {
+                  setStar(2);
+                  addRatingHandler(2);
+                }}
+              >
+                { productData?.totalRating >=  2  ? (
+                  <BsStarFill
+                    size={20}
+                    fill={cn(
+                      ( productData?.totalRating >=  2 ) && " #f4c706"
+                    )}
+                  />
+                ) : (
+                  <BiStar size={20} />
+                )}
+              </Button>
+              <Button
+                isIconOnly variant="light"
+                onClick={() => {
+                  setStar(3);
+                  addRatingHandler(3);
+                }}
+              >
+                { productData?.totalRating >=  3  ? (
+                  <BsStarFill
+                    size={20}
+                    fill={cn(
+                      ( productData?.totalRating >=  3 ) && " #f4c706"
+                    )}
+                  />
+                ) : (
+                  <BiStar size={20} />
+                )}
+              </Button>
+              <Button
+                isIconOnly variant="light"
+                onClick={() => {
+                  setStar(4);
+                  addRatingHandler(4);
+                }}
+              >
+                { productData?.totalRating >=4   ? (
+                  <BsStarFill
+                    size={20}
+                    fill={cn(
+                      ( productData?.totalRating >=4 )  && " #f4c706"
+                    )}
+                  />
+                ) : (
+                  <BiStar size={20} />
+                )}
+              </Button>
+              <Button
+                isIconOnly variant="light"
+                onClick={() => {
+                  if(star===4){
+                    setStar(5)
+                  }else{
+                    setStar(4)
+                  }
+                  
+                  ;
+                  addRatingHandler(5);
+                }}
+              >
+                { productData?.totalRating ===   5 ? (
+                  <BsStarFill
+                    size={20}
+                    fill={cn(
+                      ( productData?.totalRating ===   5) && " #f4c706"
+                    )}
+                  />
+                ) : (
+                  <BiStar size={20} />
+                )}
+              </Button>
             </div>
           </div>
           <div className="flex gap-4">

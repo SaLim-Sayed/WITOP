@@ -9,7 +9,7 @@ export type Product= {
     priceBeforeDiscount: number;
     discountPercentage: number;
     outOfStock: boolean;
-    totalRating: number;
+    totalRating: any;
     images: string[];
     ratings: any[]; // You can replace 'any[]' with a specific type for ratings if needed
     relatedProducts:any;
