@@ -8,20 +8,12 @@ const initialState: CartState = {
 };
 
 // Define the store using Zustand's create function
-export const cartStore = create(
-  persist<CartState & CartActions>(
-    (set) => ({
-      // Initial state
-      ...initialState,
+export const cartStore = create<CartState & CartActions>((set) => ({
+  // Initial state
+  ...initialState,
 
-      // Actions
-      CartSetter: (CartAmount) => {
-        set({ CartAmount });
-      },
-    }),
-    {
-      name: "cart-amount",
-      storage: createJSONStorage(() => localStorage),
-    }
-  )
-);
+  // Actions
+  CartSetter: (CartAmount) => {
+    set({ CartAmount });
+  },
+}));

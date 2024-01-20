@@ -10,6 +10,7 @@ import ShopingCartItem from "./ShopingCartItem";
 import axios from "axios";
 import { showToast } from "../Ui/Toast";
 import { Card } from "@nextui-org/react";
+import { cartStore } from "@/store/futures/cartStore";
 
 interface IProps {
   open: any;
@@ -18,26 +19,20 @@ interface IProps {
 const CartSlider = ({ open, setCartSliderIsOpen }: IProps) => {
   const [products, setProducts] = useState<ProductType[]>();
   const [cartCount, setCartCount] = useState<any>();
-  const showSuccessToast = (message?: string) =>
-    showToast({ status: "Success", type: "success", toastMessage: message });
-  const showErrorToast = (message?: string) =>
-    showToast({ status: "Error", type: "error", toastMessage: message });
+  const { CartSetter } = cartStore();
+ 
 
   const getCartData = async () => {
     const res = await getUserCart();
-    setCartCount(res?.cart.cartTotal);
-    setProducts(res?.cart.products);
-    console.log(res);
+    setCartCount(res?.cart?.cartTotal);
+    setProducts(res?.cart?.products);
+    CartSetter(res?.numberOfItem);
+    
   };
-
   // console.log( products);
-
   useEffect(() => {
     getCartData();
   }, []);
-  useEffect(() => {
-    getCartData();
-  }, [open]);
   return (
     <div>
       <Transition.Root show={open} as={Fragment}>
@@ -111,13 +106,15 @@ const CartSlider = ({ open, setCartSliderIsOpen }: IProps) => {
                                   src="/no-product.png"
                                 />
                               </Dialog.Overlay>
-                              <div  
-                                
-                                className="flex flex-col  gap-2"
-                              >
+                              <div className="flex flex-col  gap-2">
                                 {products?.map((product) => (
-                                  <Card isPressable  key={product._id}>
-                                    <ShopingCartItem product={product} setProducts={setProducts} setCartSliderIsOpen={setCartSliderIsOpen} setCartCount={setCartCount} />
+                                  <Card isPressable key={product._id}>
+                                    <ShopingCartItem
+                                      product={product}
+                                      setProducts={setProducts}
+                                      setCartSliderIsOpen={setCartSliderIsOpen}
+                                      setCartCount={setCartCount}
+                                    />
                                   </Card>
                                 ))}
                               </div>

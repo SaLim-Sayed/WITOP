@@ -21,7 +21,7 @@ export default function ProductCard() {
   const { id, category } = useParams();
 
   const [count, setCount] = useState<number>(1);
-  const [star, setStar] = useState<number>(1);
+  const [star, setStar] = useState<number>(0);
   const { CartSetter } = cartStore();
 
   const showSuccessToast = (message?: string) =>
@@ -49,15 +49,13 @@ export default function ProductCard() {
     setrelatedProducts(server?.relatedProducts);
   };
 
-const addRatingHandler = async (noOfStar: number) => {
+  const addRatingHandler = async (noOfStar: number) => {
     try {
       setIsLoading(true);
       const { data } = await axios.post(
         `https://maro-cares.onrender.com/user/addRating/${id}`,
         {
           numberOfStar: noOfStar,
-
-          comment: "my comment",
         },
         {
           headers: {
@@ -106,10 +104,8 @@ const addRatingHandler = async (noOfStar: number) => {
     }
   }, [id]);
   useEffect(() => {
-    
-      getProductData();
-    
-  });
+    getProductData();
+  }, []);
   return (
     <Center>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
@@ -126,104 +122,208 @@ const addRatingHandler = async (noOfStar: number) => {
           </div>
           <div className="flex justify-between items-center">
             <div className="text-2xl font-bold">{productData?.price} $</div>
-            <div className="flex gap-1">
-              <Button
-                isIconOnly variant="light"
-                onClick={() => {
-                  setStar(1);
-                  addRatingHandler(1);
-                }}
-              >
-                { productData?.totalRating >=  1  ? (
-                  <BsStarFill
-                    size={20}
-                    fill={cn(
-                      ( productData?.totalRating >=  1 ) && " #f4c706"
-                    )}
-                  />
-                ) : (
-                  <BiStar size={20} />
-                )}
-              </Button>
-              <Button
-                isIconOnly variant="light"
-                onClick={() => {
-                  setStar(2);
-                  addRatingHandler(2);
-                }}
-              >
-                { productData?.totalRating >=  2  ? (
-                  <BsStarFill
-                    size={20}
-                    fill={cn(
-                      ( productData?.totalRating >=  2 ) && " #f4c706"
-                    )}
-                  />
-                ) : (
-                  <BiStar size={20} />
-                )}
-              </Button>
-              <Button
-                isIconOnly variant="light"
-                onClick={() => {
-                  setStar(3);
-                  addRatingHandler(3);
-                }}
-              >
-                { productData?.totalRating >=  3  ? (
-                  <BsStarFill
-                    size={20}
-                    fill={cn(
-                      ( productData?.totalRating >=  3 ) && " #f4c706"
-                    )}
-                  />
-                ) : (
-                  <BiStar size={20} />
-                )}
-              </Button>
-              <Button
-                isIconOnly variant="light"
-                onClick={() => {
-                  setStar(4);
-                  addRatingHandler(4);
-                }}
-              >
-                { productData?.totalRating >=4   ? (
-                  <BsStarFill
-                    size={20}
-                    fill={cn(
-                      ( productData?.totalRating >=4 )  && " #f4c706"
-                    )}
-                  />
-                ) : (
-                  <BiStar size={20} />
-                )}
-              </Button>
-              <Button
-                isIconOnly variant="light"
-                onClick={() => {
-                  if(star===4){
-                    setStar(5)
-                  }else{
-                    setStar(4)
-                  }
-                  
-                  ;
-                  addRatingHandler(5);
-                }}
-              >
-                { productData?.totalRating ===   5 ? (
-                  <BsStarFill
-                    size={20}
-                    fill={cn(
-                      ( productData?.totalRating ===   5) && " #f4c706"
-                    )}
-                  />
-                ) : (
-                  <BiStar size={20} />
-                )}
-              </Button>
-            </div>
+            {star ? (
+              <div className="flex gap-1">
+                <Button
+                  isIconOnly
+                  variant="light"
+                  onClick={() => {
+                    if (star !== 1) {
+                      setStar(1);
+                      addRatingHandler(1);
+                    } else {
+                      setStar(0);
+                      addRatingHandler(0);
+                    }
+                  }}
+                >
+                  {star >= 1 ? (
+                    <BsStarFill size={20} fill={cn(star >= 1 && " #f4c706")} />
+                  ) : (
+                    <BiStar className="hover:text-[#f4c706]" size={20} />
+                  )}
+                </Button>
+                <Button
+                  isIconOnly
+                  variant="light"
+                  onClick={() => {
+                    if (star !== 2) {
+                      setStar(2);
+                      addRatingHandler(2);
+                    } else {
+                      setStar(1);
+                      addRatingHandler(1);
+                    }
+                  }}
+                >
+                  {star >= 2 ? (
+                    <BsStarFill size={20} fill={cn(star >= 2 && " #f4c706")} />
+                  ) : (
+                    <BiStar className="hover:text-[#f4c706]" size={20} />
+                  )}
+                </Button>
+                <Button
+                  isIconOnly
+                  variant="light"
+                  onClick={() => {
+                    if (star !== 3) {
+                      setStar(3);
+                      addRatingHandler(3);
+                    } else {
+                      setStar(2);
+                      addRatingHandler(2);
+                    }
+                  }}
+                >
+                  {star >= 3 ? (
+                    <BsStarFill size={20} fill={cn(star >= 3 && " #f4c706")} />
+                  ) : (
+                    <BiStar className="hover:text-[#f4c706]" size={20} />
+                  )}
+                </Button>
+                <Button
+                  isIconOnly
+                  variant="light"
+                  onClick={() => {
+                    if (star !== 4) {
+                      setStar(4);
+                      addRatingHandler(4);
+                    } else {
+                      setStar(3);
+                      addRatingHandler(3);
+                    }
+                  }}
+                >
+                  {star >= 4 ? (
+                    <BsStarFill size={20} fill={cn(star >= 4 && " #f4c706")} />
+                  ) : (
+                    <BiStar className="hover:text-[#f4c706]" size={20} />
+                  )}
+                </Button>
+                <Button
+                  isIconOnly
+                  variant="light"
+                  onClick={() => {
+                    if (star !== 5) {
+                      setStar(5);
+                      addRatingHandler(5);
+                    } else {
+                      setStar(4);
+                      addRatingHandler(4);
+                    }
+                  }}
+                >
+                  {star === 5 || productData?.totalRating === 5 ? (
+                    <BsStarFill
+                      size={20}
+                      fill={cn(
+                        (star === 5 || productData?.totalRating === 5) &&
+                          " #f4c706"
+                      )}
+                    />
+                  ) : (
+                    <BiStar className="hover:text-[#f4c706]" size={20} />
+                  )}
+                </Button>
+              </div>
+            ) : (
+              <div className="flex gap-1">
+                <Button
+                  onClick={() => {
+                   if(star===0){
+                    setStar(1);
+                    addRatingHandler(1);
+                   }else{
+                    setStar(0);
+                    addRatingHandler(0);
+                   }
+                  }}
+                  isIconOnly
+                  variant="light"
+                >
+                  {productData?.totalRating >= 1 ? (
+                    <BsStarFill
+                      size={20}
+                      fill={cn(productData?.totalRating >= 1 && " #f4c706")}
+                    />
+                  ) : (
+                    <BiStar className="hover:text-[#f4c706]" size={20} />
+                  )}
+                </Button>
+                <Button onClick={() => {
+                   if(star===0){
+                    setStar(2);
+                    addRatingHandler(2);
+                   }else{
+                    setStar(1);
+                    addRatingHandler(1);
+                   }
+                  }} isIconOnly variant="light">
+                  {productData?.totalRating >= 2 ? (
+                    <BsStarFill
+                      size={20}
+                      fill={cn(productData?.totalRating >= 2 && " #f4c706")}
+                    />
+                  ) : (
+                    <BiStar className="hover:text-[#f4c706]" size={20} />
+                  )}
+                </Button>
+                <Button onClick={() => {
+                   if(star===0){
+                    setStar(3);
+                    addRatingHandler(3);
+                   }else{
+                    setStar(2);
+                    addRatingHandler(2);
+                   }
+                  }} isIconOnly variant="light">
+                  {productData?.totalRating >= 3 ? (
+                    <BsStarFill
+                      size={20}
+                      fill={cn(productData?.totalRating >= 3 && " #f4c706")}
+                    />
+                  ) : (
+                    <BiStar className="hover:text-[#f4c706]" size={20} />
+                  )}
+                </Button>
+                <Button onClick={() => {
+                   if(star===0){
+                    setStar(4);
+                    addRatingHandler(4);
+                   }else{
+                    setStar(3);
+                    addRatingHandler(3);
+                   }
+                  }} isIconOnly variant="light">
+                  {productData?.totalRating >= 4 ? (
+                    <BsStarFill
+                      size={20}
+                      fill={cn(productData?.totalRating >= 4 && " #f4c706")}
+                    />
+                  ) : (
+                    <BiStar className="hover:text-[#f4c706]" size={20} />
+                  )}
+                </Button>
+                <Button  onClick={() => {
+                   if(star===0){
+                    setStar(5);
+                    addRatingHandler(5);
+                   }else{
+                    setStar(4);
+                    addRatingHandler(4);
+                   }
+                  }} isIconOnly variant="light">
+                  {productData?.totalRating === 5 ? (
+                    <BsStarFill
+                      size={20}
+                      fill={cn(productData?.totalRating === 5 && " #f4c706")}
+                    />
+                  ) : (
+                    <BiStar className="hover:text-[#f4c706]" size={20} />
+                  )}
+                </Button>
+              </div>
+            )}
           </div>
           <div className="flex gap-4">
             <div className="flex items-center w-[100px] h-12 justify-between border-[2px] gap-2">
