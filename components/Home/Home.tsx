@@ -6,6 +6,7 @@ import OnSale from "./Brands/OnSale";
 import OurSelection from "./Brands/OurSelection";
 import Trending from "./Brands/Trending";
 import Brands from "./Favorite/Brands";
+import Offers from "./Offers/Offers";
 
 export default async function Home() {
   return (
@@ -13,9 +14,10 @@ export default async function Home() {
       <SimpleSlider />
       <CategorySlider />
       <Brands />
-        <Trending/>
-      <OnSale/>
-      <OurSelection/>  
+      <Offers/>
+      <Trending />
+      <OnSale />
+      <OurSelection />
     </div>
   );
 }

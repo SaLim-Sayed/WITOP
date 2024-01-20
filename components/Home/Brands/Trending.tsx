@@ -21,8 +21,6 @@ export default function Trending() {
     const type = "Trending";
     const server = await getProductBySectionType({ type });
     setProducts(server?.products);
-
-    console.log(server?.products);
   };
   useEffect(() => {
     getData();
@@ -30,7 +28,7 @@ export default function Trending() {
   return (
     <div>
       <Center>
-        <Title title="TRENDING" />
+        <Title title="TRENDING" exSt="uppercase text-cyan-800"  />
         <div>
           <div className="mx-auto  flex items-center  justify-center  ">
             <Button
@@ -47,37 +45,35 @@ export default function Trending() {
             </Button>
             <div className="w-[85%]   lg:w-full  mx-auto ">
               {/*  @ts-ignore  */}
-              <Slider rtl={dir} {...settings} ref={slider} autoplay>
-              {products
-              ?products.map((product) => (
-                <div
-                  dir={dir ? "rtl" : "ltr"}
-                  key={product?._id}
-                  className="mx-auto px-4 flex justify-center"
-                >
-                  <GCard
-                    key={product?._id}
-                    id={product?._id}
-                    price={product?.price}
-                    title={product?.productName}
-                    desc={product?.description}
-                    img={product?.images[0]}
-                    category={product?.category}
-                  />
-                </div>
-              ))
-              : 
-              
-              Array.from({ length: 4 }).map((_index: any) => (
-                <div
-                dir={dir ? "rtl" : "ltr"}
-                key={_index}
-                className="mx-auto px-4 flex justify-center"
-              >
-                    <GCardSkeleton />
-                  </div>
-                ))}
-            </Slider>
+              <Slider rtl={dir} {...settings} ref={slider} key={3}  autoplay>
+                {products
+                  ? products.map((product) => (
+                      <div
+                        dir={dir ? "rtl" : "ltr"}
+                        key={product?._id}
+                        className="mx-auto px-4 flex justify-center"
+                      >
+                        <GCard
+                          key={product?._id}
+                          id={product?._id}
+                          price={product?.price}
+                          title={product?.productName}
+                          desc={product?.description}
+                          img={product?.images[0]}
+                          category={product?.category}
+                        />
+                      </div>
+                    ))
+                  : Array.from({ length: 4 }).map((_,_index: any) => (
+                      <div
+                        dir={dir ? "rtl" : "ltr"}
+                        key={_index}
+                        className="mx-auto px-4 flex justify-center"
+                      >
+                        <GCardSkeleton />
+                      </div>
+                    ))}
+              </Slider>
             </div>
             <Button
               isIconOnly

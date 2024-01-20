@@ -22,6 +22,7 @@ const Brands = ({}: IProps) => {
           </Link>
         }
       />
+      <div className=" mb-4 md:mb-12">
       <div className="flex flex-col justify-center items-center md:flex-row md:justify-between mb-16">
         {brands?.map((brand) => (
           <div
@@ -44,7 +45,7 @@ const Brands = ({}: IProps) => {
           </div>
         ))}
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  mx-auto justify-center items-center  justify-items-center    mb-16 gap-8 md:gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  mx-auto justify-center items-center  justify-items-center  gap-8 md:gap-4">
         {subBrands?.map((brand) => (
           <div
             key={brand.id}
@@ -68,23 +69,7 @@ const Brands = ({}: IProps) => {
           </div>
         ))}
       </div>
-      <div className=" w-[100%] flex justify-center mb-10  ">
-        <Image
-          radius="none"
-          src="/brands/offer.jpg"
-          alt="1"
-          width={"100%"}
-          height={1000}
-          className=" hidden md:flex cursor-pointer h-64  w-full "
-        />
-        <Image
-          radius="none"
-          src="/brands/offersm.png"
-          alt="1"
-          width={1000}
-          height={1000}
-          className=" flex md:hidden cursor-pointer   w-full "
-        />
+      
       </div>
     </Center>
   );

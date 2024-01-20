@@ -19,7 +19,7 @@ export default function CategorySlider() {
   const dir = locale == "ar" ? true : false;
   return (
     <Center>
-      <Title exSt="mt-8" title="All Categories" />
+      <Title exSt=" mb-10 uppercase text-cyan-800" title="All Categories" />
       <div className="mx-auto  flex items-center  justify-center  ">
         <Button
           isIconOnly
@@ -33,7 +33,7 @@ export default function CategorySlider() {
         >
           {locale == "en" ? <BiLeftArrow /> : <BiRightArrow />}
         </Button>
-        <div className="w-[90%] my-12 mx-auto">
+        <div className="w-[90%] mb-12 mx-auto">
           {/*  @ts-ignore  */}
           <Slider rtl={dir} {...settings} ref={slider} autoplay>
             {Category.map((category) => (

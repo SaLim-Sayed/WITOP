@@ -21,7 +21,6 @@ export default function OurSelection() {
     const type = "Our selection";
     const server = await getProductBySectionType({ type });
     setProducts(server?.products);
-    console.log(server?.products);
   };
   useEffect(() => {
     getData();
@@ -29,7 +28,7 @@ export default function OurSelection() {
   return (
     <div>
       <Center>
-        <Title title="OUR SELECTION" />
+        <Title title="OUR SELECTION" exSt="uppercase text-cyan-800"  />
         <div>
         <div className="mx-auto  flex items-center  justify-center  ">
         <Button
@@ -46,7 +45,7 @@ export default function OurSelection() {
         </Button>
           <div className="w-[85%] lg:w-full  mx-auto ">
             {/*  @ts-ignore  */}
-            <Slider rtl={dir} {...settings} ref={slider} autoplay>
+            <Slider rtl={dir} {...settings} ref={slider}  key={2} autoplay>
               {products
               ?products.map((product) => (
                 <div
@@ -67,7 +66,7 @@ export default function OurSelection() {
               ))
               : 
               
-              Array.from({ length: 4 }).map((_index: any) => (
+              Array.from({ length: 4 }).map((_,_index: any) => (
                 <div
                 dir={dir ? "rtl" : "ltr"}
                 key={_index}

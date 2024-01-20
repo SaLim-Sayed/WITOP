@@ -1,19 +1,22 @@
 import type { Metadata } from "next";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Inter } from "next/font/google";
+import { IBM_Plex_Sans_Arabic  } from "next/font/google";
+
 import "./globals.css";
 import NextUi from "@/components/Providers/NextUi";
 import MainNavbar from "@/components/Global/Layout/Navbar";
 import Footer from "@/components/Global/Layout/Footer";
 import MainCategories from "@/components/Tooltip/MainCategories";
 import ToTop from "@/components/Global/Ui/ToTop";
-import { NextIntlClientProvider } from "next-intl";
-import ClientHydration from "@/components/Global/Providers/ClientHydration";
-import MainLoader from "@/components/Global/Loaders/MainLoader";
+import { NextIntlClientProvider } from "next-intl"; 
 import GToast from "@/components/Global/Providers/GToast";
+import { notFound } from "next/navigation";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = IBM_Plex_Sans_Arabic({
+  subsets: ["arabic"],
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+});
 
 export function generateStaticParams() {
   return [{ locale: "en" }, { locale: "ar" }];
@@ -36,7 +39,7 @@ export default async function RootLayout({
   try {
     messages = (await import(`../../messages/${locale}.json`)).default;
   } catch (error) {
-    console.log(error);
+    notFound();
   }
   return (
     <html lang={locale} dir={locale == "en" ? "ltr" : "rtl"}>

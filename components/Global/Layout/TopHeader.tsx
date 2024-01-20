@@ -30,28 +30,16 @@ const TopHeader = () => {
   };
   const translate = useTranslations("Globals");
   return (
-    <div className="flex  w-full items-center justify-between px-10 h-[80px] md:h-[40px] z-50 bg-slate-300 ">
+    <div className="flex  w-full items-center justify-center px-10 h-[80px] md:h-[40px] z-50 bg-slate-300 ">
       <Center>
-        <div className="flex   md:flex-row gap-[9px] items-center  justify-between px-1 md:px-10 h-[40px] z-50  ">
+        <div className="flex   md:flex-row gap-[9px] items-center  justify-center px-1 md:px-10 h-[40px] z-50  ">
           <h1>
             {translate("Navbar/Offer")}
             <Link href="" className="text-white">
-            {translate("Navbar/Offer/Conditions")}
+              {translate("Navbar/Offer/Conditions")}
             </Link>
           </h1>
-          <div className="   lg:w-max lg:mx-[10px]  ">
-            <Button
-             
-              
-             variant="shadow"
-            
-              className=" bg-teal-700 w-10 h-8 text-white font-bold px-2 justify-center my-2 flex gap-2  "
-              onClick={switchLang}
-            >
-              <BiWorld />
-          <div>{locale == "en" ? " | En" :" | ع"  }</div>
-            </Button>
-          </div>
+          
         </div>
       </Center>
     </div>

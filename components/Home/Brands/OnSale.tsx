@@ -21,8 +21,6 @@ export default function OnSale() {
     const type = "On sale";
     const server = await getProductBySectionType({ type });
     setProducts(server?.products);
-
-    console.log(server?.products);
   };
   useEffect(() => {
     getData();
@@ -30,7 +28,7 @@ export default function OnSale() {
   return (
     <div>
       <Center>
-        <Title title="ON SALE" />
+        <Title  exSt="  uppercase text-cyan-800"  title="ON SALE" />
         <div>
         <div className="mx-auto  flex items-center  justify-center  ">
         <Button
@@ -47,7 +45,7 @@ export default function OnSale() {
         </Button>
           <div className="w-[85%]   lg:w-full  mx-auto ">
             {/*  @ts-ignore  */}
-            <Slider rtl={dir} {...settings} ref={slider} autoplay>
+            <Slider rtl={dir} {...settings} ref={slider} key={1}  autoplay>
               {products
               ?products.map((product) => (
                 <div
@@ -68,7 +66,7 @@ export default function OnSale() {
               ))
               : 
               
-              Array.from({ length: 4 }).map((_index: any) => (
+              Array.from({ length: 4 }).map((_,_index: any) => (
                 <div
                 dir={dir ? "rtl" : "ltr"}
                 key={_index}

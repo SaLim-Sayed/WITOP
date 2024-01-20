@@ -6,19 +6,10 @@ import {
   NavbarContent,
   NavbarItem,
   Button,
-  Input,
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
   AutocompleteItem,
   Autocomplete,
   Badge,
-  Spinner,
-  Card,
 } from "@nextui-org/react";
-import Link from "next/link";
 import Image from "next/legacy/image";
 import {
   BiHeart,
@@ -28,17 +19,23 @@ import {
   BiUser,
 } from "react-icons/bi";
 import { BsCart } from "react-icons/bs";
-import { useLocale, useTranslations } from "next-intl";
 import MainDrawer from "../Drawer/MainDrawer";
-import { useDisclosure } from "@chakra-ui/react";
+import { Spinner,   useDisclosure } from "@chakra-ui/react";
 import TopHeader from "./TopHeader";
 import { cn } from "@/libs/cn";
 import searchProduct from "@/store/actions/searchProduct.module";
 import CartSlider from "../Drawer/Slider-Cart";
 import { Product } from "@/types/product";
-import { useRouter } from "next/navigation";
 import { cartStore } from "@/store/futures/cartStore";
 import ClientHydration from "../Providers/ClientHydration";
+import Cookies from "js-cookie";
+import { usePathname, useRouter } from "next/navigation";
+
+import Link from "next/link";
+import { FaSignLanguage } from "react-icons/fa";
+import Center from "../Ui/Center";
+import { BiWorld } from "react-icons/bi";
+import { useLocale, useTranslations } from "next-intl";
 export default function MainNavbar() {
   const { CartAmount } = cartStore();
   const discloserChakra = useDisclosure();
@@ -46,8 +43,25 @@ export default function MainNavbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isSearch, setIsSearch] = React.useState(false);
   const translate = useTranslations("Globals");
-  const locale = useLocale();
+
   const router = useRouter();
+  const locale = useLocale();
+  const pathName = usePathname();
+
+  const getDirection = () => {
+    Cookies.set("NEXT_LOCALE", locale == "ar" ? "en" : "ar");
+    if (pathName == "/ar" || pathName == "/") {
+      return locale == "en" ? "/ar" : "en";
+    }
+
+    return locale == "en"
+      ? `/ar/${pathName}`
+      : pathName.replace("/ar/", "/en/");
+  };
+
+  const switchLang = () => {
+    router.push(getDirection());
+  };
   const [cartSliderIsOpen, setCartSliderIsOpen] = React.useState(false);
   const [products, setProducts] = React.useState<any>();
   const [searchTxt, setSearchTxt] = React.useState("");
@@ -94,8 +108,8 @@ export default function MainNavbar() {
             isIconOnly
             size="lg"
             className={cn(
-              "font-bold w-6 h-10 sm:hidden",
-              locale === "ar" ? "-mr-8" : "-ml-8"
+              "font-bold  sm:hidden",
+              locale === "ar" ? "-mr-10" : "-ml-10"
             )}
             variant="light"
           >
@@ -216,35 +230,28 @@ export default function MainNavbar() {
           )}
           justify="end"
         >
-          <NavbarItem>
+          <NavbarItem className="flex items-center">
             <Button
-              className="font-bold w-6 h-10 md:hidden inline"
+              className="font-bold  md:hidden inline"
               variant="light"
-              size="lg"
               onClick={() => setIsSearch(!isSearch)}
               isIconOnly
             >
-              <BiSearch size={30} />
+              <BiSearch size={20} />
             </Button>
-            <Button
-              isIconOnly
-              size="lg"
-              className="font-bold w-6 h-10"
-              variant="light"
-            >
-              <BiHeart size={30} />
+            <Button isIconOnly className="font-bold " variant="light">
+              <BiHeart size={20} />
             </Button>
             <Button
               onClick={() => setCartSliderIsOpen((open) => !open)}
               isIconOnly
-              size="lg"
-              className="font-bold w-6 h-12 mx-4"
+              className="font-bold "
               variant="light"
             >
               <ClientHydration
                 LoaderComponent={
-                  <Badge content={<Spinner size="sm" />} variant="flat">
-                    <BsCart size={30} />
+                  <Badge content={<Spinner size="xs" />} variant="solid">
+                    <BsCart size={20} />
                   </Badge>
                 }
               >
@@ -253,17 +260,25 @@ export default function MainNavbar() {
                   color="warning"
                   variant="solid"
                 >
-                  <BsCart size={30} />
+                  <BsCart size={20} />
                 </Badge>
               </ClientHydration>
             </Button>
             <Button
               isIconOnly
-              size="lg"
-              className="font-bold w-6 h-10 hidden md:inline"
+              className="font-bold  hidden md:flex justify-center"
               variant="light"
             >
-              <BiUser size={30} />
+              <BiUser size={20} />
+            </Button>
+            <Button
+              isIconOnly
+              variant="shadow"
+              className=" bg-teal-700  text-white   "
+              onClick={switchLang}
+            >
+              <BiWorld />
+              {locale == "en" ? " | En" : " | ع"}
             </Button>
           </NavbarItem>
         </NavbarContent>

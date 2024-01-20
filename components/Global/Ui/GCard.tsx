@@ -53,23 +53,23 @@ export default function GCard({
           isPressable
           onClick={() => router.push(`/product/${category}/${id}`)}
         >
-          <CardBody className="overflow-visible    p-0 flex flex-col gap-2">
-            <div className="h-[200px] relative overflow-hidden">
+          <CardBody className="overflow-visible  p-0 flex flex-col gap-2">
+            <div className="h-[200px] relative  mb-0 overflow-hidden">
               <Image
                 layout="fill"
                 alt={title}
-                className="w-full object-cover "
+                className="w-fit   object-contain "
                 src={img}
               />
             </div>
-            <Divider />
+            <Divider className="mt-0 pt-0" />
             <div className="flex justify-between items-start mx-2">
               <div className="flex flex-col items-start">
                 <b className="text-lg text-blue-900">{title}</b>
                 <b className=" text-slate-600">{category}</b>
               </div>
               <div className=" flex flex-col font-bold items-end  ">
-                <span className=" line-through text-red-700">
+                <span className=" line-through text-gray-500 font-normal">
                   {price + 100}
                 </span>
                 <span>{price} SAR</span>
@@ -84,7 +84,7 @@ export default function GCard({
               radius="none"
               size="md"
             >
-              <FaShoppingCart /> {translate("Shop")}
+               {translate("Shop")}<FaShoppingCart />
             </Button>
           </CardFooter>
         </Card>

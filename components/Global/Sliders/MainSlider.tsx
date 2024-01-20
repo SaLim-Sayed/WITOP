@@ -15,7 +15,7 @@ export default function SimpleSlider() {
     slidesToShow: 1,
     slidesToScroll: 1,
     initialSlide: 1,
-    centerPadding: 10,
+    arrow:false,
     draggable: true,
     dots:true,
     autoplay: true,
@@ -24,8 +24,8 @@ export default function SimpleSlider() {
   };
   return (
     <>
-      <div className="hidden md:flex  ">
-        <div className=" w-full overflow-hidden mx-auto mt-4">
+      <div className="hidden md:flex justify-center  ">
+        <div className=" w-[95%] mx-auto mt-4  ">
           {/*  @ts-ignore  */}
           <Slider {...settings}>
             <Link href="/c/bestprice">
@@ -47,7 +47,7 @@ export default function SimpleSlider() {
         </div>
       </div>
       <div className=" flex md:hidden  ">
-        <div className="w-full overflow-hidden mx-auto mt-4">
+        <div className="w-[85%]  mx-auto mt-4">
           {/*  @ts-ignore  */}
           <Slider {...settings}>
             <Link href="/c/bestprice">
