@@ -20,19 +20,22 @@ const CartSlider = ({ open, setCartSliderIsOpen }: IProps) => {
   const [products, setProducts] = useState<ProductType[]>();
   const [cartCount, setCartCount] = useState<any>();
   const { CartSetter } = cartStore();
- 
 
   const getCartData = async () => {
     const res = await getUserCart();
     setCartCount(res?.cart?.cartTotal);
     setProducts(res?.cart?.products);
     CartSetter(res?.numberOfItem);
-    
   };
   // console.log( products);
   useEffect(() => {
     getCartData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  useEffect(() => {
+    if (open) getCartData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open]);
   return (
     <div>
       <Transition.Root show={open} as={Fragment}>

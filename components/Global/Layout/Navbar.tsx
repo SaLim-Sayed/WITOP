@@ -20,7 +20,7 @@ import {
 } from "react-icons/bi";
 import { BsCart } from "react-icons/bs";
 import MainDrawer from "../Drawer/MainDrawer";
-import { Spinner,   useDisclosure } from "@chakra-ui/react";
+import { Spinner, useDisclosure } from "@chakra-ui/react";
 import TopHeader from "./TopHeader";
 import { cn } from "@/libs/cn";
 import searchProduct from "@/store/actions/searchProduct.module";
@@ -109,7 +109,7 @@ export default function MainNavbar() {
             size="lg"
             className={cn(
               "font-bold  sm:hidden",
-              locale === "ar" ? "-mr-10" : "-ml-10"
+              locale === "ar" ? "-mr-12" : "-ml-12"
             )}
             variant="light"
           >
@@ -230,8 +230,14 @@ export default function MainNavbar() {
           )}
           justify="end"
         >
-          <NavbarItem className="flex items-center">
+          <NavbarItem
+            className={cn(
+              "flex items-center ",
+              locale === "ar" ? "-mr-2" : "-ml-2"
+            )}
+          >
             <Button
+              size="sm"
               className="font-bold  md:hidden inline"
               variant="light"
               onClick={() => setIsSearch(!isSearch)}
@@ -239,10 +245,11 @@ export default function MainNavbar() {
             >
               <BiSearch size={20} />
             </Button>
-            <Button isIconOnly className="font-bold " variant="light">
+            <Button size="sm" isIconOnly className="font-bold " variant="light">
               <BiHeart size={20} />
             </Button>
             <Button
+              size="sm"
               onClick={() => setCartSliderIsOpen((open) => !open)}
               isIconOnly
               className="font-bold "
@@ -265,16 +272,17 @@ export default function MainNavbar() {
               </ClientHydration>
             </Button>
             <Button
+            size="sm"
               isIconOnly
-              className="font-bold  hidden md:flex justify-center"
+              className="font-bold  flex justify-center"
               variant="light"
             >
               <BiUser size={20} />
             </Button>
             <Button
-              isIconOnly
-              variant="shadow"
-              className=" bg-teal-700  text-white   "
+              isIconOnly 
+              variant="flat"
+               color="success"
               onClick={switchLang}
             >
               <BiWorld />
