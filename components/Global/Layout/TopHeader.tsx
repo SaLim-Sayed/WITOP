@@ -30,7 +30,7 @@ const TopHeader = () => {
   };
   const translate = useTranslations("Globals");
   return (
-    <div className="flex  w-full items-center justify-center  text-lg z-50 bg-slate-300 ">
+    <div className="flex  w-full items-center justify-center text-sm  md:text-lg z-50 bg-slate-300 ">
       <Center>
         <div className="flex   md:flex-row   items-center p-2 justify-center  z-50  ">
           <h1>
