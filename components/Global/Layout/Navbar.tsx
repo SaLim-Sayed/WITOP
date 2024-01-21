@@ -126,7 +126,7 @@ export default function MainNavbar() {
               isIconOnly
               size="lg"
               variant="light"
-              className="min-w-[150px]  h-16 p-0   flex gap-2"
+              className="min-w-[100px]  p-0   flex gap-2"
             >
               <Link href="/" className="font-bold text-xl text-[#00b5bc]">
                 <Image
