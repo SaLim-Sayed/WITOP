@@ -13,6 +13,6 @@ export type Product= {
     images: string[];
     ratings: any[]; // You can replace 'any[]' with a specific type for ratings if needed
     relatedProducts:any;
-    
+    count:any;
   }
   

@@ -17,8 +17,8 @@ import { cn } from "@/libs/cn";
 
 interface IProps {
   alt: any;
-  images: string[]| undefined ;
-  discount: number | undefined;
+  images: string[] | undefined;
+  discount?: number | undefined;
 }
 
 const ImageGallury = ({ alt, images, discount }: IProps) => {
@@ -26,16 +26,18 @@ const ImageGallury = ({ alt, images, discount }: IProps) => {
 
   return (
     <Tab.Group as="div" className="flex   justify-center items-center relative">
-      <Button
-        size="sm"
-        radius="sm"
-        className={cn(
-          "absolute top-0  bg-lime-300 shadow-md z-20",
-          locale === "ar" ?"left-0":"right-0"
-        )}
-      >
-        {discount}%
-      </Button>
+      {discount && (
+        <Button
+          size="sm"
+          radius="sm"
+          className={cn(
+            "absolute top-0  bg-lime-300 shadow-md z-20",
+            locale === "ar" ? "left-0" : "right-0"
+          )}
+        >
+          {discount}%
+        </Button>
+      )}
       {/* Image selector */}
       <div className="  mt-6  w-full flex justify-around  ">
         <Tab.List className="flex flex-col gap-2">

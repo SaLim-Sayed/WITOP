@@ -3,38 +3,42 @@ import { Product as ProductType } from "@/types/product";
 import { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Button } from "@nextui-org/button";
-import { BiX } from "react-icons/bi";
+import { BiShow, BiX } from "react-icons/bi";
 import getUserCart from "@/store/actions/getUserCart.module";
 import Image from "next/image";
 import ShopingCartItem from "./ShopingCartItem";
 import axios from "axios";
 import { showToast } from "../Ui/Toast";
 import { Card } from "@nextui-org/react";
-import { cartStore } from "@/store/futures/cartStore";
+import { cartStore, useProductStore } from "@/store/futures/cartStore";
+import { useRouter } from "next/navigation";
 
 interface IProps {
   open: any;
   setCartSliderIsOpen: any;
 }
 const CartSlider = ({ open, setCartSliderIsOpen }: IProps) => {
+  const router = useRouter();
   const [products, setProducts] = useState<ProductType[]>();
   const [cartCount, setCartCount] = useState<any>();
   const { CartSetter } = cartStore();
 
+  const {setProductsCart} =useProductStore()
   const getCartData = async () => {
     const res = await getUserCart();
     setCartCount(res?.cart?.cartTotal);
     setProducts(res?.cart?.products);
+    setProductsCart(res?.cart?.products);
     CartSetter(res?.numberOfItem);
   };
   // console.log( products);
   useEffect(() => {
     getCartData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
     if (open) getCartData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
   return (
     <div>
@@ -78,10 +82,14 @@ const CartSlider = ({ open, setCartSliderIsOpen }: IProps) => {
                                 size="lg"
                                 radius="md"
                                 variant="shadow"
-                                color="warning"
+                                color="secondary"
                                 className="-m-4 fixed flex h-10 items-center  z-[500] "
+                                onClick={() => {
+                                  router.push("/cart");
+                                  setCartSliderIsOpen(false);
+                                }}
                               >
-                                Shopping cart
+                                Show All cart Items <BiShow />
                               </Button>
                             </Dialog.Title>
                             <div className="ml-3 flex h-7 items-center">
@@ -125,6 +133,15 @@ const CartSlider = ({ open, setCartSliderIsOpen }: IProps) => {
                           </div>
                         </Dialog.Description>
                       </div>
+                      {/* <Button
+                                size="lg"
+                                radius="md"
+                                variant="shadow"
+                                color="warning"
+                                className="-m-4 bottom-12 right-2 fixed flex h-10 items-center  z-[500] "
+                              >
+                                Shopping cart
+                              </Button> */}
                       <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                         <div className="flex justify-between text-base font-medium text-gray-900">
                           <p>Subtotal :</p>
