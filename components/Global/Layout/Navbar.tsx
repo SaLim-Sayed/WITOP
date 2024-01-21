@@ -233,7 +233,7 @@ export default function MainNavbar() {
           <NavbarItem
             className={cn(
               "flex items-center ",
-              locale === "ar" ? "-mr-2" : "-ml-2"
+              locale === "ar" ? "-mr-2 md:mr-0" : "-ml-2 md:ml-0"
             )}
           >
             <Button
