@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -9,6 +9,10 @@ import {
   AutocompleteItem,
   Autocomplete,
   Badge,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  Card,
 } from "@nextui-org/react";
 import Image from "next/legacy/image";
 import {
@@ -18,7 +22,7 @@ import {
   BiSearch,
   BiUser,
 } from "react-icons/bi";
-import { BsCart } from "react-icons/bs";
+import { BsCart, BsHeartFill } from "react-icons/bs";
 import MainDrawer from "../Drawer/MainDrawer";
 import { Spinner, useDisclosure } from "@chakra-ui/react";
 import TopHeader from "./TopHeader";
@@ -36,7 +40,12 @@ import { FaSignLanguage } from "react-icons/fa";
 import Center from "../Ui/Center";
 import { BiWorld } from "react-icons/bi";
 import { useLocale, useTranslations } from "next-intl";
-export default function MainNavbar() {
+import FavoriteItem from "../Drawer/FavoriteItem";
+import { showToast } from "../Ui/Toast";
+import axios from "axios";
+import getFavoriteList from "@/store/actions/getFavoriteList.module";
+import useFavoriteStore from "@/store/futures/useFavoriteStore";
+export default function NavbarPage() {
   const { CartAmount } = cartStore();
   const discloserChakra = useDisclosure();
   const [placement, setPlacement] = React.useState("right");
@@ -70,6 +79,46 @@ export default function MainNavbar() {
     setProducts(data?.products);
     console.log(products);
   };
+  const showSuccessToast = (message?: string) =>
+    showToast({ status: "Success", type: "success", toastMessage: message });
+  const showErrorToast = (message?: string) =>
+    showToast({ status: "Error", type: "error", toastMessage: message });
+
+  const {isFavoriteOpen, setFavoriteIsOpen}= useFavoriteStore();
+  const [favorite, setFavorite] = React.useState<Product[]>();
+  const removeFavoriteHandler = async (id: any) => {
+    try {
+      const data = await axios.put(
+        `https://maro-cares.onrender.com/user/removeFromFavorite/${id}`,
+        {},
+        {
+          headers: {
+            language: locale || "en",
+            authrization:
+              "maroTKeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTNlZWNkMjAwZTEzNDM0Mjg3M2M4YiIsImlhdCI6MTcwNTI0MjUyN30.RbBrOw_DzBBpsQsTAAMv34xYDKyjiIp61vcgkQVQfLw",
+          },
+        }
+      );
+      setFavoriteIsOpen(!isFavoriteOpen);
+      showSuccessToast("item deleted Successfuly");
+    } catch (err: any) {
+      console.log(err);
+      showErrorToast("Something Went Wrong , Try Again..");
+    }
+  };
+
+  useMemo(async () => {
+    if (isFavoriteOpen) {
+      const list = await getFavoriteList();
+      setFavorite(list?.favoriteList);
+    }
+  }, [isFavoriteOpen]);
+  useMemo(async () => {
+    if (isFavoriteOpen) {
+      const list = await getFavoriteList();
+      setFavorite(list?.favoriteList);
+    }
+  }, []);
   useEffect(() => {
     if (searchTxt) {
       searchData();
@@ -107,10 +156,7 @@ export default function MainNavbar() {
             onClick={discloserChakra.onOpen}
             isIconOnly
             size="lg"
-            className={cn(
-              "font-bold  ",
-              locale === "ar" ? "-mr-12" : "-ml-12"
-            )}
+            className={cn("font-bold  ", locale === "ar" ? "-mr-12" : "-ml-12")}
             variant="light"
           >
             {locale === "ar" ? (
@@ -245,9 +291,61 @@ export default function MainNavbar() {
             >
               <BiSearch size={20} />
             </Button>
-            <Button size="sm" isIconOnly className="font-bold " variant="light">
-              <BiHeart size={20} />
-            </Button>
+            <Popover placement="bottom">
+              <PopoverTrigger>
+                <Button
+                  onClick={() => setFavoriteIsOpen(!isFavoriteOpen)}
+                  size="sm"
+                  isIconOnly
+                  className="font-bold "
+                  variant="light"
+                >
+                  <BiHeart size={20} />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <div className="flex flex-col  gap-2">
+                  {favorite?.map((product) => (
+                    <Card
+                      onClick={() =>
+                        router.push(
+                          `/product/${product?.category}/${product?._id}`
+                        )
+                      }
+                      isPressable
+                      key={product._id}
+                    >
+                      <div className="flex gap-4  bg-slate-100/50 w-full p-2 ">
+                        <Image
+                          src={product?.images[0]}
+                          width={100}
+                          height={50}
+                          alt={product?.productName}
+                        />
+
+                        <div className="flex flex-col items-start">
+                          <div className=" capitalize text-xl text-cyan-700">
+                            {product?.productName || " "}
+                          </div>
+                          <div className="text-lg font-bold flex justify-between">
+                            {product?.price || " "} $
+                            <Button
+                              isIconOnly
+                              onClick={() => {
+                                removeFavoriteHandler(product?._id);
+                              }}
+                            >
+                              <BsHeartFill size={20} />
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
+              </PopoverContent>
+            </Popover>
+
             <Button
               size="sm"
               onClick={() => setCartSliderIsOpen((open) => !open)}
@@ -272,7 +370,7 @@ export default function MainNavbar() {
               </ClientHydration>
             </Button>
             <Button
-            size="sm"
+              size="sm"
               isIconOnly
               className="font-bold  flex justify-center"
               variant="light"
@@ -280,9 +378,9 @@ export default function MainNavbar() {
               <BiUser size={20} />
             </Button>
             <Button
-              isIconOnly 
+              isIconOnly
               variant="flat"
-               color="success"
+              color="success"
               onClick={switchLang}
             >
               <BiWorld />

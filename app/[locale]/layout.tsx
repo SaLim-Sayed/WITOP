@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { IBM_Plex_Sans_Arabic  } from "next/font/google";
+import { IBM_Plex_Sans_Arabic } from "next/font/google";
 
 import "./globals.css";
 import NextUi from "@/components/Providers/NextUi";
-import MainNavbar from "@/components/Global/Layout/Navbar";
 import Footer from "@/components/Global/Layout/Footer";
 import MainCategories from "@/components/Tooltip/MainCategories";
 import ToTop from "@/components/Global/Ui/ToTop";
-import { NextIntlClientProvider } from "next-intl"; 
+import { NextIntlClientProvider } from "next-intl";
 import GToast from "@/components/Global/Providers/GToast";
 import { notFound } from "next/navigation";
+import MainNavbar from "@/components/Global/Layout/MainNavbar";
 
 const inter = IBM_Plex_Sans_Arabic({
   subsets: ["arabic"],
@@ -52,7 +52,7 @@ export default async function RootLayout({
               {children}
               <ToTop />
             </div>
-            <GToast/>
+            <GToast />
             <Footer />
           </NextUi>
         </NextIntlClientProvider>

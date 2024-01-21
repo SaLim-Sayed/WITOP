@@ -16,12 +16,15 @@ import { showToast } from "../Global/Ui/Toast";
 import { cartStore } from "@/store/futures/cartStore";
 import { useLocale } from "next-intl";
 import { cn } from "@/libs/cn";
-import { BsStarFill } from "react-icons/bs";
+import { BsHeartFill, BsStarFill } from "react-icons/bs";
+import useFavoriteStore from "@/store/futures/useFavoriteStore";
 export default function ProductCard() {
   const { id, category } = useParams();
+  const {isFavoriteOpen, setFavoriteIsOpen}= useFavoriteStore();
 
   const [count, setCount] = useState<number>(1);
   const [star, setStar] = useState<number>(0);
+  const [fav, setFav] = useState<boolean>(false);
   const { CartSetter } = cartStore();
 
   const showSuccessToast = (message?: string) =>
@@ -91,6 +94,29 @@ export default function ProductCard() {
       if (data?.numberOfItem !== undefined) {
         CartSetter(data?.numberOfItem);
       }
+      showSuccessToast(data?.message);
+    } catch (err: any) {
+      setIsLoading(false);
+      console.log(err);
+      showErrorToast("Something Went Wrong , Try Again..");
+    }
+  };
+  const addToFavoriteHandler = async () => {
+    try {
+      setIsLoading(true);
+      const { data } = await axios.post(
+        `https://maro-cares.onrender.com/user/addToFavorite/${id}`,
+        {},
+        {
+          headers: {
+            language: lang || "en",
+            authrization:
+              "maroTKeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTNlZWNkMjAwZTEzNDM0Mjg3M2M4YiIsImlhdCI6MTcwNTI0MjUyN30.RbBrOw_DzBBpsQsTAAMv34xYDKyjiIp61vcgkQVQfLw",
+          },
+        }
+      );
+      setIsLoading(false);
+      console.log(data);
       showSuccessToast(data?.message);
     } catch (err: any) {
       setIsLoading(false);
@@ -230,13 +256,13 @@ export default function ProductCard() {
               <div className="flex gap-1">
                 <Button
                   onClick={() => {
-                   if(star===0){
-                    setStar(1);
-                    addRatingHandler(1);
-                   }else{
-                    setStar(0);
-                    addRatingHandler(0);
-                   }
+                    if (star === 0) {
+                      setStar(1);
+                      addRatingHandler(1);
+                    } else {
+                      setStar(0);
+                      addRatingHandler(0);
+                    }
                   }}
                   isIconOnly
                   variant="light"
@@ -250,15 +276,19 @@ export default function ProductCard() {
                     <BiStar className="hover:text-[#f4c706]" size={20} />
                   )}
                 </Button>
-                <Button onClick={() => {
-                   if(star===0){
-                    setStar(2);
-                    addRatingHandler(2);
-                   }else{
-                    setStar(1);
-                    addRatingHandler(1);
-                   }
-                  }} isIconOnly variant="light">
+                <Button
+                  onClick={() => {
+                    if (star === 0) {
+                      setStar(2);
+                      addRatingHandler(2);
+                    } else {
+                      setStar(1);
+                      addRatingHandler(1);
+                    }
+                  }}
+                  isIconOnly
+                  variant="light"
+                >
                   {productData?.totalRating >= 2 ? (
                     <BsStarFill
                       size={20}
@@ -268,15 +298,19 @@ export default function ProductCard() {
                     <BiStar className="hover:text-[#f4c706]" size={20} />
                   )}
                 </Button>
-                <Button onClick={() => {
-                   if(star===0){
-                    setStar(3);
-                    addRatingHandler(3);
-                   }else{
-                    setStar(2);
-                    addRatingHandler(2);
-                   }
-                  }} isIconOnly variant="light">
+                <Button
+                  onClick={() => {
+                    if (star === 0) {
+                      setStar(3);
+                      addRatingHandler(3);
+                    } else {
+                      setStar(2);
+                      addRatingHandler(2);
+                    }
+                  }}
+                  isIconOnly
+                  variant="light"
+                >
                   {productData?.totalRating >= 3 ? (
                     <BsStarFill
                       size={20}
@@ -286,15 +320,19 @@ export default function ProductCard() {
                     <BiStar className="hover:text-[#f4c706]" size={20} />
                   )}
                 </Button>
-                <Button onClick={() => {
-                   if(star===0){
-                    setStar(4);
-                    addRatingHandler(4);
-                   }else{
-                    setStar(3);
-                    addRatingHandler(3);
-                   }
-                  }} isIconOnly variant="light">
+                <Button
+                  onClick={() => {
+                    if (star === 0) {
+                      setStar(4);
+                      addRatingHandler(4);
+                    } else {
+                      setStar(3);
+                      addRatingHandler(3);
+                    }
+                  }}
+                  isIconOnly
+                  variant="light"
+                >
                   {productData?.totalRating >= 4 ? (
                     <BsStarFill
                       size={20}
@@ -304,15 +342,19 @@ export default function ProductCard() {
                     <BiStar className="hover:text-[#f4c706]" size={20} />
                   )}
                 </Button>
-                <Button  onClick={() => {
-                   if(star===0){
-                    setStar(5);
-                    addRatingHandler(5);
-                   }else{
-                    setStar(4);
-                    addRatingHandler(4);
-                   }
-                  }} isIconOnly variant="light">
+                <Button
+                  onClick={() => {
+                    if (star === 0) {
+                      setStar(5);
+                      addRatingHandler(5);
+                    } else {
+                      setStar(4);
+                      addRatingHandler(4);
+                    }
+                  }}
+                  isIconOnly
+                  variant="light"
+                >
                   {productData?.totalRating === 5 ? (
                     <BsStarFill
                       size={20}
@@ -356,13 +398,18 @@ export default function ProductCard() {
               Add To Cart
             </Button>
             <Button
+              onClick={() => {
+                addToFavoriteHandler();
+                setFav(!fav);
+                setFavoriteIsOpen(!isFavoriteOpen)
+              }}
               isIconOnly
               variant="light"
               radius="sm"
               className="h-12 w-12 "
             >
               {" "}
-              <BiHeart size={60} />
+              {!fav ? <BiHeart size={60} /> : <BsHeartFill size={60} />}
             </Button>
           </div>
           <div className="text-xl text-justify">{productData?.description}</div>
