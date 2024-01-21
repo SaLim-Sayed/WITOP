@@ -1,7 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['lensbox.me','res.cloudinary.com'],
+      remotePatterns: [
+        {
+          hostname: 'lensbox.me',
+          protocol: 'https',
+        },
+        {
+          hostname: 'res.cloudinary.com',
+          protocol: 'https',
+        },
+        // Add more domains if needed
+      ],
       },
 }
 

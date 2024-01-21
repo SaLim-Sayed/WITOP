@@ -79,12 +79,14 @@ export default function NavbarPage() {
     setProducts(data?.products);
     console.log(products);
   };
+
+  const [favNum, setFavNum] = React.useState<number>(0);
   const showSuccessToast = (message?: string) =>
     showToast({ status: "Success", type: "success", toastMessage: message });
   const showErrorToast = (message?: string) =>
     showToast({ status: "Error", type: "error", toastMessage: message });
 
-  const {isFavoriteOpen, setFavoriteIsOpen}= useFavoriteStore();
+  const { isFavoriteOpen, setFavoriteIsOpen } = useFavoriteStore();
   const [favorite, setFavorite] = React.useState<Product[]>();
   const removeFavoriteHandler = async (id: any) => {
     try {
@@ -107,17 +109,20 @@ export default function NavbarPage() {
     }
   };
 
-  useMemo(async () => {
-    if (isFavoriteOpen) {
-      const list = await getFavoriteList();
-      setFavorite(list?.favoriteList);
+  const getFavData = async () => {
+    const list = await getFavoriteList();
+    setFavorite(list?.favoriteList);
+    setFavNum(list?.numberOfItem);
+  };
+
+  useEffect(() => {
+    if (isFavoriteOpen===true||isFavoriteOpen===false) {
+      getFavData();
     }
   }, [isFavoriteOpen]);
-  useMemo(async () => {
-    if (isFavoriteOpen) {
-      const list = await getFavoriteList();
-      setFavorite(list?.favoriteList);
-    }
+
+  useEffect(() => {
+    getFavData();
   }, []);
   useEffect(() => {
     if (searchTxt) {
@@ -300,7 +305,21 @@ export default function NavbarPage() {
                   className="font-bold "
                   variant="light"
                 >
-                  <BiHeart size={20} />
+                  <ClientHydration
+                    LoaderComponent={
+                      <Badge content={<Spinner size="xs" />} variant="solid">
+                        <BiHeart size={20} />
+                      </Badge>
+                    }
+                  >
+                    <Badge
+                      content={favNum || 0}
+                      color="warning"
+                      variant="solid"
+                    >
+                      <BiHeart size={20} />
+                    </Badge>
+                  </ClientHydration>
                 </Button>
               </PopoverTrigger>
               <PopoverContent>
@@ -330,8 +349,8 @@ export default function NavbarPage() {
                           <div className="text-lg font-bold flex items-center gap-8   justify-between">
                             <p>{product?.price || " "} $</p>
                             <Button
-                            variant="light"
-                            size="sm"
+                              variant="light"
+                              size="sm"
                               isIconOnly
                               onClick={() => {
                                 removeFavoriteHandler(product?._id);

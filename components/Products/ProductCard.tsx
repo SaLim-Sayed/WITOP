@@ -20,7 +20,7 @@ import { BsHeartFill, BsStarFill } from "react-icons/bs";
 import useFavoriteStore from "@/store/futures/useFavoriteStore";
 export default function ProductCard() {
   const { id, category } = useParams();
-  const {isFavoriteOpen, setFavoriteIsOpen}= useFavoriteStore();
+  const { isFavoriteOpen, setFavoriteIsOpen } = useFavoriteStore();
 
   const [count, setCount] = useState<number>(1);
   const [star, setStar] = useState<number>(0);
@@ -117,6 +117,7 @@ export default function ProductCard() {
       );
       setIsLoading(false);
       console.log(data);
+      setFavoriteIsOpen(!isFavoriteOpen);
       showSuccessToast(data?.message);
     } catch (err: any) {
       setIsLoading(false);
@@ -401,7 +402,6 @@ export default function ProductCard() {
               onClick={() => {
                 addToFavoriteHandler();
                 setFav(!fav);
-                setFavoriteIsOpen(!isFavoriteOpen)
               }}
               isIconOnly
               variant="light"
