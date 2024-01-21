@@ -25,7 +25,7 @@ export default function SimpleSlider() {
   return (
     <>
       <div className="hidden md:flex justify-center  ">
-        <div className=" w-[95%] mx-auto mt-4  ">
+        <div className="w-[80%] lg:w-[95%] md:[90%] mx-auto mt-1  ">
           {/*  @ts-ignore  */}
           <Slider {...settings}>
             <Link href="/c/bestprice">
@@ -47,7 +47,7 @@ export default function SimpleSlider() {
         </div>
       </div>
       <div className=" flex md:hidden  ">
-        <div className="w-[85%]  mx-auto mt-4">
+        <div className="w-[85%]  mx-auto mt-0">
           {/*  @ts-ignore  */}
           <Slider {...settings}>
             <Link href="/c/bestprice">

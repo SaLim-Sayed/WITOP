@@ -1,4 +1,4 @@
-"use server";
+ 
 import { useServerRequest as ServerRequest } from "@/store/hooks/serverApi";
 
 export default async function removeFromCart({
@@ -6,7 +6,7 @@ export default async function removeFromCart({
 }: {
   id: string  ; 
 }) {
-  "use server";
+ 
   try {
     const res = await ServerRequest({
       endPoint: `/user/removeFromCart/${id}`,

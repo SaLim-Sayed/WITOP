@@ -102,13 +102,13 @@ export default function MainNavbar() {
           onClose={discloserChakra.onClose}
           isOpen={discloserChakra.isOpen}
         />
-        <NavbarContent className="sm:hidden" justify="start">
+        <NavbarContent className="lg:hidden flex  " justify="start">
           <Button
             onClick={discloserChakra.onOpen}
             isIconOnly
             size="lg"
             className={cn(
-              "font-bold  sm:hidden",
+              "font-bold  ",
               locale === "ar" ? "-mr-12" : "-ml-12"
             )}
             variant="light"
@@ -126,7 +126,7 @@ export default function MainNavbar() {
               isIconOnly
               size="lg"
               variant="light"
-              className="min-w-[100px] p-0   flex gap-2"
+              className="min-w-[150px]  h-16 p-0   flex gap-2"
             >
               <Link href="/" className="font-bold text-xl text-[#00b5bc]">
                 <Image
@@ -151,7 +151,7 @@ export default function MainNavbar() {
               isIconOnly
               size="lg"
               variant="light"
-              className="min-w-[110px] p-0  flex justify-between gap-2"
+              className="max-w-[200px] w-full h-16 p-0  flex justify-between gap-2"
             >
               <Link href="/" className="font-bold text-3xl text-[#00b5bc]">
                 {" "}
@@ -165,7 +165,7 @@ export default function MainNavbar() {
             </Button>
           </NavbarBrand>
         </NavbarContent>
-        <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        <NavbarContent className="lg:flex  hidden   gap-4" justify="center">
           <NavbarItem>
             <Autocomplete
               label={translate("Navbar/Search")}
@@ -233,7 +233,7 @@ export default function MainNavbar() {
           <NavbarItem
             className={cn(
               "flex items-center ",
-              locale === "ar" ? "-mr-2 md:ml-8" : "-ml-2 md:mr-8"
+              locale === "ar" ? "-mr-2 lg:ml-8" : "-ml-2 lg:mr-8"
             )}
           >
             <Button
@@ -292,7 +292,7 @@ export default function MainNavbar() {
         </NavbarContent>
       </Navbar>
       {isSearch && (
-        <div className="flex md:hidden">
+        <div className="flex lg:hidden">
           <Autocomplete
             label={translate("Navbar/Search")}
             variant="faded"

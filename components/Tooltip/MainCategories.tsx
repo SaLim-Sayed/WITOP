@@ -546,7 +546,7 @@ const MainCategories = ({}: IProps) => {
     //...othermaincategories
   ];
   return (
-    <div className="hidden md:inline bg-[#d9d7d7]">
+    <div className="hidden lg:flex bg-[#fefefe]">
       <Center>
         <div className="flex gap-[1px] mt-4 items-center justify-between mb-8">
           <Button
