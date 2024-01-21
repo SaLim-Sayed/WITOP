@@ -32,7 +32,7 @@ export default function ShopingCartItem({
   const router = useRouter();
   const removeFromCartHandler = async (id: any) => {
     try {
-      const data = await axios.put(
+      const {data} = await axios.put(
         `https://maro-cares.onrender.com/user/removeFromCart/${id}`,
         {},
         {
@@ -45,10 +45,10 @@ export default function ShopingCartItem({
       );
 
       console.log(data);
-      setProducts(data?.data.cart.products);
-      setCartCount(data?.data.cart.cartTotal);
-      CartSetter(data?.data.cart.products.length);
-      showSuccessToast("item deleted Successfuly");
+      setProducts (data?.cart?.products);
+      setCartCount( data?.cart?.cartTotal);
+      CartSetter( data?.cart?.products?.length);
+      showSuccessToast(data?.message);
     } catch (err: any) {
       console.log(err);
       showErrorToast("Something Went Wrong , Try Again..");

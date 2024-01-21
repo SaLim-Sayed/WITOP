@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import React, { useEffect, useMemo } from "react";
 import {
@@ -90,7 +91,7 @@ export default function NavbarPage() {
   const [favorite, setFavorite] = React.useState<Product[]>();
   const removeFavoriteHandler = async (id: any) => {
     try {
-      const data = await axios.put(
+      const {data} = await axios.put(
         `https://maro-cares.onrender.com/user/removeFromFavorite/${id}`,
         {},
         {
@@ -100,9 +101,9 @@ export default function NavbarPage() {
               "maroTKeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTNlZWNkMjAwZTEzNDM0Mjg3M2M4YiIsImlhdCI6MTcwNTI0MjUyN30.RbBrOw_DzBBpsQsTAAMv34xYDKyjiIp61vcgkQVQfLw",
           },
         }
-      );
+      ); 
       setFavoriteIsOpen(!isFavoriteOpen);
-      showSuccessToast("item deleted Successfuly");
+      showSuccessToast(data?.message)
     } catch (err: any) {
       console.log(err);
       showErrorToast("Something Went Wrong , Try Again..");

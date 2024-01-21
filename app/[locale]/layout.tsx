@@ -47,7 +47,7 @@ export default async function RootLayout({
         <NextIntlClientProvider locale={locale} messages={messages}>
           <NextUi>
             <MainNavbar />
-            <div className="mt-[200px]  md:mt-[170px]">
+            <div className="mt-[150px]  lg:mt-[170px]">
               <MainCategories />
               {children}
               <ToTop />

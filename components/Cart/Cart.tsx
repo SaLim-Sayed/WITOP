@@ -20,12 +20,10 @@ import { BsHeartFill, BsStarFill } from "react-icons/bs";
 import useFavoriteStore from "@/store/futures/useFavoriteStore";
 
 export default function Cart() {
-  const { productsCart ,setProductsCart} = useProductStore();
+  const { productsCart, setProductsCart } = useProductStore();
   console.log({ productsCart });
-  
 
   const [count, setCount] = useState<number>(1);
- 
 
   const showSuccessToast = (message?: string) =>
     showToast({ status: "Success", type: "success", toastMessage: message });
@@ -87,7 +85,7 @@ export default function Cart() {
   };
   const removeFromCartHandler = async (id: any) => {
     try {
-      const data = await axios.put(
+      const { data } = await axios.put(
         `https://maro-cares.onrender.com/user/removeFromCart/${id}`,
         {},
         {
@@ -99,10 +97,9 @@ export default function Cart() {
         }
       );
 
-      console.log(data);
-      setProductsCart(data?.data?.cart?.products);
+      setProductsCart(data?.cart?.products);
 
-      showSuccessToast("item deleted Successfuly");
+      showSuccessToast(data?.message);
     } catch (err: any) {
       console.log(err);
       showErrorToast("Something Went Wrong , Try Again..");
@@ -162,16 +159,13 @@ export default function Cart() {
                 Update Amount
               </Button>
               <Button
-                     className="h-12  w-full "
-                    color="danger"
-                    onClick={() => removeFromCartHandler(product?._id)}
-                    endContent={
-                        <BiTrash />
-
-                    }
-                  >
-                    Delete 
-                  </Button>
+                className="h-12  w-full "
+                color="danger"
+                onClick={() => removeFromCartHandler(product?._id)}
+                endContent={<BiTrash />}
+              >
+                Delete
+              </Button>
             </div>
             <div className="text-xl text-justify">
               <Button
