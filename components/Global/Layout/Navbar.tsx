@@ -323,19 +323,21 @@ export default function NavbarPage() {
                           alt={product?.productName}
                         />
 
-                        <div className="flex flex-col items-start">
+                        <div className="flex flex-col items-start ">
                           <div className=" capitalize text-xl text-cyan-700">
                             {product?.productName || " "}
                           </div>
-                          <div className="text-lg font-bold flex justify-between">
-                            {product?.price || " "} $
+                          <div className="text-lg font-bold flex items-center gap-8   justify-between">
+                            <p>{product?.price || " "} $</p>
                             <Button
+                            variant="light"
+                            size="sm"
                               isIconOnly
                               onClick={() => {
                                 removeFavoriteHandler(product?._id);
                               }}
                             >
-                              <BsHeartFill size={20} />
+                              <BsHeartFill size={10} />
                             </Button>
                           </div>
                         </div>
