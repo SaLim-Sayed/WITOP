@@ -29,7 +29,8 @@ export default function Footer() {
         />
       </div>
       <Divider className=" text-white bg-slate-600" />
-      <div className="flex   flex-col justify-center md:flex-row md:justify-between  gap-32">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2  w-full justify-items-center gap-32">
+        <div className="grid grid-cols-2   items-stretch">
         <Image
           src="/footer.png"
           alt="1"
@@ -37,34 +38,24 @@ export default function Footer() {
           height={40}
           className="w-24 h-24 mx-3"
         />
-        <div className="flex gap-4 md:gap-8  mx-3">
-          <div className="flex flex-col gap-2">
+         <div className="flex flex-col gap-2">
             {footerData.map((item, index) => (
               <div key={index} className="flex gap-6 flex-col">
                 <p className="  text-lg font-light">{item}</p>
               </div>
             ))}
           </div>
-          <div>
-            <p className="  text-lg font-light">Complaints book</p>
-          </div>
-          <Image
-            src="/footer2.png"
-            alt="1"
-            width={100}
-            height={40}
-            className="w-20 h-20"
-          />
         </div>
-        <div className="flex flex-col gap-8 mx-3">
+         
+        <div className="flex flex-col gap-8 mx-12  w-[80%]">
           <div className="flex flex-col">
             <div className="flex items-center gap-2">
               <MdEmail /> Email
             </div>
             <div className=" text-slate-500">help@cosmetis.com</div>
           </div>
-          <div className="flex flex-col  gap-4 mx-3">
-            <div className="flex items-center">
+          <div className="flex flex-col   gap-4 mx-3">
+            <div className="flex items-center ">
               Stay up to date, get our newsletter!
             </div>
             <div className=" text-slate-500">

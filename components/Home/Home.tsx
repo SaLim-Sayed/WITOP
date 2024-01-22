@@ -8,6 +8,7 @@ import OurSelection from "./Brands/OurSelection";
 import Trending from "./Brands/Trending";
 import Brands from "./Favorite/Brands";
 import Offers from "./Offers/Offers";
+import SwipperPage from "../Global/Sliders/SwipperPage";
 
 export default async function Home() {
   const trends = await getProductBySectionType({ type: "Trending" });
@@ -15,7 +16,8 @@ export default async function Home() {
   const sale = await getProductBySectionType({ type: "On sale" });
   return (
     <div>
-      <SimpleSlider />
+      <SwipperPage/>
+      {/* <SimpleSlider /> */}
       <CategorySlider />
       <Brands />
       <Offers />

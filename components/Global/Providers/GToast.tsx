@@ -19,6 +19,7 @@ export default function GToast() {
       draggable
       pauseOnHover
       theme="light"
+      className={"z-[2000]"}
     />
   );
 }

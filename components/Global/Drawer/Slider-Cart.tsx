@@ -23,7 +23,7 @@ const CartSlider = ({ open, setCartSliderIsOpen }: IProps) => {
   const [cartCount, setCartCount] = useState<any>();
   const { CartSetter } = cartStore();
 
-  const {setProductsCart} =useProductStore()
+  const { setProductsCart } = useProductStore();
   const getCartData = async () => {
     const res = await getUserCart();
     setCartCount(res?.cart?.cartTotal);
@@ -119,7 +119,16 @@ const CartSlider = ({ open, setCartSliderIsOpen }: IProps) => {
                               </Dialog.Overlay>
                               <div className="flex flex-col  gap-2">
                                 {products?.map((product) => (
-                                  <Card isPressable key={product._id}>
+                                  <Card
+                                    isPressable
+                                    onClick={() => {
+                                      router.push(
+                                        `/product/${product?.category}/${product._id}`
+                                      );
+                                      setCartSliderIsOpen(false);
+                                    }}
+                                    key={product._id}
+                                  >
                                     <ShopingCartItem
                                       product={product}
                                       setProducts={setProducts}

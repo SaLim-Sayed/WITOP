@@ -433,7 +433,7 @@ export default function NavbarPage() {
                 value={item?.productName}
                 key={item?._id}
                 variant="light"
-                className=" flex gap-4 z-[2]"
+                className=" flex gap-4  justify-center  z-[2]"
                 onClick={() =>
                   router.push(`/product/${item?.category}/${item?._id}`)
                 }

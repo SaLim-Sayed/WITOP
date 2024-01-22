@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, Image, Button } from "@nextui-org/react";
+import { Card, CardBody, Image, Button, CardFooter } from "@nextui-org/react";
 import { BiTrash } from "react-icons/bi";
 import { Product } from "@/types/product";
 import axios from "axios";
@@ -32,7 +32,7 @@ export default function ShopingCartItem({
   const router = useRouter();
   const removeFromCartHandler = async (id: any) => {
     try {
-      const {data} = await axios.put(
+      const { data } = await axios.put(
         `https://maro-cares.onrender.com/user/removeFromCart/${id}`,
         {},
         {
@@ -45,9 +45,9 @@ export default function ShopingCartItem({
       );
 
       console.log(data);
-      setProducts (data?.cart?.products);
-      setCartCount( data?.cart?.cartTotal);
-      CartSetter( data?.cart?.products?.length);
+      setProducts(data?.cart?.products);
+      setCartCount(data?.cart?.cartTotal);
+      CartSetter(data?.cart?.products?.length);
       showSuccessToast(data?.message);
     } catch (err: any) {
       console.log(err);
@@ -59,10 +59,11 @@ export default function ShopingCartItem({
     <Card
       className="border-none bg-background/90 text-slate-950 dark:bg-default-100/70 overflow-hidden  font-light text-sm  max-w-[610px]"
       shadow="lg"
+      
     >
       <CardBody>
-        <div className="grid grid-cols-6 md:grid-cols-12 gap-6 md:gap-4 items-center justify-center">
-          <div className="relative col-span-6 z-10 md:col-span-4">
+        <div className="grid grid-cols-2 gap-2 md:gap-4 items-center justify-center">
+          <div className="relative  z-10  ">
             <Image
               alt="Album cover"
               height={300}
@@ -72,35 +73,19 @@ export default function ShopingCartItem({
             />
           </div>
 
-          <div className="flex flex-col col-span-6 md:col-span-8">
+          <div className="flex flex-col   gap-4">
             <div className="flex justify-between items-start">
-              <div className="flex flex-col gap-0">
-                <h3 className="font-semibold ">{product.productName}</h3>
+              <div className="flex flex-col gap-4">
+                <h3 className="font-bold text-lg">{product.productName}</h3>
 
                 <p className=" ">Price : {product.price}</p>
 
                 <div className=" flex justify-between  items-center gap-4">
                   <Button
-                   className="  text-lg text-white bg-teal-500 "
-                   variant="flat"
-                   color="default"
-                    onClick={() => {
-                      router.push(
-                        `/product/${product?.category}/${product._id}`
-                      );
-                      setCartSliderIsOpen(false);
-                    }}
-                    endContent={<BsEye size={20} />}
-                  >
-                    show Details
-                  </Button>
-
-                  <Button
-                    isIconOnly
                     color="danger"
                     onClick={() => removeFromCartHandler(product?._id)}
                   >
-                    <BiTrash />
+                    Delete <BiTrash />
                   </Button>
                 </div>
               </div>
@@ -108,6 +93,21 @@ export default function ShopingCartItem({
           </div>
         </div>
       </CardBody>
+      <CardFooter className="flex justify-between items-center">
+        <Button
+      className=" w-full text-lg text-white bg-teal-800 "
+          variant="flat"
+          color="default"
+          onClick={() => {
+            router.push("/cart");
+            setCartSliderIsOpen(false);
+          }}
+         
+          endContent={<BsEye size={20} />}
+        >
+          show Cart And  Payment
+        </Button>
+      </CardFooter>
     </Card>
   );
 }
