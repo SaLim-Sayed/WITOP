@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { Product as ProductType } from "@/types/product";
 import Slider from "@ant-design/react-slick";
 import GCard from "@/components/Global/Ui/GCard";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { settings } from "./setting";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import { Button } from "@nextui-org/react";
@@ -14,10 +14,12 @@ export default function Trending({ trends }: { trends: ProductType[] }) {
   const slider = useRef<any>();
   const locale = useLocale();
   const dir = locale == "ar" ? true : false;
+  const t = useTranslations("Buttons");
+
   return (
     <div>
       <Center>
-        <Title title="TRENDING" exSt="uppercase text-cyan-800" />
+        <Title title={t("TRENDING")} exSt="uppercase text-cyan-800" />
         <div>
           <div className="mx-auto  flex items-center  justify-center  ">
             <Button

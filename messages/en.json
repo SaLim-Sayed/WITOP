@@ -1,6 +1,12 @@
 {
   "Buttons": {
-    "Shop":"Shop Now"
+    "Shop":"Shop Now",
+    "OUR FAVORITE BRANDS":"OUR FAVORITE BRANDS",
+    "ALL CATEGORIES":"ALL CATEGORIES",
+    "TRENDING":"TRENDING",
+    "ON SALE":"ON SALE",
+     "OUR SELECTION":"OUR SELECTION",
+    "SeeAll":"See All"
   },
   "Globals": {
     "Home":"Home",

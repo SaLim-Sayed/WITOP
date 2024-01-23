@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { Product as ProductType } from "@/types/product";
 import Slider from "@ant-design/react-slick";
 import GCard from "@/components/Global/Ui/GCard";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { settings } from "./setting";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import { Button } from "@nextui-org/react";
@@ -16,6 +16,7 @@ export default function OurSelection({
   selection: ProductType[];
 }) {
   const slider = useRef<any>();
+  const t  = useTranslations("Buttons");
 
   const locale = useLocale();
   const dir = locale == "ar" ? true : false;
@@ -23,7 +24,7 @@ export default function OurSelection({
   return (
     <div>
       <Center>
-        <Title title="OUR SELECTION" exSt="uppercase text-cyan-800" />
+        <Title title={t("OUR SELECTION")} exSt="uppercase text-cyan-800" />
         <div>
           <div className="mx-auto  flex items-center  justify-center  ">
             <Button

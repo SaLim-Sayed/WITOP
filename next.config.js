@@ -7,6 +7,15 @@ const nextConfig = {
           protocol: 'https',
         },
         {
+          hostname: 'logowik.com',
+          protocol: 'https',
+        },
+        {
+          hostname: 'mma.prnewswire.com',
+          protocol: 'https',
+        },
+         
+        {
           hostname: 'res.cloudinary.com',
           protocol: 'https',
         },

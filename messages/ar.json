@@ -1,6 +1,12 @@
 {
   "Buttons": {
-    "Shop": "أشتري الان"
+    "Shop": "أشتري الان",
+    "OUR FAVORITE BRANDS":"برانداتنا  المفضلة",
+    "ALL CATEGORIES":"كل الاقسام",
+    "TRENDING":"الرائج",
+    "ON SALE":"للبيع",
+     "OUR SELECTION":"اختيارنا",
+    "SeeAll":"عرض الكل "
   },
   "Globals": {
     "Navbar/Search": "بحث",

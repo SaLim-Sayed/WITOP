@@ -4,9 +4,11 @@ import Title from "../Global/Ui/Title";
 import Link from "next/link";
 import { Card, CardFooter, Image, Button, CardBody } from "@nextui-org/react";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 
 export default function Brands() {
   const translate = useTranslations("Brands");
+  const router = useRouter();
   const allBrands = [
     {
       id: 1,
@@ -533,40 +535,37 @@ export default function Brands() {
 
         <div className=" mt-8  grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 items-center justify-center justify-items-center">
           {allBrands.map((brand) => (
-            <Link
-              href={"#"}
-              className="flex flex-col   p-2 rounded-lg justify-between items-center  "
+            <Card
+              isPressable
+              onClick={() => router.push(`/brands/${brand.brand}`)}
               key={brand.brand}
+              isFooterBlurred
+              radius="lg"
+              className="border-none  w-40 h-[220px]"
             >
-              <Card
-                isFooterBlurred
-                radius="lg"
-                className="border-none  w-40 h-[220px]"
-              >
-                <CardBody className=" flex items-center justify-center overflow-hidden">
-                  <Image
-                    alt="Woman listing to music"
-                    className="object-fill  bg-white"
-                    height={200}
-                    src={brand.image}
-                    fallbackSrc="https://via.placeholder.com/"
-                    width={200}
-                  />
-                </CardBody>
+              <CardBody className=" flex items-center justify-center overflow-hidden">
+                <Image
+                  alt="Woman listing to music"
+                  className="object-fill  bg-white"
+                  height={200}
+                  src={brand.image}
+                  fallbackSrc="https://via.placeholder.com/"
+                  width={200}
+                />
+              </CardBody>
 
-                <CardFooter className="  before:bg-white/10 border-white/20 border-1 overflow-hidden py-1   before:rounded-xl rounded-large bottom-0 w-[calc(100%_-_8px)] shadow-small ml-1 z-2">
-                  <Button
-                    className="text-tiny text-white w-full bg-black/50"
-                    variant="flat"
-                    color="default"
-                    radius="lg"
-                    size="sm"
-                  >
-                    {brand.brand}
-                  </Button>
-                </CardFooter>
-              </Card>
-            </Link>
+              <CardFooter className="  before:bg-white/10 border-white/20 border-1 overflow-hidden py-1   before:rounded-xl rounded-large bottom-0 w-[calc(100%_-_8px)] shadow-small ml-1 z-2">
+                <Button
+                  className="text-tiny text-white w-full bg-black/50"
+                  variant="flat"
+                  color="default"
+                  radius="lg"
+                  size="sm"
+                >
+                  {brand.brand}
+                </Button>
+              </CardFooter>
+            </Card>
           ))}
         </div>
       </Center>

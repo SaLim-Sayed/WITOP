@@ -5,21 +5,21 @@ import { useRef } from "react";
 import { Product as ProductType } from "@/types/product";
 import Slider from "@ant-design/react-slick";
 import GCard from "@/components/Global/Ui/GCard";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { settings } from "./setting";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import { Button } from "@nextui-org/react";
 import GCardSkeleton from "@/components/Global/Loaders/GCardSkeleton";
 export default function OnSale({ sale }: { sale: ProductType[] }) {
   const slider = useRef<any>();
-
+  const t = useTranslations("Buttons");
   const locale = useLocale();
   const dir = locale == "ar" ? true : false;
 
   return (
     <div>
       <Center>
-        <Title exSt="  uppercase text-cyan-800" title="ON SALE" />
+        <Title exSt="  uppercase text-cyan-800" title={t("ON SALE")} />
         <div>
           <div className="mx-auto  flex items-center  justify-center  ">
             <Button

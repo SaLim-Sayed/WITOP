@@ -8,7 +8,7 @@ import * as enData from "@/messages/en.json";
 import * as arData from "@/messages/ar.json";
 import { getKeyByValue } from "./value";
 
-export default function Headings() {
+export default function Headings({type}:{type?:any}) {
   const t = useTranslations("Globals");
   const trans = useTranslations("Categories");
   const local = useLocale();
@@ -18,7 +18,6 @@ export default function Headings() {
   const cats: string | string[] = category;
   const categoryName = Array.isArray(cats) ? cats[0] : cats;
   const catKey = getKeyByValue(jsonData, decodeURIComponent(categoryName));
-  console.log(catKey)
   const cat = catKey ? trans(catKey.replace("Categories/SubCategory/Desc/", "SubCategory.Desc.")) : "";
 
   return (
@@ -31,7 +30,7 @@ export default function Headings() {
 
       <BreadcrumbItem>
         <Button variant="light" color="warning">
-          {cat}
+          {type||cat}
         </Button>
       </BreadcrumbItem>
     </Breadcrumbs>

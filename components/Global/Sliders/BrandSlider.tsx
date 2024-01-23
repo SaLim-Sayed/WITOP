@@ -8,19 +8,18 @@ import { Button } from "@nextui-org/react";
 import Center from "../Ui/Center";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import { settings } from "@/util/slickSettings";
-import { useLocale, useTranslations } from "next-intl";
-import { Category } from "./data.module";
+import { useLocale } from "next-intl";
+import { Brands } from "./data.module";
 import Title from "../Ui/Title";
 import Image from "next/legacy/image";
-export default function CategorySlider() {
+export default function BrandSlider() {
   const [grab, setGrab] = useState(false);
   const slider = useRef<any>();
   const locale = useLocale();
   const dir = locale == "ar" ? true : false;
-  const t  = useTranslations("Buttons");
   return (
-    <Center>
-      <Title exSt=" mb-10 mt-10 uppercase text-cyan-800" title={t("ALL CATEGORIES")} />
+    <>
+      
       <div className="mx-auto  flex items-center  justify-center  ">
         <Button
           isIconOnly
@@ -37,14 +36,14 @@ export default function CategorySlider() {
         <div className="w-[90%] mb-12 mx-auto">
           {/*  @ts-ignore  */}
           <Slider rtl={dir} {...settings} ref={slider} autoplay>
-            {Category.map((category) => (
+            {Brands.map((brand) => (
               <div
-                key={category.id}
+                key={brand.id}
                 className=" grid grid-cols-1 grid-rows-2 gap-2 w-fit "
               >
-                <Image src={category.img} alt="1" width={1000} height={1000} />
+                <Image src={brand.img||""} alt="1" width={1000} height={1000} />
                 <div className=" text-tiny  uppercase font-bold  flex justify-center mx-auto ">
-                  <p>{category.title}</p>
+                  <p>{brand.brand}</p>
                 </div>
               </div>
             ))}
@@ -63,6 +62,6 @@ export default function CategorySlider() {
           {locale == "en" ? <BiRightArrow /> : <BiLeftArrow />}
         </Button>
       </div>
-    </Center>
+    </>
   );
 }
