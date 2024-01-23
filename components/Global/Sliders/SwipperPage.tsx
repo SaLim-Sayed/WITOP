@@ -28,10 +28,10 @@ const SwipperPage = () => {
           slidesPerView={1}
           pagination={{ clickable: true }}
           autoplay={{
-            delay: 500,
+            delay: 1000,
             disableOnInteraction: false,
           }}
-          speed={1000}
+          speed={2000}
           loop={true}
           onSwiper={(swiper) => console.log(swiper)}
           onSlideChange={() => console.log("slide change")}

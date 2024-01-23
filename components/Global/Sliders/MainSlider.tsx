@@ -11,7 +11,7 @@ import { Image } from "@chakra-ui/react";
 
 export default function SimpleSlider() {
   const settings = {
-    speed: 400,
+    speed: 600,
     slidesToShow: 1,
     slidesToScroll: 1,
     initialSlide: 1,
