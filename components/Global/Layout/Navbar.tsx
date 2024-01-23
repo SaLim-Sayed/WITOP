@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -35,28 +35,24 @@ import { cartStore } from "@/store/futures/cartStore";
 import ClientHydration from "../Providers/ClientHydration";
 import Cookies from "js-cookie";
 import { usePathname, useRouter } from "next/navigation";
-
 import Link from "next/link";
-import { FaSignLanguage } from "react-icons/fa";
-import Center from "../Ui/Center";
 import { BiWorld } from "react-icons/bi";
 import { useLocale, useTranslations } from "next-intl";
-import FavoriteItem from "../Drawer/FavoriteItem";
 import { showToast } from "../Ui/Toast";
 import axios from "axios";
 import getFavoriteList from "@/store/actions/getFavoriteList.module";
 import useFavoriteStore from "@/store/futures/useFavoriteStore";
 export default function NavbarPage() {
-  const { CartAmount } = cartStore();
-  const discloserChakra = useDisclosure();
-  const [placement, setPlacement] = React.useState("right");
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [isSearch, setIsSearch] = React.useState(false);
-  const translate = useTranslations("Globals");
-
   const router = useRouter();
   const locale = useLocale();
   const pathName = usePathname();
+  const translate = useTranslations("Globals");
+
+  const { CartAmount } = cartStore();
+  const discloserChakra = useDisclosure();
+  const [placement, setPlacement] = useState("right");
+  const [favNum, setFavNum] = useState<number>(0);
+  const [isSearch, setIsSearch] = useState(false);
 
   const getDirection = () => {
     Cookies.set("NEXT_LOCALE", locale == "ar" ? "en" : "ar");
@@ -72,26 +68,26 @@ export default function NavbarPage() {
   const switchLang = () => {
     router.push(getDirection());
   };
-  const [cartSliderIsOpen, setCartSliderIsOpen] = React.useState(false);
-  const [products, setProducts] = React.useState<any>();
-  const [searchTxt, setSearchTxt] = React.useState("");
+  const [cartSliderIsOpen, setCartSliderIsOpen] = useState(false);
+  const [products, setProducts] = useState<any>();
+  const [searchTxt, setSearchTxt] = useState("");
+  const { isFavoriteOpen, setFavoriteIsOpen } = useFavoriteStore();
+  const [favorite, setFavorite] = useState<Product[]>();
+
+  const showSuccessToast = (message?: string) =>
+    showToast({ status: "Success", type: "success", toastMessage: message });
+  const showErrorToast = (message?: string) =>
+    showToast({ status: "Error", type: "error", toastMessage: message });
+
   const searchData = async () => {
     const data = await searchProduct({ txt: searchTxt });
     setProducts(data?.products);
     console.log(products);
   };
 
-  const [favNum, setFavNum] = React.useState<number>(0);
-  const showSuccessToast = (message?: string) =>
-    showToast({ status: "Success", type: "success", toastMessage: message });
-  const showErrorToast = (message?: string) =>
-    showToast({ status: "Error", type: "error", toastMessage: message });
-
-  const { isFavoriteOpen, setFavoriteIsOpen } = useFavoriteStore();
-  const [favorite, setFavorite] = React.useState<Product[]>();
   const removeFavoriteHandler = async (id: any) => {
     try {
-      const {data} = await axios.put(
+      const { data } = await axios.put(
         `https://maro-cares.onrender.com/user/removeFromFavorite/${id}`,
         {},
         {
@@ -101,9 +97,9 @@ export default function NavbarPage() {
               "maroTKeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTNlZWNkMjAwZTEzNDM0Mjg3M2M4YiIsImlhdCI6MTcwNTI0MjUyN30.RbBrOw_DzBBpsQsTAAMv34xYDKyjiIp61vcgkQVQfLw",
           },
         }
-      ); 
+      );
       setFavoriteIsOpen(!isFavoriteOpen);
-      showSuccessToast(data?.message)
+      showSuccessToast(data?.message);
     } catch (err: any) {
       console.log(err);
       showErrorToast("Something Went Wrong , Try Again..");
@@ -117,11 +113,10 @@ export default function NavbarPage() {
   };
 
   useEffect(() => {
-    if (isFavoriteOpen===true||isFavoriteOpen===false) {
+    if (isFavoriteOpen === true || isFavoriteOpen === false) {
       getFavData();
     }
   }, [isFavoriteOpen]);
-
   useEffect(() => {
     getFavData();
   }, []);
@@ -141,44 +136,32 @@ export default function NavbarPage() {
     <div className="flex flex-col fixed top-0 z-50 w-full shadow-md">
       <TopHeader />
       <Navbar
-        onMenuOpenChange={setIsMenuOpen}
         classNames={{
           wrapper: "w-full",
         }}
         isBordered
         className=" bg-white  h-24"
       >
-        <CartSlider
-          open={cartSliderIsOpen}
-          setCartSliderIsOpen={setCartSliderIsOpen}
-        />
-        <MainDrawer
-          placement={placement}
-          onClose={discloserChakra.onClose}
-          isOpen={discloserChakra.isOpen}
-        />
-        <NavbarContent className="lg:hidden flex  " justify="start">
-          <Button
-            onClick={discloserChakra.onOpen}
-            isIconOnly
-            size="lg"
-            className={cn("font-bold  ", locale === "ar" ? "-mr-12" : "-ml-12")}
-            variant="light"
-          >
-            {locale === "ar" ? (
-              <BiMenuAltRight size={40} />
-            ) : (
-              <BiMenuAltLeft size={40} />
-            )}
-          </Button>
-        </NavbarContent>
-        <NavbarContent className="sm:hidden pr-3  " justify="center">
+        <NavbarContent className="flex lg:hidden  ">
           <NavbarBrand>
+            <Button
+              onClick={discloserChakra.onOpen}
+              isIconOnly
+              size="lg"
+              className={cn("font-bold  ", locale === "ar" ? "-mr-6" : "-ml-6")}
+              variant="light"
+            >
+              {locale === "ar" ? (
+                <BiMenuAltRight size={40} />
+              ) : (
+                <BiMenuAltLeft size={40} />
+              )}
+            </Button>
             <Button
               isIconOnly
               size="lg"
               variant="light"
-              className="min-w-[100px]  p-0   flex gap-2"
+              className="min-w-[120px]    flex lg:hidden gap-2"
             >
               <Link href="/" className="font-bold text-xl text-[#00b5bc]">
                 <Image
@@ -191,9 +174,10 @@ export default function NavbarPage() {
             </Button>
           </NavbarBrand>
         </NavbarContent>
+
         <NavbarContent
           className={cn(
-            "hidden sm:flex gap-4 ",
+            "hidden lg:flex gap-4 ",
             locale === "ar" ? "mr-0  lg:-mr-[180px] " : "ml-0  lg:-ml-[180px] "
           )}
           justify="start"
@@ -410,6 +394,15 @@ export default function NavbarPage() {
             </Button>
           </NavbarItem>
         </NavbarContent>
+        <CartSlider
+          open={cartSliderIsOpen}
+          setCartSliderIsOpen={setCartSliderIsOpen}
+        />
+        <MainDrawer
+          placement={placement}
+          onClose={discloserChakra.onClose}
+          isOpen={discloserChakra.isOpen}
+        />
       </Navbar>
       {isSearch && (
         <div className="flex lg:hidden">
