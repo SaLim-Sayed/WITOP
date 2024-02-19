@@ -15,6 +15,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { showToast } from "@/components/Global/Ui/Toast";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -33,9 +34,10 @@ const LoginForm = () => {
     resolver: zodResolver(LoginSchema),
   });
 
-  const [isVisible, setIsVisible] = React.useState(false);
-
-  const toggleVisibility = () => setIsVisible(!isVisible);
+  const showSuccessToast = (message?: string) =>
+    showToast({ status: "Success", type: "success", toastMessage: message });
+  const showErrorToast = (message?: string) =>
+    showToast({ status: "Error", type: "error", toastMessage: message });
 
   const onSubmit: SubmitHandler<Login> = async (data) => {
     try {
@@ -45,13 +47,15 @@ const LoginForm = () => {
         data
       );
       setIsLoading(false);
-      if (res) {
+      if (res.data.message==='success') {
         console.log(res);
+        showSuccessToast(res.data.message);
         setTimeout(() => {
           router.push("/");
         }, 2000);
         return;
       }
+      showSuccessToast(res.data.message);
     } catch (error: any) {
       console.log(error);
       setIsLoading(false);
