@@ -427,6 +427,7 @@
     "Email": "  البريد الالكتروني",
     "UserName": " اسم المستخدم",
     "PhoneNumber": " رقم الهاتف",
+    "invitationBy": "كود الدعوة",
     "DontHave": " ليس لديك حساب؟",
     "AlreadyHave": "  لديك حساب؟"
   },

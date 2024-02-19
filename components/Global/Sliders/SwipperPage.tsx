@@ -33,8 +33,6 @@ const SwipperPage = () => {
           }}
           speed={2000}
           loop={true}
-          onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => console.log("slide change")}
         >
           <SwiperSlide>
             <Image

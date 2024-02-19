@@ -430,6 +430,7 @@
     "Email": "Email",
     "UserName": "Username",
     "PhoneNumber": "Phone Number",
+    "invitationBy": "invitation  code",
     "DontHave": "Don't have an account?",
     "AlreadyHave": "Already have an account?"
   },

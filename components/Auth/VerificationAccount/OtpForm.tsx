@@ -51,7 +51,7 @@ const OTPFORMS = () => {
     try {
       setIsLoading(true);
       const res = await axios.get(
-        `https://maro-cares.onrender.com/user/resendVerificationCode/${phoneNumber}`
+        `https://maro-cares.onrender.com/user/resendVerificationCode/${phoneNumber}/verify`
       );
       setIsLoading(false);
       if (res.data.message === "success") {
@@ -104,15 +104,12 @@ const OTPFORMS = () => {
       >
         continue
       </Button>
-      <div className=" mx-auto flex flex-col justify-center items-center gap-[12px] ">
-        <Button
-          onClick={resendHandler}
-          variant="light"
-          className=" leading-[24px] text-[16px] font-[500] text-cyan-500"
-        >
-          resend
-        </Button>
-      </div>
+      <Button
+        onClick={resendHandler}
+        className=" leading-[24px] h-[64px] text-lg font-[500] text-cyan-600"
+      >
+        resend
+      </Button>
     </form>
   );
 };

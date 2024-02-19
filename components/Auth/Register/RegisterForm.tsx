@@ -74,20 +74,7 @@ const RegisterForm = () => {
           />
         </div>
         <div className="flex flex-col gap-[12px]">
-          <div>
-            <Input
-              {...register("email")}
-              type="email"
-              label={tr("Email")}
-              variant="bordered"
-              className="w-full"
-              isInvalid={errors.email ? true : false}
-              errorMessage={errors.email?.message}
-              classNames={{
-                input: "text-[1.2rem]",
-              }}
-            />
-          </div>
+          
 
           <div>
             <Input
@@ -98,6 +85,21 @@ const RegisterForm = () => {
               className="w-full"
               isInvalid={errors.phoneNumber ? true : false}
               errorMessage={errors.phoneNumber?.message}
+              classNames={{
+                input: "text-[1.2rem]",
+              }}
+            />
+          </div>
+
+          <div>
+            <Input
+              {...register("invitationBy")}
+              type="text"
+              label={tr("invitationBy")}
+              variant="bordered"
+              className="w-full"
+              isInvalid={errors.invitationBy ? true : false}
+              errorMessage={errors.invitationBy?.message}
               classNames={{
                 input: "text-[1.2rem]",
               }}
