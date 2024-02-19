@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-import { Button, Checkbox, Divider, Input } from "@nextui-org/react";
+import { Button, Card, Checkbox, Divider, Input } from "@nextui-org/react";
 
 import Title from "../Ui/Title";
 import { footerData } from "./footerData.module";
@@ -23,7 +23,8 @@ export default function Footer() {
       <div className="mx-3">
         <Title
           exSt="mt-0"
-          title="Cosmetis logo"
+          title="Maro Care"
+          exStTitle="text-green-600"
           exStSubTitle="text-slate-400 text-sm font-normal"
           subTitle="BEST PRICE - BETTER CARE"
         />
@@ -31,14 +32,10 @@ export default function Footer() {
       <Divider className=" text-white bg-slate-600" />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2  w-full justify-items-center gap-32">
         <div className="grid grid-cols-2   items-stretch">
-        <Image
-          src="/footer.png"
-          alt="1"
-          width={100}
-          height={40}
-          className="w-24 h-24 mx-3"
-        />
-         <div className="flex flex-col gap-2">
+          <Card  isPressable className="bg-white h-40 w-40 rounded-full flex justify-center items-center">
+            <Image src="/logo1.png" alt="1" width={200} height={200} />
+          </Card>
+          <div className="flex flex-col gap-2">
             {footerData.map((item, index) => (
               <div key={index} className="flex gap-6 flex-col">
                 <p className="  text-lg font-light">{item}</p>
@@ -46,7 +43,7 @@ export default function Footer() {
             ))}
           </div>
         </div>
-         
+
         <div className="flex flex-col gap-8 mx-12  w-[80%]">
           <div className="flex flex-col">
             <div className="flex items-center gap-2">
@@ -86,7 +83,7 @@ export default function Footer() {
       </div>
       <Divider className=" text-white bg-slate-600" />
       <div className="flex items-center  gap-4 flex-col justify-center md:flex-row md:justify-between">
-        <div>© 7SKIN 2024 - All rights reserved.</div>
+    <div>© Maro Care {new Date().getFullYear()} - All rights reserved.</div>
         <div className="flex gap-4">
           <FaCcVisa size={40} />
           <FaCcMastercard size={40} />
