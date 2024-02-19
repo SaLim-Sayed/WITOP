@@ -16,6 +16,7 @@ import {
   FaFacebook,
   FaInstagram,
 } from "react-icons/fa";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -25,14 +26,17 @@ export default function Footer() {
           exSt="mt-0"
           title="Maro Care"
           exStTitle="text-green-600"
-          exStSubTitle="text-slate-400 text-sm font-normal"
-          subTitle="BEST PRICE - BETTER CARE"
+          exStSubTitle="text-slate-400 uppercase text-sm font-normal"
+          subTitle="Genuine care - Best price"
         />
       </div>
       <Divider className=" text-white bg-slate-600" />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2  w-full justify-items-center gap-32">
         <div className="grid grid-cols-2   items-stretch">
-          <Card  isPressable className="bg-white h-40 w-40 rounded-full flex justify-center items-center">
+          <Card
+            isPressable
+            className="bg-white h-40 w-40 rounded-full flex justify-center items-center"
+          >
             <Image src="/logo1.png" alt="1" width={200} height={200} />
           </Card>
           <div className="flex flex-col gap-2">
@@ -49,7 +53,9 @@ export default function Footer() {
             <div className="flex items-center gap-2">
               <MdEmail /> Email
             </div>
-            <div className=" text-slate-500">help@cosmetis.com</div>
+            <Link href="mailto:Admin@marocares.com" className=" text-slate-300">
+              Admin@marocares.com
+            </Link>
           </div>
           <div className="flex flex-col   gap-4 mx-3">
             <div className="flex items-center ">
@@ -83,7 +89,7 @@ export default function Footer() {
       </div>
       <Divider className=" text-white bg-slate-600" />
       <div className="flex items-center  gap-4 flex-col justify-center md:flex-row md:justify-between">
-    <div>© Maro Care {new Date().getFullYear()} - All rights reserved.</div>
+        <div>© Maro Care {new Date().getFullYear()} - All rights reserved.</div>
         <div className="flex gap-4">
           <FaCcVisa size={40} />
           <FaCcMastercard size={40} />

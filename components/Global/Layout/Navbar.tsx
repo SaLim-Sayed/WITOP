@@ -380,6 +380,7 @@ export default function NavbarPage() {
               isIconOnly
               className="font-bold  flex justify-center"
               variant="light"
+              onClick={()=>router.push('/auth/login')}
             >
               <BiUser size={20} />
             </Button>
