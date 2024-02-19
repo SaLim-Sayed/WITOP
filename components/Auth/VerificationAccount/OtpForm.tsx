@@ -84,7 +84,7 @@ const OTPFORMS = () => {
           numInputs={6}
           skipDefaultStyles
           inputStyle={cn(
-            "w-[64px]  h-[64px] border-[1px]  mx-[7px] rounded-lg text-center cursor-pointer   outline-primaryColor-900 text-[35px]  ",
+            "w-[40px] md:w-[64px]  h-[40px] md:h-[64px] border-[1px]  mx-[7px] rounded-lg text-center cursor-pointer   outline-primaryColor-900 text-[35px]  ",
             otpError && "border-primaryColor-200"
           )}
           renderInput={(props) => <input {...props} />}
@@ -92,12 +92,13 @@ const OTPFORMS = () => {
       </div>
 
       <Button
-          onClick={() => {
-            if (code && code.length < 6) { // Add a null check for 'code'
-              showErrorToast("not valid otp");
-              setOtpError("not valid otp");
-            }
-          }}
+        onClick={() => {
+          if (code && code.length < 6) {
+            // Add a null check for 'code'
+            showErrorToast("not valid otp");
+            setOtpError("not valid otp");
+          }
+        }}
         type="submit"
         className="bg-cyan-500 h-[64px]  text-lg text-white font-bold"
       >
