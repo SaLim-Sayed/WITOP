@@ -1,12 +1,12 @@
 {
   "Buttons": {
     "Shop": "أشتري الان",
-    "OUR FAVORITE BRANDS":"برانداتنا  المفضلة",
-    "ALL CATEGORIES":"كل الاقسام",
-    "TRENDING":"الرائج",
-    "ON SALE":"للبيع",
-     "OUR SELECTION":"اختيارنا",
-    "SeeAll":"عرض الكل "
+    "OUR FAVORITE BRANDS": "برانداتنا  المفضلة",
+    "ALL CATEGORIES": "كل الاقسام",
+    "TRENDING": "الرائج",
+    "ON SALE": "للبيع",
+    "OUR SELECTION": "اختيارنا",
+    "SeeAll": "عرض الكل "
   },
   "Globals": {
     "Navbar/Search": "بحث",
@@ -415,5 +415,24 @@
   },
   "Brands": {
     "Brands": "البرندات"
+  },
+  "Auth": {
+    "Login/Title": " سجل دخولك من هنا",
+    "Login": "تسجيل  ",
+    "Register": "سجل ",
+    "Register/Title": " التسجيل كمستخدم  جديد",
+    "Logout": " تسجيل الخروج",
+    "Profile": "  الملف الشخصي",
+    "Password": " كلمة المرور",
+    "Email": "  البريد الالكتروني",
+    "UserName": " اسم المستخدم",
+    "PhoneNumber": " رقم الهاتف",
+    "DontHave": " ليس لديك حساب؟",
+    "AlreadyHave": "  لديك حساب؟"
+  },
+  "Validation": {
+    "UserName": "  اسم المستخدم مطلوب",
+    "Email": " البريد الالكتروني غير صالح",
+    "PhoneNumber": " رقم الهاتف غير صالح"
   }
 }

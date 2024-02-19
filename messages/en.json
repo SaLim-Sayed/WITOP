@@ -1,17 +1,17 @@
 {
   "Buttons": {
-    "Shop":"Shop Now",
-    "OUR FAVORITE BRANDS":"OUR FAVORITE BRANDS",
-    "ALL CATEGORIES":"ALL CATEGORIES",
-    "TRENDING":"TRENDING",
-    "ON SALE":"ON SALE",
-     "OUR SELECTION":"OUR SELECTION",
-    "SeeAll":"See All"
+    "Shop": "Shop Now",
+    "OUR FAVORITE BRANDS": "OUR FAVORITE BRANDS",
+    "ALL CATEGORIES": "ALL CATEGORIES",
+    "TRENDING": "TRENDING",
+    "ON SALE": "ON SALE",
+    "OUR SELECTION": "OUR SELECTION",
+    "SeeAll": "See All"
   },
   "Globals": {
-    "Home":"Home",
-    "Category":"Category",
-    "Categories":"All Categories",
+    "Home": "Home",
+    "Category": "Category",
+    "Categories": "All Categories",
     "Navbar/Search": "Search",
     "Navbar/Offer": "Free Shipping for orders over 300 SAR  ,",
     "Welcome": "Welcome",
@@ -418,5 +418,24 @@
   },
   "Brands": {
     "Brands": "Brands"
+  },
+  "Auth": {
+    "Login": "Login",
+    "Login/Title": "Login To Your Account",
+    "Register": "Register",
+    "Register/Title": "Register As A New User",
+    "Logout": "Logout",
+    "Profile": "Profile",
+    "Password": "Password",
+    "Email": "Email",
+    "UserName": "Username",
+    "PhoneNumber": "Phone Number",
+    "DontHave": "Don't have an account?",
+    "AlreadyHave": "Already have an account?"
+  },
+  "Validation": {
+    "UserName":"username is required",
+    "Email":"email is required",
+    "PhoneNumber":"phone number is required"
   }
 }
