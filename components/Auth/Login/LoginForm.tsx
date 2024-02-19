@@ -14,7 +14,6 @@ import useSchema from "./Schema";
 import Link from "next/link";
 
 const LoginForm = () => { 
-  console.log(location);
   const LoginSchema = useSchema();
 
   type Login = z.infer<typeof LoginSchema>;
