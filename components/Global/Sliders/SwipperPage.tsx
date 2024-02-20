@@ -92,9 +92,7 @@ const SwipperPage = () => {
             disableOnInteraction: false,
           }}
           speed={1000}
-          loop={true}
-          onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => console.log("slide change")}
+          loop={true} 
         >
           <SwiperSlide>
             <Image

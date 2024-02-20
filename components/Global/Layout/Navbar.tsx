@@ -42,6 +42,7 @@ import { showToast } from "../Ui/Toast";
 import axios from "axios";
 import getFavoriteList from "@/store/actions/getFavoriteList.module";
 import useFavoriteStore from "@/store/futures/useFavoriteStore";
+import { axiosInstance } from "@/util/axiosConfig";
 export default function NavbarPage() {
   const router = useRouter();
   const locale = useLocale();
@@ -87,16 +88,8 @@ export default function NavbarPage() {
 
   const removeFavoriteHandler = async (id: any) => {
     try {
-      const { data } = await axios.put(
-        `https://maro-cares.onrender.com/user/removeFromFavorite/${id}`,
-        {},
-        {
-          headers: {
-            language: locale || "en",
-            authrization:
-              "maroTKeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTNlZWNkMjAwZTEzNDM0Mjg3M2M4YiIsImlhdCI6MTcwNTI0MjUyN30.RbBrOw_DzBBpsQsTAAMv34xYDKyjiIp61vcgkQVQfLw",
-          },
-        }
+      const { data } = await axiosInstance.put(
+        `/user/removeFromFavorite/${id}`
       );
       setFavoriteIsOpen(!isFavoriteOpen);
       showSuccessToast(data?.message);
@@ -380,7 +373,7 @@ export default function NavbarPage() {
               isIconOnly
               className="font-bold  flex justify-center"
               variant="light"
-              onClick={()=>router.push('/auth/login')}
+              onClick={() => router.push("/auth/login")}
             >
               <BiUser size={20} />
             </Button>

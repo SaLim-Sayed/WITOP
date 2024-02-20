@@ -16,6 +16,7 @@ import { useTranslations } from "next-intl";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { showToast } from "@/components/Global/Ui/Toast";
+import SignGoogle from "../Google/SignGoogle";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -51,7 +52,7 @@ const LoginForm = () => {
         console.log(res);
         showSuccessToast(res.data.message);
         setTimeout(() => {
-          router.push("/");
+          router.push("/auth/verificationLoginCode");
         }, 2000);
         return;
       }
@@ -67,20 +68,6 @@ const LoginForm = () => {
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="flex flex-col gap-[12px]">
-        <div>
-          <Input
-            {...register("userName")}
-            type="text"
-            label={tr("UserName")}
-            variant="bordered"
-            className="w-full"
-            isInvalid={errors.userName ? true : false}
-            errorMessage={errors.userName?.message}
-            classNames={{
-              input: "text-[1.2rem]",
-            }}
-          />
-        </div>
         <div className="flex flex-col gap-[12px]">
           <div>
             <Input
@@ -106,6 +93,12 @@ const LoginForm = () => {
           className="bg-cyan-500 h-[64px]  text-lg text-white font-bold"
         >
           {tr("Login")}
+        </Button>
+        <Button
+          variant="bordered"
+          className="  h-[64px]  text-lg text-white font-bold"
+        >
+          <SignGoogle />
         </Button>
         <div className="flex">
           {tr("DontHave")}

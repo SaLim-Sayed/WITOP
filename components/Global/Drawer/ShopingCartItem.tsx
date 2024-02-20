@@ -2,12 +2,13 @@ import React from "react";
 import { Card, CardBody, Image, Button, CardFooter } from "@nextui-org/react";
 import { BiTrash } from "react-icons/bi";
 import { Product } from "@/types/product";
-import axios from "axios";
+ 
 import { showToast } from "../Ui/Toast";
 import { cartStore } from "@/store/futures/cartStore";
 import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
 import { BsEye } from "react-icons/bs";
+import { axiosInstance } from "@/util/axiosConfig";
 
 interface IProps {
   product: Product;
@@ -32,16 +33,9 @@ export default function ShopingCartItem({
   const router = useRouter();
   const removeFromCartHandler = async (id: any) => {
     try {
-      const { data } = await axios.put(
-        `https://maro-cares.onrender.com/user/removeFromCart/${id}`,
-        {},
-        {
-          headers: {
-            language: lang || "en",
-            authrization:
-              "maroTKeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTNlZWNkMjAwZTEzNDM0Mjg3M2M4YiIsImlhdCI6MTcwNTI0MjUyN30.RbBrOw_DzBBpsQsTAAMv34xYDKyjiIp61vcgkQVQfLw",
-          },
-        }
+      const { data } = await axiosInstance.put(
+        `/user/removeFromCart/${id}`
+        
       );
 
       console.log(data);

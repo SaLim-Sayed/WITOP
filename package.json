@@ -19,6 +19,7 @@
     "@nextui-org/checkbox": "^2.0.25",
     "@nextui-org/react": "2.2.9",
     "@nextui-org/slider": "^2.2.5",
+    "@react-oauth/google": "^0.12.1",
     "@tanstack/react-query": "^5.0.5",
     "@types/js-cookie": "^3.0.6",
     "@types/react-google-recaptcha": "^2.1.8",

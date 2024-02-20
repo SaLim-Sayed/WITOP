@@ -29,17 +29,17 @@ const OTPFORMS = () => {
 
     try {
       setIsLoading(true);
-      const res = await axios.put(
-        `https://maro-cares.onrender.com/user/verificationAccount/${phoneNumber}/${code}`
+      const res = await axios.get(
+        `https://maro-cares.onrender.com/user/verificationLoginCode/${phoneNumber}/${code}`
       );
       setIsLoading(false);
       if (res.data.message === "success") {
         console.log(res);
-        Cookies.set("token",res.data?.userToken)
+        Cookies.set("token", res.data?.userToken);
         showSuccessToast(res.data.message);
-        setTimeout(() => {
-          router.push("/");
-        }, 2000);
+
+        router.push("/");
+
         return;
       }
       showSuccessToast(res.data.message);
@@ -52,7 +52,7 @@ const OTPFORMS = () => {
     try {
       setIsLoading(true);
       const res = await axios.get(
-        `https://maro-cares.onrender.com/user/resendVerificationCode/${phoneNumber}/verify`
+        `https://maro-cares.onrender.com/user/resendVerificationCode/${phoneNumber}/loginCode`
       );
       setIsLoading(false);
       if (res.data.message === "success") {

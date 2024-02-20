@@ -7,7 +7,7 @@ import { BiShow, BiX } from "react-icons/bi";
 import getUserCart from "@/store/actions/getUserCart.module";
 import Image from "next/image";
 import ShopingCartItem from "./ShopingCartItem";
-import axios from "axios";
+
 import { showToast } from "../Ui/Toast";
 import { Card } from "@nextui-org/react";
 import { cartStore, useProductStore } from "@/store/futures/cartStore";

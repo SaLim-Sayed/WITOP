@@ -5,12 +5,12 @@ import { cookies } from "next/headers";
 const createAxiosInstance = (baseURL?: string) => {
   const lang = cookies().get("NEXT_LOCALE")?.value;
   const token = cookies().get("token")?.value;
+ 
   const config = {
     baseURL: baseURL || "https://maro-cares.onrender.com",
     headers: {
       language: lang || "en",
-      authrization:
-        "maroTKeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTNlZWNkMjAwZTEzNDM0Mjg3M2M4YiIsImlhdCI6MTcwNTI0MjUyN30.RbBrOw_DzBBpsQsTAAMv34xYDKyjiIp61vcgkQVQfLw",
+      authrization: `maroTK${token}`,
     },
   };
 
@@ -31,6 +31,7 @@ export const useServerRequest = async ({
   method: string;
 }) => {
   try {
+    
     const activeAxios = createAxiosInstance();
     // Use type assertion here
     const response = await (activeAxios as any)[method](endPoint);

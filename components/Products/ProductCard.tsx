@@ -11,13 +11,14 @@ import { Product } from "@/types/product";
 import RelatedProducts from "./RelatedProducts";
 import { useParams } from "next/navigation";
 import getProductByID from "@/store/actions/getProductByID.module";
-import axios from "axios";
+ 
 import { showToast } from "../Global/Ui/Toast";
 import { cartStore } from "@/store/futures/cartStore";
 import { useLocale } from "next-intl";
 import { cn } from "@/libs/cn";
 import { BsHeartFill, BsStarFill } from "react-icons/bs";
 import useFavoriteStore from "@/store/futures/useFavoriteStore";
+import { axiosInstance } from "@/util/axiosConfig";
 export default function ProductCard() {
   const { id, category } = useParams();
   const { isFavoriteOpen, setFavoriteIsOpen } = useFavoriteStore();
@@ -55,18 +56,11 @@ export default function ProductCard() {
   const addRatingHandler = async (noOfStar: number) => {
     try {
       setIsLoading(true);
-      const { data } = await axios.post(
-        `https://maro-cares.onrender.com/user/addRating/${id}`,
+      const { data } = await axiosInstance.post(
+        `/user/addRating/${id}`,
         {
           numberOfStar: noOfStar,
-        },
-        {
-          headers: {
-            language: lang || "en",
-            authrization:
-              "maroTKeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTNlZWNkMjAwZTEzNDM0Mjg3M2M4YiIsImlhdCI6MTcwNTI0MjUyN30.RbBrOw_DzBBpsQsTAAMv34xYDKyjiIp61vcgkQVQfLw",
-          },
-        }
+        } 
       );
       setIsLoading(false);
       console.log(data);
@@ -79,16 +73,9 @@ export default function ProductCard() {
   const addToCartHandler = async () => {
     try {
       setIsLoading(true);
-      const { data } = await axios.post(
-        `https://maro-cares.onrender.com/user/addToCart/${id}`,
-        { count: count },
-        {
-          headers: {
-            language: lang || "en",
-            authrization:
-              "maroTKeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTNlZWNkMjAwZTEzNDM0Mjg3M2M4YiIsImlhdCI6MTcwNTI0MjUyN30.RbBrOw_DzBBpsQsTAAMv34xYDKyjiIp61vcgkQVQfLw",
-          },
-        }
+      const { data } = await axiosInstance.post(
+        `/user/addToCart/${id}`,
+        { count: count }
       );
       setIsLoading(false);
       if (data?.numberOfItem !== undefined) {
@@ -104,16 +91,8 @@ export default function ProductCard() {
   const addToFavoriteHandler = async () => {
     try {
       setIsLoading(true);
-      const { data } = await axios.post(
-        `https://maro-cares.onrender.com/user/addToFavorite/${id}`,
-        {},
-        {
-          headers: {
-            language: lang || "en",
-            authrization:
-              "maroTKeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTNlZWNkMjAwZTEzNDM0Mjg3M2M4YiIsImlhdCI6MTcwNTI0MjUyN30.RbBrOw_DzBBpsQsTAAMv34xYDKyjiIp61vcgkQVQfLw",
-          },
-        }
+      const { data } = await axiosInstance.post(
+        `/user/addToFavorite/${id}` 
       );
       setIsLoading(false);
       console.log(data);

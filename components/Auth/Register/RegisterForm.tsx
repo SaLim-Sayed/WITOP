@@ -14,6 +14,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import SignGoogle from "../Google/SignGoogle";
 
 const RegisterForm = () => {
   const tr = useTranslations("Auth");
@@ -74,8 +75,6 @@ const RegisterForm = () => {
           />
         </div>
         <div className="flex flex-col gap-[12px]">
-          
-
           <div>
             <Input
               {...register("phoneNumber")}
@@ -114,6 +113,12 @@ const RegisterForm = () => {
           className="bg-cyan-500 h-[64px]  text-lg text-white font-bold"
         >
           {tr("Register")}
+        </Button>
+        <Button
+          variant="bordered"
+          className="  h-[64px]  text-lg text-white font-bold"
+        >
+          <SignGoogle />
         </Button>
         <div className="flex">
           {tr("AlreadyHave")}
