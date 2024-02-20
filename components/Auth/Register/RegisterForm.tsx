@@ -55,6 +55,7 @@ const RegisterForm = () => {
         }, 2000);
         return;
       }
+      showSuccessToast(res.data.message);
     } catch (error: any) {
       console.log(error);
       setIsLoading(false);
