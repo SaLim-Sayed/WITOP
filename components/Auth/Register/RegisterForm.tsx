@@ -15,6 +15,7 @@ import { useTranslations } from "next-intl";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import SignGoogle from "../Google/SignGoogle";
+import { showToast } from "@/components/Global/Ui/Toast";
 
 const RegisterForm = () => {
   const tr = useTranslations("Auth");
@@ -32,6 +33,11 @@ const RegisterForm = () => {
     resolver: zodResolver(RegisterSchema),
   });
 
+  const showSuccessToast = (message?: string) =>
+    showToast({ status: "Success", type: "success", toastMessage: message });
+  const showErrorToast = (message?: string) =>
+    showToast({ status: "Error", type: "error", toastMessage: message });
+
   const onSubmit: SubmitHandler<Register> = async (data) => {
     try {
       setIsLoading(true);
@@ -40,8 +46,9 @@ const RegisterForm = () => {
         data
       );
       setIsLoading(false);
-      if (res) {
+      if (res.data.message === "success") {
         console.log(res);
+        showSuccessToast(res.data.message);
         Cookies.set("phoneNumber", data.phoneNumber);
         setTimeout(() => {
           router.push("/auth/verificationAccount");
