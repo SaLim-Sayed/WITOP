@@ -273,7 +273,7 @@ export default function NavbarPage() {
         >
           <NavbarItem
             className={cn(
-              "flex items-center gap-2 ",
+              "flex items-center   ",
               locale === "ar" ? "mr-4 lg:ml-8" : "ml-4 lg:mr-8"
             )}
           >
