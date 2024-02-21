@@ -14,6 +14,12 @@ import {
   PopoverTrigger,
   PopoverContent,
   Card,
+  Avatar,
+  AvatarIcon,
+  DropdownMenu,
+  DropdownItem,
+  DropdownTrigger,
+  Dropdown,
 } from "@nextui-org/react";
 import Image from "next/legacy/image";
 import {
@@ -43,6 +49,7 @@ import axios from "axios";
 import getFavoriteList from "@/store/actions/getFavoriteList.module";
 import useFavoriteStore from "@/store/futures/useFavoriteStore";
 import { axiosInstance } from "@/util/axiosConfig";
+import Cookie from "js-cookie";
 export default function NavbarPage() {
   const router = useRouter();
   const locale = useLocale();
@@ -55,6 +62,11 @@ export default function NavbarPage() {
   const [favNum, setFavNum] = useState<number>(0);
   const [isSearch, setIsSearch] = useState(false);
 
+  const token = Cookies.get("token");
+
+  const handleLogout = async () => {
+    Cookies.set("token", "");
+  };
   const getDirection = () => {
     Cookies.set("NEXT_LOCALE", locale == "ar" ? "en" : "ar");
     if (pathName == "/ar" || pathName == "/") {
@@ -261,7 +273,7 @@ export default function NavbarPage() {
         >
           <NavbarItem
             className={cn(
-              "flex items-center ",
+              "flex items-center gap-2 ",
               locale === "ar" ? "mr-4 lg:ml-8" : "ml-4 lg:mr-8"
             )}
           >
@@ -273,6 +285,15 @@ export default function NavbarPage() {
               isIconOnly
             >
               <BiSearch size={20} />
+            </Button>
+            <Button
+              isIconOnly
+              variant="flat"
+              color="success"
+              onClick={switchLang}
+            >
+              <BiWorld />
+              {locale == "en" ? " | En" : " | ع"}
             </Button>
             <Popover placement="bottom">
               <PopoverTrigger>
@@ -291,7 +312,7 @@ export default function NavbarPage() {
                     }
                   >
                     <Badge
-                      content={favNum || 0}
+                  content={favNum && favNum || 0}
                       color="warning"
                       variant="solid"
                     >
@@ -360,7 +381,7 @@ export default function NavbarPage() {
                 }
               >
                 <Badge
-                  content={CartAmount || 0}
+                  content={CartAmount && CartAmount || 0}
                   color="warning"
                   variant="solid"
                 >
@@ -368,24 +389,59 @@ export default function NavbarPage() {
                 </Badge>
               </ClientHydration>
             </Button>
-            <Button
-              size="sm"
-              isIconOnly
-              className="font-bold  flex justify-center"
-              variant="light"
-              onClick={() => router.push("/auth/login")}
+
+            <ClientHydration
+              LoaderComponent={
+                <Avatar src="https://images.unsplash.com/broken" />
+              }
             >
-              <BiUser size={20} />
-            </Button>
-            <Button
-              isIconOnly
-              variant="flat"
-              color="success"
-              onClick={switchLang}
-            >
-              <BiWorld />
-              {locale == "en" ? " | En" : " | ع"}
-            </Button>
+              {token && (
+                <div className="flex items-center">
+                  <Dropdown>
+                    <DropdownTrigger>
+                      <Button isIconOnly size="lg" variant="light">
+                        <Badge
+                          content=""
+                          color="success"
+                          shape="circle"
+                          placement="bottom-right"
+                        >
+                          <Avatar
+                            icon={<AvatarIcon />}
+                            classNames={{
+                              base: "bg-gradient-to-br from-[#FFB457] to-[#FF705B]",
+                              icon: "text-black/80",
+                            }}
+                          />
+                        </Badge>
+                      </Button>
+                    </DropdownTrigger>
+                    <DropdownMenu aria-label="Static Actions">
+                      <DropdownItem
+                        onClick={handleLogout}
+                        key="delete"
+                        textValue="Logout"
+                      >
+                        <span className="text-danger  text-lg">Logout</span>
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
+                </div>
+              )}
+
+              {!token && (
+                <Button
+                  size="sm"
+                  isIconOnly
+                  radius="full"
+                  className="font-bold  flex justify-center"
+                  variant="light"
+                  onClick={() => router.push("/auth/login")}
+                >
+                  <BiUser size={20} />
+                </Button>
+              )}
+            </ClientHydration>
           </NavbarItem>
         </NavbarContent>
         <CartSlider

@@ -19,8 +19,14 @@ import { cn } from "@/libs/cn";
 import { BsHeartFill, BsStarFill } from "react-icons/bs";
 import useFavoriteStore from "@/store/futures/useFavoriteStore";
 import { axiosInstance } from "@/util/axiosConfig";
-
+import Cookies from "js-cookie";
 export default function Cart() {
+  const lang = useLocale();
+
+  const token = Cookies.get("token");
+
+  axiosInstance.defaults.headers.common["authrization"] = `maroTK${token}`;
+  axiosInstance.defaults.headers.common["language"] = lang || "en";
   const { productsCart, setProductsCart } = useProductStore();
   console.log({ productsCart });
 
@@ -33,7 +39,6 @@ export default function Cart() {
   const handleIncrease = () => {
     setCount(count + 1);
   };
-  const lang = useLocale();
 
   const handleDecrease = () => {
     if (count > 1) {

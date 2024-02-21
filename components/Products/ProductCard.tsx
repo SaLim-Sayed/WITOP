@@ -11,7 +11,7 @@ import { Product } from "@/types/product";
 import RelatedProducts from "./RelatedProducts";
 import { useParams } from "next/navigation";
 import getProductByID from "@/store/actions/getProductByID.module";
- 
+ import Cookies from "js-cookie";
 import { showToast } from "../Global/Ui/Toast";
 import { cartStore } from "@/store/futures/cartStore";
 import { useLocale } from "next-intl";
@@ -20,6 +20,12 @@ import { BsHeartFill, BsStarFill } from "react-icons/bs";
 import useFavoriteStore from "@/store/futures/useFavoriteStore";
 import { axiosInstance } from "@/util/axiosConfig";
 export default function ProductCard() {
+  const lang = useLocale();
+
+  const token = Cookies.get("token");
+
+  axiosInstance.defaults.headers.common["authrization"] = `maroTK${token}`;
+  axiosInstance.defaults.headers.common["language"] = lang || "en";
   const { id, category } = useParams();
   const { isFavoriteOpen, setFavoriteIsOpen } = useFavoriteStore();
 
@@ -35,7 +41,7 @@ export default function ProductCard() {
   const handleIncrease = () => {
     setCount(count + 1);
   };
-  const lang = useLocale();
+  
 
   const handleDecrease = () => {
     if (count > 1) {
