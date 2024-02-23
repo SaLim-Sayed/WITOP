@@ -31,7 +31,11 @@ const OTPFORMS = () => {
     try {
       setIsLoading(true);
       const res = await axios.put(
-        `https://maro-cares.onrender.com/user/verificationAccount/${phoneNumber}/${code}`,
+        `https://maro-cares.onrender.com/user/verificationAccount`,
+        {
+          phoneNumber: phoneNumber,
+          code: code,
+        },
         {
           headers: {
             language: lang || "en",
@@ -56,8 +60,11 @@ const OTPFORMS = () => {
   const resendHandler = async () => {
     try {
       setIsLoading(true);
-      const res = await axios.get(
-        `https://maro-cares.onrender.com/user/resendVerificationCode/${phoneNumber}/verify`,
+      const res = await axios.post(
+        `https://maro-cares.onrender.com/user/resendVerificationCode/verify`,
+        {
+          phoneNumber: phoneNumber,
+        },
         {
           headers: {
             language: lang || "en",
