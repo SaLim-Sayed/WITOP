@@ -11,7 +11,7 @@ import Cookies from "js-cookie";
 
 import useSchema from "./Schema";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import SignGoogle from "../Google/SignGoogle";
@@ -23,7 +23,7 @@ const RegisterForm = () => {
   const router = useRouter();
   type Register = z.infer<typeof RegisterSchema>;
   const [isLoading, setIsLoading] = useState(false);
-
+  const lang = useLocale();
   const {
     register,
     handleSubmit,
@@ -34,28 +34,31 @@ const RegisterForm = () => {
   });
 
   const showSuccessToast = (message?: string) =>
-    showToast({ status: "Success", type: "success", toastMessage: message });
+    showToast({ type: "success", toastMessage: message });
   const showErrorToast = (message?: string) =>
-    showToast({ status: "Error", type: "error", toastMessage: message });
+    showToast({ type: "error", toastMessage: message });
 
   const onSubmit: SubmitHandler<Register> = async (data) => {
     try {
       setIsLoading(true);
       const res = await axios.post(
         "https://maro-cares.onrender.com/auth/register",
-        data
+        data,
+        {
+          headers: {
+            language: lang || "en",
+          },
+        }
       );
       setIsLoading(false);
       if (res.data.message === "success") {
         console.log(res);
         showSuccessToast(res.data.message);
         Cookies.set("phoneNumber", data.phoneNumber);
-        setTimeout(() => {
-          router.push("/auth/verificationAccount");
-        }, 2000);
+        router.push("/auth/verificationAccount");
         return;
       }
-      showSuccessToast(res.data.message);
+      showErrorToast(res.data.message);
     } catch (error: any) {
       console.log(error);
       setIsLoading(false);

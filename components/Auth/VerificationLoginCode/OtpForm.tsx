@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 
 import Cookies from "js-cookie";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useParams, useRouter } from "next/navigation";
 import OtpInput from "react-otp-input";
 
@@ -13,16 +13,17 @@ import axios from "axios";
 
 const OTPFORMS = () => {
   const router = useRouter();
-  const transContent = useTranslations("Auth");
+  const lang = useLocale();
+  const tr = useTranslations("Auth");
   const [code, setCode] = useState<any>();
   const [otpError, setOtpError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const { status } = useParams();
   const showSuccessToast = (message?: string) =>
-    showToast({ status: "Success", type: "success", toastMessage: message });
+    showToast({ type: "success", toastMessage: message });
   const showErrorToast = (message?: string) =>
-    showToast({ status: "Error", type: "error", toastMessage: message });
+    showToast({ type: "error", toastMessage: message });
   const phoneNumber = Cookies.get("phoneNumber");
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -30,19 +31,22 @@ const OTPFORMS = () => {
     try {
       setIsLoading(true);
       const res = await axios.get(
-        `https://maro-cares.onrender.com/user/verificationLoginCode/${phoneNumber}/${code}`
+        `https://maro-cares.onrender.com/user/verificationLoginCode/${phoneNumber}/${code}`,
+        {
+          headers: {
+            language: lang || "en",
+          },
+        }
       );
       setIsLoading(false);
       if (res.data.message === "success") {
         console.log(res);
         Cookies.set("token", res.data?.userToken);
         showSuccessToast(res.data.message);
-
         router.push("/");
-
         return;
       }
-      showSuccessToast(res.data.message);
+      showErrorToast(res.data.message);
     } catch (error: any) {
       console.log(error);
       setIsLoading(false);
@@ -52,7 +56,12 @@ const OTPFORMS = () => {
     try {
       setIsLoading(true);
       const res = await axios.get(
-        `https://maro-cares.onrender.com/user/resendVerificationCode/${phoneNumber}/loginCode`
+        `https://maro-cares.onrender.com/user/resendVerificationCode/${phoneNumber}/loginCode`,
+        {
+          headers: {
+            language: lang || "en",
+          },
+        }
       );
       setIsLoading(false);
       if (res.data.message === "success") {
@@ -70,6 +79,7 @@ const OTPFORMS = () => {
 
   return (
     <form
+      dir="ltr"
       className="w-full flex flex-col  gap-[32px]  "
       onSubmit={(e) => onSubmit(e)}
     >
@@ -103,13 +113,13 @@ const OTPFORMS = () => {
         type="submit"
         className="bg-cyan-500 h-[64px]  text-lg text-white font-bold"
       >
-        continue
+        {tr("Verify")}
       </Button>
       <Button
         onClick={resendHandler}
         className=" leading-[24px] h-[64px] text-lg font-[500] text-cyan-600"
       >
-        resend
+        {tr("resendOTP")}
       </Button>
     </form>
   );

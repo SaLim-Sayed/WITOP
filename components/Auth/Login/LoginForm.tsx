@@ -4,7 +4,6 @@ import Cookies from "js-cookie";
 import React, { useState } from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
-import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import { z } from "zod";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,7 +11,7 @@ import { Button, Input } from "@nextui-org/react";
 
 import useSchema from "./Schema";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { showToast } from "@/components/Global/Ui/Toast";
@@ -22,7 +21,7 @@ const LoginForm = () => {
   const router = useRouter();
   const tr = useTranslations("Auth");
   const LoginSchema = useSchema();
-
+  const lang = useLocale();
   type Login = z.infer<typeof LoginSchema>;
   const [isLoading, setIsLoading] = useState(false);
 
@@ -36,27 +35,32 @@ const LoginForm = () => {
   });
 
   const showSuccessToast = (message?: string) =>
-    showToast({ status: "Success", type: "success", toastMessage: message });
+    showToast({ type: "success", toastMessage: message });
   const showErrorToast = (message?: string) =>
-    showToast({ status: "Error", type: "error", toastMessage: message });
+    showToast({ type: "error", toastMessage: message });
 
   const onSubmit: SubmitHandler<Login> = async (data) => {
     try {
       setIsLoading(true);
       const res = await axios.post(
         "https://maro-cares.onrender.com/auth/login",
-        data
+        data,
+        {
+          headers: {
+            language: lang || "en",
+          },
+        }
       );
       setIsLoading(false);
-      if (res.data.message==='success') {
+      if (res.data.message === "success") {
         console.log(res);
         showSuccessToast(res.data.message);
-        setTimeout(() => {
-          router.push("/auth/verificationLoginCode");
-        }, 2000);
+        Cookies.set("phoneNumber", data.phoneNumber);
+
+        router.push("/auth/verificationLoginCode");
         return;
       }
-      showSuccessToast(res.data.message);
+      showErrorToast(res.data.message);
     } catch (error: any) {
       console.log(error);
       setIsLoading(false);

@@ -17,9 +17,9 @@ export default function SignGoogle() {
       if (res.data.message === "success") {
         console.log(res);
         Cookies.set("token",res.data?.userToken)
-        setTimeout(() => {
+        
           router.push("/");
-        }, 2000);
+        
         return;
       }
     } catch (error: any) {

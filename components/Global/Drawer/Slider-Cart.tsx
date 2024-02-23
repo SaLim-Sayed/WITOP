@@ -7,7 +7,7 @@ import { BiShow, BiX } from "react-icons/bi";
 import getUserCart from "@/store/actions/getUserCart.module";
 import Image from "next/image";
 import ShopingCartItem from "./ShopingCartItem";
-
+import Cookies from "js-cookie";
 import { showToast } from "../Ui/Toast";
 import { Card } from "@nextui-org/react";
 import { cartStore, useProductStore } from "@/store/futures/cartStore";
@@ -18,6 +18,7 @@ interface IProps {
   setCartSliderIsOpen: any;
 }
 const CartSlider = ({ open, setCartSliderIsOpen }: IProps) => {
+  const token = Cookies.get("token");
   const router = useRouter();
   const [products, setProducts] = useState<ProductType[]>();
   const [cartCount, setCartCount] = useState<any>();
@@ -33,11 +34,21 @@ const CartSlider = ({ open, setCartSliderIsOpen }: IProps) => {
   };
   // console.log( products);
   useEffect(() => {
+    if (token) {
     getCartData();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token]);
+  useEffect(() => {
+    if (token) {
+    getCartData();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
+    if (token) {
     if (open) getCartData();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
   return (

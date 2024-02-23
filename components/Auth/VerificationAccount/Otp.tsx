@@ -8,18 +8,16 @@ import Title from "@/components/Global/Ui/Title";
 import Center from "@/components/Global/Ui/Center";
 
 const Otp = ( ) => {
-  const transContent = useTranslations("Auth");
+  const tr = useTranslations("Auth");
   return (
     <>
       <Center>
-        
         <Title
-              exSt="mt-[24px]"
-              exStTitle="font-700 text-[30px]"
-              exStSubTitle="leading-[24px] text-[16px] max-w-lg"
-              title="OTP"
-             
-            />
+          exSt="mt-[24px]"
+          exStTitle="font-700 text-[30px]"
+          exStSubTitle="leading-[24px] text-[16px] max-w-lg"
+          title={tr("OTP")}
+        />
         <div className="flex justify-center">
           <Card className="flex w-full lg:w-[50%]  shadow-none   items-center flex-col  gap-[40px]">
             <OTPFORMS />

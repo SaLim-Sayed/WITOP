@@ -24,9 +24,12 @@ import {
 import Image from "next/legacy/image";
 import {
   BiHeart,
+  BiLogIn,
+  BiLogInCircle,
   BiMenuAltLeft,
   BiMenuAltRight,
   BiSearch,
+  BiSolidLogIn,
   BiUser,
 } from "react-icons/bi";
 import { BsCart, BsHeartFill } from "react-icons/bs";
@@ -51,7 +54,7 @@ import useFavoriteStore from "@/store/futures/useFavoriteStore";
 import { axiosInstance } from "@/util/axiosConfig";
 import Cookie from "js-cookie";
 export default function NavbarPage() {
-  const router = useRouter();
+  const router = useRouter()
   const locale = useLocale();
   const pathName = usePathname();
   const translate = useTranslations("Globals");
@@ -66,6 +69,8 @@ export default function NavbarPage() {
 
   const handleLogout = async () => {
     Cookies.set("token", "");
+    window.location.reload();
+
   };
   const getDirection = () => {
     Cookies.set("NEXT_LOCALE", locale == "ar" ? "en" : "ar");
@@ -118,13 +123,27 @@ export default function NavbarPage() {
   };
 
   useEffect(() => {
-    if (isFavoriteOpen === true || isFavoriteOpen === false) {
-      getFavData();
+    if (token) {
+      if (isFavoriteOpen === true || isFavoriteOpen === false) {
+        getFavData();
+      }
     }
   }, [isFavoriteOpen]);
   useEffect(() => {
-    getFavData();
+    if (token) {
+      getFavData();
+    }
+  }, [token]);
+  useEffect(() => {
+    if (token) {
+      getFavData();
+    }
   }, []);
+  useEffect(() => {
+    if (token) {
+      getFavData();
+    }
+  }, [token]);
   useEffect(() => {
     if (searchTxt) {
       searchData();
@@ -273,8 +292,8 @@ export default function NavbarPage() {
         >
           <NavbarItem
             className={cn(
-              "flex items-center   ",
-              locale === "ar" ? "mr-4 lg:ml-8" : "ml-4 lg:mr-8"
+              "flex items-center gap-1 md:gap-2   ",
+              locale === "ar" ? "mr-0 lg:ml-8" : "ml-0 lg:mr-8"
             )}
           >
             <Button
@@ -286,15 +305,7 @@ export default function NavbarPage() {
             >
               <BiSearch size={20} />
             </Button>
-            <Button
-              isIconOnly
-              variant="flat"
-              color="success"
-              onClick={switchLang}
-            >
-              <BiWorld />
-              {locale == "en" ? " | En" : " | ع"}
-            </Button>
+
             <Popover placement="bottom">
               <PopoverTrigger>
                 <Button
@@ -312,7 +323,7 @@ export default function NavbarPage() {
                     }
                   >
                     <Badge
-                  content={favNum && favNum || 0}
+                      content={(favNum && favNum) || 0}
                       color="warning"
                       variant="solid"
                     >
@@ -381,7 +392,7 @@ export default function NavbarPage() {
                 }
               >
                 <Badge
-                  content={CartAmount && CartAmount || 0}
+                  content={(CartAmount && CartAmount) || 0}
                   color="warning"
                   variant="solid"
                 >
@@ -389,7 +400,16 @@ export default function NavbarPage() {
                 </Badge>
               </ClientHydration>
             </Button>
-
+            <Button
+              size="sm"
+              isIconOnly
+              variant="flat"
+              color="success"
+              onClick={switchLang}
+            >
+              <BiWorld />
+              {locale == "en" ? " | En" : " | ع"}
+            </Button>
             <ClientHydration
               LoaderComponent={
                 <Avatar src="https://images.unsplash.com/broken" />
@@ -432,13 +452,12 @@ export default function NavbarPage() {
               {!token && (
                 <Button
                   size="sm"
-                  isIconOnly
-                  radius="full"
-                  className="font-bold  flex justify-center"
-                  variant="light"
+                  radius="md"
+                  className="font-bold bg-cyan-800 text-white w-fit  flex justify-center"
                   onClick={() => router.push("/auth/login")}
+                  variant="solid"
                 >
-                  <BiUser size={20} />
+                  Login
                 </Button>
               )}
             </ClientHydration>
