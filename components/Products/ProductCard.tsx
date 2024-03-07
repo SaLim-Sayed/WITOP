@@ -11,7 +11,7 @@ import { Product } from "@/types/product";
 import RelatedProducts from "./RelatedProducts";
 import { useParams } from "next/navigation";
 import getProductByID from "@/store/actions/getProductByID.module";
- import Cookies from "js-cookie";
+import Cookies from "js-cookie";
 import { showToast } from "../Global/Ui/Toast";
 import { cartStore } from "@/store/futures/cartStore";
 import { useLocale } from "next-intl";
@@ -41,7 +41,6 @@ export default function ProductCard() {
   const handleIncrease = () => {
     setCount(count + 1);
   };
-  
 
   const handleDecrease = () => {
     if (count > 1) {
@@ -62,12 +61,9 @@ export default function ProductCard() {
   const addRatingHandler = async (noOfStar: number) => {
     try {
       setIsLoading(true);
-      const { data } = await axiosInstance.post(
-        `/user/addRating/${id}`,
-        {
-          numberOfStar: noOfStar,
-        } 
-      );
+      const { data } = await axiosInstance.post(`/user/addRating/${id}`, {
+        numberOfStar: noOfStar,
+      });
       setIsLoading(false);
       console.log(data);
     } catch (err: any) {
@@ -79,10 +75,9 @@ export default function ProductCard() {
   const addToCartHandler = async () => {
     try {
       setIsLoading(true);
-      const { data } = await axiosInstance.post(
-        `/user/addToCart/${id}`,
-        { count: count }
-      );
+      const { data } = await axiosInstance.post(`/user/addToCart/${id}`, {
+        count: count,
+      });
       setIsLoading(false);
       if (data?.numberOfItem !== undefined) {
         CartSetter(data?.numberOfItem);
@@ -97,9 +92,7 @@ export default function ProductCard() {
   const addToFavoriteHandler = async () => {
     try {
       setIsLoading(true);
-      const { data } = await axiosInstance.post(
-        `/user/addToFavorite/${id}` 
-      );
+      const { data } = await axiosInstance.post(`/user/addToFavorite/${id}`);
       setIsLoading(false);
       console.log(data);
       setFavoriteIsOpen(!isFavoriteOpen);

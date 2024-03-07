@@ -1,15 +1,6 @@
 "use client";
 
 import { Tab } from "@headlessui/react";
-import img1 from "@/public/gallory/1.jpg";
-import img2 from "@/public/gallory/2.jpg";
-import img3 from "@/public/gallory/3.jpg";
-import img4 from "@/public/gallory/4.jpg";
-import img5 from "@/public/gallory/5.jpg";
-import img6 from "@/public/gallory/6.jpg";
-import img7 from "@/public/gallory/7.jpg";
-import img8 from "@/public/gallory/8.jpg";
-import img9 from "@/public/gallory/9.jpg";
 import Image from "next/image";
 import { Button } from "@nextui-org/react";
 import { useLocale } from "next-intl";
@@ -26,7 +17,7 @@ const ImageGallury = ({ alt, images, discount }: IProps) => {
 
   return (
     <Tab.Group as="div" className="flex   justify-center items-center relative">
-      {discount && (
+      {discount ? (
         <Button
           size="sm"
           radius="sm"
@@ -37,7 +28,7 @@ const ImageGallury = ({ alt, images, discount }: IProps) => {
         >
           {discount}%
         </Button>
-      )}
+      ):""}
       {/* Image selector */}
       <div className="  mt-6  w-full flex justify-around  ">
         <Tab.List className="flex flex-col gap-2">

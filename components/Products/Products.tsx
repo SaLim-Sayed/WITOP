@@ -10,20 +10,22 @@ import getProducts from "@/store/actions/products.module";
 import { useParams } from "next/navigation";
 import { useLocale } from "next-intl";
 import GCardSkeleton from "../Global/Loaders/GCardSkeleton";
-import Layer from "../Global/Ui/Layer";
+import Layer from "../Global/Ui/Layer"; 
+import FilterComponent from "./Filter";
+import { useProductStore } from "@/store/futures/productStore";
 
 export default function Product() {
   const { category } = useParams();
   const locale = useLocale();
   const dir = locale == "ar" ? "rtl" : "ltr";
-  const [products, setProducts] = useState<ProductType[]>();
+  const {products, setProducts} = useProductStore();
   const [total, setTotal] = useState(1);
 
   const geData = async () => {
     const server = await getProducts({ category });
     setProducts(server?.products);
     setTotal(server?.totalPage);
-    console.log(server?.products);
+     
   };
   useEffect(() => {
     geData();
@@ -42,9 +44,13 @@ export default function Product() {
       }
     />
 
+           <div className="flex">
+            <div className="w-[20%]">
+                <FilterComponent/>
+            </div>
            
-          <div dir={dir} className="flex   flex-wrap  justify-around  gap-4">
-            {products
+          <div dir={dir} className="flex flex-1   flex-wrap  justify-around  gap-4">
+            {products.length > 0
               ? products.map((product) => (
                   <GCard
                     key={product?._id}
@@ -61,7 +67,7 @@ export default function Product() {
                     <GCardSkeleton />
                   </div>
                 ))}
-          </div>
+          </div></div>
           <div className="flex justify-center">
             <Pagination showControls total={total || 10} initialPage={1} />
           </div>
@@ -70,3 +76,4 @@ export default function Product() {
     </div>
   );
 }
+3
