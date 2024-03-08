@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Checkbox, Button, Input } from "@nextui-org/react";
 import getAllFilter from "@/store/actions/getAllFilter.module";
 import { axiosInstance } from "@/util/axiosConfig";
@@ -25,20 +25,6 @@ const FilterComponent: React.FC = () => {
   const [filters, setFilters] = useState<{ [key: string]: boolean }>({});
   const [priceRange, setPriceRange] = useState<[any, any]>([0, 1000]);
 
-  
-  useEffect(() => {
-    getAllFilters();
-  }, []);
-
-  useEffect(() => {
-    // Initialize the filters state when allFilters changes
-    const initialFiltersState = allFilters.reduce((acc, filter, index) => {
-      // Set the first checkbox to checked if it's the first filter
-      const isChecked = index === 0;
-      return { ...acc, [filter.filterName]: isChecked };
-    }, {});
-    setFilters(initialFiltersState);
-  }, [allFilters]);
   const handleCheckboxChange = (key: string) => {
     setFilters((prevFilters) => ({
       ...prevFilters,
@@ -93,18 +79,26 @@ const FilterComponent: React.FC = () => {
   ) => {
     try {
       const formattedPriceRange = `${priceRange[0]}-${priceRange[1]}`;
-      const { data } = await axiosInstance.get(
-        `/product/filterProduct/1?category=المكياج&filter=${options}&price=${formattedPriceRange}`
-      );
+      let url = `/product/filterProduct/1?category=المكياج&price=${formattedPriceRange}`;
+      
+      // Check if options is not empty before appending it to the URL
+      if (options) {
+        url += `&filter=${options}`;
+      }
+  
+      const { data } = await axiosInstance.get(url);
       console.log(data);
-      if (data?.message == "success") {
+      if (data?.message === "success") {
         setProducts(data?.products);
       }
     } catch (error) {
       console.error("Error filtering products:", error);
     }
-  };
+  }; 
 
+  useEffect(() => {
+    getAllFilters();
+  }, []);
   
 
   return (
@@ -264,4 +258,4 @@ const FilterComponent: React.FC = () => {
   );
 };
 
-export default memo(FilterComponent);
+export default FilterComponent;
