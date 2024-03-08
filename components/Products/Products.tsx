@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Image, Pagination, Skeleton, Spinner } from "@nextui-org/react";
 import Center from "../Global/Ui/Center";
 import GCard from "../Global/Ui/GCard";
-
 import { Product as ProductType } from "@/types/product";
 import Headings from "../Global/Ui/Heading";
 import getProducts from "@/store/actions/products.module";
@@ -20,15 +19,22 @@ export default function Product() {
   const dir = locale == "ar" ? "rtl" : "ltr";
   const { products, setProducts } = useProductStore();
   const [total, setTotal] = useState(1);
+  const [loading, setLoading] = useState(true);
 
-  const geData = async () => {
+  const getData = async () => {
+    setLoading(true);
     const server = await getProducts({ category });
     setProducts(server?.products);
     setTotal(server?.totalPage);
+    setTimeout(() => {
+      setLoading(false);
+    }, 500); // Set loading to false after 1000ms
   };
+
   useEffect(() => {
-    geData();
+    getData();
   }, []);
+
   return (
     <div>
       <Headings type={products && products[0]?.category} />
@@ -52,23 +58,27 @@ export default function Product() {
               dir={dir}
               className="flex flex-1   flex-wrap  justify-around  gap-4"
             >
-              {products.length > 0
-                ? products.map((product) => (
-                    <GCard
-                      key={product?._id}
-                      id={product?._id}
-                      price={product?.price}
-                      title={product?.productName}
-                      desc={product?.description}
-                      img={product?.images[0]}
-                      category={product?.category}
-                    />
-                  ))
-                : Array.from({ length: 4 }).map((_index: any) => (
-                    <div key={_index}>
-                      <GCardSkeleton />
-                    </div>
-                  ))}
+              {loading ? ( // Show skeleton while loading
+                Array.from({ length: 4 }).map((_index: any) => (
+                  <div key={_index}>
+                    <GCardSkeleton />
+                  </div>
+                ))
+              ) : products.length > 0 ? ( // Show products if available
+                products.map((product) => (
+                  <GCard
+                    key={product?._id}
+                    id={product?._id}
+                    price={product?.price}
+                    title={product?.productName}
+                    desc={product?.description}
+                    img={product?.images[0]}
+                    category={product?.category}
+                  />
+                ))
+              ) : ( // Show "No Data" message if no products available
+                <div>No Data</div>
+              )}
             </div>
           </div>
           <div className="flex justify-center">
@@ -79,4 +89,3 @@ export default function Product() {
     </div>
   );
 }
-3;
