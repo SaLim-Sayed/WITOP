@@ -59,12 +59,12 @@ export default function Product() {
               className="flex flex-1   flex-wrap  justify-around  gap-4"
             >
               {loading ? ( // Show skeleton while loading
-                Array.from({ length: 4 }).map((_index: any) => (
-                  <div key={_index}>
+                Array.from({ length: 4 }).map((_,index: any) => (
+                  <div key={index}>
                     <GCardSkeleton />
                   </div>
                 ))
-              ) : products.length > 0 ? ( // Show products if available
+              ) : products?.length > 0 ? ( // Show products if available
                 products.map((product) => (
                   <GCard
                     key={product?._id}

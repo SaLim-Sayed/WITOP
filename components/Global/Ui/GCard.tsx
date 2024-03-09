@@ -36,7 +36,7 @@ export default function GCard({
     <ClientHydration LoaderComponent={<GCardSkeleton />}>
       <div
         dir={dir}
-        className="flex flex-col gap-2 shadow-xl max-w-[600px] min-w-[250px] lg:min-w-[285px] rounded-lg relative "
+        className="flex flex-col gap-2 shadow-xl max-w-[600px] min-w-[250px] lg:min-w-[285px] max-h-[350px]  rounded-lg relative "
       >
         <Button
           key={id}
@@ -48,7 +48,7 @@ export default function GCard({
         </Button>
 
         <Card
-          className="w-full"
+          className="w-full h-[350px]"
           shadow="md"
           isPressable
           onClick={() => router.push(`/product/${category}/${id}`)}
@@ -84,7 +84,8 @@ export default function GCard({
               radius="none"
               size="md"
             >
-               {translate("Shop")}<FaShoppingCart />
+              {translate("Shop")}
+              <FaShoppingCart />
             </Button>
           </CardFooter>
         </Card>

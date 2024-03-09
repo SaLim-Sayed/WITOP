@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Checkbox, Button, Input } from "@nextui-org/react";
+import { Checkbox, Button, Input, CheckboxGroup } from "@nextui-org/react";
 import getAllFilter from "@/store/actions/getAllFilter.module";
 import { axiosInstance } from "@/util/axiosConfig";
 import { useProductStore } from "@/store/futures/productStore";
@@ -12,18 +12,27 @@ import {
   ModalFooter,
   useDisclosure,
 } from "@nextui-org/react";
+import useCategory from "../Global/Layout/useCategory ";
+import { useTranslations } from "next-intl";
+import { BiFilter, BiSkipNext } from "react-icons/bi";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { useRouter } from "next/navigation";
 
 interface Filter {
   _id: string;
   filterName: string;
 }
 
-const FilterComponent: React.FC = () => {
+const FilterComponent: React.FC = ({ cat }: any) => {
+  const { categories, currentPage, totalPages, handlePageChange } =
+    useCategory();
+  const router = useRouter();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const { setProducts } = useProductStore();
   const [allFilters, setAllFilters] = useState<Filter[]>([]);
   const [filters, setFilters] = useState<{ [key: string]: boolean }>({});
   const [priceRange, setPriceRange] = useState<[any, any]>([0, 1000]);
+  const [selectedCategory, setSelectedCategory] = useState<any>(cat);
 
   const handleCheckboxChange = (key: string) => {
     setFilters((prevFilters) => ({
@@ -51,9 +60,9 @@ const FilterComponent: React.FC = () => {
 
       // Join the true options with comma
       const trueOptionsString = trueOptions.join(",");
-
+      router.push(`/product/${selectedCategory}`);
       // Call handleFilter with trueOptionsString and priceRange
-      await handleFilter(trueOptionsString, priceRange);
+      await handleFilter(trueOptionsString, priceRange, selectedCategory);
     } catch (error) {
       console.error("Error applying filters:", error);
     }
@@ -75,17 +84,18 @@ const FilterComponent: React.FC = () => {
 
   const handleFilter = async (
     options: string,
-    priceRange: [number | number[], number | number[]]
+    priceRange: [number | number[], number | number[]],
+    category: string
   ) => {
     try {
       const formattedPriceRange = `${priceRange[0]}-${priceRange[1]}`;
-      let url = `/product/filterProduct/1?category=المكياج&price=${formattedPriceRange}`;
-      
+      let url = `/product/filterProduct/1?category=${category}&price=${formattedPriceRange}`;
+
       // Check if options is not empty before appending it to the URL
       if (options) {
         url += `&filter=${options}`;
       }
-  
+
       const { data } = await axiosInstance.get(url);
       console.log(data);
       if (data?.message === "success") {
@@ -94,18 +104,19 @@ const FilterComponent: React.FC = () => {
     } catch (error) {
       console.error("Error filtering products:", error);
     }
-  }; 
+  };
 
   useEffect(() => {
     getAllFilters();
   }, []);
-  
 
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-4 md:hidden">
-        <Button onPress={onOpen} size="lg" className="w-full">
-          Filter{" "}
+        <Button onPress={onOpen} size="lg" className="w-full" endContent={
+          <BiFilter className="text-2xl" />
+        }>
+          Filter 
         </Button>
         <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
           <ModalContent>
@@ -113,7 +124,7 @@ const FilterComponent: React.FC = () => {
               <>
                 <ModalBody>
                   <p className="font-bold text-xl mt-6 text-cyan-800">
-                    Filter Options{" "}
+                    Filter Options
                   </p>
                   {allFilters.map((filter) => (
                     <div key={filter._id}>
@@ -125,6 +136,51 @@ const FilterComponent: React.FC = () => {
                       </Checkbox>
                     </div>
                   ))}
+                  <CheckboxGroup
+                    value={selectedCategory}
+                    label={
+                      <p className="font-bold text-xl text-cyan-800">
+                        Filter Category{" "}
+                      </p>
+                    }
+                    onValueChange={(selected) => setSelectedCategory(selected)}
+                    className="gap-4"
+                    classNames={{
+                      label: "text-dark font-[500] text-[14px]",
+                    }}
+                  >
+                    {categories.map((opt: any, index) => (
+                      <Checkbox
+                        key={index}
+                        value={opt}
+                        color="default"
+                        classNames={{
+                          label: "text-darkColor-200 mx-2 ",
+                        }}
+                      >
+                        {opt}
+                      </Checkbox>
+                    ))}
+                  </CheckboxGroup>
+
+                  {/* Pagination controls */}
+                  <div className="flex gap-2 items-center">
+                    <Button
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      disabled={currentPage === 1}
+                      isIconOnly
+                    >
+                      <IoIosArrowBack size={20} className="text-cyan-800" />
+                    </Button>
+                    <span>{currentPage}</span>
+                    <Button
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                      isIconOnly
+                    >
+                      <IoIosArrowForward size={20} className="text-cyan-800" />
+                    </Button>
+                  </div>
                   <Slider
                     label="Price Range"
                     step={50}
@@ -198,6 +254,51 @@ const FilterComponent: React.FC = () => {
             </Checkbox>
           </div>
         ))}
+        {/* Render checkboxes for all categories */}
+
+        <CheckboxGroup
+          value={selectedCategory}
+          label={
+            <p className="font-bold text-xl text-cyan-800">Filter Category </p>
+          }
+          onValueChange={(selected) => setSelectedCategory(selected)}
+          className="gap-4"
+          classNames={{
+            label: "text-dark font-[500] text-[14px]",
+          }}
+        >
+          {categories.map((opt: any, index) => (
+            <Checkbox
+              key={index}
+              value={opt}
+              color="default"
+              classNames={{
+                label: "text-darkColor-200 mx-2 ",
+              }}
+            >
+              {opt}
+            </Checkbox>
+          ))}
+        </CheckboxGroup>
+
+        {/* Pagination controls */}
+        <div className="flex   items-center gap-2">
+          <Button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            isIconOnly
+          >
+            <IoIosArrowBack size={20} className="text-cyan-800" />
+          </Button>
+          <span>{currentPage}</span>
+          <Button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            isIconOnly
+          >
+            <IoIosArrowForward size={20} className="text-cyan-800" />
+          </Button>
+        </div>
         <Slider
           label="Price Range"
           step={50}
