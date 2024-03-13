@@ -18,7 +18,8 @@
     "Wait": "Wait...",
     "Navbar/Offer/Conditions": " See conditions",
     "SAR": "SAR",
-    "ADDCART": "Add to Cart"
+    "ADDCART": "Add to Cart",
+    "ShowDesc": "Show Description"
   },
   "Categories": {
     "All": "All",
@@ -440,8 +441,8 @@
     "AlreadyHave": "Already have an account?"
   },
   "Validation": {
-    "UserName":"username is required",
-    "Email":"email is required",
-    "PhoneNumber":"phone number is required"
+    "UserName": "username is required",
+    "Email": "email is required",
+    "PhoneNumber": "phone number is required"
   }
 }

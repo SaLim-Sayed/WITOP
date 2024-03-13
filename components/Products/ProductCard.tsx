@@ -21,7 +21,7 @@ import useFavoriteStore from "@/store/futures/useFavoriteStore";
 import { axiosInstance } from "@/util/axiosConfig";
 export default function ProductCard() {
   const lang = useLocale();
-  const t=useTranslations("Globals")
+  const t = useTranslations("Globals");
 
   const token = Cookies.get("token");
 
@@ -50,6 +50,7 @@ export default function ProductCard() {
   };
 
   const [productData, setProductData] = useState<Product>();
+  const [showDesc, setShowDesc] = useState(false);
   const [relatedProducts, setrelatedProducts] = useState<Product[]>();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -121,13 +122,16 @@ export default function ProductCard() {
           discount={productData?.discountPercentage}
         />
         <div className="flex flex-col gap-4">
-          <div className="text-3xl relative">{productData?.productName}</div>
-          <div className="text-sm  ">{productData?.description}</div>
+          <div className="text-3xl relative text-center">
+            {productData?.productName}
+          </div>
           {/* <div className="text-2xl font-bold line-through">
             {productData?.priceBeforeDiscount} $
           </div> */}
           <div className="flex justify-between items-center">
-            <div className="text-2xl font-bold">{productData?.price} {t("SAR")}</div>
+            <div className="text-2xl font-bold">
+              {productData?.price} {t("SAR")}
+            </div>
             {star ? (
               <div className="flex gap-1">
                 <Button
@@ -391,7 +395,17 @@ export default function ProductCard() {
               {!fav ? <BiHeart size={60} /> : <BsHeartFill size={60} />}
             </Button>
           </div>
-          {/* <div className="text-xl text-justify">{productData?.description}</div> */}
+          <Button
+            className="bg-cyan-800 text-white font-500 text-xl"
+            onClick={() => setShowDesc(!showDesc)}
+          >
+            {t("ShowDesc")}
+          </Button>
+          {showDesc && (
+            <div className="text-sm  text-justify ">
+              {productData?.description}
+            </div>
+          )}
         </div>
       </div>
       {/* <div className="flex flex-col items-center justify-center">
