@@ -24,6 +24,7 @@ export default function Product() {
   const getData = async () => {
     setLoading(true);
     const server = await getProducts({ category });
+    console.log(server)
     setProducts(server?.products);
     setTotal(server?.totalPage);
     setTimeout(() => {
@@ -70,6 +71,9 @@ export default function Product() {
                     key={product?._id}
                     id={product?._id}
                     price={product?.price}
+                    priceBeforeDiscount={product?.priceBeforeDiscount}
+                    discountPercentage={product?.discountPercentage}
+                    outOfStock={product?.outOfStock}
                     title={product?.productName}
                     desc={product?.description}
                     img={product?.images[0]}

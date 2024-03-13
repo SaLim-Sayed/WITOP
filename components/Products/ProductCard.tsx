@@ -14,13 +14,14 @@ import getProductByID from "@/store/actions/getProductByID.module";
 import Cookies from "js-cookie";
 import { showToast } from "../Global/Ui/Toast";
 import { cartStore } from "@/store/futures/cartStore";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { cn } from "@/libs/cn";
 import { BsHeartFill, BsStarFill } from "react-icons/bs";
 import useFavoriteStore from "@/store/futures/useFavoriteStore";
 import { axiosInstance } from "@/util/axiosConfig";
 export default function ProductCard() {
   const lang = useLocale();
+  const t=useTranslations("Globals")
 
   const token = Cookies.get("token");
 
@@ -121,12 +122,12 @@ export default function ProductCard() {
         />
         <div className="flex flex-col gap-4">
           <div className="text-3xl relative">{productData?.productName}</div>
-          <div className="text-2xl font-bold">{productData?.description}</div>
-          <div className="text-2xl font-bold line-through">
+          <div className="text-sm  ">{productData?.description}</div>
+          {/* <div className="text-2xl font-bold line-through">
             {productData?.priceBeforeDiscount} $
-          </div>
+          </div> */}
           <div className="flex justify-between items-center">
-            <div className="text-2xl font-bold">{productData?.price} $</div>
+            <div className="text-2xl font-bold">{productData?.price} {t("SAR")}</div>
             {star ? (
               <div className="flex gap-1">
                 <Button
@@ -374,7 +375,7 @@ export default function ProductCard() {
               radius="sm"
               className="h-12 w-40 bg-black text-white uppercase "
             >
-              Add To Cart
+              {t("ADDCART")}
             </Button>
             <Button
               onClick={() => {
@@ -390,10 +391,10 @@ export default function ProductCard() {
               {!fav ? <BiHeart size={60} /> : <BsHeartFill size={60} />}
             </Button>
           </div>
-          <div className="text-xl text-justify">{productData?.description}</div>
+          {/* <div className="text-xl text-justify">{productData?.description}</div> */}
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center">
+      {/* <div className="flex flex-col items-center justify-center">
         <Tabs variant="underlined" aria-label="Tabs variants">
           <Tab key="photos" title="Features">
             <Card shadow="none">
@@ -426,7 +427,7 @@ export default function ProductCard() {
             </Card>
           </Tab>
         </Tabs>
-      </div>
+      </div> */}
 
       <RelatedProducts productData={relatedProducts} />
     </Center>

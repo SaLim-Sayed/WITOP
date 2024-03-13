@@ -16,7 +16,9 @@
     "Navbar/Offer": "Free Shipping for orders over 300 SAR  ,",
     "Welcome": "Welcome",
     "Wait": "Wait...",
-    "Navbar/Offer/Conditions": " See conditions"
+    "Navbar/Offer/Conditions": " See conditions",
+    "SAR": "SAR",
+    "ADDCART": "Add to Cart"
   },
   "Categories": {
     "All": "All",

@@ -18,6 +18,8 @@ export default function GCard({
   exSt,
   product,
   category,
+  priceBeforeDiscount,
+  discountPercentage,
 }: {
   price: any;
   title: string;
@@ -27,8 +29,12 @@ export default function GCard({
   id?: string;
   product?: Product;
   category?: string;
+  priceBeforeDiscount?: any;
+  discountPercentage?: any;
+  outOfStock?: any;
 }) {
   const translate = useTranslations("Buttons");
+  const t=useTranslations("Globals")
   const router = useRouter();
   const locale = useLocale();
   const dir = locale == "ar" ? "rtl" : "ltr";
@@ -36,7 +42,7 @@ export default function GCard({
     <ClientHydration LoaderComponent={<GCardSkeleton />}>
       <div
         dir={dir}
-        className="flex flex-col gap-2 shadow-xl max-w-[600px] min-w-[250px] lg:min-w-[285px] max-h-[350px]  rounded-lg relative "
+        className="flex flex-col gap-2 shadow-xl max-w-[400px] min-w-[250px] lg:min-w-[285px] max-h-[350px]  rounded-lg relative "
       >
         <Button
           key={id}
@@ -44,7 +50,7 @@ export default function GCard({
           radius="sm"
           className="absolute -top-2 -left-2 bg-lime-300 shadow-md z-20"
         >
-          -50%
+          -{discountPercentage ? discountPercentage : 10}%
         </Button>
 
         <Card
@@ -64,15 +70,17 @@ export default function GCard({
             </div>
             <Divider className="mt-0 pt-0" />
             <div className="flex justify-between items-start mx-2">
-              <div className="flex flex-col items-start">
-                <b className="text-lg text-blue-900">{title}</b>
-                <b className=" text-slate-600">{category}</b>
+              <div className="flex w-[70%] flex-col gap-2 items-start">
+                <p className=" text-blue-900" title={title}>
+                  {title.slice(0, 20)}...
+                </p>
+                <p className=" text-slate-600">{category}</p>
               </div>
-              <div className=" flex flex-col font-bold items-end  ">
+              <div className=" flex flex-col w-[30%] font-bold items-end  ">
                 <span className=" line-through text-gray-500 font-normal">
-                  {price + 100}
+                  {priceBeforeDiscount}
                 </span>
-                <span>{price} SAR</span>
+                <span>{price} {t("SAR")}</span>
               </div>
             </div>
           </CardBody>

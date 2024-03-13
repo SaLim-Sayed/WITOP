@@ -16,7 +16,9 @@
     "Navbar/Offer": "   شحن مجاني للطلبات التي تزيد عن  300 ريال,   ",
     "Welcome": "مرحبا",
     "Wait": "أنتظر.......",
-    "Navbar/Offer/Conditions": " انظر للشروط"
+    "Navbar/Offer/Conditions": " انظر للشروط",
+    "SAR": "ر.س",
+    "ADDCART":"اضافة الى السلة"
   },
   "Categories": {
     "All": "الكل",

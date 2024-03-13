@@ -53,6 +53,9 @@ export default function OurSelection({
                           key={product?._id}
                           id={product?._id}
                           price={product?.price}
+                          priceBeforeDiscount={product?.priceBeforeDiscount}
+                          discountPercentage={product?.discountPercentage}
+                          outOfStock={product?.outOfStock}
                           title={product?.productName}
                           desc={product?.description}
                           img={product?.images[0]}

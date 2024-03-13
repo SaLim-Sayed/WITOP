@@ -42,12 +42,15 @@ export default function Trending({ trends }: { trends: ProductType[] }) {
                       <div
                         dir={dir ? "rtl" : "ltr"}
                         key={product?._id}
-                        className="mx-auto px-4 flex justify-center"
+                        className="mx-auto px-4 my-4 flex justify-center"
                       >
                         <GCard
                           key={product?._id}
                           id={product?._id}
                           price={product?.price}
+                          priceBeforeDiscount={product?.priceBeforeDiscount}
+                          discountPercentage={product?.discountPercentage}
+                          outOfStock={product?.outOfStock}
                           title={product?.productName}
                           desc={product?.description}
                           img={product?.images[0]}
