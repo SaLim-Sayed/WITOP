@@ -11,9 +11,9 @@ interface IProps {
 const SmImageGallury = ({ alt, images, discount }: IProps) => {
   const [nav1, setNav1] = useState<Slider | null>(null);
   const [nav2, setNav2] = useState<Slider | null>(null);
-  let sliderRef1 = useRef<Slider | any>();
-  let sliderRef2 = useRef<Slider | any>();
-
+  const sliderRef1 = useRef<Slider | null>(null);
+  const sliderRef2 = useRef<Slider | null>(null);
+  
   useEffect(() => {
     setNav1(sliderRef1.current);
     setNav2(sliderRef2.current);
