@@ -1,7 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
-import Slider from "@ant-design/react-slick";
-import Image from "next/legacy/image";
+import React, { useRef, useState } from "react";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
 
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-cards";
+
+import "./styles.css";
+
+// import required modules
+import { EffectCards } from "swiper/modules";
+import Image from "next/image";
 interface IProps {
   alt: any;
   images: string[] | undefined;
@@ -9,55 +18,30 @@ interface IProps {
 }
 
 const SmImageGallury = ({ alt, images, discount }: IProps) => {
-  const [nav1, setNav1] = useState<Slider | null>(null);
-  const [nav2, setNav2] = useState<Slider | null>(null);
-  const sliderRef1 = useRef<Slider | null>(null);
-  const sliderRef2 = useRef<Slider | null>(null);
-  
-  useEffect(() => {
-    setNav1(sliderRef1.current);
-    setNav2(sliderRef2.current);
-  }, []);
-
   return (
-    <div className=" flex md:hidden flex-col gap-3 justify-center  w-64">
-      <Slider asNavFor={nav2} ref={sliderRef1}>
+    <>
+      <Swiper
+        effect={"cards"}
+        grabCursor={true}
+        modules={[EffectCards]}
+        className="mySwiper flex md:hidden"
+      >
         {images?.map((image, index) => (
-          <div key={index} className="h-64 w-[20rem] flex justify-center">
+          <SwiperSlide
+            key={index}
+            className="h-64 w-[20rem] flex justify-center"
+          >
             <Image
               width={300}
               height={300}
               src={image}
               alt={alt}
-              className="h-64 w-[20rem] object-center sm:rounded-lg"
+              className="h-64 w-[20rem]  object-center sm:rounded-lg"
             />
-          </div>
+          </SwiperSlide>
         ))}
-      </Slider>
-
-      {/* @ts-ignore */}
-      <Slider
-        asNavFor={nav1}
-        ref={sliderRef2}
-        slidesToShow={2}
-        swipeToSlide={true}
-        focusOnSelect={true}
-     
-      >
-        {images?.map((image, index) => (
-          <div key={index} className=" flex justify-center items-center ">
-            <Image
-              width={50}
-              height={50}
-              src={image}
-              alt={alt}
-              className=" object-center sm:rounded-lg"
-            />
-          </div>
-        ))}
-      </Slider>
-    </div>
+      </Swiper>
+    </>
   );
 };
-
 export default SmImageGallury;
