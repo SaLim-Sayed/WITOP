@@ -45,7 +45,7 @@ const ImageSwipper = ({ images }: IProps) => {
                   removeWrapper
                   alt="Card background"
                   radius="none"
-                  className="z-0   cursor-pointer "
+                  className="z-0  mb-8  cursor-pointer "
                   src={image}
                 />
               </div>
