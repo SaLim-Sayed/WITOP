@@ -19,7 +19,8 @@
     "Navbar/Offer/Conditions": " انظر للشروط",
     "SAR": "ر.س",
     "ADDCART":"اضافة الى السلة",
-    "ShowDesc": "اظهار الوصف"
+    "Desc": "  الوصف والاستخدام",
+    "ShowMore":"...عرض المزيد"
   },
   "Categories": {
     "All": "الكل",

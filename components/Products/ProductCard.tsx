@@ -76,6 +76,7 @@ export default function ProductCard() {
       showErrorToast("Something Went Wrong , Try Again..");
     }
   };
+  const [len, setLen] = useState(120);
   const addToCartHandler = async () => {
     try {
       setIsLoading(true);
@@ -405,18 +406,26 @@ export default function ProductCard() {
             </Button>
           </div>
           <Button
-            variant="light"
             radius="none"
-            className={cn(
-              "   font-500 text-xl",
-              showDesc && "border-b-2 border-black"
-            )}
-            onClick={() => setShowDesc(!showDesc)}
+            className={cn("   font-500 text-xl  border-b-2 border-black")}
           >
-            {t("ShowDesc")}
+            {t("Desc")}
           </Button>
-          {showDesc && (
-            <code className="text-sm  ">{productData?.description}</code>
+
+          {productData?.description && (
+            <code className="text-sm  ">
+              {productData?.description.slice(0, len)}{" "}
+              {len <= 120 && (
+                <span
+                  className="text-blue-500  cursor-pointer"
+                  onClick={() =>
+                    setLen(productData?.description.length || 1000)
+                  }
+                >
+                  {t("ShowMore")}
+                </span>
+              )}
+            </code>
           )}
         </div>
       </div>

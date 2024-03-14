@@ -19,7 +19,8 @@
     "Navbar/Offer/Conditions": " See conditions",
     "SAR": "SAR",
     "ADDCART": "Add to Cart",
-    "ShowDesc": "Show Description"
+    "Desc": "Description",
+    "ShowMore": "...Show More"
   },
   "Categories": {
     "All": "All",
