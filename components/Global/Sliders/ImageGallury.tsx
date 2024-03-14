@@ -2,9 +2,19 @@
 
 import { Tab } from "@headlessui/react";
 import Image from "next/image";
-import { Button } from "@nextui-org/react";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
+} from "@nextui-org/react";
+
 import { useLocale } from "next-intl";
 import { cn } from "@/libs/cn";
+import ImageSwipper from "./ImageSwipper";
 
 interface IProps {
   alt: any;
@@ -13,6 +23,7 @@ interface IProps {
 }
 
 const ImageGallury = ({ alt, images, discount }: IProps) => {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const locale = useLocale();
 
   return (
@@ -75,16 +86,40 @@ const ImageGallury = ({ alt, images, discount }: IProps) => {
       <Tab.Panels className="aspect-w-1 aspect-h-1 w-full relative ">
         {images?.map((image, index) => (
           <Tab.Panel key={index}>
-            <Image
-              width={300}
-              height={300}
-              src={image}
-              alt={alt}
-              className="h-64 w-[20rem] object-cover object-center sm:rounded-lg"
-            />
+            <Button
+              variant="light"
+              color="default"
+              className="h-64 hover:bg-transparent w-[20rem] object-cover object-center sm:rounded-lg"
+              onPress={onOpen}
+            >
+              <Image
+                width={300}
+                height={300}
+                src={image}
+                alt={alt}
+                className="h-64 w-[20rem] object-cover object-center sm:rounded-lg"
+              />
+            </Button>
           </Tab.Panel>
         ))}
       </Tab.Panels>
+      <Modal
+        backdrop="blur"
+        size="xl"
+    placement="center"
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalBody className="h-[80%] m-8">
+                <ImageSwipper images={images} />
+              </ModalBody>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </Tab.Group>
   );
 };
