@@ -4,6 +4,7 @@ import {
   Navigation,
   Pagination,
   Scrollbar,
+  EffectCoverflow,
   A11y,
   Autoplay,
 } from "swiper/modules";
@@ -15,8 +16,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { Button, Card, CardBody, Image } from "@nextui-org/react";
-import { motion } from "framer-motion";
+import { Image } from "@nextui-org/react";
+
 // Use const or function before the component name
 
 interface IProps {
@@ -27,9 +28,26 @@ const ImageSwipper = ({ images }: IProps) => {
     <>
       <div className="   cursor-pointer ">
         <Swiper
+          effect={"coverflow"}
+          grabCursor={true}
+          centeredSlides={true}
+          slidesPerView={"auto"}
+          coverflowEffect={{
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
+          }}
           // install Swiper modules
-          modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-          slidesPerView={1}
+          modules={[
+            Navigation,
+            EffectCoverflow,
+            Pagination,
+            Scrollbar,
+            A11y,
+            Autoplay,
+          ]}
           pagination={{ clickable: true }}
           autoplay={{
             delay: 1000,
@@ -42,10 +60,8 @@ const ImageSwipper = ({ images }: IProps) => {
             <SwiperSlide key={index}>
               <div className="flex w-full  items-center justify-center">
                 <Image
-                  removeWrapper
                   alt="Card background"
-                  radius="none"
-                  className="z-0  mb-8  cursor-pointer "
+                  className="z-0 w-64 h-64  mb-4  pb-4 cursor-pointer "
                   src={image}
                 />
               </div>

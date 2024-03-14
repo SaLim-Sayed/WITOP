@@ -25,6 +25,12 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 300px;
+}
 
 .swiper-pagination-bullet {
   width: 5px !important;
