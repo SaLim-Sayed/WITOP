@@ -16,7 +16,10 @@ const ImageGallury = ({ alt, images, discount }: IProps) => {
   const locale = useLocale();
 
   return (
-    <Tab.Group as="div" className="flex   justify-center items-center relative">
+    <Tab.Group
+      as="div"
+      className="md:flex hidden  justify-center items-center relative"
+    >
       {discount ? (
         <Button
           size="sm"
@@ -28,14 +31,16 @@ const ImageGallury = ({ alt, images, discount }: IProps) => {
         >
           {discount}%
         </Button>
-      ):""}
+      ) : (
+        ""
+      )}
       {/* Image selector */}
       <div className="  mt-6  w-full flex justify-around  ">
         <Tab.List className="flex flex-col gap-2">
           {images?.map((image, index) => (
             <Tab
               key={index}
-              className="relative flex h-24 w-24  cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-stone-900 hover:bg-stone-50 focus:outline-none"
+              className="relative flex h-12 w-12  cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-stone-900 hover:bg-stone-50 focus:outline-none"
             >
               {({ selected }) => (
                 <>
@@ -71,11 +76,11 @@ const ImageGallury = ({ alt, images, discount }: IProps) => {
         {images?.map((image, index) => (
           <Tab.Panel key={index}>
             <Image
-              width={200}
-              height={200}
+              width={300}
+              height={300}
               src={image}
               alt={alt}
-              className="h-64 w-64 object-cover object-center sm:rounded-lg"
+              className="h-64 w-[20rem] object-cover object-center sm:rounded-lg"
             />
           </Tab.Panel>
         ))}

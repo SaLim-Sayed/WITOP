@@ -44,14 +44,14 @@ export default function GCard({
         dir={dir}
         className="flex flex-col gap-2 shadow-xl max-w-[400px] min-w-[250px] lg:min-w-[285px] max-h-[350px]  rounded-lg relative "
       >
-        <Button
+        {/* <Button
           key={id}
           size="md"
           radius="sm"
           className="absolute -top-2 -left-2 bg-lime-300 shadow-md z-20"
         >
           -{discountPercentage ? discountPercentage : 10}%
-        </Button>
+        </Button> */}
 
         <Card
           className="w-full h-[350px]"
@@ -71,7 +71,7 @@ export default function GCard({
             <Divider className="mt-0 pt-0" />
             <div className="flex justify-between items-start mx-2">
               <div className="flex w-[70%] flex-col gap-2 items-start">
-                <p className=" text-blue-900" title={title}>
+                <p className="text-dark " title={title}>
                   {title.slice(0, 20)}...
                 </p>
                 <p className=" text-slate-600">{category}</p>
@@ -80,13 +80,15 @@ export default function GCard({
                 <span className=" line-through text-gray-500 font-normal">
                   {priceBeforeDiscount}
                 </span>
-                <span>{price} {t("SAR")}</span>
+                <span className="text-red-700">
+                  {price} {t("SAR")}
+                </span>
               </div>
             </div>
           </CardBody>
-          <CardFooter className=" overflow-hidden p-0 font-bold        shadow-small   z-10">
+          <CardFooter className=" overflow-hidden p-0 font-bold shadow-small z-10">
             <Button
-              className=" w-full text-lg text-white bg-teal-500 "
+              className=" w-full text-lg text-white flex justify-between bg-teal-700 "
               variant="flat"
               color="default"
               radius="none"

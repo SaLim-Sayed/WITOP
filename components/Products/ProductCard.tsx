@@ -19,6 +19,7 @@ import { cn } from "@/libs/cn";
 import { BsHeartFill, BsStarFill } from "react-icons/bs";
 import useFavoriteStore from "@/store/futures/useFavoriteStore";
 import { axiosInstance } from "@/util/axiosConfig";
+import SmImageGallury from "../Global/Sliders/SmImageGallury";
 export default function ProductCard() {
   const lang = useLocale();
   const t = useTranslations("Globals");
@@ -116,20 +117,27 @@ export default function ProductCard() {
   return (
     <Center>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-        <ImageGallury
-          images={productData?.images}
-          alt={productData?.productName}
-          discount={productData?.discountPercentage}
-        />
+        <div className="flex justify-center items-center">
+          <ImageGallury
+            images={productData?.images}
+            alt={productData?.productName}
+            discount={productData?.discountPercentage}
+          />
+          <SmImageGallury
+            images={productData?.images}
+            alt={productData?.productName}
+            discount={productData?.discountPercentage}
+          />
+        </div>
         <div className="flex flex-col gap-4">
-          <div className="text-3xl relative text-center">
+          <div className="text-[14px] md:text-xl relative  ">
             {productData?.productName}
           </div>
           {/* <div className="text-2xl font-bold line-through">
             {productData?.priceBeforeDiscount} $
           </div> */}
           <div className="flex justify-between items-center">
-            <div className="text-2xl font-bold">
+            <div className="text-2xl text-red-700 font-bold">
               {productData?.price} {t("SAR")}
             </div>
             {star ? (
@@ -150,7 +158,7 @@ export default function ProductCard() {
                   {star >= 1 ? (
                     <BsStarFill size={20} fill={cn(star >= 1 && " #f4c706")} />
                   ) : (
-                    <BiStar className="hover:text-[#f4c706]" size={20} />
+                    <BiStar className="text-[#f4c706]" size={20} />
                   )}
                 </Button>
                 <Button
@@ -169,7 +177,7 @@ export default function ProductCard() {
                   {star >= 2 ? (
                     <BsStarFill size={20} fill={cn(star >= 2 && " #f4c706")} />
                   ) : (
-                    <BiStar className="hover:text-[#f4c706]" size={20} />
+                    <BiStar className="text-[#f4c706]" size={20} />
                   )}
                 </Button>
                 <Button
@@ -188,7 +196,7 @@ export default function ProductCard() {
                   {star >= 3 ? (
                     <BsStarFill size={20} fill={cn(star >= 3 && " #f4c706")} />
                   ) : (
-                    <BiStar className="hover:text-[#f4c706]" size={20} />
+                    <BiStar className="text-[#f4c706]" size={20} />
                   )}
                 </Button>
                 <Button
@@ -207,7 +215,7 @@ export default function ProductCard() {
                   {star >= 4 ? (
                     <BsStarFill size={20} fill={cn(star >= 4 && " #f4c706")} />
                   ) : (
-                    <BiStar className="hover:text-[#f4c706]" size={20} />
+                    <BiStar className="text-[#f4c706]" size={20} />
                   )}
                 </Button>
                 <Button
@@ -232,7 +240,7 @@ export default function ProductCard() {
                       )}
                     />
                   ) : (
-                    <BiStar className="hover:text-[#f4c706]" size={20} />
+                    <BiStar className="text-[#f4c706]" size={20} />
                   )}
                 </Button>
               </div>
@@ -257,7 +265,7 @@ export default function ProductCard() {
                       fill={cn(productData?.totalRating >= 1 && " #f4c706")}
                     />
                   ) : (
-                    <BiStar className="hover:text-[#f4c706]" size={20} />
+                    <BiStar className="text-[#f4c706]" size={20} />
                   )}
                 </Button>
                 <Button
@@ -279,7 +287,7 @@ export default function ProductCard() {
                       fill={cn(productData?.totalRating >= 2 && " #f4c706")}
                     />
                   ) : (
-                    <BiStar className="hover:text-[#f4c706]" size={20} />
+                    <BiStar className="text-[#f4c706]" size={20} />
                   )}
                 </Button>
                 <Button
@@ -301,7 +309,7 @@ export default function ProductCard() {
                       fill={cn(productData?.totalRating >= 3 && " #f4c706")}
                     />
                   ) : (
-                    <BiStar className="hover:text-[#f4c706]" size={20} />
+                    <BiStar className="text-[#f4c706]" size={20} />
                   )}
                 </Button>
                 <Button
@@ -323,7 +331,7 @@ export default function ProductCard() {
                       fill={cn(productData?.totalRating >= 4 && " #f4c706")}
                     />
                   ) : (
-                    <BiStar className="hover:text-[#f4c706]" size={20} />
+                    <BiStar className="text-[#f4c706]" size={20} />
                   )}
                 </Button>
                 <Button
@@ -345,7 +353,7 @@ export default function ProductCard() {
                       fill={cn(productData?.totalRating === 5 && " #f4c706")}
                     />
                   ) : (
-                    <BiStar className="hover:text-[#f4c706]" size={20} />
+                    <BiStar className="text-[#f4c706]" size={20} />
                   )}
                 </Button>
               </div>
@@ -396,15 +404,18 @@ export default function ProductCard() {
             </Button>
           </div>
           <Button
-            className="bg-cyan-800 text-white font-500 text-xl"
+            variant="light"
+            radius="none"
+            className={cn(
+              "   font-500 text-xl",
+              showDesc && "border-b-2 border-black"
+            )}
             onClick={() => setShowDesc(!showDesc)}
           >
             {t("ShowDesc")}
           </Button>
           {showDesc && (
-            <div className="text-sm  text-justify ">
-              {productData?.description}
-            </div>
+            <code className="text-sm  ">{productData?.description}</code>
           )}
         </div>
       </div>
