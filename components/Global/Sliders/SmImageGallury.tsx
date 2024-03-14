@@ -19,12 +19,12 @@ interface IProps {
 
 const SmImageGallury = ({ alt, images, discount }: IProps) => {
   return (
-    <>
+    <div className="flex md:hidden">
       <Swiper
         effect={"cards"}
         grabCursor={true}
         modules={[EffectCards]}
-        className="mySwiper flex md:hidden"
+        className="mySwiper "
       >
         {images?.map((image, index) => (
           <SwiperSlide
@@ -41,7 +41,7 @@ const SmImageGallury = ({ alt, images, discount }: IProps) => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
+    </div>
   );
 };
 export default SmImageGallury;
