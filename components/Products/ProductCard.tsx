@@ -20,6 +20,7 @@ import { BsHeartFill, BsStarFill } from "react-icons/bs";
 import useFavoriteStore from "@/store/futures/useFavoriteStore";
 import { axiosInstance } from "@/util/axiosConfig";
 import SmImageGallury from "../Global/Sliders/SmImageGallury";
+import ImageGallurySM from "../Global/Sliders/ImageGallurySM";
 export default function ProductCard() {
   const lang = useLocale();
   const t = useTranslations("Globals");
@@ -123,7 +124,7 @@ export default function ProductCard() {
             alt={productData?.productName}
             discount={productData?.discountPercentage}
           />
-          <SmImageGallury
+          <ImageGallurySM
             images={productData?.images}
             alt={productData?.productName}
             discount={productData?.discountPercentage}
