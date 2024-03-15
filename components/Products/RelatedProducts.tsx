@@ -12,7 +12,7 @@ export default function RelatedProducts({
     <div>
       <Center>
         <Title title="RELATED PRODUCTS " />
-        <div className="flex   flex-wrap  justify-around gap-4">
+        <div className="flex   flex-wrap  justify-center gap-4">
           {productData?.map((product) => (
             <GCard
               key={product?._id}

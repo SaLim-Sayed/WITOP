@@ -1,7 +1,22 @@
 import type { Metadata } from "next";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { IBM_Plex_Sans_Arabic } from "next/font/google";
+import {
+  Almarai,
+  Amiri,
+  Amiri_Quran,
+  Aref_Ruqaa,
+  Aref_Ruqaa_Ink,
+  Baloo_Bhaijaan_2,
+  Cairo,
+  Grenze_Gotisch,
+  Hachi_Maru_Pop,
+  Changa,
+  Scheherazade_New,
+  El_Messiri,
+  Harmattan,
+  IBM_Plex_Sans_Arabic,
+} from "next/font/google";
 
 import "./globals.css";
 import NextUi from "@/components/Providers/NextUi";
@@ -13,9 +28,9 @@ import GToast from "@/components/Global/Providers/GToast";
 import { notFound } from "next/navigation";
 import MainNavbar from "@/components/Global/Layout/MainNavbar";
 
-const inter = IBM_Plex_Sans_Arabic({
+const inter = Changa({
   subsets: ["arabic"],
-  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  weight: ["400"],
 });
 
 export function generateStaticParams() {

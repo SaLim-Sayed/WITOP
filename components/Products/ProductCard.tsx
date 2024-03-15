@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import React from "react";
+
+import React, { memo } from "react";
 import Center from "../Global/Ui/Center";
 import ImageGallury from "../Global/Sliders/ImageGallury";
 import { BiHeart, BiStar } from "react-icons/bi";
@@ -21,7 +22,7 @@ import useFavoriteStore from "@/store/futures/useFavoriteStore";
 import { axiosInstance } from "@/util/axiosConfig";
 import SmImageGallury from "../Global/Sliders/SmImageGallury";
 import ImageGallurySM from "../Global/Sliders/ImageGallurySM";
-export default function ProductCard() {
+function ProductCard() {
   const lang = useLocale();
   const t = useTranslations("Globals");
 
@@ -52,7 +53,7 @@ export default function ProductCard() {
   };
 
   const [productData, setProductData] = useState<Product>();
-  const [showDesc, setShowDesc] = useState(false);
+  const [showRelated, setShowRelated] = useState(false);
   const [relatedProducts, setrelatedProducts] = useState<Product[]>();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -76,7 +77,7 @@ export default function ProductCard() {
       showErrorToast("Something Went Wrong , Try Again..");
     }
   };
-  const [len, setLen] = useState(120);
+  const [len, setLen] = useState(100);
   const addToCartHandler = async () => {
     try {
       setIsLoading(true);
@@ -132,20 +133,34 @@ export default function ProductCard() {
           />
         </div>
         <div className="flex flex-col gap-4">
-          <div className="text-[14px] md:text-xl relative  ">
+          <div className="text-xl md:text-xl font-[500] relative  ">
             {productData?.productName}
           </div>
-          {/* <div className="text-2xl font-bold line-through">
-            {productData?.priceBeforeDiscount} $
-          </div> */}
-          <div className="flex justify-between items-center">
-            <div className="text-2xl text-red-700 font-bold">
-              {productData?.price} {t("SAR")}
+
+          <div className="flex justify-between items-end">
+            <div className="flex flex-col">
+              <div className="  line-through">
+                {productData?.priceBeforeDiscount || productData?.price}{" "}
+                {t("SAR")}
+              </div>
+              <div className="flex gap-2">
+                <div className="text-2xl text-red-700 font-bold">
+                  {productData?.price} {t("SAR")}
+                </div>
+                <Button className="bg-pink-100" radius="lg" size="sm">
+                  - {productData?.discountPercentage || 0} %
+                </Button>
+              </div>
+              <div className=" text-gray-400 mt-4 font-semibold">
+                شامل ضريبة القيمة المضافة
+              </div>
             </div>
+
             {star ? (
-              <div className="flex gap-1">
+              <div className="flex -gap-2">
                 <Button
                   isIconOnly
+                  size="sm"
                   variant="light"
                   onClick={() => {
                     if (star !== 1) {
@@ -158,13 +173,14 @@ export default function ProductCard() {
                   }}
                 >
                   {star >= 1 ? (
-                    <BsStarFill size={20} fill={cn(star >= 1 && " #f4c706")} />
+                    <BsStarFill size={16} fill={cn(star >= 1 && " #f4c706")} />
                   ) : (
-                    <BiStar className="text-[#f4c706]" size={20} />
+                    <BiStar className="text-[#f4c706]" size={16} />
                   )}
                 </Button>
                 <Button
                   isIconOnly
+                  size="sm"
                   variant="light"
                   onClick={() => {
                     if (star !== 2) {
@@ -177,13 +193,14 @@ export default function ProductCard() {
                   }}
                 >
                   {star >= 2 ? (
-                    <BsStarFill size={20} fill={cn(star >= 2 && " #f4c706")} />
+                    <BsStarFill size={16} fill={cn(star >= 2 && " #f4c706")} />
                   ) : (
-                    <BiStar className="text-[#f4c706]" size={20} />
+                    <BiStar className="text-[#f4c706]" size={16} />
                   )}
                 </Button>
                 <Button
                   isIconOnly
+                  size="sm"
                   variant="light"
                   onClick={() => {
                     if (star !== 3) {
@@ -196,13 +213,14 @@ export default function ProductCard() {
                   }}
                 >
                   {star >= 3 ? (
-                    <BsStarFill size={20} fill={cn(star >= 3 && " #f4c706")} />
+                    <BsStarFill size={16} fill={cn(star >= 3 && " #f4c706")} />
                   ) : (
-                    <BiStar className="text-[#f4c706]" size={20} />
+                    <BiStar className="text-[#f4c706]" size={16} />
                   )}
                 </Button>
                 <Button
                   isIconOnly
+                  size="sm"
                   variant="light"
                   onClick={() => {
                     if (star !== 4) {
@@ -215,13 +233,14 @@ export default function ProductCard() {
                   }}
                 >
                   {star >= 4 ? (
-                    <BsStarFill size={20} fill={cn(star >= 4 && " #f4c706")} />
+                    <BsStarFill size={16} fill={cn(star >= 4 && " #f4c706")} />
                   ) : (
-                    <BiStar className="text-[#f4c706]" size={20} />
+                    <BiStar className="text-[#f4c706]" size={16} />
                   )}
                 </Button>
                 <Button
                   isIconOnly
+                  size="sm"
                   variant="light"
                   onClick={() => {
                     if (star !== 5) {
@@ -235,20 +254,21 @@ export default function ProductCard() {
                 >
                   {star === 5 || productData?.totalRating === 5 ? (
                     <BsStarFill
-                      size={20}
+                      size={16}
                       fill={cn(
                         (star === 5 || productData?.totalRating === 5) &&
                           " #f4c706"
                       )}
                     />
                   ) : (
-                    <BiStar className="text-[#f4c706]" size={20} />
+                    <BiStar className="text-[#f4c706]" size={16} />
                   )}
                 </Button>
               </div>
             ) : (
-              <div className="flex gap-1">
+              <div className="flex gap-0">
                 <Button
+                  size="sm"
                   onClick={() => {
                     if (star === 0) {
                       setStar(1);
@@ -263,14 +283,15 @@ export default function ProductCard() {
                 >
                   {productData?.totalRating >= 1 ? (
                     <BsStarFill
-                      size={20}
+                      size={16}
                       fill={cn(productData?.totalRating >= 1 && " #f4c706")}
                     />
                   ) : (
-                    <BiStar className="text-[#f4c706]" size={20} />
+                    <BiStar className="text-[#f4c706]" size={16} />
                   )}
                 </Button>
                 <Button
+                  size="sm"
                   onClick={() => {
                     if (star === 0) {
                       setStar(2);
@@ -285,14 +306,15 @@ export default function ProductCard() {
                 >
                   {productData?.totalRating >= 2 ? (
                     <BsStarFill
-                      size={20}
+                      size={16}
                       fill={cn(productData?.totalRating >= 2 && " #f4c706")}
                     />
                   ) : (
-                    <BiStar className="text-[#f4c706]" size={20} />
+                    <BiStar className="text-[#f4c706]" size={16} />
                   )}
                 </Button>
                 <Button
+                  size="sm"
                   onClick={() => {
                     if (star === 0) {
                       setStar(3);
@@ -307,14 +329,15 @@ export default function ProductCard() {
                 >
                   {productData?.totalRating >= 3 ? (
                     <BsStarFill
-                      size={20}
+                      size={16}
                       fill={cn(productData?.totalRating >= 3 && " #f4c706")}
                     />
                   ) : (
-                    <BiStar className="text-[#f4c706]" size={20} />
+                    <BiStar className="text-[#f4c706]" size={16} />
                   )}
                 </Button>
                 <Button
+                  size="sm"
                   onClick={() => {
                     if (star === 0) {
                       setStar(4);
@@ -329,14 +352,15 @@ export default function ProductCard() {
                 >
                   {productData?.totalRating >= 4 ? (
                     <BsStarFill
-                      size={20}
+                      size={16}
                       fill={cn(productData?.totalRating >= 4 && " #f4c706")}
                     />
                   ) : (
-                    <BiStar className="text-[#f4c706]" size={20} />
+                    <BiStar className="text-[#f4c706]" size={16} />
                   )}
                 </Button>
                 <Button
+                  size="sm"
                   onClick={() => {
                     if (star === 0) {
                       setStar(5);
@@ -351,16 +375,28 @@ export default function ProductCard() {
                 >
                   {productData?.totalRating === 5 ? (
                     <BsStarFill
-                      size={20}
+                      size={16}
                       fill={cn(productData?.totalRating === 5 && " #f4c706")}
                     />
                   ) : (
-                    <BiStar className="text-[#f4c706]" size={20} />
+                    <BiStar className="text-[#f4c706]" size={16} />
                   )}
                 </Button>
               </div>
             )}
           </div>
+          <div className="flex gap-4">
+            <div className="text-green-500">أصلي 100%</div>
+            <div
+              onClick={() => setShowRelated(true)}
+              className="text-blue-500 text-sm cursor-pointer"
+            >
+              أضغط هنا لعرض المزيد من العلامة التجارية
+            </div>
+          </div>
+          <Button className="w-full bg-pink-100 texl-xl">
+            هذا المنتج لايرد ولا يستبدل
+          </Button>
           <div className="flex gap-4">
             <div className="flex items-center w-[100px] h-12 justify-between border-[2px] gap-2">
               <Button
@@ -405,17 +441,19 @@ export default function ProductCard() {
               {!fav ? <BiHeart size={60} /> : <BsHeartFill size={60} />}
             </Button>
           </div>
-          <Button
-            radius="none"
-            className={cn("   font-500 text-xl  border-b-2 border-black")}
+
+          <div
+            className={cn(
+              " flex  font-[700] text-xl   border-b-2 border-black w-fit"
+            )}
           >
             {t("Desc")}
-          </Button>
+          </div>
 
           {productData?.description && (
-            <code className="text-sm  ">
+            <code className=" font-[600] font-sans ">
               {productData?.description.slice(0, len)}{" "}
-              {len <= 120 && (
+              {len <= 100 && (
                 <span
                   className="text-blue-500  cursor-pointer"
                   onClick={() =>
@@ -464,7 +502,9 @@ export default function ProductCard() {
         </Tabs>
       </div> */}
 
-      <RelatedProducts productData={relatedProducts} />
+      {showRelated && <RelatedProducts productData={relatedProducts} />}
     </Center>
   );
 }
+
+export default memo(ProductCard);
