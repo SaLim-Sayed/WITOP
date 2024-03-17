@@ -13,8 +13,8 @@ import WelcomeLayer from "./WelcomeLayer/WelcomeLayer";
 
 export default async function Home() {
   const trends = await getProductBySectionType({ type: "Trending" });
-  const selection = await getProductBySectionType({ type: "Our selection" });
-  const sale = await getProductBySectionType({ type: "On sale" });
+  const selection = await getProductBySectionType({ type: "Our Selection" });
+  const sale = await getProductBySectionType({ type: "On Sale" });
   return (
     <div>
       <SwipperPage />
