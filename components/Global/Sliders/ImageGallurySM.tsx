@@ -1,7 +1,7 @@
 "use client";
 
 import { Tab } from "@headlessui/react";
-import Image from "next/image";
+ 
 import {
   Modal,
   ModalContent,
@@ -10,6 +10,7 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
+  Image,
 } from "@nextui-org/react";
 import { useLocale } from "next-intl";
 import { cn } from "@/libs/cn";
@@ -33,20 +34,17 @@ const ImageGallurySM = ({ alt, images, discount }: IProps) => {
       <Tab.Panels className="aspect-w-1 aspect-h-1 w-full relative ">
         {images?.map((image, index) => (
           <Tab.Panel key={index}>
-            <Button
-              variant="light"
-              color="default"
-              className="h-64 hover:bg-transparent w-[20rem] object-cover object-center sm:rounded-lg"
-              onPress={onOpen}
+             <div
+              className=" cursor-pointer  hover:bg-transparent w-[20rem] object-cover object-center sm:rounded-lg"
+              onClick={onOpen}
             >
               <Image
-                width={300}
-                height={300}
+                radius="lg"
                 src={image}
                 alt={alt}
-                className="h-64 w-[20rem] object-fill object-center sm:rounded-lg"
+                className="  w-[20rem] object-cover object-center sm:rounded-lg"
               />
-            </Button>
+            </div>
           </Tab.Panel>
         ))}
       </Tab.Panels>{" "}

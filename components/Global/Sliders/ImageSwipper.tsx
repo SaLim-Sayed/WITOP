@@ -60,8 +60,9 @@ const ImageSwipper = ({ images }: IProps) => {
             <SwiperSlide key={index}>
               <div className="flex w-full  items-center justify-center">
                 <Image
+                  isZoomed
                   alt="Card background"
-                  className="z-0 w-64 h-64  mb-4  pb-4 cursor-pointer "
+                  className="z-0 w-80  hover:scale-110   mb-4  pb-4 cursor-pointer  "
                   src={image}
                 />
               </div>
