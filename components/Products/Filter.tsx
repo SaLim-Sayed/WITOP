@@ -119,7 +119,7 @@ const FilterComponent: React.FC = ({ cat }: any) => {
   };
 
   useEffect(() => {
-    setSelectedCategoryFromURL(); // Set selected category from URL on component mount
+    setSelectedCategoryFromURL();
     getAllFilters();
   }, []);
   return (
@@ -182,6 +182,7 @@ const FilterComponent: React.FC = ({ cat }: any) => {
                   </div>
                   <RadioGroup
                     value={selectedCategory}
+                    onValueChange={(selected) => setSelectedCategory(selected)}
                     label={
                       <p className="font-bold text-xl text-cyan-800">
                         Filter Category{" "}
