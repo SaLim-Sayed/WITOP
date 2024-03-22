@@ -106,7 +106,7 @@ const ImageGallury = ({ alt, images, discount }: IProps) => {
       <Modal
         backdrop="blur"
         size="xl"
-    placement="center"
+        placement="center"
         isOpen={isOpen}
         onOpenChange={onOpenChange}
       >

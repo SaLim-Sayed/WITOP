@@ -53,7 +53,7 @@ const Brands = ({}: IProps) => {
             </div>
           ))}
         </div> */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  mx-auto justify-center items-center  justify-items-center  gap-8 md:gap-4">
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  mx-auto justify-center items-center  justify-items-center  gap-8 md:gap-4">
           {subBrands?.map((brand) => (
             <div
               key={brand.id}
@@ -76,7 +76,7 @@ const Brands = ({}: IProps) => {
               </Button>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </Center>
   );
