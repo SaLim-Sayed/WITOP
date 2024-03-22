@@ -28,7 +28,7 @@ const ImageSwipper = ({ images }: IProps) => {
     <>
       <div className="   cursor-pointer ">
         <Swiper
-          effect={"coverflow"}
+           
           grabCursor={true}
           centeredSlides={true}
           slidesPerView={"auto"}
