@@ -34,7 +34,7 @@ export default function GCard({
   outOfStock?: any;
 }) {
   const translate = useTranslations("Buttons");
-  const t=useTranslations("Globals")
+  const t = useTranslations("Globals");
   const router = useRouter();
   const locale = useLocale();
   const dir = locale == "ar" ? "rtl" : "ltr";
@@ -69,20 +69,29 @@ export default function GCard({
               />
             </div>
             <Divider className="mt-0 pt-0" />
-            <div className="flex justify-between items-start mx-2">
-              <div className="flex w-[70%] flex-col gap-2 items-start">
-                <p className="text-dark " title={title}>
-                  {title.slice(0, 20)}...
-                </p>
-                <p className=" text-slate-600">{category}</p>
+            <div className="flex flex-col gap-4 justify-between">
+              <div className="flex justify-between   mx-2">
+                <div className="flex flex-col gap-2 ">
+                  <p
+                    className="text-slate-950  font-[400] text-start text-[16px] font-sans    "
+                    title={title}
+                  >
+                    {title}
+                  </p>
+                </div>
               </div>
-              <div className=" flex flex-col w-[30%] font-bold items-end  ">
-                <span className=" line-through text-gray-500 font-normal">
-                  {priceBeforeDiscount}
-                </span>
-                <span className="text-red-700">
-                  {price} {t("SAR")}
-                </span>
+              <div className="flex justify-between items-start mx-2">
+                <div className="flex w-[70%] flex-col gap-2 items-start">
+                  <p className=" text-slate-600">{category}</p>
+                </div>
+                <div className=" flex flex-col w-[30%] font-bold items-end  ">
+                  <span className=" line-through text-gray-500 font-normal">
+                    {priceBeforeDiscount}
+                  </span>
+                  <span className="text-red-700">
+                    {price} {t("SAR")}
+                  </span>
+                </div>
               </div>
             </div>
           </CardBody>

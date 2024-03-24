@@ -88,14 +88,14 @@ const ImageGallury = ({ alt, images, discount }: IProps) => {
         {images?.map((image, index) => (
           <Tab.Panel key={index}>
             <div
-              className=" cursor-pointer  hover:bg-transparent w-[20rem] object-cover object-center sm:rounded-lg"
+              className=" cursor-pointer  hover:bg-transparent w-[20rem] mx-auto flex justify-center object-cover object-center sm:rounded-lg"
               onClick={onOpen}
             >
               <Image
                 radius="lg"
                 src={image}
                 alt={alt}
-                className="  w-[20rem] object-cover object-center sm:rounded-lg"
+                className="  w-fit h-fit max-h-[400px] object-cover object-center sm:rounded-lg"
               />
             </div>
           </Tab.Panel>
