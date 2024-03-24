@@ -452,12 +452,12 @@ export default function NavbarPage() {
               {!token && (
                 <Button
                   size="sm"
-                  radius="md"
+                 isIconOnly
                   className="font-bold bg-cyan-800 text-white w-fit  flex justify-center"
                   onClick={() => router.push("/auth/login")}
                   variant="solid"
                 >
-                  Login
+                   <BiLogIn size={20} />
                 </Button>
               )}
             </ClientHydration>

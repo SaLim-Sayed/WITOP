@@ -28,7 +28,6 @@ const ImageSwipper = ({ images }: IProps) => {
     <>
       <div className="   cursor-pointer ">
         <Swiper
-           
           grabCursor={true}
           centeredSlides={true}
           slidesPerView={"auto"}
@@ -62,7 +61,7 @@ const ImageSwipper = ({ images }: IProps) => {
                 <Image
                   isZoomed
                   alt="Card background"
-                  className="z-0 w-80  hover:scale-110   mb-4  pb-4 cursor-pointer  "
+                  className="z-0 w-fit max-h-[400px] md:max-h-max hover:scale-110   mb-4  pb-4 cursor-pointer  "
                   src={image}
                 />
               </div>
