@@ -16,7 +16,7 @@ const ToTop = ( ) => {
     width: "60px",
     height: "60px",
     borderRadius: "50%",
-    zIndex:"50"
+    zIndex:"30"
     
   }}
 />
