@@ -119,7 +119,7 @@ function ProductCard() {
   }, []);
   return (
     <Center>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 relative">
         <div className="flex justify-center items-center">
           <ImageGallury
             images={productData?.images}
@@ -397,7 +397,7 @@ function ProductCard() {
           <Button className="w-full bg-pink-100 texl-xl">
             هذا المنتج لايرد ولا يستبدل
           </Button>
-          <div className="flex gap-4">
+          <div className="hidden md:flex gap-4">
             <div className="flex items-center w-[100px] h-12 justify-between border-[2px] gap-2">
               <Button
                 variant="light"
@@ -466,6 +466,50 @@ function ProductCard() {
                 )}
               </pre>
             )}
+          </div>
+          <div className="md:hidden flex gap-4 sticky bottom-0 bg-white">
+            <div className="flex items-center w-[100px] h-12 justify-between border-[2px] gap-2">
+              <Button
+                variant="light"
+                size="sm"
+                isIconOnly
+                onClick={handleDecrease}
+                type="button"
+              >
+                -
+              </Button>
+              <div>{count}</div>
+              <Button
+                variant="light"
+                size="sm"
+                isIconOnly
+                onClick={handleIncrease}
+                type="button"
+                className=" "
+              >
+                +
+              </Button>
+            </div>
+            <Button
+              onClick={() => addToCartHandler()}
+              radius="sm"
+              className="h-12 w-40 bg-black text-white uppercase "
+            >
+              {t("ADDCART")}
+            </Button>
+            <Button
+              onClick={() => {
+                addToFavoriteHandler();
+                setFav(!fav);
+              }}
+              isIconOnly
+              variant="light"
+              radius="sm"
+              className="h-12 w-12 "
+            >
+              {" "}
+              {!fav ? <BiHeart size={60} /> : <BsHeartFill size={60} />}
+            </Button>
           </div>
         </div>
       </div>
