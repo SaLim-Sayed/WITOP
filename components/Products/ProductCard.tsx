@@ -451,7 +451,7 @@ function ProductCard() {
           </div>
 
           {productData?.description && (
-            <code className=" font-[600] font-sans ">
+            <code className=" font-[500] font-sans  w-600   whitespace-pre-wrap break-words">
               {productData?.description.slice(0, len)}{" "}
               {len <= 100 && (
                 <span

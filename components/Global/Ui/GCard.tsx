@@ -42,7 +42,7 @@ export default function GCard({
     <ClientHydration LoaderComponent={<GCardSkeleton />}>
       <div
         dir={dir}
-        className="flex flex-col gap-2 shadow-xl max-w-[400px] min-w-[250px] lg:min-w-[285px] max-h-[350px]  rounded-lg relative "
+        className="flex flex-col gap-2 shadow-xl w-[350px]  max-h-[350px]  rounded-lg relative "
       >
         {/* <Button
           key={id}
