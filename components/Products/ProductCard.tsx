@@ -444,27 +444,29 @@ function ProductCard() {
 
           <div
             className={cn(
-              " flex  font-[700] text-xl   border-b-2 border-black w-fit"
+              " flex  font-[500] text-xl text-gray-500  border-b-2 border-black w-fit"
             )}
           >
             {t("Desc")}
           </div>
 
-          {productData?.description && (
-            <code className=" font-[500] font-sans  w-600   whitespace-pre-wrap break-words">
-              {productData?.description.slice(0, len)}{" "}
-              {len <= 100 && (
-                <span
-                  className="text-blue-500  cursor-pointer"
-                  onClick={() =>
-                    setLen(productData?.description.length || 1000)
-                  }
-                >
-                  {t("ShowMore")}
-                </span>
-              )}
-            </code>
-          )}
+          <div className="flex">
+            {productData?.description && (
+              <pre className=" font-[500] font-sans  w-600  whitespace-break-spaces break-words">
+                {productData?.description.slice(0, len)}{" "}
+                {len <= 100 && (
+                  <span
+                    className="text-blue-500  cursor-pointer"
+                    onClick={() =>
+                      setLen(productData?.description.length || 1000)
+                    }
+                  >
+                    {t("ShowMore")}
+                  </span>
+                )}
+              </pre>
+            )}
+          </div>
         </div>
       </div>
       {/* <div className="flex flex-col items-center justify-center">
