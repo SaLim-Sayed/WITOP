@@ -1,5 +1,25 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
+
+import {
+  Box,
+  Flex,
+  HStack,
+  Text,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuDivider,
+  useDisclosure,
+  useColorModeValue,
+  Stack,
+} from "@chakra-ui/react";
+import Image from "next/legacy/image";
+import Link from "next/link";
+import { BiMenu } from "react-icons/bi";
+import { IoMdCloseCircleOutline } from "react-icons/io";
+import { MdAddCircleOutline } from "react-icons/md";
 import React, { useEffect, useState } from "react";
 import {
   Navbar,
@@ -21,7 +41,6 @@ import {
   DropdownTrigger,
   Dropdown,
 } from "@nextui-org/react";
-import Image from "next/legacy/image";
 import {
   BiHeart,
   BiLogIn,
@@ -34,7 +53,7 @@ import {
 } from "react-icons/bi";
 import { BsCart, BsHeartFill } from "react-icons/bs";
 import MainDrawer from "../Drawer/MainDrawer";
-import { Spinner, useDisclosure } from "@chakra-ui/react";
+import { Spinner } from "@chakra-ui/react";
 import TopHeader from "./TopHeader";
 import { cn } from "@/libs/cn";
 import searchProduct from "@/store/actions/searchProduct.module";
@@ -44,7 +63,6 @@ import { cartStore } from "@/store/futures/cartStore";
 import ClientHydration from "../Providers/ClientHydration";
 import Cookies from "js-cookie";
 import { usePathname, useRouter } from "next/navigation";
-import Link from "next/link";
 import { BiWorld } from "react-icons/bi";
 import { useLocale, useTranslations } from "next-intl";
 import { showToast } from "../Ui/Toast";
@@ -53,8 +71,12 @@ import getFavoriteList from "@/store/actions/getFavoriteList.module";
 import useFavoriteStore from "@/store/futures/useFavoriteStore";
 import { axiosInstance } from "@/util/axiosConfig";
 import Cookie from "js-cookie";
-export default function NavbarPage() {
-  const router = useRouter()
+interface Props {
+  children: React.ReactNode;
+}
+
+export default function WithAction() {
+  const router = useRouter();
   const locale = useLocale();
   const pathName = usePathname();
   const translate = useTranslations("Globals");
@@ -70,7 +92,6 @@ export default function NavbarPage() {
   const handleLogout = async () => {
     Cookies.set("token", "");
     window.location.reload();
-
   };
   const getDirection = () => {
     Cookies.set("NEXT_LOCALE", locale == "ar" ? "en" : "ar");
@@ -156,18 +177,14 @@ export default function NavbarPage() {
       setPlacement("left");
     }
   }, [locale]);
+
   return (
-    <div className="flex flex-col fixed top-0 z-50 w-full shadow-md">
+    <>
       <TopHeader />
-      <Navbar
-        classNames={{
-          wrapper: "w-full",
-        }}
-        isBordered
-        className=" bg-white  h-24 relative"
-      >
-        <NavbarContent className="flex lg:hidden  ">
-          <NavbarBrand>
+
+      <Box bg={"#fff"} className="shadow-md " px={4}>
+        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
+          <Navbar className=" w-3  flex lg:hidden ">
             <Button
               onClick={discloserChakra.onOpen}
               isIconOnly
@@ -181,60 +198,62 @@ export default function NavbarPage() {
                 <BiMenuAltLeft size={40} />
               )}
             </Button>
-            <Button
-              isIconOnly
-              size="lg"
-              variant="light"
-              className="min-w-[120px]    flex lg:hidden gap-2"
-            >
-              <Link href="/" className="font-bold text-xl text-[#00b5bc]">
-                <Image
-                  src="/logo1.png"
-                  alt="logo"
-                  className=" p-0 m-0"
-                  layout="fill"
-                />
-              </Link>
-            </Button>
-          </NavbarBrand>
-        </NavbarContent>
+            <Box className={cn(locale === "ar" ? "-mr-6" : "-ml-6")}>
+              <Button
+                isIconOnly
+                size="lg"
+                variant="light"
+                className="min-w-[100px]  md:min-w-[200px]   flex   gap-2"
+              >
+                <Link href="/" className="font-bold text-xl text-[#00b5bc]">
+                  <Image
+                    src="/logo1.png"
+                    alt="logo"
+                    className=" p-0 m-0"
+                    layout="fill"
+                  />
+                </Link>
+              </Button>
+            </Box>
+            <CartSlider
+              open={cartSliderIsOpen}
+              setCartSliderIsOpen={setCartSliderIsOpen}
+            />
+            <MainDrawer
+              placement={placement}
+              onClose={discloserChakra.onClose}
+              isOpen={discloserChakra.isOpen}
+            />
+          </Navbar>
+          <HStack spacing={8} className="hidden lg:flex" alignItems={"center"}>
+            <Box>
+              <Button
+                isIconOnly
+                size="lg"
+                variant="light"
+                className="min-w-[120px]  hidden lg:flex md:min-w-[200px]     gap-2"
+              >
+                <Link href="/" className="font-bold text-xl text-[#00b5bc]">
+                  <Image
+                    src="/logo1.png"
+                    alt="logo"
+                    className=" p-0 m-0"
+                    layout="fill"
+                  />
+                </Link>
+              </Button>
+            </Box>
+          </HStack>
 
-        <NavbarContent
-          className={cn(
-            "hidden lg:flex gap-4   w-full",
-            locale === "ar" ? "mr-0   lg:-mr-[180px] " : "ml-0  lg:-ml-[180px] "
-          )}
-          justify="start"
-        >
-          <NavbarBrand>
-            <Button
-              isIconOnly
-              size="lg"
-              variant="light"
-              className="max-w-[200px] w-full h-16 p-0  flex justify-between gap-2"
-            >
-              <Link href="/" className="font-bold text-3xl text-[#00b5bc]">
-                {" "}
-                <Image
-                  src="/logo1.png"
-                  alt="logo"
-                  className=" p-0 m-0"
-                  layout="fill"
-                />
-              </Link>
-            </Button>
-          </NavbarBrand>
-        </NavbarContent>
-        <NavbarContent className="lg:flex  hidden   gap-4" justify="center">
-          <NavbarItem>
+          <div className="my-2">
             <Autocomplete
               label={translate("Navbar/Search")}
               variant="bordered"
               onInputChange={(value) => {
                 setSearchTxt(value);
               }}
-              size="lg"
-              className="sm:flex-1 rounded-[8px] w-[600px]"
+              size="md"
+              className="hidden lg:flex  rounded-[8px] w-[600px]"
               inputProps={{
                 classNames: {
                   inputWrapper: "bg-lightColor-900",
@@ -279,23 +298,8 @@ export default function NavbarPage() {
                 </AutocompleteItem>
               ))}
             </Autocomplete>
-          </NavbarItem>
-        </NavbarContent>
-        <NavbarContent
-          className={cn(
-            "mr-0  w-full ",
-            locale === "ar"
-              ? "ml-0 lg:-ml-[180px]   2xl:-ml-[240px]"
-              : " mr-0  lg:-mr-[180px] 2xl:-mr-[240px]"
-          )}
-          justify="end"
-        >
-          <NavbarItem
-            className={cn(
-              "flex items-center gap-1 md:gap-2   ",
-              locale === "ar" ? "mr-0 lg:ml-8" : "ml-0 lg:mr-8"
-            )}
-          >
+          </div>
+          <Flex alignItems={"center"}>
             <Button
               size="sm"
               className="font-bold  md:hidden inline"
@@ -405,6 +409,7 @@ export default function NavbarPage() {
               isIconOnly
               variant="flat"
               color="success"
+              className="mx-1"
               onClick={switchLang}
             >
               <BiWorld />
@@ -452,27 +457,18 @@ export default function NavbarPage() {
               {!token && (
                 <Button
                   size="sm"
-                  isIconOnly
                   className="font-bold bg-cyan-800 text-white w-fit  flex justify-center"
                   onClick={() => router.push("/auth/login")}
                   variant="solid"
                 >
-                  <BiLogIn size={20} />
+                  {translate("Login")}
+                  {/* <BiLogIn size={20} /> */}
                 </Button>
               )}
             </ClientHydration>
-          </NavbarItem>
-        </NavbarContent>
-        <CartSlider
-          open={cartSliderIsOpen}
-          setCartSliderIsOpen={setCartSliderIsOpen}
-        />
-        <MainDrawer
-          placement={placement}
-          onClose={discloserChakra.onClose}
-          isOpen={discloserChakra.isOpen}
-        />
-      </Navbar>
+          </Flex>
+        </Flex>
+      </Box>
       {isSearch && (
         <div className="flex lg:hidden">
           <Autocomplete
@@ -529,6 +525,6 @@ export default function NavbarPage() {
           </Autocomplete>
         </div>
       )}
-    </div>
+    </>
   );
 }

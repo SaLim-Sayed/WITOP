@@ -7,8 +7,10 @@
     "ON SALE": "الاكثر مبيعاََ",
     "OUR SELECTION": "اختيارنا",
     "SeeAll": "عرض الكل "
+
   },
   "Globals": {
+    "Login": "دخول  ",
     "Navbar/Search": "بحث",
     "Home": "الرئيسية",
     "Category": "القسم",
@@ -18,9 +20,9 @@
     "Wait": "أنتظر.......",
     "Navbar/Offer/Conditions": " انظر للشروط",
     "SAR": "ريال",
-    "ADDCART":"اضافة الى السلة",
+    "ADDCART": "اضافة الى السلة",
     "Desc": "  الوصف والاستخدام",
-    "ShowMore":"...عرض المزيد"
+    "ShowMore": "...عرض المزيد"
   },
   "Categories": {
     "All": "الكل",
