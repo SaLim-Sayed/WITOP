@@ -137,256 +137,271 @@ function ProductCard() {
             {productData?.productName}
           </div>
 
-          <div className="flex justify-between items-end">
+          <div className="flex  flex-col gap-2">
             <div className="flex flex-col">
               <div className="  line-through">
                 {productData?.priceBeforeDiscount || productData?.price}{" "}
                 {t("SAR")}
               </div>
-              <div className="flex gap-2">
-                <div className="text-2xl text-red-700 font-bold">
-                  {productData?.price} {t("SAR")}
+              <div className="  flex  gap-4 items-end ">
+                <div className="flex gap-2">
+                  <div className="text-2xl text-red-700 font-bold">
+                    {productData?.price} {t("SAR")}
+                  </div>
+                  <Button className="bg-pink-100" radius="lg" size="sm">
+                    - {productData?.discountPercentage || 0} %
+                  </Button>
                 </div>
-                <Button className="bg-pink-100" radius="lg" size="sm">
-                  - {productData?.discountPercentage || 0} %
-                </Button>
+                <div className="text-green-500">أصلي 100%</div>
               </div>
-              <div className=" text-gray-400 mt-4 font-semibold">
+              <div className=" text-gray-400 mt-4  ">
                 شامل ضريبة القيمة المضافة
               </div>
             </div>
-
-            {star ? (
-              <div className="flex -gap-2">
-                <Button
-                  isIconOnly
-                  size="sm"
-                  variant="light"
-                  onClick={() => {
-                    if (star !== 1) {
-                      setStar(1);
-                      addRatingHandler(1);
-                    } else {
-                      setStar(0);
-                      addRatingHandler(0);
-                    }
-                  }}
-                >
-                  {star >= 1 ? (
-                    <BsStarFill size={16} fill={cn(star >= 1 && " #f4c706")} />
-                  ) : (
-                    <BiStar className="text-[#f4c706]" size={16} />
-                  )}
-                </Button>
-                <Button
-                  isIconOnly
-                  size="sm"
-                  variant="light"
-                  onClick={() => {
-                    if (star !== 2) {
-                      setStar(2);
-                      addRatingHandler(2);
-                    } else {
-                      setStar(1);
-                      addRatingHandler(1);
-                    }
-                  }}
-                >
-                  {star >= 2 ? (
-                    <BsStarFill size={16} fill={cn(star >= 2 && " #f4c706")} />
-                  ) : (
-                    <BiStar className="text-[#f4c706]" size={16} />
-                  )}
-                </Button>
-                <Button
-                  isIconOnly
-                  size="sm"
-                  variant="light"
-                  onClick={() => {
-                    if (star !== 3) {
-                      setStar(3);
-                      addRatingHandler(3);
-                    } else {
-                      setStar(2);
-                      addRatingHandler(2);
-                    }
-                  }}
-                >
-                  {star >= 3 ? (
-                    <BsStarFill size={16} fill={cn(star >= 3 && " #f4c706")} />
-                  ) : (
-                    <BiStar className="text-[#f4c706]" size={16} />
-                  )}
-                </Button>
-                <Button
-                  isIconOnly
-                  size="sm"
-                  variant="light"
-                  onClick={() => {
-                    if (star !== 4) {
-                      setStar(4);
-                      addRatingHandler(4);
-                    } else {
-                      setStar(3);
-                      addRatingHandler(3);
-                    }
-                  }}
-                >
-                  {star >= 4 ? (
-                    <BsStarFill size={16} fill={cn(star >= 4 && " #f4c706")} />
-                  ) : (
-                    <BiStar className="text-[#f4c706]" size={16} />
-                  )}
-                </Button>
-                <Button
-                  isIconOnly
-                  size="sm"
-                  variant="light"
-                  onClick={() => {
-                    if (star !== 5) {
-                      setStar(5);
-                      addRatingHandler(5);
-                    } else {
-                      setStar(4);
-                      addRatingHandler(4);
-                    }
-                  }}
-                >
-                  {star === 5 || productData?.totalRating === 5 ? (
-                    <BsStarFill
-                      size={16}
-                      fill={cn(
-                        (star === 5 || productData?.totalRating === 5) &&
-                          " #f4c706"
-                      )}
-                    />
-                  ) : (
-                    <BiStar className="text-[#f4c706]" size={16} />
-                  )}
-                </Button>
-              </div>
-            ) : (
-              <div className="flex gap-0">
-                <Button
-                  size="sm"
-                  onClick={() => {
-                    if (star === 0) {
-                      setStar(1);
-                      addRatingHandler(1);
-                    } else {
-                      setStar(0);
-                      addRatingHandler(0);
-                    }
-                  }}
-                  isIconOnly
-                  variant="light"
-                >
-                  {productData?.totalRating >= 1 ? (
-                    <BsStarFill
-                      size={16}
-                      fill={cn(productData?.totalRating >= 1 && " #f4c706")}
-                    />
-                  ) : (
-                    <BiStar className="text-[#f4c706]" size={16} />
-                  )}
-                </Button>
-                <Button
-                  size="sm"
-                  onClick={() => {
-                    if (star === 0) {
-                      setStar(2);
-                      addRatingHandler(2);
-                    } else {
-                      setStar(1);
-                      addRatingHandler(1);
-                    }
-                  }}
-                  isIconOnly
-                  variant="light"
-                >
-                  {productData?.totalRating >= 2 ? (
-                    <BsStarFill
-                      size={16}
-                      fill={cn(productData?.totalRating >= 2 && " #f4c706")}
-                    />
-                  ) : (
-                    <BiStar className="text-[#f4c706]" size={16} />
-                  )}
-                </Button>
-                <Button
-                  size="sm"
-                  onClick={() => {
-                    if (star === 0) {
-                      setStar(3);
-                      addRatingHandler(3);
-                    } else {
-                      setStar(2);
-                      addRatingHandler(2);
-                    }
-                  }}
-                  isIconOnly
-                  variant="light"
-                >
-                  {productData?.totalRating >= 3 ? (
-                    <BsStarFill
-                      size={16}
-                      fill={cn(productData?.totalRating >= 3 && " #f4c706")}
-                    />
-                  ) : (
-                    <BiStar className="text-[#f4c706]" size={16} />
-                  )}
-                </Button>
-                <Button
-                  size="sm"
-                  onClick={() => {
-                    if (star === 0) {
-                      setStar(4);
-                      addRatingHandler(4);
-                    } else {
-                      setStar(3);
-                      addRatingHandler(3);
-                    }
-                  }}
-                  isIconOnly
-                  variant="light"
-                >
-                  {productData?.totalRating >= 4 ? (
-                    <BsStarFill
-                      size={16}
-                      fill={cn(productData?.totalRating >= 4 && " #f4c706")}
-                    />
-                  ) : (
-                    <BiStar className="text-[#f4c706]" size={16} />
-                  )}
-                </Button>
-                <Button
-                  size="sm"
-                  onClick={() => {
-                    if (star === 0) {
-                      setStar(5);
-                      addRatingHandler(5);
-                    } else {
-                      setStar(4);
-                      addRatingHandler(4);
-                    }
-                  }}
-                  isIconOnly
-                  variant="light"
-                >
-                  {productData?.totalRating === 5 ? (
-                    <BsStarFill
-                      size={16}
-                      fill={cn(productData?.totalRating === 5 && " #f4c706")}
-                    />
-                  ) : (
-                    <BiStar className="text-[#f4c706]" size={16} />
-                  )}
-                </Button>
-              </div>
-            )}
+            <div className="flex  ">
+              {star ? (
+                <div className="flex -gap-2">
+                  <Button
+                    isIconOnly
+                    size="sm"
+                    variant="light"
+                    onClick={() => {
+                      if (star !== 1) {
+                        setStar(1);
+                        addRatingHandler(1);
+                      } else {
+                        setStar(0);
+                        addRatingHandler(0);
+                      }
+                    }}
+                  >
+                    {star >= 1 ? (
+                      <BsStarFill
+                        size={16}
+                        fill={cn(star >= 1 && " #f4c706")}
+                      />
+                    ) : (
+                      <BiStar className="text-[#f4c706]" size={16} />
+                    )}
+                  </Button>
+                  <Button
+                    isIconOnly
+                    size="sm"
+                    variant="light"
+                    onClick={() => {
+                      if (star !== 2) {
+                        setStar(2);
+                        addRatingHandler(2);
+                      } else {
+                        setStar(1);
+                        addRatingHandler(1);
+                      }
+                    }}
+                  >
+                    {star >= 2 ? (
+                      <BsStarFill
+                        size={16}
+                        fill={cn(star >= 2 && " #f4c706")}
+                      />
+                    ) : (
+                      <BiStar className="text-[#f4c706]" size={16} />
+                    )}
+                  </Button>
+                  <Button
+                    isIconOnly
+                    size="sm"
+                    variant="light"
+                    onClick={() => {
+                      if (star !== 3) {
+                        setStar(3);
+                        addRatingHandler(3);
+                      } else {
+                        setStar(2);
+                        addRatingHandler(2);
+                      }
+                    }}
+                  >
+                    {star >= 3 ? (
+                      <BsStarFill
+                        size={16}
+                        fill={cn(star >= 3 && " #f4c706")}
+                      />
+                    ) : (
+                      <BiStar className="text-[#f4c706]" size={16} />
+                    )}
+                  </Button>
+                  <Button
+                    isIconOnly
+                    size="sm"
+                    variant="light"
+                    onClick={() => {
+                      if (star !== 4) {
+                        setStar(4);
+                        addRatingHandler(4);
+                      } else {
+                        setStar(3);
+                        addRatingHandler(3);
+                      }
+                    }}
+                  >
+                    {star >= 4 ? (
+                      <BsStarFill
+                        size={16}
+                        fill={cn(star >= 4 && " #f4c706")}
+                      />
+                    ) : (
+                      <BiStar className="text-[#f4c706]" size={16} />
+                    )}
+                  </Button>
+                  <Button
+                    isIconOnly
+                    size="sm"
+                    variant="light"
+                    onClick={() => {
+                      if (star !== 5) {
+                        setStar(5);
+                        addRatingHandler(5);
+                      } else {
+                        setStar(4);
+                        addRatingHandler(4);
+                      }
+                    }}
+                  >
+                    {star === 5 || productData?.totalRating === 5 ? (
+                      <BsStarFill
+                        size={16}
+                        fill={cn(
+                          (star === 5 || productData?.totalRating === 5) &&
+                            " #f4c706"
+                        )}
+                      />
+                    ) : (
+                      <BiStar className="text-[#f4c706]" size={16} />
+                    )}
+                  </Button>
+                </div>
+              ) : (
+                <div className="flex gap-0">
+                  <Button
+                    size="sm"
+                    onClick={() => {
+                      if (star === 0) {
+                        setStar(1);
+                        addRatingHandler(1);
+                      } else {
+                        setStar(0);
+                        addRatingHandler(0);
+                      }
+                    }}
+                    isIconOnly
+                    variant="light"
+                  >
+                    {productData?.totalRating >= 1 ? (
+                      <BsStarFill
+                        size={16}
+                        fill={cn(productData?.totalRating >= 1 && " #f4c706")}
+                      />
+                    ) : (
+                      <BiStar className="text-[#f4c706]" size={16} />
+                    )}
+                  </Button>
+                  <Button
+                    size="sm"
+                    onClick={() => {
+                      if (star === 0) {
+                        setStar(2);
+                        addRatingHandler(2);
+                      } else {
+                        setStar(1);
+                        addRatingHandler(1);
+                      }
+                    }}
+                    isIconOnly
+                    variant="light"
+                  >
+                    {productData?.totalRating >= 2 ? (
+                      <BsStarFill
+                        size={16}
+                        fill={cn(productData?.totalRating >= 2 && " #f4c706")}
+                      />
+                    ) : (
+                      <BiStar className="text-[#f4c706]" size={16} />
+                    )}
+                  </Button>
+                  <Button
+                    size="sm"
+                    onClick={() => {
+                      if (star === 0) {
+                        setStar(3);
+                        addRatingHandler(3);
+                      } else {
+                        setStar(2);
+                        addRatingHandler(2);
+                      }
+                    }}
+                    isIconOnly
+                    variant="light"
+                  >
+                    {productData?.totalRating >= 3 ? (
+                      <BsStarFill
+                        size={16}
+                        fill={cn(productData?.totalRating >= 3 && " #f4c706")}
+                      />
+                    ) : (
+                      <BiStar className="text-[#f4c706]" size={16} />
+                    )}
+                  </Button>
+                  <Button
+                    size="sm"
+                    onClick={() => {
+                      if (star === 0) {
+                        setStar(4);
+                        addRatingHandler(4);
+                      } else {
+                        setStar(3);
+                        addRatingHandler(3);
+                      }
+                    }}
+                    isIconOnly
+                    variant="light"
+                  >
+                    {productData?.totalRating >= 4 ? (
+                      <BsStarFill
+                        size={16}
+                        fill={cn(productData?.totalRating >= 4 && " #f4c706")}
+                      />
+                    ) : (
+                      <BiStar className="text-[#f4c706]" size={16} />
+                    )}
+                  </Button>
+                  <Button
+                    size="sm"
+                    onClick={() => {
+                      if (star === 0) {
+                        setStar(5);
+                        addRatingHandler(5);
+                      } else {
+                        setStar(4);
+                        addRatingHandler(4);
+                      }
+                    }}
+                    isIconOnly
+                    variant="light"
+                  >
+                    {productData?.totalRating === 5 ? (
+                      <BsStarFill
+                        size={16}
+                        fill={cn(productData?.totalRating === 5 && " #f4c706")}
+                      />
+                    ) : (
+                      <BiStar className="text-[#f4c706]" size={16} />
+                    )}
+                  </Button>
+                </div>
+              )}
+            </div>
           </div>
           <div className="flex gap-4">
-            <div className="text-green-500">أصلي 100%</div>
             <div
               onClick={() => setShowRelated(true)}
               className="text-blue-500 text-sm cursor-pointer"
@@ -444,7 +459,7 @@ function ProductCard() {
 
           <div
             className={cn(
-              " flex  font-[500] text-xl text-gray-500  border-b-2 border-black w-fit"
+              " flex   text-lg text-gray-500  border-b-2 border-black w-fit"
             )}
           >
             {t("Desc")}
@@ -452,7 +467,7 @@ function ProductCard() {
 
           <div className="flex">
             {productData?.description && (
-              <pre className=" font-[500] font-sans  w-600  whitespace-break-spaces break-words">
+              <pre className=" font-[400] font-sans  w-600  whitespace-break-spaces break-words">
                 {productData?.description.slice(0, len)}{" "}
                 {len <= 100 && (
                   <span

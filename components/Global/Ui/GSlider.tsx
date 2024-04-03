@@ -97,9 +97,9 @@ export default function GSlider({
               </div>
             </div>
           </CardBody>
-          <CardFooter className=" overflow-hidden p-0 font-bold shadow-small z-10">
+          <CardFooter className=" overflow-hidden p-0   shadow-small z-10">
             <Button
-              className=" w-full text-lg text-white flex justify-between bg-teal-700 "
+              className=" w-full text-[13px] md:text-lg text-white flex justify-between bg-teal-700 "
               variant="flat"
               color="default"
               radius="none"

@@ -25,7 +25,11 @@ export default async function Home() {
       <Brands />
       <Offers />
       <Trending trends={trends?.products} />
+      <Offers />
+
       <OnSale sale={sale?.products} />
+      <Offers />
+
       <OurSelection selection={selection?.products} />
     </div>
   );
