@@ -12,7 +12,7 @@ export default function Offers() {
         />
 
         <Image
-          src="/slider/smbanner3.png"
+          src="/slider/smbanner3.jpg"
           alt="1"
           width={1000}
           height={1000}
