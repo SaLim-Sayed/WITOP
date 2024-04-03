@@ -6,7 +6,7 @@ import Slider from "@ant-design/react-slick";
 import { Button } from "@nextui-org/react";
 
 import Center from "../Ui/Center";
-import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { settings } from "@/util/slickSettings";
 import { useLocale, useTranslations } from "next-intl";
 import { Category } from "./data.module";
@@ -32,7 +32,7 @@ export default function CategorySlider() {
               : slider.current.slickPrev();
           }}
         >
-          {locale == "en" ? <BiLeftArrow /> : <BiRightArrow />}
+          {locale == "en" ? <IoIosArrowBack /> : <IoIosArrowForward />}
         </Button>
         <div className="w-[90%] mb-12 mx-auto">
           {/*  @ts-ignore  */}
@@ -60,7 +60,7 @@ export default function CategorySlider() {
               : slider.current.slickNext();
           }}
         >
-          {locale == "en" ? <BiRightArrow /> : <BiLeftArrow />}
+          {locale == "en" ? <IoIosArrowForward /> : <IoIosArrowBack />}
         </Button>
       </div>
     </Center>

@@ -4,12 +4,12 @@ import Title from "@/components/Global/Ui/Title";
 import { useRef } from "react";
 import { Product as ProductType } from "@/types/product";
 import Slider from "@ant-design/react-slick";
-import GCard from "@/components/Global/Ui/GCard";
 import { useLocale, useTranslations } from "next-intl";
 import { settings } from "./setting";
-import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { Button } from "@nextui-org/react";
 import GCardSkeleton from "@/components/Global/Loaders/GCardSkeleton";
+import GSlider from "@/components/Global/Ui/GSlider";
 export default function OurSelection({
   selection,
 }: {
@@ -37,19 +37,19 @@ export default function OurSelection({
                   : slider.current.slickPrev();
               }}
             >
-              {locale == "en" ? <BiLeftArrow /> : <BiRightArrow />}
+              {locale == "en" ? <IoIosArrowBack /> : <IoIosArrowForward />}
             </Button>
             <div className="w-[85%] lg:w-full  mx-auto ">
               {/*  @ts-ignore  */}
-              <Slider rtl={dir} {...settings} ref={slider} key={2} autoplay>
+              <Slider rtl={dir} {...settings} ref={slider} key={2} autoplay >
                 {selection
                   ? selection.map((product) => (
                       <div
                         dir={dir ? "rtl" : "ltr"}
                         key={product?._id}
-                        className="mx-auto px-4 flex justify-center"
+                        className="mx-auto px-4 flex  justify-center"
                       >
-                        <GCard
+                        <GSlider
                           key={product?._id}
                           id={product?._id}
                           price={product?.price}
@@ -84,7 +84,7 @@ export default function OurSelection({
                   : slider.current.slickNext();
               }}
             >
-              {locale == "en" ? <BiRightArrow /> : <BiLeftArrow />}
+              {locale == "en" ? <IoIosArrowForward /> : <IoIosArrowBack />}
             </Button>
           </div>
         </div>
