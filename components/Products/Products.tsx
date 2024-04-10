@@ -78,6 +78,9 @@ export default function Product() {
                     desc={product?.description}
                     img={product?.images[0]}
                     category={product?.category}
+                    totalRating={product?.totalRating}
+                    stock={product?.stock}
+
                   />
                 ))
               ) : ( // Show "No Data" message if no products available

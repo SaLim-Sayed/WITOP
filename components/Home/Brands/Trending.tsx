@@ -55,6 +55,8 @@ export default function Trending({ trends }: { trends: ProductType[] }) {
                           desc={product?.description}
                           img={product?.images[0]}
                           category={product?.category}
+                          totalRating={product?.totalRating}
+                          stock={product?.stock}
                         />
                       </div>
                     ))

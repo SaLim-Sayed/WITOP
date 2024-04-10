@@ -183,7 +183,7 @@ export default function WithAction() {
       <TopHeader />
 
       <Box bg={"#fff"} className="shadow-md " px={4}>
-        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
+        <Flex h={20} alignItems={"center"} justifyContent={"space-between"}>
           <Navbar className=" w-3  flex lg:hidden ">
             <Button
               onClick={discloserChakra.onOpen}
@@ -203,7 +203,7 @@ export default function WithAction() {
                 isIconOnly
                 size="lg"
                 variant="light"
-                className="min-w-[100px]  md:min-w-[200px]   flex   gap-2"
+                className="min-w-[100px]   md:min-w-[200px]   flex   gap-2"
               >
                 <Link href="/" className="font-bold text-xl text-[#00b5bc]">
                   <Image
@@ -231,7 +231,7 @@ export default function WithAction() {
                 isIconOnly
                 size="lg"
                 variant="light"
-                className="min-w-[120px]  hidden lg:flex md:min-w-[200px]     gap-2"
+                className="min-w-[120px] h-[70px]  hidden lg:flex md:min-w-[200px]     gap-2"
               >
                 <Link href="/" className="font-bold text-xl text-[#00b5bc]">
                   <Image

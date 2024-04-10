@@ -14,5 +14,7 @@ export type Product= {
     ratings: any[]; // You can replace 'any[]' with a specific type for ratings if needed
     relatedProducts:any;
     count:any;
+    stock:any
+
   }
   

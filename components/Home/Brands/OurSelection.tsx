@@ -60,6 +60,8 @@ export default function OurSelection({
                           desc={product?.description}
                           img={product?.images[0]}
                           category={product?.category}
+                          totalRating={product?.totalRating}
+                          stock={product?.stock}
                         />
                       </div>
                     ))
