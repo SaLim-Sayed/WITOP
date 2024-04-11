@@ -8,6 +8,9 @@ import {
   A11y,
   Autoplay,
 } from "swiper/modules";
+import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css'
+import InnerImageZoom from 'react-inner-image-zoom'
+
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -48,22 +51,25 @@ const ImageSwipper = ({ images }: IProps) => {
             Autoplay,
           ]}
           pagination={{ clickable: true }}
-          autoplay={{
+        /*   autoplay={{
             delay: 1000,
             disableOnInteraction: false,
-          }}
+          }} */
           speed={2000}
           loop={true}
         >
           {images?.map((image, index) => (
             <SwiperSlide key={index}>
-              <div className="flex w-full  items-center justify-center">
-                <Image
+              <div className="flex w-[80%]  items-center justify-center">
+               {/*  <Image
                   isZoomed
                   alt="Card background"
                   className="z-0 w-fit max-h-[400px] md:max-h-max hover:scale-110   mb-4  pb-4 cursor-pointer  "
                   src={image}
-                />
+                /> */}
+                <InnerImageZoom src={image} className="z-0 w-fit max-h-[400px] md:max-h-max hover:scale-110   mb-4  pb-4 cursor-pointer  "
+/>
+
               </div>
             </SwiperSlide>
           ))}

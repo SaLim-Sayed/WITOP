@@ -23,6 +23,8 @@ interface IProps {
   discount?: number | undefined;
 }
 
+import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
+import InnerImageZoom from "react-inner-image-zoom";
 const ImageGallury = ({ alt, images, discount }: IProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const locale = useLocale();
@@ -89,12 +91,18 @@ const ImageGallury = ({ alt, images, discount }: IProps) => {
           <Tab.Panel key={index}>
             <div
               className=" cursor-pointer  hover:bg-transparent w-[20rem] mx-auto flex justify-center object-cover object-center sm:rounded-lg"
-              onClick={onOpen}
+              // onClick={onOpen}
             >
-              <Image
+              {/*   <Image
                 radius="lg"
                 src={image}
                 alt={alt}
+                className="  w-fit h-fit max-h-[400px] object-cover object-center sm:rounded-lg"
+              /> */}
+              <InnerImageZoom
+                zoomScale={1.1}
+                zoomPreload={true}
+                src={image}
                 className="  w-fit h-fit max-h-[400px] object-cover object-center sm:rounded-lg"
               />
             </div>
@@ -103,16 +111,16 @@ const ImageGallury = ({ alt, images, discount }: IProps) => {
       </Tab.Panels>
       <Modal
         backdrop="blur"
-        size="2xl"
+        size="full"
         placement="center"
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        className="h-[80vh] flex justify-center items-center"
+        className="  flex justify-center items-center"
       >
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalBody className="h-[100%] m-8">
+              <ModalBody className="h-[70%] m-8">
                 <ImageSwipper images={images} />
               </ModalBody>
             </>
