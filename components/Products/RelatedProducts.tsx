@@ -25,6 +25,8 @@ export default function RelatedProducts({
               desc={product?.description}
               img={product?.images[0]}
               category={product?.category}
+              totalRating={product?.totalRating}
+              stock={product?.stock}
             />
           ))}
         </div>
