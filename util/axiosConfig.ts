@@ -1,6 +1,6 @@
 import axios from "axios";
 import Cookies from "js-cookie";
-export const APP_API = "https://maro-cares.onrender.com";
+export const APP_API = "https://maro-cares-z86j.onrender.com";
 export const axiosInstance = axios.create({
   baseURL: APP_API,
 });
