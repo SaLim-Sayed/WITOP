@@ -5,7 +5,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const createAxiosInstance = (baseURL?: string) => {
   const config = {
-    baseURL: baseURL || "https://maro-cares.onrender.com",
+    baseURL: baseURL || "https://maro-cares-z86j.onrender.com",
     headers: {
       language: Cookies.get("NEXT_LOCALE") || "ar",
       authrization:

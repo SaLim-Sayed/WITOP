@@ -11,7 +11,7 @@ export default function SignGoogle() {
     console.log(access_token);
     try {
       const res = await axios.post(
-        "https://maro-cares.onrender.com/auth/google",
+        "https://maro-cares-z86j.onrender.com/auth/google",
         { access_token: access_token }
       );
       if (res.data.message === "success") {

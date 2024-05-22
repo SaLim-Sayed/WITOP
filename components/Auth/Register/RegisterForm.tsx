@@ -42,7 +42,7 @@ const RegisterForm = () => {
     try {
       setIsLoading(true);
       const res = await axios.post(
-        "https://maro-cares.onrender.com/auth/register",
+        "https://maro-cares-z86j.onrender.com/auth/register",
         data,
         {
           headers: {

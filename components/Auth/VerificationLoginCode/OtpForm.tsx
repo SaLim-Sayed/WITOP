@@ -31,10 +31,10 @@ const OTPFORMS = () => {
     try {
       setIsLoading(true);
       const res = await axios.post(
-        `https://maro-cares.onrender.com/user/verificationLoginCode`,
+        `https://maro-cares-z86j.onrender.com/user/verificationLoginCode`,
         {
-          phoneNumber:phoneNumber,
-          code:code
+          phoneNumber: phoneNumber,
+          code: code,
         },
         {
           headers: {
@@ -60,9 +60,9 @@ const OTPFORMS = () => {
     try {
       setIsLoading(true);
       const res = await axios.post(
-        `https://maro-cares.onrender.com/user/resendVerificationCode/loginCode`,
+        `https://maro-cares-z86j.onrender.com/user/resendVerificationCode/loginCode`,
         {
-          phoneNumber:phoneNumber
+          phoneNumber: phoneNumber,
         },
         {
           headers: {

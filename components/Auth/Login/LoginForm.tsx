@@ -43,7 +43,7 @@ const LoginForm = () => {
     try {
       setIsLoading(true);
       const res = await axios.post(
-        "https://maro-cares.onrender.com/auth/login",
+        "https://maro-cares-z86j.onrender.com/auth/login",
         data,
         {
           headers: {

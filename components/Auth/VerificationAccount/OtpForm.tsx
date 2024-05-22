@@ -31,7 +31,7 @@ const OTPFORMS = () => {
     try {
       setIsLoading(true);
       const res = await axios.put(
-        `https://maro-cares.onrender.com/user/verificationAccount`,
+        `https://maro-cares-z86j.onrender.com/user/verificationAccount`,
         {
           phoneNumber: phoneNumber,
           code: code,
@@ -61,7 +61,7 @@ const OTPFORMS = () => {
     try {
       setIsLoading(true);
       const res = await axios.post(
-        `https://maro-cares.onrender.com/user/resendVerificationCode/verify`,
+        `https://maro-cares-z86j.onrender.com/user/resendVerificationCode/verify`,
         {
           phoneNumber: phoneNumber,
         },
