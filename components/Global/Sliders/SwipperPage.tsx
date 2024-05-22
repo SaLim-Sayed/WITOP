@@ -15,8 +15,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { Button, Card, CardBody, Image } from "@nextui-org/react";
-import { motion } from "framer-motion";
+import { Image } from "@nextui-org/react";
+
 // Use const or function before the component name
 const SwipperPage = () => {
   return (
@@ -92,7 +92,7 @@ const SwipperPage = () => {
             disableOnInteraction: false,
           }}
           speed={1000}
-          loop={true} 
+          loop={true}
         >
           <SwiperSlide>
             <Image
