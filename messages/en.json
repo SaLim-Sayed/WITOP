@@ -440,11 +440,34 @@
     "PhoneNumber": "Phone Number",
     "invitationBy": "invitation  code",
     "DontHave": "Don't have an account?",
-    "AlreadyHave": "Already have an account?"
+    "AlreadyHave": "Already have an account?",
+    "Coupon": "ادخل كوبون  الخصم",
+
+    "SubmitOrder": "Submit Order"
   },
   "Validation": {
+    "Coupon": "Enter Coupon Code",
+    "Message": "Order Message",
     "UserName": "username is required",
     "Email": "email is required",
-    "PhoneNumber": "phone number is required"
+    "PhoneNumber": "phone number is required",
+    "UserPhone": "phone number is required",
+    "UserAddress": "User address is required",
+    "UserCity": "User city is required",
+    "TotalAfterDiscount": "Total after discount must be at least 0",
+    "TotalAfterDiscountValidation": "Total after discount should consider shipping discount for orders above 300 SAR"
+  
+  },
+  "Cart": {
+    "Coupon": "  Coupon Code",
+    "Message": "Order Message",
+    "UserName": "Username",
+    "Email": "email    ",
+    "PhoneNumber": "phone number    ",
+    "UserPhone": "phone number    ",
+    "UserAddress": "User address    ",
+    "UserCity": "User city    ",
+    "TotalAfterDiscount": "Total after discount ",
+    "TotalAfterDiscountValidation": "Total after discount should consider shipping discount for orders above 300 SAR"
   }
 }

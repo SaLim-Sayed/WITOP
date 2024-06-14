@@ -7,7 +7,6 @@
     "ON SALE": "الاكثر مبيعاََ",
     "OUR SELECTION": "اختيارنا",
     "SeeAll": "عرض الكل "
-
   },
   "Globals": {
     "Login": "دخول",
@@ -428,7 +427,7 @@
     "Register": "سجل ",
     "Register/Title": " التسجيل كمستخدم  جديد",
     "OTP": "رمز التجقق",
-    "Verify": "  استمر " ,
+    "Verify": "  استمر ",
     "resendOTP": "ارسال الرمز  مرة اخري",
     "Logout": " تسجيل الخروج",
     "Profile": "  الملف الشخصي",
@@ -438,11 +437,32 @@
     "PhoneNumber": " رقم الهاتف",
     "invitationBy": "كود الدعوة",
     "DontHave": " ليس لديك حساب؟",
+    "SubmitOrder": "إرسال الطلب",
     "AlreadyHave": "  لديك حساب؟"
   },
   "Validation": {
+    "Coupon": "ادخل كوبون  الخصم",
+    "Message": "رسالة  التوصيل",
     "UserName": "  اسم المستخدم مطلوب",
     "Email": " البريد الالكتروني غير صالح",
-    "PhoneNumber": " رقم الهاتف غير صالح"
+    "PhoneNumber": " رقم الهاتف غير صالح",
+    "UserPhone": " رقم الهاتف غير صالح",
+    "UserAddress": "عنوان المستخدم مطلوب",
+    "UserCity": "مدينة المستخدم مطلوبة",
+    "TotalAfterDiscount": "يجب أن يكون الإجمالي بعد الخصم 0 على الأقل",
+    "TotalAfterDiscountValidation": "يجب أن يأخذ الإجمالي بعد الخصم في الاعتبار خصم الشحن للطلبات التي تزيد عن 300 ريال"
+  
+  },
+  "Cart": {
+    "Coupon": "  كود  الخصم",
+    "Message": "رسالة  التوصيل",
+    "UserName": "  اسم المستخدم  ",
+    "Email": " البريد الالكتروني    ",
+    "PhoneNumber": " رقم الهاتف    ",
+    "UserPhone": " رقم الهاتف    ",
+    "UserAddress": "عنوان المستخدم  ",
+    "UserCity": "مدينة المستخدم  ",
+    "TotalAfterDiscount": " الإجمالي بعد الخصم ",
+    "TotalAfterDiscountValidation": "يجب أن يأخذ الإجمالي بعد الخصم في الاعتبار خصم الشحن للطلبات التي تزيد عن 300 ريال"
   }
 }

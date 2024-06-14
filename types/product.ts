@@ -15,6 +15,13 @@ export type Product= {
     relatedProducts:any;
     count:any;
     stock:any
-
   }
   
+  export interface ICartState {
+    cartAmount: number;
+    cartTotal: number;
+    numberOfItem: number;
+    products: Product[];
+    _id: string;
+    message: string;
+  }

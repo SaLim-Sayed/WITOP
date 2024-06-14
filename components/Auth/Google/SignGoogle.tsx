@@ -16,10 +16,12 @@ export default function SignGoogle() {
       );
       if (res.data.message === "success") {
         console.log(res);
-        Cookies.set("token",res.data?.userToken)
-        
-          router.push("/");
-        
+        Cookies.set("token", res.data?.userToken, {
+          expires: 1000,
+        });
+
+        router.push("/");
+
         return;
       }
     } catch (error: any) {

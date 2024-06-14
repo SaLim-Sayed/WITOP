@@ -1,5 +1,5 @@
 "use client";
-import { Product as ProductType } from "@/types/product";
+import { ICartState, Product, Product as ProductType } from "@/types/product";
 import { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Button } from "@nextui-org/button";
@@ -11,7 +11,7 @@ import Cookies from "js-cookie";
 import { showToast } from "../Ui/Toast";
 import { Card } from "@nextui-org/react";
 import { cartStore, useProductStore } from "@/store/futures/cartStore";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation"; 
 
 interface IProps {
   open: any;
@@ -21,33 +21,36 @@ const CartSlider = ({ open, setCartSliderIsOpen }: IProps) => {
   const token = Cookies.get("token");
   const router = useRouter();
   const [products, setProducts] = useState<ProductType[]>();
+  const [cartProducts, setCartProducts] = useState<ICartState>();
   const [cartCount, setCartCount] = useState<any>();
   const { CartSetter } = cartStore();
 
   const { setProductsCart } = useProductStore();
   const getCartData = async () => {
     const res = await getUserCart();
+    console.log({res})
     setCartCount(res?.cart?.cartTotal);
     setProducts(res?.cart?.products);
     setProductsCart(res?.cart?.products);
     CartSetter(res?.numberOfItem);
+    setCartProducts(res?.cart);
   };
   // console.log( products);
   useEffect(() => {
     if (token) {
-    getCartData();
+      getCartData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
   useEffect(() => {
     if (token) {
-    getCartData();
+      getCartData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
     if (token) {
-    if (open) getCartData();
+      if (open) getCartData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
@@ -96,7 +99,7 @@ const CartSlider = ({ open, setCartSliderIsOpen }: IProps) => {
                                 color="secondary"
                                 className="-m-4 fixed flex h-10 items-center  z-[500] "
                                 onClick={() => {
-                                  router.push("/cart");
+                                  router.push(`/cart/${cartProducts?._id}`);
                                   setCartSliderIsOpen(false);
                                 }}
                               >
@@ -141,6 +144,7 @@ const CartSlider = ({ open, setCartSliderIsOpen }: IProps) => {
                                     key={product._id}
                                   >
                                     <ShopingCartItem
+                                    cartId={cartProducts?._id}
                                       product={product}
                                       setProducts={setProducts}
                                       setCartSliderIsOpen={setCartSliderIsOpen}

@@ -15,6 +15,7 @@ interface IProps {
   setProducts: any;
   setCartCount: any;
   setCartSliderIsOpen: any;
+  cartId:any
 }
 
 export default function ShopingCartItem({
@@ -22,6 +23,7 @@ export default function ShopingCartItem({
   setProducts,
   setCartCount,
   setCartSliderIsOpen,
+  cartId
 }: IProps) {
   const { CartSetter } = cartStore();
   const showSuccessToast = (message?: string) =>
@@ -93,7 +95,7 @@ export default function ShopingCartItem({
           variant="flat"
           color="default"
           onClick={() => {
-            router.push("/cart");
+            router.push(`/cart/${cartId}`);
             setCartSliderIsOpen(false);
           }}
          
