@@ -10,7 +10,6 @@ import { cn } from "@/libs/cn";
 import { Button } from "@nextui-org/react";
 import { showToast } from "@/components/Global/Ui/Toast";
 import axios from "axios";
-import { Spinner } from "@chakra-ui/react";
 
 const OTPFORMS = () => {
   const router = useRouter();
@@ -46,9 +45,7 @@ const OTPFORMS = () => {
       setIsLoading(false);
       if (res.data.message === "success") {
         console.log(res);
-        Cookies.set("token", res.data?.userToken, {
-          expires: 1000,
-        });
+        Cookies.set("token", res.data?.userToken);
 
         router.push("/");
 
@@ -88,13 +85,13 @@ const OTPFORMS = () => {
     }
   };
 
-  if(isLoading)return <Spinner size={48}/>
   return (
     <form
       dir="ltr"
       className="w-full flex flex-col  gap-[32px]  "
       onSubmit={(e) => onSubmit(e)}
     >
+      
       <div className="flex flex-col justify-center  items-center ">
         <div className="flex justify-center text-primaryColor-200">
           {otpError}
