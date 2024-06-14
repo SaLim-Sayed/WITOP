@@ -19,6 +19,7 @@ import { useParams, useRouter } from "next/navigation";
 import { showToast } from "@/components/Global/Ui/Toast";
 import SignGoogle from "../Google/SignGoogle";
 import { axiosInstance } from "@/util/axiosConfig";
+import { cartStore } from "@/store/futures/cartStore";
 
 const OrderForm = () => {
   const router = useRouter();
@@ -29,7 +30,7 @@ const OrderForm = () => {
   const lang = useLocale();
   type Order = z.infer<typeof OrderSchema>;
   const [isLoading, setIsLoading] = useState(false);
-
+  const { CartAmount } = cartStore();
   const {
     register,
     handleSubmit,
@@ -50,7 +51,7 @@ const OrderForm = () => {
       setIsLoading(true);
       const res = await axiosInstance.post(
         `/user/createOrder/${cartId}`,
-        data,
+        { ...data, totalAfterDiscount: CartAmount },
         {
           headers: {
             language: lang || "en",
@@ -173,7 +174,7 @@ const OrderForm = () => {
               )}
             </Autocomplete>
           </div>
-          <div>
+          {/* <div>
             <Input
               {...register("totalAfterDiscount")}
               type="number"
@@ -185,7 +186,7 @@ const OrderForm = () => {
                 input: "text-[1.2rem]",
               }}
             />
-          </div>
+          </div> */}
           <div>
             <Input
               {...register("message")}

@@ -8,11 +8,11 @@ export default function useSchema() {
     userName: z.string().min(1, { message: tr("UserName") }),
     userAddress: z.string().min(1, { message: tr("UserAddress") }),
     userPhone: z.string().min(4, { message: tr("PhoneNumber") }),
-    userCity: z.string().min(1, { message: tr("UserCity") }),
-    totalAfterDiscount: z.any( { message: tr("TotalAfterDiscount") }),
+    userCity: z.string().min(1, { message: tr("UserCity") }), 
     message: z.string().optional(),
     coupon: z.string().optional(),
-  }).refine((data) => {
+  })
+ /*  .refine((data) => {
     const minimumTotal = 300;
     const shippingDiscount = 30;
     
@@ -23,7 +23,7 @@ export default function useSchema() {
   }, {
     message: "Total after discount should consider shipping discount for orders above 300 SAR",
     path: ["totalAfterDiscount"],
-  }); 
+  });  */
 
   return schema;
 }

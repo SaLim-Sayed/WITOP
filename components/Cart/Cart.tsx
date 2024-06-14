@@ -95,12 +95,9 @@ export default function Cart() {
   };
   return (
     <Center>
-      {productsCart?.map((product) => (
-        <div
-          key={product?._id}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 my-4 gap-8"
-        >
-          <div className="flex flex-col gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 my-4 gap-8">
+        {productsCart?.map((product) => (
+          <div key={product?._id} className="flex flex-col gap-4">
             <ImageGallury images={product?.images} alt={product?.productName} />
 
             <div className="text-3xl relative">{product?.productName}</div>
@@ -172,10 +169,10 @@ export default function Cart() {
             </div>
             <div className="text-xl text-justify"></div>
           </div>
-          <Divider />
-          <OrderFormSubmit />
-        </div>
-      ))}
+        ))}{" "}
+        <Divider />
+      </div>
+      <OrderFormSubmit />
     </Center>
   );
 }
