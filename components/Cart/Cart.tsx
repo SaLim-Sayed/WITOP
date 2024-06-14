@@ -38,10 +38,10 @@ export default function Cart() {
   const handleIncrease = () => {
     setCount(count + 1);
   };
-  
-  const {id:cartId}=useParams()
 
-  console.log({cartId})
+  const { id: cartId } = useParams();
+
+  console.log({ cartId });
   const handleDecrease = () => {
     if (count > 1) {
       setCount(count - 1);
@@ -100,10 +100,8 @@ export default function Cart() {
           key={product?._id}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 my-4 gap-8"
         >
-      <OrderFormSubmit/>
-
           <div className="flex flex-col gap-4">
-          <ImageGallury images={product?.images} alt={product?.productName} />
+            <ImageGallury images={product?.images} alt={product?.productName} />
 
             <div className="text-3xl relative">{product?.productName}</div>
             <div className="  font-[400]">{product?.description}</div>
@@ -172,11 +170,10 @@ export default function Cart() {
                 Delete
               </Button>
             </div>
-            <div className="text-xl text-justify">
-              
-            </div>
+            <div className="text-xl text-justify"></div>
           </div>
           <Divider />
+          <OrderFormSubmit />
         </div>
       ))}
     </Center>
