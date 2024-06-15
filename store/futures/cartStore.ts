@@ -6,12 +6,16 @@ import { Product } from "@/types/product";
 // Define the initial state for the cart
 const initialCartState: CartState = {
   CartAmount: 0,
+  TotalCartAmount: 0,
+  discount: 0,
 };
 
 // Define the Cart Store
 export const cartStore = create<CartState & CartActions>((set) => ({
   ...initialCartState,
   CartSetter: (CartAmount) => set({ CartAmount }),
+  TotalCartSetter: (TotalCartAmount) => set({ TotalCartAmount }),
+  SetDiscount: (discount) => set({ discount }),
 }));
 
 // Define the Product Store with Zustand

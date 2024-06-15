@@ -17,9 +17,10 @@ import { useLocale, useTranslations } from "next-intl";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { showToast } from "@/components/Global/Ui/Toast";
-import SignGoogle from "../Google/SignGoogle";
+import SignGoogle from "../../Auth/Google/SignGoogle";
 import { axiosInstance } from "@/util/axiosConfig";
 import { cartStore } from "@/store/futures/cartStore";
+import { calculateTotalAfterDiscount } from "@/util";
 
 const OrderForm = () => {
   const router = useRouter();
@@ -30,7 +31,7 @@ const OrderForm = () => {
   const lang = useLocale();
   type Order = z.infer<typeof OrderSchema>;
   const [isLoading, setIsLoading] = useState(false);
-  const { CartAmount } = cartStore();
+  const { CartAmount, discount, TotalCartAmount } = cartStore();
   const {
     register,
     handleSubmit,
@@ -44,6 +45,10 @@ const OrderForm = () => {
     showToast({ type: "success", toastMessage: message });
   const showErrorToast = (message?: string) =>
     showToast({ type: "error", toastMessage: message });
+  const totalAfterDiscount = calculateTotalAfterDiscount(
+    TotalCartAmount,
+    discount
+  );
 
   const onSubmit: SubmitHandler<Order> = async (data) => {
     console.log(data);
@@ -51,7 +56,7 @@ const OrderForm = () => {
       setIsLoading(true);
       const res = await axiosInstance.post(
         `/user/createOrder/${cartId}`,
-        { ...data, totalAfterDiscount: CartAmount },
+        { ...data, totalAfterDiscount: totalAfterDiscount },
         {
           headers: {
             language: lang || "en",
@@ -61,8 +66,10 @@ const OrderForm = () => {
       setIsLoading(false);
       if (res.data.message === "success") {
         console.log(res);
-        showSuccessToast(res.data.message);
-
+        showSuccessToast(
+          "تم تنفيذ طلبكم  بنجاح  وسيتم  التواصل معكم  في اقرب وقت "
+        );
+        router.push("orders");
         return;
       }
       showErrorToast(res.data.message);
@@ -196,20 +203,6 @@ const OrderForm = () => {
               className="w-full"
               isInvalid={errors.message ? true : false}
               errorMessage={errors.message?.message}
-              classNames={{
-                input: "text-[1.2rem]",
-              }}
-            />
-          </div>
-          <div>
-            <Input
-              {...register("coupon")}
-              type="text"
-              label={validationTr("Coupon")}
-              variant="bordered"
-              className="w-full"
-              isInvalid={errors.coupon ? true : false}
-              errorMessage={errors.coupon?.message}
               classNames={{
                 input: "text-[1.2rem]",
               }}

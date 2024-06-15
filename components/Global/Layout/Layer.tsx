@@ -1,38 +1,34 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { IoIosArrowForward } from "react-icons/io";
+import { useTranslations } from "next-intl";
 
-import { Button } from "@nextui-org/react";
-import { useLocale, useTranslations } from "next-intl";
-import { cn } from "@/libs/cn";
+import { cartStore } from "@/store/futures/cartStore";
 
 export default function Layer({
   title,
   subTitle,
-  route,
-  
 }: {
   title?: any;
   subTitle?: string;
   route?: string;
-   
 }) {
-  const router = useRouter();
-  const locale = useLocale();
-  const transContent=useTranslations("Globals")
+  const transContent = useTranslations("Globals");
+  const { TotalCartAmount } = cartStore();
+
   return (
     <div>
       <div
-        className="flex text-center md:text-start flex-col text-white justify-center items-center h-[150px]"
+        className="flex relative text-center md:text-start  gap-4  text-white justify-center items-center h-[150px]"
         style={{
           background:
             "linear-gradient(91.39deg,#1299a8 31.4%,  #051b72 103.45%)",
         }}
       >
-        <h1 className="text-[2.5rem] uppercase font-[700]">Shopping Cart</h1>
+        <h1 className="text-[2.5rem] uppercase font-[700]"> {title} </h1>
+        <div className="    -bottom-10 right-4 w-32 h-12 bg-gray-100 text-cyan-600  flex text-[500] justify-center items-center rounded-lg ">
+          {Math.round(TotalCartAmount)} {transContent("SAR")}
+        </div>
         <h2 className="text-lightColor-400">{subTitle}</h2>
       </div>
-       
     </div>
   );
 }

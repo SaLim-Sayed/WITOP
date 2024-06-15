@@ -5,11 +5,13 @@ import Center from "@/components/Global/Ui/Center";
 import Title from "@/components/Global/Ui/Title";
 import { useTranslations } from "next-intl";
 import OrderForm from "./OrdersForm";
+import CouponForm from "./CouponForm";
 
 export default function OrderFormSubmit() {
   const tr = useTranslations("Auth");
   return (
     <div className="flex flex-col">
+      <CouponForm/>
       <Title exSt="mt-4" title={'اتمام  عملية الشراء'} />
       <div className="flex justify-center  mb-4 ">
         <Card className="flex w-full   p-4 items-center flex-col  gap-[40px]">

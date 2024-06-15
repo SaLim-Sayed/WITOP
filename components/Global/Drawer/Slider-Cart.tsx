@@ -9,9 +9,11 @@ import Image from "next/image";
 import ShopingCartItem from "./ShopingCartItem";
 import Cookies from "js-cookie";
 import { showToast } from "../Ui/Toast";
-import { Card } from "@nextui-org/react";
+import { Card, Tab, Tabs } from "@nextui-org/react";
 import { cartStore, useProductStore } from "@/store/futures/cartStore";
-import { useRouter } from "next/navigation"; 
+import { useRouter } from "next/navigation";
+import getUserOrders from "@/store/actions/getUserOrders.module";
+import { useOrderStore } from "@/store/futures/orderStore";
 
 interface IProps {
   open: any;
@@ -23,13 +25,17 @@ const CartSlider = ({ open, setCartSliderIsOpen }: IProps) => {
   const [products, setProducts] = useState<ProductType[]>();
   const [cartProducts, setCartProducts] = useState<ICartState>();
   const [cartCount, setCartCount] = useState<any>();
-  const { CartSetter } = cartStore();
-
+  const { CartSetter, TotalCartSetter } = cartStore();
+  const { orders, setOrders, addOrder, getOrderById } = useOrderStore();
   const { setProductsCart } = useProductStore();
   const getCartData = async () => {
     const res = await getUserCart();
-    console.log({res})
+    const resOrder = await getUserOrders();
+    console.log({ resOrder });
+    setOrders(resOrder?.orders);
+    console.log({ res });
     setCartCount(res?.cart?.cartTotal);
+    TotalCartSetter(res?.cart?.cartTotal);
     setProducts(res?.cart?.products);
     setProductsCart(res?.cart?.products);
     CartSetter(res?.numberOfItem);
@@ -98,12 +104,9 @@ const CartSlider = ({ open, setCartSliderIsOpen }: IProps) => {
                                 variant="shadow"
                                 color="secondary"
                                 className="-m-4 fixed flex h-10 items-center  z-[500] "
-                                onClick={() => {
-                                  router.push(`/cart/${cartProducts?._id}`);
-                                  setCartSliderIsOpen(false);
-                                }}
                               >
-                                Show All cart Items <BiShow />
+                                سلة المشتريات وقائمة الطلبات
+                                <BiShow />
                               </Button>
                             </Dialog.Title>
                             <div className="ml-3 flex h-7 items-center">
@@ -119,43 +122,91 @@ const CartSlider = ({ open, setCartSliderIsOpen }: IProps) => {
                             </div>
                           </div>
                         </div>
-                        <Dialog.Description>
-                          <div className="mt-12">
-                            <div className="flow-root relative">
-                              <Dialog.Overlay className="absolute">
-                                <Image
-                                  width={300}
-                                  height={300}
-                                  alt="second banner"
-                                  className="  fixed top-[50%] -translate-y-[50%] right-2 my-20 w-[300px] h-[300px] opacity-20"
-                                  src="/no-product.png"
-                                />
-                              </Dialog.Overlay>
-                              <div className="flex flex-col  gap-2">
-                                {products?.map((product) => (
-                                  <Card
-                                    isPressable
+                        <div className="w-full flex flex-col  justify-center items-center">
+                          <Tabs
+                            className="w-full mt-4"
+                          
+                            aria-label="Options"
+                          >
+                            <Tab key="photos" title="سلة المشتريات">
+                              <Card shadow="none">
+                                <Dialog.Description>
+                                  <div className="mt-12">
+                                    <Button
+                                      size="lg"
+                                      radius="md"
+                                      variant="shadow"
+                                      color="secondary"
+                                      className="  mb-4 w-full  flex h-10 items-center  z-1 "
+                                      onClick={() => {
+                                        router.push(
+                                          `/cart/${cartProducts?._id}`
+                                        );
+                                        setCartSliderIsOpen(false);
+                                      }}
+                                    >
+                                      عرض سلة المشتريات <BiShow />
+                                    </Button>
+                                    <div className="flow-root relative">
+                                      <Dialog.Overlay className="absolute">
+                                        <Image
+                                          width={300}
+                                          height={300}
+                                          alt="second banner"
+                                          className="  fixed top-[50%] -translate-y-[50%] right-2 my-20 w-[300px] h-[300px] opacity-20"
+                                          src="/no-product.png"
+                                        />
+                                      </Dialog.Overlay>
+                                      <div className="flex flex-col  gap-2">
+                                        {products?.map((product) => (
+                                          <Card
+                                            isPressable
+                                            onClick={() => {
+                                              router.push(
+                                                `/product/${product?.category}/${product._id}`
+                                              );
+                                              setCartSliderIsOpen(false);
+                                            }}
+                                            key={product._id}
+                                          >
+                                            <ShopingCartItem
+                                              cartId={cartProducts?._id}
+                                              product={product}
+                                              setProducts={setProducts}
+                                              setCartSliderIsOpen={
+                                                setCartSliderIsOpen
+                                              }
+                                              setCartCount={setCartCount}
+                                            />
+                                          </Card>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </Dialog.Description>
+                              </Card>
+                            </Tab>
+                            <Tab key="music" title="الطلبات">
+                              <Card shadow="none">
+                                <Dialog.Description>
+                                  <Button
+                                    size="lg"
+                                    radius="md"
+                                    variant="shadow"
+                                    color="secondary"
+                                    className="    flex h-10 items-center  z-[500] "
                                     onClick={() => {
-                                      router.push(
-                                        `/product/${product?.category}/${product._id}`
-                                      );
+                                      router.push(`orders`);
                                       setCartSliderIsOpen(false);
                                     }}
-                                    key={product._id}
                                   >
-                                    <ShopingCartItem
-                                    cartId={cartProducts?._id}
-                                      product={product}
-                                      setProducts={setProducts}
-                                      setCartSliderIsOpen={setCartSliderIsOpen}
-                                      setCartCount={setCartCount}
-                                    />
-                                  </Card>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-                        </Dialog.Description>
+                                    عرض كل الطلبات <BiShow />
+                                  </Button>
+                                </Dialog.Description>
+                              </Card>
+                            </Tab>
+                          </Tabs>
+                        </div>
                       </div>
                       {/* <Button
                                 size="lg"
