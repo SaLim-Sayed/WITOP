@@ -196,7 +196,7 @@ const CartSlider = ({ open, setCartSliderIsOpen }: IProps) => {
                                     color="secondary"
                                     className="    flex h-10 items-center  z-[500] "
                                     onClick={() => {
-                                      router.push(`orders`);
+                                      router.push(`/orders`);
                                       setCartSliderIsOpen(false);
                                     }}
                                   >
