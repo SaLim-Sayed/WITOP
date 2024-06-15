@@ -69,7 +69,7 @@ const OrderForm = () => {
         showSuccessToast(
           "تم تنفيذ طلبكم  بنجاح  وسيتم  التواصل معكم  في اقرب وقت "
         );
-        router.push("orders");
+        router.push("/orders");
         return;
       }
       showErrorToast(res.data.message);
