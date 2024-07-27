@@ -99,7 +99,7 @@ export default function GSlider({
     <ClientHydration LoaderComponent={<GCardSkeleton />}>
       <div
         dir={dir}
-        className="flex flex-col  py-2  max-w-[300px]  w-[150px]  md:w-[250px] md:min-w-[285px] max-h-[450px]  md:max-h-[400px]  rounded-lg relative "
+        className="flex flex-col  justify-between py-2  max-w-[300px]  w-[150px]  md:w-[250px] md:min-w-[285px] max-h-[350px]  md:max-h-[400px]  rounded-lg relative "
       >
         <Button
           key={id}
@@ -144,18 +144,18 @@ export default function GSlider({
               />
             </div>
             <Divider className="mt-0 pt-0" />
-            <div className="flex flex-col gap-4  ">
+            <div className="flex flex-col  justify-between  gap-4  ">
               <div className="flex justify-between   mx-2">
                 <div className="flex flex-col gap-2 ">
                   <p
-                    className="text-slate-950  font-[400]  text-sm text-justify font-sans    "
+                    className="text-slate-950  font-[400]  text-sm text-start font-sans    "
                     title={title}
                   >
-                    {title}
+                    {title.slice(0, 40)}
                   </p>
                 </div>
               </div>
-              <div className="flex   mx-2">
+              <div className=" hidden md:flex   mx-2">
                 <div className="flex w-[70%] flex-col gap-2 items-start">
                   <p className=" text-slate-600">{category}</p>
                 </div>
@@ -174,7 +174,7 @@ export default function GSlider({
                   </Button>
                 </div>
               </div>
-              <div className="flex mx-2 items-center gap-2 ">
+              <div className=" hidden md:flex mx-2  items-center gap-2 ">
                 <div className="bg-pink-50 text-red-500 rounded-lg flex items-center justify-center w-10 gap-1  ">
                   <p className="text-slate-600"> {totalRating}</p>
                   <BsStarFill size={16} fill={cn(" #f4c706")} />
