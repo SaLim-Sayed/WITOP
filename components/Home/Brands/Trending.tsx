@@ -18,14 +18,13 @@ export default function Trending({ trends }: { trends: ProductType[] }) {
 
   return (
     <div>
-      <Center>
         <Title title={t("TRENDING")} exSt="uppercase text-cyan-800" />
         <div>
-          <div className="mx-auto  flex items-center  justify-center  ">
+          <div className="mx-auto relative  flex items-center  justify-center  ">
             <Button
               isIconOnly
               radius="full"
-              className="p-0 min-w-[30px]  h-[30px] z-10 "
+              className="  absolute top-[50%] bg-cyan-400 text-white right-0 p-0 w-[20px]  h-[30px] z-10 "
               onClick={() => {
                 locale == "ar"
                   ? slider.current.slickNext()
@@ -34,7 +33,7 @@ export default function Trending({ trends }: { trends: ProductType[] }) {
             >
               {locale == "en" ? <IoIosArrowBack /> : <IoIosArrowForward />}
             </Button>
-            <div className="w-[85%]   lg:w-full  mx-auto ">
+            <div className="w-[89%] lg:w-full  mx-auto ">
               {/*  @ts-ignore  */}
               <Slider rtl={dir} {...settings} ref={slider} key={3} autoplay>
                 {trends
@@ -74,7 +73,7 @@ export default function Trending({ trends }: { trends: ProductType[] }) {
             <Button
               isIconOnly
               radius="full"
-              className="p-0 min-w-[30px] h-[30px] z-10 "
+              className=" absolute top-[50%] bg-cyan-500 text-white left-0 p-0 min-w-[30px] h-[30px] z-10 "
               onClick={() => {
                 locale == "ar"
                   ? slider.current.slickPrev()
@@ -85,7 +84,7 @@ export default function Trending({ trends }: { trends: ProductType[] }) {
             </Button>
           </div>
         </div>
-      </Center>
+     
     </div>
   );
 }

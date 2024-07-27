@@ -14,83 +14,81 @@ export default function OurSelection({
   selection,
 }: {
   selection: ProductType[];
-}) {
+  }) {
+  
   const slider = useRef<any>();
   const t  = useTranslations("Buttons");
-
   const locale = useLocale();
   const dir = locale == "ar" ? true : false;
 
   return (
     <div>
-      <Center>
-        <Title title={t("OUR SELECTION")} exSt="uppercase text-cyan-800" />
-        <div>
-          <div className="mx-auto  flex items-center  justify-center  ">
-            <Button
-              isIconOnly
-              radius="full"
-              className="  p-0 min-w-[30px]  h-[30px] z-10 "
-              onClick={() => {
-                locale == "ar"
-                  ? slider.current.slickNext()
-                  : slider.current.slickPrev();
-              }}
-            >
-              {locale == "en" ? <IoIosArrowBack /> : <IoIosArrowForward />}
-            </Button>
-            <div className="w-[85%] lg:w-full  mx-auto ">
-              {/*  @ts-ignore  */}
-              <Slider rtl={dir} {...settings} ref={slider} key={2} autoplay >
-                {selection
-                  ? selection.map((product) => (
-                      <div
-                        dir={dir ? "rtl" : "ltr"}
+      <Title title={t("OUR SELECTION")} exSt="uppercase text-cyan-800" />
+      <div>
+        <div className="mx-auto relative  flex items-center  justify-center  ">
+          <Button
+            isIconOnly
+            radius="full"
+            className="  absolute top-[50%] right-0 bg-cyan-400 text-white   p-0 w-[20px]  h-[30px] z-10 "
+            onClick={() => {
+              locale == "ar"
+                ? slider.current.slickNext()
+                : slider.current.slickPrev();
+            }}
+          >
+            {locale == "en" ? <IoIosArrowBack /> : <IoIosArrowForward />}
+          </Button>
+          <div className="w-[89%] lg:w-full  mx-auto ">
+            {/*  @ts-ignore  */}
+            <Slider rtl={dir} {...settings} ref={slider} key={2} autoplay>
+              {selection
+                ? selection.map((product) => (
+                    <div
+                      dir={dir ? "rtl" : "ltr"}
+                      key={product?._id}
+                      className="mx-auto px-4 flex  justify-center"
+                    >
+                      <GSlider
                         key={product?._id}
-                        className="mx-auto px-4 flex  justify-center"
-                      >
-                        <GSlider
-                          key={product?._id}
-                          id={product?._id}
-                          price={product?.price}
-                          priceBeforeDiscount={product?.priceBeforeDiscount}
-                          discountPercentage={product?.discountPercentage}
-                          outOfStock={product?.outOfStock}
-                          title={product?.productName}
-                          desc={product?.description}
-                          img={product?.images[0]}
-                          category={product?.category}
-                          totalRating={product?.totalRating}
-                          stock={product?.stock}
-                        />
-                      </div>
-                    ))
-                  : Array.from({ length: 4 }).map((_, _index: any) => (
-                      <div
-                        dir={dir ? "rtl" : "ltr"}
-                        key={_index}
-                        className="mx-auto px-4 flex justify-center"
-                      >
-                        <GCardSkeleton />
-                      </div>
-                    ))}
-              </Slider>
-            </div>
-            <Button
-              isIconOnly
-              radius="full"
-              className="  p-0 min-w-[30px] h-[30px] z-10 "
-              onClick={() => {
-                locale == "ar"
-                  ? slider.current.slickPrev()
-                  : slider.current.slickNext();
-              }}
-            >
-              {locale == "en" ? <IoIosArrowForward /> : <IoIosArrowBack />}
-            </Button>
+                        id={product?._id}
+                        price={product?.price}
+                        priceBeforeDiscount={product?.priceBeforeDiscount}
+                        discountPercentage={product?.discountPercentage}
+                        outOfStock={product?.outOfStock}
+                        title={product?.productName}
+                        desc={product?.description}
+                        img={product?.images[0]}
+                        category={product?.category}
+                        totalRating={product?.totalRating}
+                        stock={product?.stock}
+                      />
+                    </div>
+                  ))
+                : Array.from({ length: 4 }).map((_, _index: any) => (
+                    <div
+                      dir={dir ? "rtl" : "ltr"}
+                      key={_index}
+                      className="mx-auto px-4 flex justify-center"
+                    >
+                      <GCardSkeleton />
+                    </div>
+                  ))}
+            </Slider>
           </div>
+          <Button
+            isIconOnly
+            radius="full"
+            className=" absolute top-[50%] bg-cyan-500 text-white left-0 p-0 min-w-[30px] h-[30px] z-10 "
+            onClick={() => {
+              locale == "ar"
+                ? slider.current.slickPrev()
+                : slider.current.slickNext();
+            }}
+          >
+            {locale == "en" ? <IoIosArrowForward /> : <IoIosArrowBack />}
+          </Button>
         </div>
-      </Center>
+      </div>
     </div>
   );
 }

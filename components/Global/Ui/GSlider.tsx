@@ -99,7 +99,7 @@ export default function GSlider({
     <ClientHydration LoaderComponent={<GCardSkeleton />}>
       <div
         dir={dir}
-        className="flex flex-col gap-2 shadow-xl max-w-[300px]  min-w-[250px] lg:min-w-[285px]  max-h-[400px]  rounded-lg relative "
+        className="flex flex-col  py-2  max-w-[300px]  w-[150px]  md:w-[250px] md:min-w-[285px] max-h-[450px]  md:max-h-[400px]  rounded-lg relative "
       >
         <Button
           key={id}
@@ -125,7 +125,7 @@ export default function GSlider({
           radius="full"
           className="absolute  top-40 left-2   z-20"
         >
-           <BiCartAdd size={24} />  
+          <BiCartAdd size={24} />
         </Button>
 
         <Card
@@ -148,7 +148,7 @@ export default function GSlider({
               <div className="flex justify-between   mx-2">
                 <div className="flex flex-col gap-2 ">
                   <p
-                    className="text-slate-950  font-[400] text-start text-[16px] font-sans    "
+                    className="text-slate-950  font-[400]  text-sm text-justify font-sans    "
                     title={title}
                   >
                     {title}
@@ -160,12 +160,9 @@ export default function GSlider({
                   <p className=" text-slate-600">{category}</p>
                 </div>
               </div>
-              <div className="flex   mx-2">
-                <span className=" line-through text-gray-500 font-normal">
-                  {priceBeforeDiscount}
-                </span>
-                <div className="flex gap-2">
-                  <div className="text-lg text-red-500 font-bold">
+              <div className="flex    mx-2">
+                <div className="flex justify-between items-center gap-2">
+                  <div className="text-sm text-red-500 font-bold">
                     {price} {t("SAR")}
                   </div>
                   <Button

@@ -120,7 +120,7 @@ function ProductCard() {
   return (
     <Center>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 relative">
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-start">
           <ImageGallury
             images={productData?.images}
             alt={productData?.productName}
@@ -459,7 +459,7 @@ function ProductCard() {
 
           <div
             className={cn(
-              " flex   text-lg text-gray-500  border-b-2 border-black w-fit"
+              " flex   text-medium text-gray-500  border-b-2 border-black w-fit"
             )}
           >
             {t("Desc")}
