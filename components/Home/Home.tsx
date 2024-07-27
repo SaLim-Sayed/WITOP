@@ -2,19 +2,17 @@
 
 import getProductBySectionType from "@/store/actions/getProductBySectionType.module";
 import CategorySlider from "../Global/Sliders/CategorySlider";
-import SimpleSlider from "../Global/Sliders/MainSlider";
-import OnSale from "./Brands/OnSale";
-import OurSelection from "./Brands/OurSelection";
-import Trending from "./Brands/Trending";
+import SwipperPage from "../Global/Sliders/SwipperPage";
+import GSliderSlot from "./Brands/GSliderSlot";
 import Brands from "./Favorite/Brands";
 import Offers from "./Offers/Offers";
-import SwipperPage from "../Global/Sliders/SwipperPage";
 import WelcomeLayer from "./WelcomeLayer/WelcomeLayer";
 
 export default async function Home() {
   const trends = await getProductBySectionType({ type: "Trending" });
   const selection = await getProductBySectionType({ type: "Our Selection" });
   const sale = await getProductBySectionType({ type: "On Sale" });
+
   return (
     <div>
       <SwipperPage />
@@ -24,13 +22,11 @@ export default async function Home() {
 
       <Brands />
       <Offers />
-      <Trending trends={trends?.products} />
+      <GSliderSlot title={"TRENDING"} data={trends?.products} />
       <Offers />
-
-      <OnSale sale={sale?.products} />
+      <GSliderSlot title={"ON SALE"} data={sale?.products} />
       <Offers />
-
-      <OurSelection selection={selection?.products} />
+      <GSliderSlot title={"OUR SELECTION"} data={selection?.products} />
     </div>
   );
 }

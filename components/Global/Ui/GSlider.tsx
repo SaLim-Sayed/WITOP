@@ -99,7 +99,7 @@ export default function GSlider({
     <ClientHydration LoaderComponent={<GCardSkeleton />}>
       <div
         dir={dir}
-        className="flex flex-col  justify-between py-2  max-w-[300px]  w-[150px]  md:w-[250px] md:min-w-[285px] max-h-[350px]  md:max-h-[400px]  rounded-lg relative "
+        className="flex flex-col  justify-between py-2  max-w-[300px]     md:w-[250px] md:min-w-[285px] max-h-[350px]  md:max-h-[400px]  rounded-lg relative "
       >
         <Button
           key={id}

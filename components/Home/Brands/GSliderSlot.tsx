@@ -4,32 +4,34 @@ import Title from "@/components/Global/Ui/Title";
 import { useRef } from "react";
 import { Product as ProductType } from "@/types/product";
 import Slider from "@ant-design/react-slick";
+import GSlider from "@/components/Global/Ui/GSlider";
 import { useLocale, useTranslations } from "next-intl";
 import { settings } from "./setting";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { Button } from "@nextui-org/react";
 import GCardSkeleton from "@/components/Global/Loaders/GCardSkeleton";
-import GSlider from "@/components/Global/Ui/GSlider";
-export default function OurSelection({
-  selection,
+import Image from "next/legacy/image";
+export default function GSliderSlot({
+  data,
+  title,
 }: {
-  selection: ProductType[];
-  }) {
-  
+  data: ProductType[];
+  title: string;
+}) {
   const slider = useRef<any>();
-  const t  = useTranslations("Buttons");
   const locale = useLocale();
   const dir = locale == "ar" ? true : false;
+  const t = useTranslations("Buttons");
 
   return (
     <div>
-      <Title title={t("OUR SELECTION")} exSt="uppercase text-cyan-800" />
+      <Title title={t(title)} exSt="uppercase text-cyan-800" />
       <div>
-        <div className="mx-auto relative  flex items-center  justify-center  ">
+        <div className="  relative  flex    ">
           <Button
             isIconOnly
             radius="full"
-            className="  absolute top-[50%] right-0 bg-cyan-400 text-white   p-0 w-[20px]  h-[30px] z-10 "
+            className=" hidden  lg:flex absolute top-[50%] bg-cyan-400 text-white right-0 p-0 w-[20px]  h-[30px] z-10 "
             onClick={() => {
               locale == "ar"
                 ? slider.current.slickNext()
@@ -38,15 +40,15 @@ export default function OurSelection({
           >
             {locale == "en" ? <IoIosArrowBack /> : <IoIosArrowForward />}
           </Button>
-          <div className="w-[89%] lg:w-full  mx-auto ">
+          <div className="w-[100%] lg:w-full  mx-auto ">
             {/*  @ts-ignore  */}
-            <Slider rtl={dir} {...settings} ref={slider} key={2} autoplay>
-              {selection
-                ? selection.map((product) => (
+            <Slider dir={dir} {...settings} ref={slider} key={3} autoplay>
+              {data
+                ? data.map((product) => (
                     <div
                       dir={dir ? "rtl" : "ltr"}
                       key={product?._id}
-                      className="mx-auto px-4 flex  justify-center"
+                      className="mx-auto px-4 my-4 flex justify-center"
                     >
                       <GSlider
                         key={product?._id}
@@ -78,7 +80,31 @@ export default function OurSelection({
           <Button
             isIconOnly
             radius="full"
-            className=" absolute top-[50%] bg-cyan-500 text-white left-0 p-0 min-w-[30px] h-[30px] z-10 "
+            className="hidden  lg:flex  absolute top-[50%] bg-cyan-500 text-white left-0 p-0 min-w-[30px] h-[30px] z-10 "
+            onClick={() => {
+              locale == "ar"
+                ? slider.current.slickPrev()
+                : slider.current.slickNext();
+            }}
+          >
+            {locale == "en" ? <IoIosArrowForward /> : <IoIosArrowBack />}
+          </Button>
+        </div>
+        <div className=" flex lg:hidden items-center justify-end gap-1 w-full">
+          <Button
+            className="p-0 bg-cyan-500 text-white  flex  min-w-[30px] h-[30px] rounded-full"
+            onClick={() => {
+              locale == "ar"
+                ? slider.current.slickNext()
+                : slider.current.slickPrev();
+            }}
+          >
+            {locale == "en" ? <IoIosArrowBack /> : <IoIosArrowForward />}
+          </Button>
+          <div className="bg-cyan-500 text-white h-2 w-2 rounded-full" />
+          <div className="bg-cyan-500 text-white h-2 w-2 rounded-full" />
+          <Button
+            className="p-0 bg-cyan-500 text-white  flex min-w-[30px] h-[30px] rounded-full"
             onClick={() => {
               locale == "ar"
                 ? slider.current.slickPrev()

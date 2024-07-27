@@ -13,7 +13,7 @@ export const settings = {
     {
       breakpoint: 1400,
       settings: {
-        slidesToShow: 3.7,
+        slidesToShow: 3.2,
         slidesToScroll: 1,
         centerPadding: 5,
         dots: true,
@@ -23,7 +23,7 @@ export const settings = {
     {
       breakpoint: 1024,
       settings: {
-        slidesToShow: 2.5,
+        slidesToShow: 2.8,
         slidesToScroll: 1,
         centerPadding: 30,
         dots: true,
@@ -33,7 +33,7 @@ export const settings = {
     {
       breakpoint: 820,
       settings: {
-        slidesToShow: 2,
+        slidesToShow: 2.4,
         slidesToScroll: 2,
         initialSlide: 2,
         centerPadding: 30,
@@ -43,12 +43,14 @@ export const settings = {
     {
       breakpoint: 700,
       settings: {
-        className: "center",
+        
+        // className: "center",
         // centerMode: true,
         infinite: true,
-        slidesToShow: 2, 
-        slidesToScroll: 3,
-        centerPadding: 0,
+        slidesToShow: 1.7, 
+        slidesToScroll: 1,
+        // centerPadding: 0,
+          dots: false,
         draggable: true,
       },
     },
