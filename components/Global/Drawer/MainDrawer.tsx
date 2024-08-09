@@ -28,9 +28,11 @@ export default function MainDrawer({
       <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerHeader borderBottomWidth="1px">{translate("Categories")}</DrawerHeader>
+          <DrawerHeader borderBottomWidth="1px">
+            {translate("Categories")}
+          </DrawerHeader>
           <DrawerBody className=" list-none mb-2">
-            <NavbarMobile />
+            <NavbarMobile onClose={onClose} />
           </DrawerBody>
         </DrawerContent>
       </Drawer>

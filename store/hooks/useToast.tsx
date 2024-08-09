@@ -20,7 +20,7 @@ export default function useToast({
   const errMsg = Cookies.get("errMsg") || transAlert("Contact/Form/ErrorMsg");
   const showToast = () => {
     const iconColor =
-      type === "! خطأ " ? "text-primaryColor-600" : "text-primaryColor-900";
+      type === "error" ? "text-primaryColor-600" : "text-primaryColor-900";
     const icon = (
       <div className="w-[100px] h-[100px]">
         <MdConnectingAirports className={`text-${iconColor} text-[35px]`} />
@@ -28,7 +28,7 @@ export default function useToast({
     );
 
     const message =
-      type === "! خطأ " ? (
+      type === "error" ? (
         <div className="flex flex-col gap-3 justify-center items-center">
           <div className={`text-[35px] font-[600] ${iconColor}`}>
             {status}

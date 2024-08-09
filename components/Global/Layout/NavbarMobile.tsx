@@ -9,8 +9,10 @@ import { cn } from "@/libs/cn";
 
 export default function NavbarMobile({
   setIsMenuOpen,
+  onClose,
 }: {
   setIsMenuOpen?: any;
+  onClose: () => void;
 }) {
   const translate = useTranslations("Categories");
   const translateSub = useTranslations("Categories.SubCategory");
@@ -601,7 +603,10 @@ export default function NavbarMobile({
                     {subCategory.items.map((item, index) => (
                       <Button
                         size="md"
-                        onClick={() => setSelectedItem(item)}
+                        onClick={() => {
+                          setSelectedItem(item);
+                          onClose()
+                        }}
                         key={index}
                         className={cn(
                           "w-full mb-2 text-lg",
