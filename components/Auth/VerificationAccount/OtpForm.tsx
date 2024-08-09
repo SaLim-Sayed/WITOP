@@ -91,7 +91,6 @@ const OTPFORMS = () => {
       className="w-full flex flex-col  gap-[32px]  "
       onSubmit={(e) => onSubmit(e)}
     >
-      
       <div className="flex flex-col justify-center  items-center ">
         <div className="flex justify-center text-primaryColor-200">
           {otpError}

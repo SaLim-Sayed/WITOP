@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardBody, Image, Button } from "@nextui-org/react";
 import { BiTrash } from "react-icons/bi";
 import { Product } from "@/types/product";
- 
+
 import { showToast } from "../Ui/Toast";
 import { cartStore } from "@/store/futures/cartStore";
 import { useLocale } from "next-intl";
@@ -20,16 +20,13 @@ export default function FavoriteItem({ product, setProducts }: IProps) {
   const showSuccessToast = (message?: string) =>
     showToast({ status: "Success", type: "success", toastMessage: message });
   const showErrorToast = (message?: string) =>
-    showToast({ status: "Error", type: "error", toastMessage: message });
+    showToast({ status: "! خطأ ", type: "error", toastMessage: message });
 
   const lang = useLocale();
   const router = useRouter();
   const removeFromCartHandler = async (id: any) => {
     try {
-      const data = await axiosInstance.put(
-        `/user/removeFromCart/${id}`,
-        
-      );
+      const data = await axiosInstance.put(`/user/removeFromCart/${id}`);
 
       console.log(data);
       setProducts(data?.data.cart.products);
@@ -37,7 +34,7 @@ export default function FavoriteItem({ product, setProducts }: IProps) {
       showSuccessToast("item deleted Successfuly");
     } catch (err: any) {
       console.log(err);
-      showErrorToast("Something Went Wrong , Try Again..");
+      showErrorToast("يجب تسجيل الدخول اولاََ");
     }
   };
 
@@ -74,7 +71,6 @@ export default function FavoriteItem({ product, setProducts }: IProps) {
                       router.push(
                         `/product/${product?.category}/${product._id}`
                       );
-                      
                     }}
                     endContent={<BsEye size={20} />}
                   >

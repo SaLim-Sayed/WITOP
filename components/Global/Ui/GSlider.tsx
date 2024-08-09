@@ -62,7 +62,7 @@ export default function GSlider({
   const showSuccessToast = (message?: string) =>
     showToast({ status: "Success", type: "success", toastMessage: message });
   const showErrorToast = (message?: string) =>
-    showToast({ status: "Error", type: "error", toastMessage: message });
+    showToast({ status: "! خطأ ", type: "error", toastMessage: message });
 
   const addToFavoriteHandler = async () => {
     try {
@@ -75,7 +75,7 @@ export default function GSlider({
     } catch (err: any) {
       setIsLoading(false);
       console.log(err);
-      showErrorToast("Something Went Wrong , Try Again..");
+      showErrorToast("يجب تسجيل الدخول اولاََ");
     }
   };
   const addToCartHandler = async () => {
@@ -92,7 +92,7 @@ export default function GSlider({
     } catch (err: any) {
       setIsLoading(false);
       console.log(err);
-      showErrorToast("Something Went Wrong , Try Again..");
+      showErrorToast("يجب تسجيل الدخول اولاََ");
     }
   };
   return (

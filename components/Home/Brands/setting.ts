@@ -1,7 +1,7 @@
 export const settings = {
   dots: true,
   speed: 500,
-  slidesToShow: 4.8,
+  slidesToShow: 5,
   slidesToScroll: 1,
   initialSlide: 0,
   centerPadding: 0,
@@ -13,7 +13,7 @@ export const settings = {
     {
       breakpoint: 1400,
       settings: {
-        slidesToShow: 3.2,
+        slidesToShow: 4.2,
         slidesToScroll: 1,
         centerPadding: 5,
         dots: true,

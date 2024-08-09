@@ -86,12 +86,13 @@ const CouponForm = () => {
         />
 
         <Button
-        disabled={discount}
-        isDisabled={discount}
+          disabled={discount}
+          isDisabled={discount}
           type="submit"
           size="lg"
-          className={cn("bg-cyan-500 h-[56px]  text-lg text-white font-bold",
-            discount&&" cursor-not-allowed"
+          className={cn(
+            "bg-cyan-500 h-[56px]  text-lg text-white font-bold",
+            discount && " cursor-not-allowed"
           )}
         >
           تطبيق الخصم

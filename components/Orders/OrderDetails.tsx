@@ -31,7 +31,7 @@ export default function OrderDetails() {
   const showSuccessToast = (message?: string) =>
     showToast({ status: "Success", type: "success", toastMessage: message });
   const showErrorToast = (message?: string) =>
-    showToast({ status: "Error", type: "error", toastMessage: message });
+    showToast({ status: "! خطأ ", type: "error", toastMessage: message });
 
   const { id: orderId } = useParams();
   const [orderDetails, setOrderDetails] = useState<Order>();
@@ -50,7 +50,7 @@ export default function OrderDetails() {
       console.log(err);
       setLoading(false);
 
-      showErrorToast("Something Went Wrong , Try Again..");
+      showErrorToast("يجب تسجيل الدخول اولاََ");
     }
   };
 

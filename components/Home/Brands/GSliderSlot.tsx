@@ -1,16 +1,14 @@
 "use client";
-import Center from "@/components/Global/Ui/Center";
+import GCardSkeleton from "@/components/Global/Loaders/GCardSkeleton";
+import GSlider from "@/components/Global/Ui/GSlider";
 import Title from "@/components/Global/Ui/Title";
-import { useRef } from "react";
 import { Product as ProductType } from "@/types/product";
 import Slider from "@ant-design/react-slick";
-import GSlider from "@/components/Global/Ui/GSlider";
-import { useLocale, useTranslations } from "next-intl";
-import { settings } from "./setting";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { Button } from "@nextui-org/react";
-import GCardSkeleton from "@/components/Global/Loaders/GCardSkeleton";
-import Image from "next/legacy/image";
+import { useLocale, useTranslations } from "next-intl";
+import { useRef } from "react";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { settings } from "./setting";
 export default function GSliderSlot({
   data,
   title,

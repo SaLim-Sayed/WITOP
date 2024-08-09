@@ -18,7 +18,7 @@ import Cookies from "js-cookie";
 import { useLocale, useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import { memo, useEffect, useState } from "react";
-import { BiHeart, BiStar } from "react-icons/bi";
+import { BiCartAdd, BiHeart, BiStar } from "react-icons/bi";
 import { BsHeartFill, BsStarFill } from "react-icons/bs";
 import ImageGallury from "../Global/Sliders/ImageGallury";
 import ImageGallurySM from "../Global/Sliders/ImageGallurySM";
@@ -46,7 +46,7 @@ function ProductCard() {
   const showSuccessToast = (message?: string) =>
     showToast({ status: "Success", type: "success", toastMessage: message });
   const showErrorToast = (message?: string) =>
-    showToast({ status: "Error", type: "error", toastMessage: message });
+    showToast({ status: "! خطأ ", type: "error", toastMessage: message });
   const handleIncrease = () => {
     setCount(count + 1);
   };
@@ -80,7 +80,7 @@ function ProductCard() {
     } catch (err: any) {
       setIsLoading(false);
       console.log(err);
-      showErrorToast("Something Went Wrong , Try Again..");
+      showErrorToast("يجب تسجيل الدخول اولاََ");
     }
   };
   const [len, setLen] = useState(100);
@@ -98,7 +98,7 @@ function ProductCard() {
     } catch (err: any) {
       setIsLoading(false);
       console.log(err);
-      showErrorToast("Something Went Wrong , Try Again..");
+      showErrorToast("يجب تسجيل الدخول اولاََ");
     }
   };
   const addToFavoriteHandler = async () => {
@@ -112,7 +112,7 @@ function ProductCard() {
     } catch (err: any) {
       setIsLoading(false);
       console.log(err);
-      showErrorToast("Something Went Wrong , Try Again..");
+      showErrorToast("يجب تسجيل الدخول اولاََ");
     }
   };
   useEffect(() => {
@@ -537,10 +537,14 @@ function ProductCard() {
             </div>
             <Button
               onClick={() => addToCartHandler()}
-              radius="sm"
-              className="h-12 w-40 bg-black text-white uppercase "
+              size="lg"
+              variant="flat"
+              color="secondary"
+              isIconOnly
+              radius="full"
+              className="h-12  bg-black text-white uppercase "
             >
-              {t("ADDCART")}
+              <BiCartAdd size={24} />
             </Button>
             <Button
               onClick={() => {
@@ -555,6 +559,30 @@ function ProductCard() {
               {" "}
               {!fav ? <BiHeart size={60} /> : <BsHeartFill size={60} />}
             </Button>
+            <div className=" ">
+              <Popover showArrow shouldFlip placement="top">
+                <PopoverTrigger>
+                  <Button
+                    onClick={() => copyUrlWithoutSearchParams(setCopied)}
+                    isIconOnly
+                    size="lg"
+                    radius="full"
+                    color="success"
+                    variant="flat"
+                    className=" border-none mb-1    flex justify-center items-center text-teal-800 font-[700]"
+                  >
+                    <AiOutlineShareAlt size={25} width={25} height={25} />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="bg-cyan-500 text-white">
+                  <div className="px-1  ">
+                    <div className="text-small font-bold">
+                      {copied ? "Link copied!" : "Copy link"}
+                    </div>
+                  </div>
+                </PopoverContent>
+              </Popover>
+            </div>
           </div>
         </div>
       </div>

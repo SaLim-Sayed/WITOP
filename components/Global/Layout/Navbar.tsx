@@ -54,7 +54,7 @@ import useFavoriteStore from "@/store/futures/useFavoriteStore";
 import { axiosInstance } from "@/util/axiosConfig";
 import Cookie from "js-cookie";
 export default function NavbarPage() {
-  const router = useRouter()
+  const router = useRouter();
   const locale = useLocale();
   const pathName = usePathname();
   const translate = useTranslations("Globals");
@@ -70,7 +70,6 @@ export default function NavbarPage() {
   const handleLogout = async () => {
     Cookies.set("token", "");
     window.location.reload();
-
   };
   const getDirection = () => {
     Cookies.set("NEXT_LOCALE", locale == "ar" ? "en" : "ar");
@@ -95,7 +94,7 @@ export default function NavbarPage() {
   const showSuccessToast = (message?: string) =>
     showToast({ status: "Success", type: "success", toastMessage: message });
   const showErrorToast = (message?: string) =>
-    showToast({ status: "Error", type: "error", toastMessage: message });
+    showToast({ status: "! خطأ ", type: "error", toastMessage: message });
 
   const searchData = async () => {
     const data = await searchProduct({ txt: searchTxt });
@@ -112,7 +111,7 @@ export default function NavbarPage() {
       showSuccessToast(data?.message);
     } catch (err: any) {
       console.log(err);
-      showErrorToast("Something Went Wrong , Try Again..");
+      showErrorToast("يجب تسجيل الدخول اولاََ");
     }
   };
 

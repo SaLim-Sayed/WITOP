@@ -116,7 +116,7 @@ export default function WithAction() {
   const showSuccessToast = (message?: string) =>
     showToast({ status: "Success", type: "success", toastMessage: message });
   const showErrorToast = (message?: string) =>
-    showToast({ status: "Error", type: "error", toastMessage: message });
+    showToast({ status: "! خطأ ", type: "error", toastMessage: message });
 
   const searchData = async () => {
     const data = await searchProduct({ txt: searchTxt });
@@ -133,7 +133,7 @@ export default function WithAction() {
       showSuccessToast(data?.message);
     } catch (err: any) {
       console.log(err);
-      showErrorToast("Something Went Wrong , Try Again..");
+      showErrorToast("يجب تسجيل الدخول اولاََ");
     }
   };
 

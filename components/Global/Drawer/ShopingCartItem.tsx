@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardBody, Image, Button, CardFooter } from "@nextui-org/react";
 import { BiTrash } from "react-icons/bi";
 import { Product } from "@/types/product";
- 
+
 import { showToast } from "../Ui/Toast";
 import { cartStore } from "@/store/futures/cartStore";
 import { useLocale } from "next-intl";
@@ -15,7 +15,7 @@ interface IProps {
   setProducts: any;
   setCartCount: any;
   setCartSliderIsOpen: any;
-  cartId:any
+  cartId: any;
 }
 
 export default function ShopingCartItem({
@@ -23,22 +23,19 @@ export default function ShopingCartItem({
   setProducts,
   setCartCount,
   setCartSliderIsOpen,
-  cartId
+  cartId,
 }: IProps) {
   const { CartSetter } = cartStore();
   const showSuccessToast = (message?: string) =>
     showToast({ status: "Success", type: "success", toastMessage: message });
   const showErrorToast = (message?: string) =>
-    showToast({ status: "Error", type: "error", toastMessage: message });
+    showToast({ status: "! خطأ ", type: "error", toastMessage: message });
 
   const lang = useLocale();
   const router = useRouter();
   const removeFromCartHandler = async (id: any) => {
     try {
-      const { data } = await axiosInstance.put(
-        `/user/removeFromCart/${id}`
-        
-      );
+      const { data } = await axiosInstance.put(`/user/removeFromCart/${id}`);
 
       console.log(data);
       setProducts(data?.cart?.products);
@@ -47,7 +44,7 @@ export default function ShopingCartItem({
       showSuccessToast(data?.message);
     } catch (err: any) {
       console.log(err);
-      showErrorToast("Something Went Wrong , Try Again..");
+      showErrorToast("يجب تسجيل الدخول اولاََ");
     }
   };
 
@@ -55,7 +52,6 @@ export default function ShopingCartItem({
     <Card
       className="border-none bg-background/90 text-slate-950 dark:bg-default-100/70 overflow-hidden  font-light text-sm  max-w-[610px]"
       shadow="lg"
-      
     >
       <CardBody>
         <div className="grid grid-cols-2 gap-2 md:gap-4 items-center justify-center">
@@ -91,17 +87,16 @@ export default function ShopingCartItem({
       </CardBody>
       <CardFooter className="flex justify-between items-center">
         <Button
-      className=" w-full text-lg text-white bg-teal-800 "
+          className=" w-full text-lg text-white bg-teal-800 "
           variant="flat"
           color="default"
           onClick={() => {
             router.push(`/cart/${cartId}`);
             setCartSliderIsOpen(false);
           }}
-         
           endContent={<BsEye size={20} />}
         >
-          show Cart And  Payment
+          show Cart And Payment
         </Button>
       </CardFooter>
     </Card>

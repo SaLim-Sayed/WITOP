@@ -31,7 +31,7 @@ export default function Cart() {
   const showSuccessToast = (message?: string) =>
     showToast({ status: "Success", type: "success", toastMessage: message });
   const showErrorToast = (message?: string) =>
-    showToast({ status: "Error", type: "error", toastMessage: message });
+    showToast({ status: "! خطأ ", type: "error", toastMessage: message });
   const handleIncrease = () => {
     setCount(count + 1);
   };
@@ -56,7 +56,7 @@ export default function Cart() {
       showSuccessToast(data?.message);
     } catch (err: any) {
       console.log(err);
-      showErrorToast("Something Went Wrong , Try Again..");
+      showErrorToast("يجب تسجيل الدخول اولاََ");
     }
   };
   const removeFromCartHandler = async (id: any) => {
@@ -71,7 +71,7 @@ export default function Cart() {
       showSuccessToast(data?.message);
     } catch (err: any) {
       console.log(err);
-      showErrorToast("Something Went Wrong , Try Again..");
+      showErrorToast("يجب تسجيل الدخول اولاََ");
     }
   };
   const { CartAmount } = cartStore();
