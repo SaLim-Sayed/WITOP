@@ -1,16 +1,14 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { Image, Pagination, Skeleton, Spinner } from "@nextui-org/react";
+import getProductByBrand from "@/store/actions/getProductByBrand.module";
+import { Product as ProductType } from "@/types/product";
+import { Pagination } from "@nextui-org/react";
+import { useLocale } from "next-intl";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import GCardSkeleton from "../Global/Loaders/GCardSkeleton";
 import Center from "../Global/Ui/Center";
 import GCard from "../Global/Ui/GCard";
-import { Product as ProductType } from "@/types/product";
 import Headings from "../Global/Ui/Heading";
-import getProducts from "@/store/actions/products.module";
-import { useParams } from "next/navigation";
-import { useLocale } from "next-intl";
-import GCardSkeleton from "../Global/Loaders/GCardSkeleton";
-import getProductBySectionType from "@/store/actions/getProductBySectionType.module";
-import getProductByBrand from "@/store/actions/getProductByBrand.module";
 import Layer from "../Global/Ui/Layer";
 
 export default function Brand() {

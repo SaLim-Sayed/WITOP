@@ -12,14 +12,16 @@ import { useLocale } from "next-intl";
 import { Brands } from "./data.module";
 import Title from "../Ui/Title";
 import Image from "next/legacy/image";
+import { useRouter } from "next/navigation";
 export default function BrandSlider() {
+    const router = useRouter();
   const [grab, setGrab] = useState(false);
   const slider = useRef<any>();
   const locale = useLocale();
   const dir = locale == "ar" ? true : false;
+  
   return (
     <>
-      
       <div className="mx-auto  flex items-center  justify-center  ">
         <Button
           isIconOnly
@@ -38,10 +40,16 @@ export default function BrandSlider() {
           <Slider rtl={dir} {...settings} ref={slider} autoplay>
             {Brands.map((brand) => (
               <div
+                onClick={() => router.push(`/brands/${brand.brand}`)}
                 key={brand.id}
                 className=" grid grid-cols-1 grid-rows-2 gap-2 w-fit "
               >
-                <Image src={brand.img||""} alt="1" width={1000} height={1000} />
+                <Image
+                  src={brand.img || ""}
+                  alt="1"
+                  width={1000}
+                  height={1000}
+                />
                 <div className=" text-tiny  uppercase font-bold  flex justify-center mx-auto ">
                   {/* <p>{brand.brand}</p> */}
                 </div>

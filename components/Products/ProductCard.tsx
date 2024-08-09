@@ -512,7 +512,7 @@ function ProductCard() {
               </pre>
             )}
           </div>
-          <div className="md:hidden flex gap-4 sticky bottom-1 bg-white  p-2 rounded-lg z-40   shadow-xl">
+          <div className="md:hidden flex gap-4 sticky justify-between bottom-1 bg-white  p-2 rounded-lg z-40   shadow-xl">
             <div className="flex items-center w-[100px] h-12 justify-between border-[2px] gap-2">
               <Button
                 variant="light"

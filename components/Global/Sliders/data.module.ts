@@ -36,13 +36,13 @@ export const Brands = [
 
   {
     id: 4,
-    brand: "Beauty Star",
+    brand: "Qv",
     category: "Cosmetics",
     img: "/brands/4.png",
   },
   {
     id: 5,
-    brand: "Bioderma",
+    brand: "SomeByMi",
     category: "Cosmetics",
     img: "/brands/5.png",
   },
@@ -60,7 +60,7 @@ export const Brands = [
   },
   {
     id: 8,
-    brand: "Black",
+    brand: "cetaphil",
     category: "Cosmetics",
     img: "/brands/8.png",
   },

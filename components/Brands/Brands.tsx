@@ -1,10 +1,9 @@
 "use client";
-import Center from "../Global/Ui/Center";
-import Title from "../Global/Ui/Title";
-import Link from "next/link";
-import { Card, CardFooter, Image, Button, CardBody } from "@nextui-org/react";
+import { Button, Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
+import Center from "../Global/Ui/Center";
+import Title from "../Global/Ui/Title";
 
 export default function Brands() {
   const translate = useTranslations("Brands");
