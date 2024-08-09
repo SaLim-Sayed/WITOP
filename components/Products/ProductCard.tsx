@@ -1,27 +1,32 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import React, { memo } from "react";
-import Center from "../Global/Ui/Center";
-import ImageGallury from "../Global/Sliders/ImageGallury";
-import { BiHeart, BiStar } from "react-icons/bi";
-import { Button, Card, CardBody, Input } from "@nextui-org/react";
-import { Tabs, Tab } from "@nextui-org/react";
-import { useEffect, useState } from "react";
-import { Product } from "@/types/product";
-import RelatedProducts from "./RelatedProducts";
-import { useParams } from "next/navigation";
-import getProductByID from "@/store/actions/getProductByID.module";
-import Cookies from "js-cookie";
-import { showToast } from "../Global/Ui/Toast";
-import { cartStore } from "@/store/futures/cartStore";
-import { useLocale, useTranslations } from "next-intl";
 import { cn } from "@/libs/cn";
-import { BsHeartFill, BsStarFill } from "react-icons/bs";
+import getProductByID from "@/store/actions/getProductByID.module";
+import { cartStore } from "@/store/futures/cartStore";
 import useFavoriteStore from "@/store/futures/useFavoriteStore";
+import { Product } from "@/types/product";
 import { axiosInstance } from "@/util/axiosConfig";
-import SmImageGallury from "../Global/Sliders/SmImageGallury";
+import { copyUrlWithoutSearchParams } from "@/util/copyUrl";
+import {
+  Button,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@nextui-org/react";
+import Cookies from "js-cookie";
+import { useLocale, useTranslations } from "next-intl";
+import { useParams } from "next/navigation";
+import { memo, useEffect, useState } from "react";
+import { BiHeart, BiStar } from "react-icons/bi";
+import { BsHeartFill, BsStarFill } from "react-icons/bs";
+import ImageGallury from "../Global/Sliders/ImageGallury";
 import ImageGallurySM from "../Global/Sliders/ImageGallurySM";
+import Center from "../Global/Ui/Center";
+import { showToast } from "../Global/Ui/Toast";
+import RelatedProducts from "./RelatedProducts";
+
+import { AiOutlineShareAlt } from "react-icons/ai";
 function ProductCard() {
   const lang = useLocale();
   const t = useTranslations("Globals");
@@ -51,6 +56,7 @@ function ProductCard() {
       setCount(count - 1);
     }
   };
+  const [copied, setCopied] = useState(false);
 
   const [productData, setProductData] = useState<Product>();
   const [showRelated, setShowRelated] = useState(false);
@@ -120,7 +126,7 @@ function ProductCard() {
   return (
     <Center>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 relative">
-        <div className="flex justify-center items-start">
+        <div className="flex justify-center items-start w-full ">
           <ImageGallury
             images={productData?.images}
             alt={productData?.productName}
@@ -136,7 +142,6 @@ function ProductCard() {
           <div className="text-xl md:text-xl font-[500] relative  ">
             {productData?.productName}
           </div>
-
           <div className="flex  flex-col gap-2">
             <div className="flex flex-col">
               <div className="  line-through">
@@ -455,6 +460,31 @@ function ProductCard() {
               {" "}
               {!fav ? <BiHeart size={60} /> : <BsHeartFill size={60} />}
             </Button>
+
+            <div className="flex justify-end items-center ">
+              <Popover showArrow shouldFlip placement="top">
+                <PopoverTrigger>
+                  <Button
+                    onClick={() => copyUrlWithoutSearchParams(setCopied)}
+                    isIconOnly
+                    size="lg"
+                    radius="full"
+                    color="success"
+                    variant="flat"
+                    className=" border-none mb-1    flex justify-center items-center text-teal-800 font-[700]"
+                  >
+                    <AiOutlineShareAlt size={25} width={25} height={25} />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="bg-cyan-500 text-white">
+                  <div className="px-1  ">
+                    <div className="text-small font-bold">
+                      {copied ? "Link copied!" : "Copy link"}
+                    </div>
+                  </div>
+                </PopoverContent>
+              </Popover>
+            </div>
           </div>
 
           <div

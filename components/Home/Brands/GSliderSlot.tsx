@@ -42,11 +42,11 @@ export default function GSliderSlot({
           </Button>
           <div className="w-[100%] lg:w-full  mx-auto ">
             {/*  @ts-ignore  */}
-            <Slider dir={dir} {...settings} ref={slider} key={3} autoplay>
+            <Slider dir={"ltr"} {...settings} ref={slider} key={3} autoplay>
               {data
                 ? data.map((product) => (
                     <div
-                      dir={dir ? "rtl" : "ltr"}
+                       
                       key={product?._id}
                       className="mx-auto px-4 my-4 flex justify-center"
                     >
