@@ -40,7 +40,10 @@ export default function Brand() {
             }
           />
 
-          <div dir={dir} className="flex   flex-wrap   mx-auto   gap-4">
+          <div
+            dir={dir}
+            className="flex flex-1   flex-wrap  justify-around  gap-4"
+          >
             {products
               ? products.map((product) => (
                   <GCard

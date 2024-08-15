@@ -51,7 +51,7 @@ export default function BrandSlider() {
                   height={1000}
                 />
                 <div className=" text-tiny  uppercase font-bold  flex justify-center mx-auto ">
-                  {/* <p>{brand.brand}</p> */}
+                  <p>{brand.brand}</p>
                 </div>
               </div>
             ))}
