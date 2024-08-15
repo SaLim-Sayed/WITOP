@@ -75,7 +75,14 @@ export default function Brand() {
               // Show "No Data" message if no products available
               <div className="flex flex-col gap-5 w-full justify-center items-center h-full">
                 <div>{t("noData")}</div>
-                <Button as={Link} href="/" variant="bordered" color="secondary"  dir={"rtl"} endContent={<BiArrowBack/>}>
+                <Button
+                  as={Link}
+                  href="/"
+                  variant="bordered"
+                  color="secondary"
+                  dir={"rtl"}
+                  endContent={<BiArrowBack />}
+                >
                   {t("Back")}
                 </Button>
               </div>
@@ -88,6 +95,8 @@ export default function Brand() {
               total={total}
               initialPage={1}
               onChange={setPage}
+              as={Link}
+              href={"#top"}
             />
           </div>
         </div>

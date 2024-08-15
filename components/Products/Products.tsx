@@ -40,7 +40,7 @@ export default function Product() {
   }, [page]);
 
   return (
-    <div>
+    <div className="relative">
       <Headings type={products && products[0]?.category} />
 
       <Center>
@@ -54,7 +54,7 @@ export default function Product() {
           />
 
           <div className="flex flex-col md:flex-row gap-4">
-            <div className="w-[80%]  mx-auto  md:w-[20%]  ">
+            <div className="w-[80%] hidden md:flex mx-auto  md:w-[20%]  ">
               <FilterComponent />
             </div>
 
@@ -103,7 +103,7 @@ export default function Product() {
               )}
             </div>
           </div>
-          <div className="flex justify-center">
+          <div className="flex my-4 justify-center">
             <Pagination
               dir="ltr"
               total={total}
@@ -111,10 +111,15 @@ export default function Product() {
               loop
               showControls
               onChange={(e) => setPage(e)}
+              as={Link}
+              href={"#top"}
             />
           </div>
         </div>
       </Center>
+      <div className="  block md:hidden sticky w-full bottom-0 left-0     ">
+        <FilterComponent />
+      </div>
     </div>
   );
 }

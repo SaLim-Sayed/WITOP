@@ -19,7 +19,7 @@ export default function Layer({
 }) {
   
   return (
-    <div>
+    <div id="top">
       <div
         className="flex text-center md:text-start flex-col text-white justify-center items-center h-[80px]"
         style={{
@@ -27,10 +27,9 @@ export default function Layer({
             "linear-gradient(91.39deg,#1299a8 31.4%,  #051b72 103.45%)",
         }}
       >
-    <h1 className="text-[2.5rem] uppercase font-[700]">{title}</h1>
+        <h1 className="text-[2.5rem] uppercase font-[700]">{title}</h1>
         <h2 className="text-lightColor-400">{subTitle}</h2>
       </div>
-       
     </div>
   );
 }

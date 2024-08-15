@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { Checkbox, Button, Slider, RadioGroup, Radio } from "@nextui-org/react";
 import getAllFilter from "@/store/actions/getAllFilter.module";
-import { axiosInstance } from "@/util/axiosConfig";
 import { useProductStore } from "@/store/futures/productStore";
+import { axiosInstance } from "@/util/axiosConfig";
+import { Button, Checkbox, Radio, RadioGroup, Slider } from "@nextui-org/react";
+import React, { useEffect, useState } from "react";
+import { GiSettingsKnobs } from "react-icons/gi";
+
 import {
   Modal,
-  ModalContent,
   ModalBody,
-  CheckboxGroup,
+  ModalContent,
   useDisclosure,
 } from "@nextui-org/react";
-import useCategory from "../Global/Layout/useCategory ";
-import { BiFilter, BiSkipNext } from "react-icons/bi";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { useParams, useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
+import { useParams, useRouter } from "next/navigation";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import useCategory from "../Global/Layout/useCategory ";
 
-import * as enData from "@/messages/en.json";
-import * as arData from "@/messages/ar.json";
-import { getKeyByValue } from "../Global/Ui/value";
 import { cn } from "@/libs/cn";
+import * as arData from "@/messages/ar.json";
+import * as enData from "@/messages/en.json";
+import { getKeyByValue } from "../Global/Ui/value";
 interface Filter {
   _id: string;
   filterName: string;
@@ -29,7 +29,7 @@ const FilterComponent: React.FC = ({ cat }: any) => {
   const { categories, currentPage, totalPages, handlePageChange } =
     useCategory();
   const router = useRouter();
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange,onClose } = useDisclosure();
   const { setProducts } = useProductStore();
   const [allFilters, setAllFilters] = useState<Filter[]>([]);
   const [filters, setFilters] = useState<{ [key: string]: boolean }>({});
@@ -79,6 +79,7 @@ const FilterComponent: React.FC = ({ cat }: any) => {
       const trueOptionsString = trueOptions.join(",");
       router.push(`/product/${selectedCategory}`);
       await handleFilter(trueOptionsString, priceRange, selectedCategory);
+      onClose()
     } catch (error) {
       console.error("Error applying filters:", error);
     }
@@ -128,17 +129,18 @@ const FilterComponent: React.FC = ({ cat }: any) => {
         <Button
           onPress={onOpen}
           size="lg"
-          className="w-full"
-          endContent={<BiFilter className="text-2xl" />}
+          radius="none"
+          className="w-full bg-cyan-600 font-[700] text-[22px]  font-serif text-white "
+          endContent={<GiSettingsKnobs className="text-2xl rotate-90  z-[60] " />}
         >
           Filter
         </Button>
-        <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <Modal className="mb-12" isOpen={isOpen} onOpenChange={onOpenChange}>
           <ModalContent>
             {(onClose) => (
               <>
                 <ModalBody>
-                  <p className="font-bold text-xl mt-6 text-cyan-800">
+                  <p className="font-bold  text-xl my-6 text-cyan-800">
                     Filter Options
                   </p>
                   {allFilters.slice(page - 5, page).map((filter) => (
@@ -327,7 +329,7 @@ const FilterComponent: React.FC = ({ cat }: any) => {
           <span>{currentPage}</span>
           <Button
             onClick={() => setPage(page + 5)}
-            disabled={allFilters.length ==page }
+            disabled={allFilters.length == page}
             isIconOnly
           >
             <IoIosArrowForward
