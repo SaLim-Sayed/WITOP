@@ -11,6 +11,8 @@
   "Globals": {
     "Login": "Login",
     "Home": "Home",
+    "Back":"Back to Home", 
+    "noData": "No Data",
     "Category": "Category",
     "Categories": "All Categories",
     "Navbar/Search": "Search",

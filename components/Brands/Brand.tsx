@@ -1,8 +1,8 @@
 "use client";
 import getProductByBrand from "@/store/actions/getProductByBrand.module";
 import { Product as ProductType } from "@/types/product";
-import { Pagination } from "@nextui-org/react";
-import { useLocale } from "next-intl";
+import { Button, Pagination } from "@nextui-org/react";
+import { useLocale, useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import GCardSkeleton from "../Global/Loaders/GCardSkeleton";
@@ -10,22 +10,31 @@ import Center from "../Global/Ui/Center";
 import GCard from "../Global/Ui/GCard";
 import Headings from "../Global/Ui/Heading";
 import Layer from "../Global/Ui/Layer";
+import Link from "next/link";
+import { BiArrowBack } from "react-icons/bi";
 
 export default function Brand() {
   const { type } = useParams();
-  console.log(type);
+  const t = useTranslations("Globals");
+
   const locale = useLocale();
   const dir = locale == "ar" ? "rtl" : "ltr";
   const [products, setProducts] = useState<ProductType[]>();
   const [total, setTotal] = useState(1);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
   const getData = async () => {
-    const data = await getProductByBrand({ type: type });
+    setLoading(true);
+    const data = await getProductByBrand({ type: type, page });
     setProducts(data?.products);
-    console.log(data);
+    setTotal(data?.totalPage);
+    setTimeout(() => {
+      setLoading(false);
+    }, 500); // Set loading to false after 1000ms
   };
   useEffect(() => {
-    getData();
-  }, []);
+    if (page) getData();
+  }, [page]);
   return (
     <div>
       <Headings type={products && products[0]?.brand} />
@@ -44,26 +53,42 @@ export default function Brand() {
             dir={dir}
             className="flex flex-1   flex-wrap  justify-around  gap-4"
           >
-            {products
-              ? products.map((product) => (
-                  <GCard
-                    key={product?._id}
-                    id={product?._id}
-                    price={product?.price}
-                    title={product?.productName}
-                    desc={product?.description}
-                    img={product?.images[0]}
-                    category={product?.category}
-                  />
-                ))
-              : Array.from({ length: 4 }).map((_index: any) => (
-                  <div key={_index}>
-                    <GCardSkeleton />
-                  </div>
-                ))}
+            {loading ? ( // Show skeleton while loading
+              Array.from({ length: 4 }).map((_, index: any) => (
+                <div key={index}>
+                  <GCardSkeleton />
+                </div>
+              ))
+            ) : products ? (
+              products.map((product) => (
+                <GCard
+                  key={product?._id}
+                  id={product?._id}
+                  price={product?.price}
+                  title={product?.productName}
+                  desc={product?.description}
+                  img={product?.images[0]}
+                  category={product?.category}
+                />
+              ))
+            ) : (
+              // Show "No Data" message if no products available
+              <div className="flex flex-col gap-5 w-full justify-center items-center h-full">
+                <div>{t("noData")}</div>
+                <Button as={Link} href="/" variant="bordered" color="secondary"  dir={"rtl"} endContent={<BiArrowBack/>}>
+                  {t("Back")}
+                </Button>
+              </div>
+            )}
           </div>
           <div className="flex justify-center">
-            <Pagination showControls total={total || 10} initialPage={1} />
+            <Pagination
+              dir="ltr"
+              showControls
+              total={total}
+              initialPage={1}
+              onChange={setPage}
+            />
           </div>
         </div>
       </Center>

@@ -2,7 +2,7 @@ export const settings = {
   dots: true,
   speed: 500,
   slidesToShow: 5,
-  slidesToScroll: 1,
+  slidesToScroll: 2,
   initialSlide: 0,
   centerPadding: 0,
   arrows: false,
@@ -13,8 +13,8 @@ export const settings = {
     {
       breakpoint: 1400,
       settings: {
-        slidesToShow: 4.2,
-        slidesToScroll: 1,
+        slidesToShow: 3.9,
+        slidesToScroll: 2,
         centerPadding: 5,
         dots: true,
         draggable: true,
@@ -26,7 +26,8 @@ export const settings = {
         slidesToShow: 2.8,
         slidesToScroll: 1,
         centerPadding: 30,
-        dots: true,
+               dots: false,
+
         draggable: true,
       },
     },
@@ -37,6 +38,8 @@ export const settings = {
         slidesToScroll: 2,
         initialSlide: 2,
         centerPadding: 30,
+                  dots: false,
+
         draggable: true,
       },
     },

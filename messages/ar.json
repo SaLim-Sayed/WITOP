@@ -5,13 +5,15 @@
     "ALL CATEGORIES": "كل الاقسام",
     "TRENDING": "الرائج",
     "ON SALE": "الاكثر مبيعاََ",
-    "OUR SELECTION": "اختيارنا",
+    "OUR SELECTION": "اختياراتنا",
     "SeeAll": "عرض الكل "
   },
   "Globals": {
     "Login": "دخول",
     "Navbar/Search": "بحث",
     "Home": "الرئيسية",
+    "Back":"الرجوع للرئيسية",
+    "noData": "لا يوجد بيانات",
     "Category": "القسم",
     "Categories": "الاقسام",
     "Navbar/Offer": "   شحن مجاني للطلبات التي تزيد عن  300 ريال,   ",
