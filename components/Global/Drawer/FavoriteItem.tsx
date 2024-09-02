@@ -1,14 +1,13 @@
-import React from "react";
-import { Card, CardBody, Image, Button } from "@nextui-org/react";
-import { BiTrash } from "react-icons/bi";
 import { Product } from "@/types/product";
+import { Button, Card, CardBody, Image } from "@nextui-org/react";
+import { BiTrash } from "react-icons/bi";
 
-import { showToast } from "../Ui/Toast";
 import { cartStore } from "@/store/futures/cartStore";
+import { axiosInstance } from "@/util/axiosConfig";
 import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
 import { BsEye } from "react-icons/bs";
-import { axiosInstance } from "@/util/axiosConfig";
+import { showToast } from "../Ui/Toast";
 
 interface IProps {
   product: Product;
@@ -35,6 +34,9 @@ export default function FavoriteItem({ product, setProducts }: IProps) {
     } catch (err: any) {
       console.log(err);
       showErrorToast("يجب تسجيل الدخول اولاََ");
+       setTimeout(() => {
+         router.push(`/auth/login`);
+       }, 5000);
     }
   };
 

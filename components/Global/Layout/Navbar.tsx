@@ -112,6 +112,9 @@ export default function NavbarPage() {
     } catch (err: any) {
       console.log(err);
       showErrorToast("يجب تسجيل الدخول اولاََ");
+       setTimeout(() => {
+         router.push(`/auth/login`);
+       }, 5000);
     }
   };
 

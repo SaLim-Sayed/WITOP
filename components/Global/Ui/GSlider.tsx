@@ -1,21 +1,19 @@
 "use client";
 import { cn } from "@/libs/cn";
+import { cartStore } from "@/store/futures/cartStore";
+import useFavoriteStore from "@/store/futures/useFavoriteStore";
 import { Product } from "@/types/product";
-import { Button, Divider } from "@nextui-org/react";
-import { Card, CardBody, CardFooter } from "@nextui-org/react";
+import { axiosInstance } from "@/util/axiosConfig";
+import { Button, Card, CardBody, CardFooter, Divider } from "@nextui-org/react";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/legacy/image";
 import { useRouter } from "next/navigation";
-import { FaShoppingCart } from "react-icons/fa";
-import ClientHydration from "../Providers/ClientHydration";
-import GCardSkeleton from "../Loaders/GCardSkeleton";
-import { BsHeartFill, BsStarFill } from "react-icons/bs";
-import { axiosInstance } from "@/util/axiosConfig";
 import { useState } from "react";
-import useFavoriteStore from "@/store/futures/useFavoriteStore";
+import { BiCartAdd, BiHeart } from "react-icons/bi";
+import { BsHeartFill, BsStarFill } from "react-icons/bs";
+import GCardSkeleton from "../Loaders/GCardSkeleton";
+import ClientHydration from "../Providers/ClientHydration";
 import { showToast } from "./Toast";
-import { BiCart, BiCartAdd, BiHeart } from "react-icons/bi";
-import { cartStore } from "@/store/futures/cartStore";
 export default function GSlider({
   price,
   title,
@@ -76,6 +74,9 @@ export default function GSlider({
       setIsLoading(false);
       console.log(err);
       showErrorToast("يجب تسجيل الدخول اولاََ");
+      setTimeout(() => {
+        router.push(`/auth/login`);
+      }, 5000);
     }
   };
   const addToCartHandler = async () => {
@@ -93,6 +94,9 @@ export default function GSlider({
       setIsLoading(false);
       console.log(err);
       showErrorToast("يجب تسجيل الدخول اولاََ");
+      setTimeout(() => {
+        router.push(`/auth/login`);
+      }, 5000);
     }
   };
   return (

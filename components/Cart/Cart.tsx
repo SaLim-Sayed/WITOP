@@ -1,21 +1,17 @@
 "use client";
 import { cartStore, useProductStore } from "@/store/futures/cartStore";
-import React from "react";
 
-import Center from "../Global/Ui/Center";
+import { Button, Divider } from "@nextui-org/react";
+import { useState } from "react";
+import { BiTrash } from "react-icons/bi";
 import ImageGallury from "../Global/Sliders/ImageGallury";
-import { BiHeart, BiStar, BiTrash } from "react-icons/bi";
-import { Button, Card, CardBody, Divider, Input } from "@nextui-org/react";
-import { Tabs, Tab } from "@nextui-org/react";
-import { useEffect, useState } from "react";
-import { Product } from "@/types/product";
-import getProductByID from "@/store/actions/getProductByID.module";
+import Center from "../Global/Ui/Center";
 
-import { showToast } from "../Global/Ui/Toast";
-import { useLocale, useTranslations } from "next-intl";
 import { axiosInstance } from "@/util/axiosConfig";
 import Cookies from "js-cookie";
-import { useParams } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
+import { useParams, useRouter } from "next/navigation";
+import { showToast } from "../Global/Ui/Toast";
 import OrderFormSubmit from "./OrdersForm/Order";
 export default function Cart() {
   const lang = useLocale();
@@ -35,7 +31,7 @@ export default function Cart() {
   const handleIncrease = () => {
     setCount(count + 1);
   };
-
+  const router = useRouter();
   const { id: cartId } = useParams();
 
   console.log({ cartId });
@@ -57,6 +53,9 @@ export default function Cart() {
     } catch (err: any) {
       console.log(err);
       showErrorToast("يجب تسجيل الدخول اولاََ");
+     setTimeout(() => {
+       router.push(`/auth/login`);
+     }, 5000);
     }
   };
   const removeFromCartHandler = async (id: any) => {
@@ -71,7 +70,8 @@ export default function Cart() {
       showSuccessToast(data?.message);
     } catch (err: any) {
       console.log(err);
-      showErrorToast("يجب تسجيل الدخول اولاََ");
+
+      router.push(`/auth/login`);
     }
   };
   const { CartAmount } = cartStore();

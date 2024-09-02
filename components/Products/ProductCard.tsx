@@ -16,7 +16,7 @@ import {
 } from "@nextui-org/react";
 import Cookies from "js-cookie";
 import { useLocale, useTranslations } from "next-intl";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { memo, useEffect, useState } from "react";
 import { BiCartAdd, BiHeart, BiStar } from "react-icons/bi";
 import { BsHeartFill, BsStarFill } from "react-icons/bs";
@@ -62,7 +62,7 @@ function ProductCard() {
   const [showRelated, setShowRelated] = useState(false);
   const [relatedProducts, setrelatedProducts] = useState<Product[]>();
   const [isLoading, setIsLoading] = useState(false);
-
+  const router = useRouter();
   const getProductData = async () => {
     const server = await getProductByID({ id, category });
     setProductData(server?.product);
@@ -81,6 +81,9 @@ function ProductCard() {
       setIsLoading(false);
       console.log(err);
       showErrorToast("يجب تسجيل الدخول اولاََ");
+      setTimeout(() => {
+        router.push(`/auth/login`);
+      }, 5000);
     }
   };
   const [len, setLen] = useState(100);
@@ -99,6 +102,9 @@ function ProductCard() {
       setIsLoading(false);
       console.log(err);
       showErrorToast("يجب تسجيل الدخول اولاََ");
+       setTimeout(() => {
+         router.push(`/auth/login`);
+       }, 5000);
     }
   };
   const addToFavoriteHandler = async () => {
@@ -113,6 +119,9 @@ function ProductCard() {
       setIsLoading(false);
       console.log(err);
       showErrorToast("يجب تسجيل الدخول اولاََ");
+       setTimeout(() => {
+         router.push(`/auth/login`);
+       }, 5000);
     }
   };
   useEffect(() => {

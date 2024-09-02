@@ -1,28 +1,17 @@
 "use client";
-import { cartStore, useProductStore } from "@/store/futures/cartStore";
-import React from "react";
 
-import Center from "../Global/Ui/Center";
-import ImageGallury from "../Global/Sliders/ImageGallury";
-import { BiHeart, BiStar, BiTrash } from "react-icons/bi";
-import { Button, Card, CardBody, Divider, Input } from "@nextui-org/react";
-import { Tabs, Tab } from "@nextui-org/react";
+import { Button, Divider } from "@nextui-org/react";
 import { useEffect, useState } from "react";
-import { Product } from "@/types/product";
-import getProductByID from "@/store/actions/getProductByID.module";
+import Center from "../Global/Ui/Center";
 
-import { showToast } from "../Global/Ui/Toast";
-import { useLocale, useTranslations } from "next-intl";
-import { axiosInstance } from "@/util/axiosConfig";
-import Cookies from "js-cookie";
-import { useParams } from "next/navigation";
 import { Order } from "@/store/types/orderTypes";
-import ImageGallurySM from "../Global/Sliders/ImageGallurySM";
-import MainImageGallury from "../Global/Sliders/MainImageGallury";
-import GCardSkeleton from "../Global/Loaders/GCardSkeleton";
-import ClientHydration from "../Global/Providers/ClientHydration";
-import MainSkeleton from "../Global/Loaders/MainSkeleton";
+import { axiosInstance } from "@/util/axiosConfig";
+import { useLocale, useTranslations } from "next-intl";
+import { useParams, useRouter } from "next/navigation";
 import OrderDetailsSkeleton from "../Global/Loaders/OrderDetailsSkeleton ";
+import ClientHydration from "../Global/Providers/ClientHydration";
+import MainImageGallury from "../Global/Sliders/MainImageGallury";
+import { showToast } from "../Global/Ui/Toast";
 
 export default function OrderDetails() {
   const lang = useLocale();
@@ -37,7 +26,7 @@ export default function OrderDetails() {
   const [orderDetails, setOrderDetails] = useState<Order>();
 
   const [loading, setLoading] = useState(false);
-
+  const router = useRouter();
   const getOrderDetails = async () => {
     try {
       setLoading(true);
@@ -51,6 +40,9 @@ export default function OrderDetails() {
       setLoading(false);
 
       showErrorToast("يجب تسجيل الدخول اولاََ");
+      setTimeout(() => {
+        router.push(`/auth/login`);
+      }, 5000);
     }
   };
 

@@ -1,76 +1,55 @@
 "use client";
 
+import { cn } from "@/libs/cn";
+import getFavoriteList from "@/store/actions/getFavoriteList.module";
+import searchProduct from "@/store/actions/searchProduct.module";
+import { cartStore } from "@/store/futures/cartStore";
+import useFavoriteStore from "@/store/futures/useFavoriteStore";
+import { Product } from "@/types/product";
+import { axiosInstance } from "@/util/axiosConfig";
 import {
   Box,
   Flex,
   HStack,
-  Text,
-  IconButton,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
-  useDisclosure,
-  useColorModeValue,
-  Stack,
+  Spinner,
+  useDisclosure
 } from "@chakra-ui/react";
-import Image from "next/legacy/image";
-import Link from "next/link";
-import { BiMenu } from "react-icons/bi";
-import { IoMdCloseCircleOutline } from "react-icons/io";
-import { MdAddCircleOutline } from "react-icons/md";
-import React, { useEffect, useState } from "react";
 import {
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  Button,
-  AutocompleteItem,
   Autocomplete,
-  Badge,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  Card,
+  AutocompleteItem,
   Avatar,
   AvatarIcon,
-  DropdownMenu,
-  DropdownItem,
-  DropdownTrigger,
+  Badge,
+  Button,
+  Card,
   Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+  Navbar,
+  Popover,
+  PopoverContent,
+  PopoverTrigger
 } from "@nextui-org/react";
+import Cookies from "js-cookie";
+import { useLocale, useTranslations } from "next-intl";
+import Image from "next/legacy/image";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 import {
   BiHeart,
-  BiLogIn,
-  BiLogInCircle,
   BiMenuAltLeft,
   BiMenuAltRight,
   BiSearch,
-  BiSolidLogIn,
-  BiUser,
+  BiWorld
 } from "react-icons/bi";
 import { BsCart, BsHeartFill } from "react-icons/bs";
 import MainDrawer from "../Drawer/MainDrawer";
-import { Spinner } from "@chakra-ui/react";
-import TopHeader from "./TopHeader";
-import { cn } from "@/libs/cn";
-import searchProduct from "@/store/actions/searchProduct.module";
 import CartSlider from "../Drawer/Slider-Cart";
-import { Product } from "@/types/product";
-import { cartStore } from "@/store/futures/cartStore";
 import ClientHydration from "../Providers/ClientHydration";
-import Cookies from "js-cookie";
-import { usePathname, useRouter } from "next/navigation";
-import { BiWorld } from "react-icons/bi";
-import { useLocale, useTranslations } from "next-intl";
 import { showToast } from "../Ui/Toast";
-import axios from "axios";
-import getFavoriteList from "@/store/actions/getFavoriteList.module";
-import useFavoriteStore from "@/store/futures/useFavoriteStore";
-import { axiosInstance } from "@/util/axiosConfig";
-import Cookie from "js-cookie";
+import TopHeader from "./TopHeader";
 interface Props {
   children: React.ReactNode;
 }
@@ -134,6 +113,9 @@ export default function WithAction() {
     } catch (err: any) {
       console.log(err);
       showErrorToast("يجب تسجيل الدخول اولاََ");
+       setTimeout(() => {
+         router.push(`/auth/login`);
+       }, 5000);
     }
   };
 

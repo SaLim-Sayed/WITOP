@@ -47,10 +47,7 @@ export default function GCard({
   const router = useRouter();
   const locale = useLocale();
   const dir = locale == "ar" ? "rtl" : "ltr";
-
-  const [productData, setProductData] = useState<Product>();
-  const [showRelated, setShowRelated] = useState(false);
-  const [relatedProducts, setrelatedProducts] = useState<Product[]>();
+ 
   const [isLoading, setIsLoading] = useState(false);
   const { isFavoriteOpen, setFavoriteIsOpen } = useFavoriteStore();
   const [fav, setFav] = useState<boolean>(false);
@@ -73,7 +70,11 @@ export default function GCard({
     } catch (err: any) {
       setIsLoading(false);
       console.log(err);
+
       showErrorToast("يجب تسجيل الدخول اولاََ");
+       setTimeout(() => {
+         router.push(`/auth/login`);
+       }, 5000);
     }
   };
   const addToCartHandler = async () => {
@@ -91,6 +92,9 @@ export default function GCard({
       setIsLoading(false);
       console.log(err);
       showErrorToast("يجب تسجيل الدخول اولاََ");
+      setTimeout(() => {
+        router.push(`/auth/login`);
+      }, 5000);
     }
   };
   return (
