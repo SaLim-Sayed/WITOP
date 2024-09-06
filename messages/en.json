@@ -8,10 +8,25 @@
     "OUR SELECTION": "OUR SELECTION",
     "SeeAll": "See All"
   },
+  "Profile": {
+    "Logout": "Logout",
+    "userProfile": "User Profile",
+    "personal": "Personal",
+    "booking": "Booking",
+    "favorite": "Favorite",
+    "setting": "Settings",
+    "userName": "User Name",
+    "email": "Email",
+    "phoneNumber": "Phone Number",
+    "invitationCode": "Invitation Code",
+    "allOrders": "All Orders"
+  },
   "Globals": {
+    "userProfile": "User Profile",
+
     "Login": "Login",
     "Home": "Home",
-    "Back":"Back to Home", 
+    "Back": "Back to Home",
     "noData": "No Data",
     "Category": "Category",
     "Categories": "All Categories",
@@ -458,7 +473,6 @@
     "UserCity": "User city is required",
     "TotalAfterDiscount": "Total after discount must be at least 0",
     "TotalAfterDiscountValidation": "Total after discount should consider shipping discount for orders above 300 SAR"
-  
   },
   "Cart": {
     "Coupon": "  Coupon Code",

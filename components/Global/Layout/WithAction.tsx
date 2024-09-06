@@ -7,13 +7,7 @@ import { cartStore } from "@/store/futures/cartStore";
 import useFavoriteStore from "@/store/futures/useFavoriteStore";
 import { Product } from "@/types/product";
 import { axiosInstance } from "@/util/axiosConfig";
-import {
-  Box,
-  Flex,
-  HStack,
-  Spinner,
-  useDisclosure
-} from "@chakra-ui/react";
+import { Box, Flex, HStack, Spinner, useDisclosure } from "@chakra-ui/react";
 import {
   Autocomplete,
   AutocompleteItem,
@@ -29,7 +23,7 @@ import {
   Navbar,
   Popover,
   PopoverContent,
-  PopoverTrigger
+  PopoverTrigger,
 } from "@nextui-org/react";
 import Cookies from "js-cookie";
 import { useLocale, useTranslations } from "next-intl";
@@ -42,7 +36,7 @@ import {
   BiMenuAltLeft,
   BiMenuAltRight,
   BiSearch,
-  BiWorld
+  BiWorld,
 } from "react-icons/bi";
 import { BsCart, BsHeartFill } from "react-icons/bs";
 import MainDrawer from "../Drawer/MainDrawer";
@@ -50,12 +44,14 @@ import CartSlider from "../Drawer/Slider-Cart";
 import ClientHydration from "../Providers/ClientHydration";
 import { showToast } from "../Ui/Toast";
 import TopHeader from "./TopHeader";
+import { useNavigation } from "@/util/useNavigation";
 interface Props {
   children: React.ReactNode;
 }
 
 export default function WithAction() {
   const router = useRouter();
+  const { navigateTo } = useNavigation();
   const locale = useLocale();
   const pathName = usePathname();
   const translate = useTranslations("Globals");
@@ -113,9 +109,9 @@ export default function WithAction() {
     } catch (err: any) {
       console.log(err);
       showErrorToast("يجب تسجيل الدخول اولاََ");
-       setTimeout(() => {
-         router.push(`/auth/login`);
-       }, 5000);
+      setTimeout(() => {
+        router.push(`/auth/login`);
+      }, 5000);
     }
   };
 
@@ -424,6 +420,15 @@ export default function WithAction() {
                       </Button>
                     </DropdownTrigger>
                     <DropdownMenu aria-label="Static Actions">
+                      <DropdownItem
+                        onClick={() => navigateTo('/userProfile')}
+                        key="delete"
+                        textValue="Logout"
+                      >
+                        <span className="text-teal-800  text-lg">
+                          {translate("userProfile")}
+                        </span>
+                      </DropdownItem>
                       <DropdownItem
                         onClick={handleLogout}
                         key="delete"

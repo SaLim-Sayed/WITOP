@@ -6,7 +6,8 @@ import { Button, Divider } from "@nextui-org/react";
 
 import { useParams, useRouter } from "next/navigation";
 import { useOrderStore } from "@/store/futures/orderStore";
-export default function OrderPage() {
+import { cn } from "@/libs/cn";
+export default function OrderPage({ exSt }:{exSt?:boolean}) {
   const { id } = useParams();
   console.log({ id });
   const { orders } = useOrderStore();
@@ -15,7 +16,12 @@ export default function OrderPage() {
     <Center>
       <div className="grid grid-cols-1 md:grid-cols- lg:grid-cols-1 my-4 gap-8">
         <div>
-          <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2 mx-auto p-4">
+          <div
+            className={cn(
+              "container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2 mx-auto p-4",
+              exSt && " md:grid-cols-1 lg:grid-cols-1 "
+            )}
+          >
             {orders?.map((order) => (
               <div
                 key={order._id}

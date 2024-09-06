@@ -20,7 +20,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white relative   mt-[97px] p-[3px] lg:p-[40px] flex flex-col justify-start gap-[30px] text-lightColor-900">
+    <footer className="bg-black text-white relative   p-[3px] lg:p-[40px] flex flex-col justify-start gap-[30px] text-lightColor-900">
       <div className="mx-3">
         <Title
           exSt="mt-0"

@@ -20,7 +20,7 @@ export default function Title({
     <Center>
       <div
         className={cn(
-          "flex text-center  w-full mt-[96px] mb-[24px] leading-[35px] flex-col  justify-center items-center",
+          "flex text-center  w-full   my-[24px] leading-[35px] flex-col  justify-center items-center",
           exSt && exSt
         )}
       >

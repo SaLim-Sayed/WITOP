@@ -8,7 +8,21 @@
     "OUR SELECTION": "اختياراتنا",
     "SeeAll": "عرض الكل "
   },
+  "Profile":{
+    "Logout": "تسجيل الخروج",
+    "userProfile": "الملف الشخصي",
+    "personal": "البيانات الشخصية",
+    "booking": "الحجوزات",
+    "favorite": "المفضلة",
+    "setting": "الاعدادات",
+    "userName": "اسم المستخدم",
+    "email": "البريد الالكتروني",
+    "phoneNumber": "رقم الهاتف",
+    "invitationCode": "كود الدعوة",
+    "allOrders": "كل الطلبات"
+  },
   "Globals": {
+    "userProfile": "الملف الشخصي",
     "Login": "دخول",
     "Navbar/Search": "بحث",
     "Home": "الرئيسية",

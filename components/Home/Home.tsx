@@ -7,6 +7,7 @@ import GSliderSlot from "./Brands/GSliderSlot";
 import Brands from "./Favorite/Brands";
 import Offers from "./Offers/Offers";
 import WelcomeLayer from "./WelcomeLayer/WelcomeLayer";
+import Feedbacks from "./Feedbacks/Feedbacks";
 
 export default async function Home() {
   const trends = await getProductBySectionType({ type: "Trending" });
@@ -18,15 +19,17 @@ export default async function Home() {
       <SwipperPage />
       {/* <SimpleSlider /> */}
       <CategorySlider />
-      <WelcomeLayer />
-
-      <Brands />
       <Offers />
       <GSliderSlot title={"TRENDING"} data={trends?.products} />
+      <Brands />
+
       <Offers />
       <GSliderSlot title={"ON SALE"} data={sale?.products} />
       <Offers />
       <GSliderSlot title={"OUR SELECTION"} data={selection?.products} />
+      <Feedbacks />
+
+      <WelcomeLayer />
     </div>
   );
 }
