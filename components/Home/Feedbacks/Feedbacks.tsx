@@ -14,44 +14,32 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { FeedbacksType } from "./types";
 
-// import Swiper core and required modules
-import {
-  A11y,
-  Autoplay,
-  Navigation,
-  Pagination,
-  Scrollbar,
-} from "swiper/modules";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-
 // Import Swiper styles
 import Center from "@/components/Global/Ui/Center";
 import Title from "@/components/Global/Ui/Title";
+import Slider from "@ant-design/react-slick";
+import { useTranslations } from "next-intl";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import { settings } from "./setting";
 
 interface Props {
   children: React.ReactNode;
 }
 
-const Testimonial = (props: Props) => {
-  const { children } = props;
-
+const Testimonial = ({ children }: Props) => {
   return <Box>{children}</Box>;
 };
 
-const TestimonialContent = (props: Props) => {
-  const { children } = props;
-
+const TestimonialContent = ({ children }: Props) => {
   return (
     <Stack
-      bg={useColorModeValue("gray.100", "gray.800")}
+      bg={useColorModeValue("gray.50", "gray.800")}
       boxShadow={"lg"}
-          p={8}
-          m={3}
+      p={8}
+      m={3}
       rounded={"xl"}
       align={"center"}
       pos={"relative"}
@@ -65,7 +53,7 @@ const TestimonialContent = (props: Props) => {
         borderRightWidth: 16,
         borderTop: "solid",
         borderTopWidth: 16,
-        borderTopColor: useColorModeValue("white", "gray.800"),
+        borderTopColor: useColorModeValue("gray.50", "gray.800"),
         pos: "absolute",
         bottom: "-16px",
         left: "50%",
@@ -77,9 +65,7 @@ const TestimonialContent = (props: Props) => {
   );
 };
 
-const TestimonialHeading = (props: Props) => {
-  const { children } = props;
-
+const TestimonialHeading = ({ children }: Props) => {
   return (
     <Heading as={"h3"} fontSize={"xl"}>
       {children}
@@ -87,13 +73,11 @@ const TestimonialHeading = (props: Props) => {
   );
 };
 
-const TestimonialText = (props: Props) => {
-  const { children } = props;
-
+const TestimonialText = ({ children }: Props) => {
   return (
     <Text
       textAlign={"center"}
-      color={useColorModeValue("gray.600", "gray.400")}
+      color={useColorModeValue("gray.500", "gray.400")}
       fontSize={"sm"}
     >
       {children}
@@ -126,8 +110,9 @@ const TestimonialAvatar = ({
 export default function Feedbacks() {
   const [loading, setLoading] = useState(false);
   const [feedbacks, setFeedbacks] = useState<FeedbacksType>();
-  const slider = useRef<any>();
+  const t = useTranslations("Buttons");
 
+  const slider = useRef<any>();
   const getOrderDetails = async () => {
     try {
       setLoading(true);
@@ -147,38 +132,25 @@ export default function Feedbacks() {
   console.log({ feedbacks });
   return (
     <Center>
-      <Title title="Clients Speak" />
-
-      <Swiper
-        // install Swiper modules
-        modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-        slidesPerView={3}
-        pagination={{ clickable: true }}
-        autoplay={{
-          delay: 500,
-          disableOnInteraction: false,
-        }}
-        speed={1000}
-        loop={true}
-      >
+      <Title exSt="pt-10 text-cyan-800" title={t("clientsFeedback")} />
+      {/*  @ts-ignore  */}
+      <Slider dir={"ltr"} {...settings} ref={slider} key={3} autoplay>
         {feedbacks?.map((feedback) => (
-          <SwiperSlide>
-            {" "}
-            <Testimonial key={feedback?._id}>
-              <TestimonialContent>
-                <TestimonialHeading>{feedback?.comment}</TestimonialHeading>
-                <TestimonialText>
-                  <StarRating rating={feedback?.rating} />
-                </TestimonialText>
-              </TestimonialContent>
-              <TestimonialAvatar
-                src={"https://images.unsplash.com/broken"}
-                name={feedback.userID.userName}
-              />
-            </Testimonial>{" "}
-          </SwiperSlide>
+          <Testimonial>
+            <TestimonialContent>
+              <TestimonialHeading>{feedback?.comment}</TestimonialHeading>
+              <TestimonialText>
+                <StarRating rating={feedback?.rating} />
+              </TestimonialText>
+            </TestimonialContent>
+            <TestimonialAvatar
+              src={"https://images.unsplash.com/broken"}
+              name={feedback.userID.userName}
+            />
+          </Testimonial>
         ))}
-      </Swiper>
+        {/* </Swiper> */}
+      </Slider>
     </Center>
   );
 }
