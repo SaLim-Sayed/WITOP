@@ -27,12 +27,12 @@ const RegisterForm = () => {
   const {
     register,
     handleSubmit,
-
+    watch,
+    setValue,
     formState: { errors },
   } = useForm<Register>({
     resolver: zodResolver(RegisterSchema),
   });
-
   const showSuccessToast = (message?: string) =>
     showToast({ type: "success", toastMessage: message });
   const showErrorToast = (message?: string) =>
@@ -64,10 +64,16 @@ const RegisterForm = () => {
       setIsLoading(false);
     }
   };
+  const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
 
+    if (!value.startsWith("+966")) {
+      setValue("phoneNumber", "+966" + value.replace(/^\+966/, ""));
+    }
+  };
   // Get query parameters from the URL
   const searchParams = useSearchParams();
- 
+
   // Extract the invitationCode from the URL
   const invitationCode = searchParams.get("invitationCode");
 
@@ -95,15 +101,17 @@ const RegisterForm = () => {
           <div>
             <Input
               {...register("phoneNumber")}
-              type="text"
+              type="number"
               label={tr("PhoneNumber")}
               variant="bordered"
               className="w-full"
+              onChange={handlePhoneNumberChange}
               isInvalid={errors.phoneNumber ? true : false}
               errorMessage={errors.phoneNumber?.message}
               classNames={{
                 input: "text-[1.2rem]",
               }}
+              startContent={<span className="text-[1.2rem]">+966</span>}
             />
           </div>
 
