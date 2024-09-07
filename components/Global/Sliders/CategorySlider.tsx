@@ -12,15 +12,20 @@ import { useLocale, useTranslations } from "next-intl";
 import { Category } from "./data.module";
 import Title from "../Ui/Title";
 import Image from "next/legacy/image";
+import { useNavigation } from "@/util/useNavigation";
 export default function CategorySlider() {
   const [grab, setGrab] = useState(false);
   const slider = useRef<any>();
   const locale = useLocale();
   const dir = locale == "ar" ? true : false;
-  const t  = useTranslations("Buttons");
+  const t = useTranslations("Buttons");
+  const {navigateTo}=useNavigation()
   return (
     <Center>
-      <Title exSt=" mb-10 mt-10 uppercase text-cyan-800" title={t("ALL CATEGORIES")} />
+      <Title
+        exSt=" mb-10 mt-10 uppercase text-cyan-800"
+        title={t("ALL CATEGORIES")}
+      />
       <div className="mx-auto  flex items-center  justify-center  ">
         <Button
           isIconOnly
@@ -39,8 +44,9 @@ export default function CategorySlider() {
           <Slider rtl={dir} {...settings} ref={slider} autoplay>
             {Category.map((category) => (
               <div
+                onClick={() => navigateTo(`/category/${category.title}`)}
                 key={category.id}
-                className=" grid grid-cols-1 grid-rows-2 gap-2 w-fit "
+                className=" grid grid-cols-1 grid-rows-2 gap-2 w-fit cursor-pointer "
               >
                 <Image src={category.img} alt="1" width={1000} height={1000} />
                 <div className=" text-tiny  uppercase font-bold  flex justify-center mx-auto ">

@@ -1,6 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Button, Image, Pagination, Skeleton, Spinner } from "@nextui-org/react";
+import {
+  Button,
+  Image,
+  Pagination,
+  Skeleton,
+  Spinner,
+} from "@nextui-org/react";
 import Center from "../Global/Ui/Center";
 import GCard from "../Global/Ui/GCard";
 import { Product as ProductType } from "@/types/product";
@@ -14,10 +20,12 @@ import FilterComponent from "./Filter";
 import { useProductStore } from "@/store/futures/productStore";
 import Link from "next/link";
 import { BiArrowBack } from "react-icons/bi";
+import categoryProducts from "@/store/actions/categoryProducts.module";
 
 export default function Product() {
-   const t = useTranslations("Globals");
-  const { category } = useParams();
+  const t = useTranslations("Globals");
+  const { category, mainCategory } = useParams();
+  console.log({ mainCategory });
   const locale = useLocale();
   const dir = locale == "ar" ? "rtl" : "ltr";
   const { products, setProducts } = useProductStore();
@@ -34,9 +42,22 @@ export default function Product() {
       setLoading(false);
     }, 500); // Set loading to false after 1000ms
   };
+  const getAllData = async () => {
+    setLoading(true);
+    const server = await categoryProducts({ category: mainCategory, page });
+    console.log({server});
+    setProducts(server?.products);
+    setTotal(server?.totalPage);
+    setTimeout(() => {
+      setLoading(false);
+    }, 500); // Set loading to false after 1000ms
+  };
 
   useEffect(() => {
-    if (page) getData();
+    if (page) {
+      category && getData();
+      mainCategory && getAllData();
+    }
   }, [page]);
 
   return (
