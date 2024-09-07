@@ -10,6 +10,7 @@ import {
   AutocompleteItem,
   Button,
   Input,
+  useDisclosure,
 } from "@nextui-org/react";
 import useSchema from "./Schema";
 import Link from "next/link";
@@ -21,8 +22,11 @@ import SignGoogle from "../../Auth/Google/SignGoogle";
 import { axiosInstance } from "@/util/axiosConfig";
 import { cartStore } from "@/store/futures/cartStore";
 import { calculateTotalAfterDiscount } from "@/util";
+import ReviewModal from "./ReviewModal";
 
 const OrderForm = () => {
+       const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
   const router = useRouter();
   const tr = useTranslations("Auth");
   const validationTr = useTranslations("Cart");
@@ -69,10 +73,16 @@ const OrderForm = () => {
         showSuccessToast(
           "تم تنفيذ طلبكم  بنجاح  وسيتم  التواصل معكم  في اقرب وقت "
         );
-        router.push("/orders");
+        onOpen();
+      
+      
+        
         return;
       }
       showErrorToast(res.data.message);
+        
+          
+       
     } catch (error: any) {
       console.log(error);
       setIsLoading(false);
@@ -113,10 +123,18 @@ const OrderForm = () => {
   ];
 
   return (
+    <>
+    
+     <ReviewModal
+        isOpen={isOpen}
+        onOpen={onOpen}
+        onOpenChange={onOpenChange}
+      />
     <form
       className="w-full flex flex-col gap-[20px]"
       onSubmit={handleSubmit(onSubmit)}
     >
+     
       <div className="flex flex-col gap-[12px]">
         <div className="flex flex-col gap-[12px]">
           <div>
@@ -230,7 +248,7 @@ const OrderForm = () => {
           </Link>
         </div>
       </div>
-    </form>
+    </form></>
   );
 };
 

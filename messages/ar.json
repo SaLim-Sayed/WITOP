@@ -9,6 +9,14 @@
     "clientsFeedback": " اراء العملاء ",
     "SeeAll": "عرض الكل "
   },
+   "reviewModal": {
+    "title": "قيم طلبك",
+    "ratingLabel": "التقييم (1-5)",
+    "commentLabel": "تعليق",
+    "commentPlaceholder": "اكتب تعليقك هنا...",
+    "submitBtn": "إرسال التعليق",
+    "successMessage": "شكراً لكم على التقييم!"
+  },
   "Profile":{
     "Logout": "تسجيل الخروج",
     "userProfile": "الملف الشخصي",

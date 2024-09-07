@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Input } from "@nextui-org/react";
+import { Button, Input, useDisclosure } from "@nextui-org/react";
 import { useLocale, useTranslations } from "next-intl";
 import { useParams, useRouter } from "next/navigation";
 import { showToast } from "@/components/Global/Ui/Toast";
@@ -62,6 +62,7 @@ const CouponForm = () => {
         return;
       }
       showErrorToast(res.data.message);
+     
     } catch (error: any) {
       console.log(error);
       setIsLoading(false);

@@ -9,6 +9,14 @@
     "clientsFeedback": " clients Feedback ",
     "SeeAll": "See All"
   },
+   "reviewModal": {
+    "title": "Review your order",
+    "ratingLabel": "Rating (1-5)",
+    "commentLabel": "Comment",
+    "commentPlaceholder": "Write your feedback here...",
+    "submitBtn": "Submit Feedback",
+    "successMessage": "Thank you for your review!"
+  },
   "Profile": {
     "Logout": "Logout",
     "userProfile": "User Profile",
