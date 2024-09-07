@@ -4,12 +4,14 @@ import Cookies from "js-cookie";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const createAxiosInstance = (baseURL?: string) => {
+  const token=Cookies.get("token")
   const config = {
     baseURL: baseURL || "https://maro-cares-z86j.onrender.com",
     headers: {
       language: Cookies.get("NEXT_LOCALE") || "ar",
       authrization:
-        "maroTKeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTNlZWNkMjAwZTEzNDM0Mjg3M2M4YiIsImlhdCI6MTcwNTI0MjUyN30.RbBrOw_DzBBpsQsTAAMv34xYDKyjiIp61vcgkQVQfLw",
+        `maroTK${token}` ||
+        "JmaroTKeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTNlZWNkMjAwZTEzNDM0Mjg3M2M4YiIsImlhdCI6MTcwNTI0MjUyN30.RbBrOw_DzBBpsQsTAAMv34xYDKyjiIp61vcgkQVQfLw",
     },
   };
 
@@ -36,7 +38,7 @@ export const useGetter = ({
     queryFn: async () => {
       try {
         const req = await createAxiosInstance(base).get(endPoint);
-        return req.data.data;
+        return req.data;
       } catch (error) {
         // Handle error (e.g., log it)
         throw error;

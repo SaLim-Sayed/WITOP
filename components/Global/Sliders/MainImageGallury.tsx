@@ -10,7 +10,7 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
-  Image,
+  
 } from "@nextui-org/react";
 
 import { useLocale } from "next-intl";
@@ -25,6 +25,7 @@ interface IProps {
 
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
 import InnerImageZoom from "react-inner-image-zoom";
+import Image from "next/legacy/image";
 const MainImageGallury = ({ alt, images, discount }: IProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const locale = useLocale();
@@ -60,13 +61,13 @@ const MainImageGallury = ({ alt, images, discount }: IProps) => {
                 <>
                   <span className="absolute inset-0 overflow-hidden rounded-md">
                     <Image
-                      width={300}
-                      height={300}
+                      width={100} // Reduced size
+                      height={100} // Reduced size
                       alt=""
                       src={image}
                       className={` ${
-                        selected ? " opacity-100 " : " opacity-50"
-                      }  h-32 w-32 object-cover object-center `}
+                        selected ? "opacity-100" : "opacity-50"
+                      } h-28 w-28 object-top`} // Adjusted size via Tailwind classes
                     />
                   </span>
                   <span

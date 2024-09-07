@@ -4,7 +4,9 @@ import { Button, Divider } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import Center from "../Global/Ui/Center";
 
+import { useSetter } from "@/store/hooks/clientApi";
 import { Order } from "@/store/types/orderTypes";
+import { Product } from "@/types/product";
 import { axiosInstance } from "@/util/axiosConfig";
 import { useLocale, useTranslations } from "next-intl";
 import { useParams, useRouter } from "next/navigation";
@@ -27,6 +29,10 @@ export default function OrderDetails() {
 
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const { mutate, error } = useSetter({
+    endPoint: "/return/returnRequest",
+    key: "returnRequest",
+  });
   const getOrderDetails = async () => {
     try {
       setLoading(true);
@@ -46,6 +52,14 @@ export default function OrderDetails() {
     }
   };
 
+  const handleSubmit = (product: Product) => {
+    mutate({
+      orderID: orderId,
+      productName: product?.productName,
+      message: "not needed",
+      phoneNumber: orderDetails?.userPhone,
+    });
+  };
   useEffect(() => {
     getOrderDetails();
   }, []);
@@ -111,6 +125,14 @@ export default function OrderDetails() {
                   </div>
                 </div>
 
+                <Button
+                  onClick={()=>handleSubmit(product)}
+                  className="bg-pink-100"
+                  radius="lg"
+                  size="sm"
+                >
+                  استرجاع
+                </Button>
                 <div className="text-xl text-justify"></div>
               </div>
             ))}{" "}

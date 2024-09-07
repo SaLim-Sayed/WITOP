@@ -4,19 +4,19 @@ import { useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { MdFavorite, MdKeyboardArrowRight } from "react-icons/md";
 
-import { Button, Divider } from "@nextui-org/react";
-import Cookies from "js-cookie";
 import { cn } from "@/libs/cn";
 import { useProfileStore } from "@/store/futures/profileStore";
 import { UserDataType } from "@/types/user";
 import { axiosInstance } from "@/util/axiosConfig";
+import { Button, Divider } from "@nextui-org/react";
+import Cookies from "js-cookie";
 import { BiBook } from "react-icons/bi";
 import { BsPerson } from "react-icons/bs";
 import { FcSettings } from "react-icons/fc";
 import Center from "../Global/Ui/Center";
 import Layer from "../Global/Ui/Layer";
 import OrderPage from "../Orders/Order";
-import Favorite from "./Favorite";
+import AllReturn from "./AllReturn";
 import Offers from "./Offers";
 import PersonalInfo from "./PersonalInfo";
 import Settings from "./Settings";
@@ -44,11 +44,11 @@ export default function Profile() {
       label: t("allOrders"),
     },
     {
-      content: "favorite",
+      content: "allReturn",
       darkIcon: MdFavorite,
       lightIcon: MdFavorite,
       alt: "airplaneIcon",
-      label: t("favorite"),
+      label: t("allReturn"),
     },
     {
       content: "settings",
@@ -145,7 +145,7 @@ export default function Profile() {
             )}
             {profileStatus === "offers" && <Offers />}
             {profileStatus === "settings" && <Settings />}
-            {profileStatus === "favorite" && <Favorite />}
+            {profileStatus === "allReturn" && <AllReturn />}
             {profileStatus === "allOrders" && <OrderPage exSt />}
           </div>
         </div>

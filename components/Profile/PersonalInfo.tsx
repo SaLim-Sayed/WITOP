@@ -7,6 +7,7 @@ import { Button, Input, Spinner } from "@nextui-org/react";
 import { UserDataType } from "@/types/user";
 import { BiCopy } from "react-icons/bi";
 import ClientHydration from "../Global/Providers/ClientHydration";
+import { showToast } from "../Global/Ui/Toast";
 
 export default function PersonalInfo({
   userData,
@@ -14,20 +15,23 @@ export default function PersonalInfo({
   userData: UserDataType | undefined;
 }) {
   const trans = useTranslations("Profile");
- 
+
+  const showSuccessToast = (message?: string) =>
+    showToast({ type: "success", toastMessage: message });
+  const showErrorToast = (message?: string) =>
+    showToast({ type: "error", toastMessage: message });
   const handleCopy = () => {
     const textToCopy = `https://www.marocares.com/auth/register?invitationCode=${userData?.invitationCode}`;
-    
     navigator.clipboard.writeText(textToCopy).then(
       () => {
-        alert("تم نسخ الرابط بنجاح!"); // Optional: Alert or notification to confirm copy
+        showSuccessToast("تم نسخ الرابط بنجاح!");
       },
       (err) => {
-        alert("فشل في نسخ الرابط!"); // Optional: Handle copy failure
+        showErrorToast("فشل في نسخ الرابط!");
       }
     );
-  }
-      
+  };
+
   return (
     <ClientHydration LoaderComponent={<Spinner />}>
       <div className=" flex flex-col w-full gap-4">

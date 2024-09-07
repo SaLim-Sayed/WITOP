@@ -10,11 +10,12 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
-  Image,
+ 
 } from "@nextui-org/react";
 import { useLocale } from "next-intl";
 import { cn } from "@/libs/cn";
 import ImageSwipper from "./ImageSwipper";
+import Image from "next/legacy/image";
 
 interface IProps {
   alt: any;
@@ -39,7 +40,8 @@ const ImageGallurySM = ({ alt, images, discount }: IProps) => {
               onClick={onOpen}
             >
               <Image
-                radius="lg"
+                width={300}
+                height={300}
                 src={image}
                 alt={alt}
                 className="  w-fit max-h-[400px] object-cover object-center sm:rounded-lg"

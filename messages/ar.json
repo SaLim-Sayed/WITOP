@@ -28,6 +28,7 @@
     "email": "البريد الالكتروني",
     "phoneNumber": "رقم الهاتف",
     "invitationCode": "كود الدعوة",
+    "allReturn": "كل المرتجعات",
     "allOrders": "كل الطلبات"
   },
   "Globals": {

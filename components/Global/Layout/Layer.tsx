@@ -24,9 +24,10 @@ export default function Layer({
         }}
       >
         <h1 className="text-[2.5rem] uppercase font-[700]"> {title} </h1>
-        <div className="    -bottom-10 right-4 w-32 h-12 bg-gray-100 text-cyan-600  flex text-[500] justify-center items-center rounded-lg ">
-          {Math.round(TotalCartAmount)} {transContent("SAR")}
-        </div>
+      { TotalCartAmount? <div className="    -bottom-10 right-4 w-32 h-12 bg-gray-100 text-cyan-600  flex text-[500] justify-center items-center rounded-lg ">
+          {TotalCartAmount && Math.round(TotalCartAmount)}{" "}
+          {TotalCartAmount&&transContent("SAR")}
+        </div>:""}
         <h2 className="text-lightColor-400">{subTitle}</h2>
       </div>
     </div>

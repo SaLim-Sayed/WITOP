@@ -10,7 +10,7 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
-  Image,
+ 
 } from "@nextui-org/react";
 
 import { useLocale } from "next-intl";
@@ -25,6 +25,7 @@ interface IProps {
 
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
 import InnerImageZoom from "react-inner-image-zoom";
+import Image from "next/legacy/image";
 const ImageGallury = ({ alt, images, discount }: IProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const locale = useLocale();
