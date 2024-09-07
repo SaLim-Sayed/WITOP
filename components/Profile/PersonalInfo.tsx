@@ -1,16 +1,11 @@
 "use client";
-import React from "react";
 
 import { useTranslations } from "next-intl";
-import Image from "next/legacy/image";
-import Link from "next/link";
 
- 
-import { Input, Select, SelectItem, Spinner } from "@nextui-org/react";
+import { Button, Input, Spinner } from "@nextui-org/react";
 
-import { arabianCountries } from "./arabCounty";
 import { UserDataType } from "@/types/user";
-import { MdPassword } from "react-icons/md";
+import { BiCopy } from "react-icons/bi";
 import ClientHydration from "../Global/Providers/ClientHydration";
 
 export default function PersonalInfo({
@@ -18,13 +13,24 @@ export default function PersonalInfo({
 }: {
   userData: UserDataType | undefined;
 }) {
- 
   const trans = useTranslations("Profile");
-
  
+  const handleCopy = () => {
+    const textToCopy = `https://www.marocares.com/auth/register?invitationCode=${userData?.invitationCode}`;
+    
+    navigator.clipboard.writeText(textToCopy).then(
+      () => {
+        alert("تم نسخ الرابط بنجاح!"); // Optional: Alert or notification to confirm copy
+      },
+      (err) => {
+        alert("فشل في نسخ الرابط!"); // Optional: Handle copy failure
+      }
+    );
+  }
+      
   return (
     <ClientHydration LoaderComponent={<Spinner />}>
-      <div className=" flex flex-col w-[65%] gap-4">
+      <div className=" flex flex-col w-full gap-4">
         <div className="text-xl font-[600]">{trans("personal")}</div>
         <div className="flex flex-col gap-8">
           <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
@@ -66,6 +72,15 @@ export default function PersonalInfo({
               }}
               label={trans("invitationCode")}
               value={userData?.invitationCode}
+              endContent={
+                <Button
+                  onClick={handleCopy}
+                  className=" flex justify-center text-darkColor-40 cursor-pointer"
+                >
+                  نسخ
+                  <BiCopy size={20} />
+                </Button>
+              }
             />
           </div>
         </div>

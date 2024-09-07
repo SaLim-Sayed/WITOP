@@ -5,7 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { MdFavorite, MdKeyboardArrowRight } from "react-icons/md";
 
 import { Button, Divider } from "@nextui-org/react";
-
+import Cookies from "js-cookie";
 import { cn } from "@/libs/cn";
 import { useProfileStore } from "@/store/futures/profileStore";
 import { UserDataType } from "@/types/user";
@@ -58,24 +58,22 @@ export default function Profile() {
       label: t("setting"),
     },
   ];
-
+  const token = Cookies.get("token");
   const getData = async () => {
     try {
       const { data } = await axiosInstance.post(`/user/userAuthorize`, {
-        userToken:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NmMwZDc0MzFmNDcyMTIxZmU3Y2VjMyIsImlhdCI6MTcyNTYxMjAyMH0.2_l7aVX0srXhLvXVHDoCSQCVcQo-zX-d7Nq1YyePZiE",
+        userToken: token,
       });
-        setUserDate(data?.userInfo);
-     console.log(data)
+      setUserDate(data?.userInfo);
     } catch (err: any) {
       console.log(err);
     }
   };
-//   const getData = async () => {
-//     const data = await getProfile();
-//     console.log({ data });
-//     // setUserDate(data?.data);
-//   };
+  //   const getData = async () => {
+  //     const data = await getProfile();
+  //     console.log({ data });
+  //     // setUserDate(data?.data);
+  //   };
   useEffect(() => {
     getData();
   }, []);

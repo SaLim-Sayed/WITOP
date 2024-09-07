@@ -8,7 +8,6 @@ import Cookies from "js-cookie";
 export default function SignGoogle() {
   const router = useRouter();
   const handleLogin = async (access_token: any) => {
-    console.log(access_token);
     try {
       const res = await axios.post(
         "https://maro-cares-z86j.onrender.com/auth/google",

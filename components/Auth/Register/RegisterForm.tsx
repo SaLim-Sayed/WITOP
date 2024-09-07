@@ -13,7 +13,7 @@ import useSchema from "./Schema";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import SignGoogle from "../Google/SignGoogle";
 import { showToast } from "@/components/Global/Ui/Toast";
 
@@ -65,6 +65,12 @@ const RegisterForm = () => {
     }
   };
 
+  // Get query parameters from the URL
+  const searchParams = useSearchParams();
+ 
+  // Extract the invitationCode from the URL
+  const invitationCode = searchParams.get("invitationCode");
+
   return (
     <form
       className="w-full flex  flex-col gap-[20px]"
@@ -108,6 +114,7 @@ const RegisterForm = () => {
               label={tr("invitationBy")}
               variant="bordered"
               className="w-full"
+              value={invitationCode || ""}
               isInvalid={errors.invitationBy ? true : false}
               errorMessage={errors.invitationBy?.message}
               classNames={{
