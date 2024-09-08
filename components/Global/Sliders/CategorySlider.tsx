@@ -44,13 +44,13 @@ export default function CategorySlider() {
           <Slider rtl={dir} {...settings} ref={slider} autoplay>
             {Category.map((category) => (
               <div
-                onClick={() => navigateTo(`/category/${category.title}`)}
+                onClick={() => navigateTo(`/category/${t(category.title)}`)}
                 key={category.id}
                 className=" grid grid-cols-1 grid-rows-2 gap-2 w-fit cursor-pointer "
               >
                 <Image src={category.img} alt="1" width={1000} height={1000} />
                 <div className=" text-tiny  uppercase font-bold  flex justify-center mx-auto ">
-                  <p>{category.title}</p>
+                  <p>{t(category.title)}</p>
                 </div>
               </div>
             ))}

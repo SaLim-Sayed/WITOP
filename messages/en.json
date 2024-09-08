@@ -7,7 +7,20 @@
     "ON SALE": "ON SALE",
     "OUR SELECTION": "OUR SELECTION",
     "clientsFeedback": " clients Feedback ",
-    "SeeAll": "See All"
+    "SeeAll": "See All",
+    "SkinCare": "Skin Care",
+    "BodyCare": "Body Care",
+    "MakeUp": "Make Up",
+    "HairCare": "Hair Care",
+    "MouthCare": "Mouth Care",
+    "HandsCare": "Hands Care",
+    "FootCare": "Foot Care",
+    "MotherBabyCare": "Mother & Baby Care",
+    "Accessories": "Accessories",
+    "Perfumes": "Perfumes",
+    "MedicalProducts": "Medical Products",
+    "HomeCare": "Home Care",
+    "ElectronicDevices": "Electronic Devices"
   },
    "reviewModal": {
     "title": "Review your order",

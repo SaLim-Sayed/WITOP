@@ -1,26 +1,22 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import categoryProducts from "@/store/actions/categoryProducts.module";
+import getProducts from "@/store/actions/products.module";
+import { useProductStore } from "@/store/futures/productStore";
 import {
   Button,
-  Image,
-  Pagination,
-  Skeleton,
-  Spinner,
+  Pagination
 } from "@nextui-org/react";
+import { useLocale, useTranslations } from "next-intl";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { BiArrowBack } from "react-icons/bi";
+import GCardSkeleton from "../Global/Loaders/GCardSkeleton";
 import Center from "../Global/Ui/Center";
 import GCard from "../Global/Ui/GCard";
-import { Product as ProductType } from "@/types/product";
 import Headings from "../Global/Ui/Heading";
-import getProducts from "@/store/actions/products.module";
-import { useParams } from "next/navigation";
-import { useLocale, useTranslations } from "next-intl";
-import GCardSkeleton from "../Global/Loaders/GCardSkeleton";
 import Layer from "../Global/Ui/Layer";
 import FilterComponent from "./Filter";
-import { useProductStore } from "@/store/futures/productStore";
-import Link from "next/link";
-import { BiArrowBack } from "react-icons/bi";
-import categoryProducts from "@/store/actions/categoryProducts.module";
 
 export default function Product() {
   const t = useTranslations("Globals");
@@ -62,14 +58,18 @@ export default function Product() {
 
   return (
     <div className="relative">
-      <Headings type={products && products[0]?.category} />
+      <Headings
+        type={mainCategory ? products[0]?.mainCategory : products[0]?.category}
+      />
 
       <Center>
         <div className="flex flex-col  gap-8">
           <Layer
             title={
               <div className=" text-3xl font-bold">
-                {products && products[0]?.category}
+                {mainCategory
+                  ? products[0]?.mainCategory
+                  : products[0]?.category}
               </div>
             }
           />

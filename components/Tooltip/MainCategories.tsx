@@ -4,9 +4,11 @@ import { Tooltip, Button } from "@nextui-org/react";
 import Content from "./Content";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { useNavigation } from "@/util/useNavigation";
 interface IProps {}
 
-const MainCategories = ({}: IProps) => {
+const MainCategories = ({ }: IProps) => {
+  const {navigateTo}=useNavigation()
   const translate = useTranslations("Categories");
   const translateSub = useTranslations("Categories.SubCategory");
   const translateSubDesc = useTranslations("Categories.SubCategory.Desc");
@@ -586,7 +588,7 @@ const MainCategories = ({}: IProps) => {
                 color="secondary"
                 size="sm"
                 className="hover:bg-cyan-300 text-tiny p-1 w-fit text-black"
-               
+                onClick={() => navigateTo(`/category/${category.category}`)}
               >
                 {category.category}
               </Button>

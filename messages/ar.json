@@ -7,7 +7,20 @@
     "ON SALE": "الاكثر مبيعاََ",
     "OUR SELECTION": "اختياراتنا",
     "clientsFeedback": " اراء العملاء ",
-    "SeeAll": "عرض الكل "
+    "SeeAll": "عرض الكل ",
+    "SkinCare": "العناية بالبشرة",
+    "BodyCare": "العناية بالجسم",
+    "MakeUp": "المكياج",
+    "HairCare": "العناية بالشعر",
+    "MouthCare": "العناية بالفم",
+    "HandsCare": "العناية باليد",
+    "FootCare": "العناية بالقدم",
+    "MotherBabyCare": "العناية بالأم والطفل",
+    "Accessories": "الإكسسوارات",
+    "Perfumes": "العطور",
+    "MedicalProducts": "منتجات طبية",
+    "HomeCare": "عناية المنزل",
+    "ElectronicDevices": "أجهزة إلكترونية"
   },
    "reviewModal": {
     "title": "قيم طلبك",
