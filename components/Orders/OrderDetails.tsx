@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Divider } from "@nextui-org/react";
+import { Button, Divider, useDisclosure } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import Center from "../Global/Ui/Center";
 
@@ -14,8 +14,11 @@ import OrderDetailsSkeleton from "../Global/Loaders/OrderDetailsSkeleton ";
 import ClientHydration from "../Global/Providers/ClientHydration";
 import MainImageGallury from "../Global/Sliders/MainImageGallury";
 import { showToast } from "../Global/Ui/Toast";
+import ReturnModal from "./ReturnModal";
 
 export default function OrderDetails() {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
   const lang = useLocale();
   const t = useTranslations("Globals");
 
@@ -29,7 +32,7 @@ export default function OrderDetails() {
 
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const { mutate, error } = useSetter({
+  const { mutate, error, isSuccess, data } = useSetter({
     endPoint: "/return/returnRequest",
     key: "returnRequest",
   });
@@ -59,6 +62,8 @@ export default function OrderDetails() {
       message: "not needed",
       phoneNumber: orderDetails?.userPhone,
     });
+
+    if (isSuccess) showSuccessToast(data.message);
   };
   useEffect(() => {
     getOrderDetails();
@@ -124,9 +129,16 @@ export default function OrderDetails() {
                     الكمية : {product?.count}{" "}
                   </div>
                 </div>
-
+                <ReturnModal
+                  isOpen={isOpen}
+                  onOpen={onOpen}
+                  onOpenChange={onOpenChange}
+                  orderId={orderId}
+                  orderDetails={orderDetails}
+                  product={product}
+                />
                 <Button
-                  onClick={()=>handleSubmit(product)}
+                  onClick={onOpen}
                   className="bg-pink-100"
                   radius="lg"
                   size="sm"

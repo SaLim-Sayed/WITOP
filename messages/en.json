@@ -17,6 +17,14 @@
     "submitBtn": "Submit Feedback",
     "successMessage": "Thank you for your review!"
   },
+   "returnModal": {
+    "title": "Why are you returning this product?",
+    "message": "Please let us know the reason for returning this product. We will contact you as soon as possible. Thank you!",
+    "commentLabel": "Comment",
+    "commentPlaceholder": "Write your feedback here...",
+    "submitBtn": "Submit",
+    "successMessage": "Thank you for your review!"
+  },
   "Profile": {
     "Logout": "Logout",
     "userProfile": "User Profile",
