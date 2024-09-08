@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 import { useLocale, useTranslations } from "next-intl";
-import { MdFavorite, MdKeyboardArrowRight } from "react-icons/md";
+import { MdAssignmentReturn, MdFavorite, MdKeyboardArrowRight } from "react-icons/md";
 
 import { cn } from "@/libs/cn";
 import { useProfileStore } from "@/store/futures/profileStore";
@@ -10,7 +10,7 @@ import { UserDataType } from "@/types/user";
 import { axiosInstance } from "@/util/axiosConfig";
 import { Button, Divider } from "@nextui-org/react";
 import Cookies from "js-cookie";
-import { BiBook } from "react-icons/bi";
+import { BiBook, BiWallet } from "react-icons/bi";
 import { BsPerson } from "react-icons/bs";
 import { FcSettings } from "react-icons/fc";
 import Center from "../Global/Ui/Center";
@@ -20,6 +20,7 @@ import AllReturn from "./AllReturn";
 import Offers from "./Offers";
 import PersonalInfo from "./PersonalInfo";
 import Settings from "./Settings";
+import Wallet from "./Wallet";
 
 export default function Profile() {
   const lang = useLocale();
@@ -45,17 +46,17 @@ export default function Profile() {
     },
     {
       content: "allReturn",
-      darkIcon: MdFavorite,
-      lightIcon: MdFavorite,
+      darkIcon: MdAssignmentReturn,
+      lightIcon: MdAssignmentReturn,
       alt: "airplaneIcon",
       label: t("allReturn"),
     },
     {
-      content: "settings",
-      darkIcon: FcSettings,
-      lightIcon: FcSettings,
+      content: "Wallet",
+      darkIcon: BiWallet,
+      lightIcon: BiWallet,
       alt: "airplaneIcon",
-      label: t("setting"),
+      label: t("Wallet"),
     },
   ];
   const token = Cookies.get("token");
@@ -144,7 +145,7 @@ export default function Profile() {
               <PersonalInfo userData={userData} />
             )}
             {profileStatus === "offers" && <Offers />}
-            {profileStatus === "settings" && <Settings />}
+            {profileStatus === "Wallet" && <Wallet />}
             {profileStatus === "allReturn" && <AllReturn />}
             {profileStatus === "allOrders" && <OrderPage exSt />}
           </div>
