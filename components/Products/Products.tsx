@@ -2,10 +2,7 @@
 import categoryProducts from "@/store/actions/categoryProducts.module";
 import getProducts from "@/store/actions/products.module";
 import { useProductStore } from "@/store/futures/productStore";
-import {
-  Button,
-  Pagination
-} from "@nextui-org/react";
+import { Button, Pagination } from "@nextui-org/react";
 import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -41,7 +38,7 @@ export default function Product() {
   const getAllData = async () => {
     setLoading(true);
     const server = await categoryProducts({ category: mainCategory, page });
-    console.log({server});
+    console.log({ server });
     setProducts(server?.products);
     setTotal(server?.totalPage);
     setTimeout(() => {
@@ -59,7 +56,11 @@ export default function Product() {
   return (
     <div className="relative">
       <Headings
-        type={mainCategory ? products[0]?.mainCategory : products[0]?.category}
+        type={
+          mainCategory
+            ? products && products[0]?.mainCategory
+            : products && products[0]?.category
+        }
       />
 
       <Center>
@@ -68,8 +69,8 @@ export default function Product() {
             title={
               <div className=" text-3xl font-bold">
                 {mainCategory
-                  ? products[0]?.mainCategory
-                  : products[0]?.category}
+                  ? products && products[0]?.mainCategory
+                  : products&&products[0]?.category}
               </div>
             }
           />

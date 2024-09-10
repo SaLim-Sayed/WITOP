@@ -4,7 +4,7 @@ export const Category = [
   { id: 3, title: "HomeCare", img: "/categories/premium.png" },
   { id: 4, title: "Perfumes", img: "/categories/perfume.png" },
   { id: 5, title: "MedicalProducts", img: "/categories/medcial.png" },
-  { id: 6, title: "man", img: "/categories/man.png" },
+  // { id: 6, title: "man", img: "/categories/man.png" },
   { id: 7, title: "MakeUp", img: "/categories/makeup.png" },
   { id: 8, title: "HairCare", img: "/categories/hair.png" },
   { id: 9, title: "HandsCare", img: "/categories/gift.png" },
