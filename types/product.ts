@@ -16,13 +16,15 @@ export type Product = {
   relatedProducts: any;
   count: any;
   stock: any;
+  colors: [{ name: string; stock: number; _id: string }];
+  color?: string;
 };
-  
-  export interface ICartState {
-    cartAmount: number;
-    cartTotal: number;
-    numberOfItem: number;
-    products: Product[];
-    _id: string;
-    message: string;
-  }
+
+export interface ICartState {
+  cartAmount: number;
+  cartTotal: number;
+  numberOfItem: number;
+  products: Product[];
+  _id: string;
+  message: string;
+}

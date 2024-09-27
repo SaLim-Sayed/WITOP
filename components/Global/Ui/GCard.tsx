@@ -47,7 +47,7 @@ export default function GCard({
   const router = useRouter();
   const locale = useLocale();
   const dir = locale == "ar" ? "rtl" : "ltr";
- 
+
   const [isLoading, setIsLoading] = useState(false);
   const { isFavoriteOpen, setFavoriteIsOpen } = useFavoriteStore();
   const [fav, setFav] = useState<boolean>(false);
@@ -72,9 +72,9 @@ export default function GCard({
       console.log(err);
 
       showErrorToast("يجب تسجيل الدخول اولاََ");
-       setTimeout(() => {
-         router.push(`/auth/login`);
-       }, 5000);
+      setTimeout(() => {
+        router.push(`/auth/login`);
+      }, 5000);
     }
   };
   const addToCartHandler = async () => {
@@ -101,7 +101,7 @@ export default function GCard({
     <ClientHydration LoaderComponent={<GCardSkeleton />}>
       <div
         dir={dir}
-        className="flex flex-col gap-2 shadow-xl max-w-[300px]   min-w-[300px]   max-h-[400px]  rounded-lg relative "
+        className="flex flex-col  justify-between py-2  max-w-[300px]  w-[140px]   md:w-[200px] md:min-w-[2§px] max-h-[360px]  md:max-h-[450px]  rounded-lg relative "
       >
         <Button
           key={id}
@@ -153,7 +153,7 @@ export default function GCard({
                     className="text-slate-950  font-[400] text-start text-[16px] font-sans    "
                     title={title}
                   >
-                    {title}
+                    {title.slice(0, 30)}....
                   </p>
                 </div>
               </div>
@@ -179,6 +179,7 @@ export default function GCard({
                   </Button>
                 </div>
               </div>
+              <div></div>
               <div className="flex mx-2 items-center gap-2 ">
                 <div className="bg-pink-50 text-red-500 rounded-lg flex items-center justify-center w-10 gap-1  ">
                   <p className="text-slate-600"> {totalRating}</p>

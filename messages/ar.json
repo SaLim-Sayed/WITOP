@@ -22,7 +22,7 @@
     "HomeCare": "عناية المنزل",
     "ElectronicDevices": "أجهزة إلكترونية"
   },
-   "reviewModal": {
+  "reviewModal": {
     "title": "قيم طلبك",
     "ratingLabel": "التقييم (1-5)",
     "commentLabel": "تعليق",
@@ -30,12 +30,12 @@
     "submitBtn": "إرسال التعليق",
     "successMessage": "شكراً لكم على التقييم!"
   },
-   "returnModal": {
+  "returnModal": {
     "title": "لماذا تريد استرجاع هذ لهذا المنتج؟",
     "message": "يرجى ملاحظة السبب استرجاع لهذا المنتج. سوف  نتوصل  معك في اسرع وقت. شكرا!",
     "submitBtn": "ارسال"
-   },
-  "Profile":{
+  },
+  "Profile": {
     "Logout": "تسجيل الخروج",
     "userProfile": "الملف الشخصي",
     "personal": "البيانات الشخصية",
@@ -54,7 +54,7 @@
     "Login": "دخول",
     "Navbar/Search": "بحث",
     "Home": "الرئيسية",
-    "Back":"الرجوع للرئيسية",
+    "Back": "الرجوع للرئيسية",
     "noData": "لا يوجد بيانات",
     "Category": "القسم",
     "Categories": "الاقسام",
@@ -490,17 +490,20 @@
     "UserName": "  اسم المستخدم مطلوب",
     "Email": " البريد الالكتروني غير صالح",
     "PhoneNumber": " رقم الهاتف غير صالح",
+    "neighborhood": "الحي مطلوب",
+    "street": "الشارع مطلوب",
     "UserPhone": " رقم الهاتف غير صالح",
     "UserAddress": "عنوان المستخدم مطلوب",
     "UserCity": "مدينة المستخدم مطلوبة",
     "TotalAfterDiscount": "يجب أن يكون الإجمالي بعد الخصم 0 على الأقل",
     "TotalAfterDiscountValidation": "يجب أن يأخذ الإجمالي بعد الخصم في الاعتبار خصم الشحن للطلبات التي تزيد عن 300 ريال"
-  
   },
   "Cart": {
     "Coupon": "  كود  الخصم",
     "Message": "رسالة  التوصيل",
     "UserName": "  اسم المستخدم  ",
+    "neighborhood": "الحي  ",
+    "street": "الشارع  ",
     "Email": " البريد الالكتروني    ",
     "PhoneNumber": " رقم الهاتف    ",
     "UserPhone": " رقم الهاتف    ",
@@ -508,5 +511,9 @@
     "UserCity": "مدينة المستخدم  ",
     "TotalAfterDiscount": " الإجمالي بعد الخصم ",
     "TotalAfterDiscountValidation": "يجب أن يأخذ الإجمالي بعد الخصم في الاعتبار خصم الشحن للطلبات التي تزيد عن 300 ريال"
+  },
+  "Products": {
+    "AddToCart": "اضف الى السلة",
+    "RelatedProducts": "منتجات ذات صلة"
   }
 }

@@ -3,15 +3,18 @@ import Center from "../Global/Ui/Center";
 import Title from "../Global/Ui/Title";
 import GCard from "../Global/Ui/GCard";
 import { Product } from "@/types/product";
+import { useTranslations } from "next-intl";
+import { Divider } from "@nextui-org/react";
 export default function RelatedProducts({
   productData,
 }: {
   productData: Product[] | undefined;
-}) {
+  }) {
+  const t=useTranslations("Products")
   return (
-    <div>
-      <Center>
-        <Title title="RELATED PRODUCTS " />
+    <div className="mt-8 pt-4">
+    <Divider/>
+        <Title title={t("RelatedProducts")} />
         <div className="flex   flex-wrap  justify-center gap-4">
           {productData?.map((product) => (
             <GCard
@@ -30,7 +33,7 @@ export default function RelatedProducts({
             />
           ))}
         </div>
-      </Center>
+      
     </div>
   );
 }

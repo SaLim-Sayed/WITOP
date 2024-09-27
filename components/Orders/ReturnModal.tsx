@@ -1,14 +1,12 @@
-import React, { useState } from "react";
-import { Modal, ModalContent, ModalHeader, ModalBody } from "@nextui-org/modal";
-import { Button, Input, Textarea } from "@nextui-org/react";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { showToast } from "@/components/Global/Ui/Toast";
-import { useLocale, useTranslations } from "next-intl";
-import { axiosInstance } from "@/util/axiosConfig";
-import { useNavigation } from "@/util/useNavigation";
 import { useSetter } from "@/store/hooks/clientApi";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Modal, ModalBody, ModalContent, ModalHeader } from "@nextui-org/modal";
+import { Button, Input } from "@nextui-org/react";
+import { useLocale, useTranslations } from "next-intl";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 interface Props {
   onOpenChange: any;

@@ -22,7 +22,7 @@
     "HomeCare": "Home Care",
     "ElectronicDevices": "Electronic Devices"
   },
-   "reviewModal": {
+  "reviewModal": {
     "title": "Review your order",
     "ratingLabel": "Rating (1-5)",
     "commentLabel": "Comment",
@@ -30,7 +30,7 @@
     "submitBtn": "Submit Feedback",
     "successMessage": "Thank you for your review!"
   },
-   "returnModal": {
+  "returnModal": {
     "title": "Why are you returning this product?",
     "message": "Please let us know the reason for returning this product. We will contact you as soon as possible. Thank you!",
     "commentLabel": "Comment",
@@ -501,6 +501,8 @@
     "PhoneNumber": "phone number is required",
     "UserPhone": "phone number is required",
     "UserAddress": "User address is required",
+    "neighborhood": "neighborhood is required",
+    "street": "street is required",
     "UserCity": "User city is required",
     "TotalAfterDiscount": "Total after discount must be at least 0",
     "TotalAfterDiscountValidation": "Total after discount should consider shipping discount for orders above 300 SAR"
@@ -509,6 +511,8 @@
     "Coupon": "  Coupon Code",
     "Message": "Order Message",
     "UserName": "Username",
+    "neighborhood": "neighborhood",
+    "street": "street",
     "Email": "email    ",
     "PhoneNumber": "phone number    ",
     "UserPhone": "phone number    ",
@@ -516,5 +520,9 @@
     "UserCity": "User city    ",
     "TotalAfterDiscount": "Total after discount ",
     "TotalAfterDiscountValidation": "Total after discount should consider shipping discount for orders above 300 SAR"
+  },
+  "Products": {
+    "AddToCart": "Add To Cart",
+   "RelatedProducts": "Related Products"
   }
 }

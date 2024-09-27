@@ -105,6 +105,8 @@ export default function Product() {
                     category={product?.category}
                     totalRating={product?.totalRating}
                     stock={product?.stock}
+                    product={product}
+                    // colors={product?.colors}
                   />
                 ))
               ) : (

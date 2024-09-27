@@ -6,7 +6,8 @@ export default function useSchema() {
 
   const schema = z.object({
     userName: z.string().min(1, { message: tr("UserName") }),
-    userAddress: z.string().min(1, { message: tr("UserAddress") }),
+    neighborhood: z.string().min(1, { message: tr("neighborhood") }),
+    street: z.string().min(1, { message: tr("street") }),
     userPhone: z.string().min(4, { message: tr("PhoneNumber") }),
     userCity: z.string().min(1, { message: tr("UserCity") }), 
     message: z.string().optional(),

@@ -1,9 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
-import Cookies from "js-cookie";
-import React, { useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { z } from "zod";
+import { showToast } from "@/components/Global/Ui/Toast";
+import { cartStore } from "@/store/futures/cartStore";
+import { calculateTotalAfterDiscount } from "@/util";
+import { axiosInstance } from "@/util/axiosConfig";
+import { useNavigation } from "@/util/useNavigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Autocomplete,
@@ -12,20 +13,18 @@ import {
   Input,
   useDisclosure,
 } from "@nextui-org/react";
-import useSchema from "./Schema";
-import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
-import axios from "axios";
+import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
-import { showToast } from "@/components/Global/Ui/Toast";
-import SignGoogle from "../../Auth/Google/SignGoogle";
-import { axiosInstance } from "@/util/axiosConfig";
-import { cartStore } from "@/store/futures/cartStore";
-import { calculateTotalAfterDiscount } from "@/util";
+import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { z } from "zod";
 import ReviewModal from "./ReviewModal";
+import useSchema from "./Schema";
 
 const OrderForm = () => {
-       const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { navigateTo } = useNavigation();
 
   const router = useRouter();
   const tr = useTranslations("Auth");
@@ -73,16 +72,11 @@ const OrderForm = () => {
         showSuccessToast(
           "تم تنفيذ طلبكم  بنجاح  وسيتم  التواصل معكم  في اقرب وقت "
         );
-        onOpen();
-      
-      
-        
+        navigateTo("/orders");
+
         return;
       }
       showErrorToast(res.data.message);
-        
-          
-       
     } catch (error: any) {
       console.log(error);
       setIsLoading(false);
@@ -124,131 +118,126 @@ const OrderForm = () => {
 
   return (
     <>
-    
-     <ReviewModal
-        isOpen={isOpen}
-        onOpen={onOpen}
-        onOpenChange={onOpenChange}
-      />
-    <form
-      className="w-full flex flex-col gap-[20px]"
-      onSubmit={handleSubmit(onSubmit)}
-    >
-     
-      <div className="flex flex-col gap-[12px]">
+      <form
+        className="w-full flex flex-col gap-[20px]"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <div className="flex flex-col gap-[12px]">
-          <div>
-            <Input
-              {...register("userName")}
-              type="text"
-              label={validationTr("UserName")}
-              variant="bordered"
-              className="w-full"
-              isInvalid={errors.userName ? true : false}
-              errorMessage={errors.userName?.message}
-              classNames={{
-                input: "text-[1.2rem]",
-              }}
-            />
-          </div>
-          <div>
-            <Input
-              {...register("userAddress")}
-              type="text"
-              label={validationTr("UserAddress")}
-              variant="bordered"
-              className="w-full"
-              isInvalid={errors.userAddress ? true : false}
-              errorMessage={errors.userAddress?.message}
-              classNames={{
-                input: "text-[1.2rem]",
-              }}
-            />
-          </div>
-          <div>
-            <Input
-              {...register("userPhone")}
-              type="text"
-              label={validationTr("UserPhone")}
-              variant="bordered"
-              className="w-full"
-              isInvalid={errors.userPhone ? true : false}
-              errorMessage={errors.userPhone?.message}
-              classNames={{
-                input: "text-[1.2rem]",
-              }}
-            />
-          </div>
-          <div>
-            <Autocomplete
-              allowsCustomValue
-              label={validationTr("UserCity")}
-              variant="bordered"
-              className="w-full"
-              defaultItems={cities}
-              onSelectionChange={(selected: any) =>
-                setValue("userCity", selected)
-              }
-              isInvalid={errors.userCity ? true : false}
-              errorMessage={errors.userCity?.message}
-            >
-              {(item) => (
-                <AutocompleteItem key={item.value} value={item.value}>
-                  {item.label}
-                </AutocompleteItem>
-              )}
-            </Autocomplete>
-          </div>
-          {/* <div>
-            <Input
-              {...register("totalAfterDiscount")}
-              type="number"
-              label={validationTr("TotalAfterDiscount")}
-              variant="bordered"
-              className="w-full"
-              isInvalid={errors.totalAfterDiscount ? true : false}
-              classNames={{
-                input: "text-[1.2rem]",
-              }}
-            />
-          </div> */}
-          <div>
-            <Input
-              {...register("message")}
-              type="text"
-              label={validationTr("Message")}
-              variant="bordered"
-              className="w-full"
-              isInvalid={errors.message ? true : false}
-              errorMessage={errors.message?.message}
-              classNames={{
-                input: "text-[1.2rem]",
-              }}
-            />
+          <div className="flex flex-col gap-[12px]">
+            <div>
+              <Input
+                {...register("userName")}
+                type="text"
+                label={validationTr("UserName")}
+                variant="bordered"
+                className="w-full"
+                isInvalid={errors.userName ? true : false}
+                errorMessage={errors.userName?.message}
+                classNames={{
+                  input: "text-[1.2rem]",
+                }}
+              />
+            </div>
+            <div>
+              <Input
+                {...register("userPhone")}
+                type="text"
+                label={validationTr("UserPhone")}
+                variant="bordered"
+                className="w-full"
+                isInvalid={errors.userPhone ? true : false}
+                errorMessage={errors.userPhone?.message}
+                classNames={{
+                  input: "text-[1.2rem]",
+                }}
+              />
+            </div>
+            <div>
+              <Input
+                {...register("street")}
+                type="text"
+                label={validationTr("street")}
+                variant="bordered"
+                className="w-full"
+                isInvalid={errors.street ? true : false}
+                errorMessage={errors.street?.message}
+                classNames={{
+                  input: "text-[1.2rem]",
+                }}
+              />
+            </div>
+            <div>
+              <Input
+                {...register("neighborhood")}
+                type="text"
+                label={validationTr("neighborhood")}
+                variant="bordered"
+                className="w-full"
+                isInvalid={errors.neighborhood ? true : false}
+                errorMessage={errors.neighborhood?.message}
+                classNames={{
+                  input: "text-[1.2rem]",
+                }}
+              />
+            </div>
+
+            <div>
+              <Autocomplete
+                allowsCustomValue
+                label={validationTr("UserCity")}
+                variant="bordered"
+                className="w-full"
+                defaultItems={cities}
+                onSelectionChange={(selected: any) =>
+                  setValue("userCity", selected)
+                }
+                isInvalid={errors.userCity ? true : false}
+                errorMessage={errors.userCity?.message}
+              >
+                {(item) => (
+                  <AutocompleteItem key={item.value} value={item.value}>
+                    {item.label}
+                  </AutocompleteItem>
+                )}
+              </Autocomplete>
+            </div>
+            <div>
+              <Input
+                {...register("message")}
+                type="string"
+                label={validationTr("Message")}
+                variant="bordered"
+                className="w-full"
+                isInvalid={errors.message ? true : false}
+                classNames={{
+                  input: "text-[1.2rem]",
+                }}
+              />
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="flex flex-col w-full gap-[32px]">
-        <Button
-          type="submit"
-          size="lg"
-          className="bg-cyan-500 h-[64px] text-lg text-white font-bold"
-        >
-          {tr("SubmitOrder")}
-        </Button>
-
-        <div className="flex">
-          {tr("DontHave")}
-          <Link
-            href="/auth/register"
-            className="text-[14px] mx-[10px] text-cyan-500 font-[400]"
+        <div className="flex flex-col w-full gap-[32px]">
+          <Button
+            type="submit"
+            size="lg"
+            className="bg-cyan-500 h-[64px] text-lg text-white font-bold"
           >
-            {tr("Register")}
-          </Link>
+            {tr("SubmitOrder")}
+          </Button>
+
+          <div className="flex">
+            {tr("DontHave")}
+            <Link
+              href="/auth/register"
+              className="text-[14px] mx-[10px] text-cyan-500 font-[400]"
+            >
+              {tr("Register")}
+            </Link>
+          </div>
         </div>
-      </div>
-    </form></>
+      </form>
+    </>
   );
 };
 
