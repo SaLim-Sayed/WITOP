@@ -196,11 +196,18 @@ function ProductCard() {
                           <Button
                             isIconOnly
                             radius="full"
-                            className={`w-[40px] h-[40px] rounded-full text-white ${
+                            className={`w-[40px] h-[40px] border border-gray-700 rounded-full text-white ${
                               selectedColor === color?.name
-                                ? "border-2 border-blue-500"
+                                ? "border-2 border-cyan-500"
                                 : ""
-                            }`} // Highlight the selected color
+                            }
+                              ${
+                                color?.name === "#ffffff" ||
+                                color?.name === "#fff"
+                                  ? "text-gray-600"
+                                  : "text-white "
+                              }
+                            `} // Highlight the selected color
                             style={{
                               backgroundColor: color?.name,
                               marginRight: "10px",

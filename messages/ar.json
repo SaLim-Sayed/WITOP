@@ -42,16 +42,25 @@
     "booking": "الحجوزات",
     "favorite": "المفضلة",
     "Wallet": " المحفظة ",
+    "whatsappSupport": "  دعم واتساب ",
+    "termsAndConditions": "الشروط والاحكام ",
+    "termsText": "الشروط والاحكام ",
     "userName": "اسم المستخدم",
     "email": "البريد الالكتروني",
     "phoneNumber": "رقم الهاتف",
     "invitationCode": "كود الدعوة",
     "allReturn": "كل المرتجعات",
+    "LoyaltySystem": "نظام الولاء",
     "allOrders": "كل الطلبات"
   },
   "Globals": {
     "userProfile": "الملف الشخصي",
     "Login": "دخول",
+     "rateOrder": "تقييم الطلب",
+    "vatIncluded": "شامل ضريبة القيمة المضافة",
+    "quantity": "الكمية",
+    "color": "اللون",
+    "return": "استرجاع",
     "Navbar/Search": "بحث",
     "Home": "الرئيسية",
     "Back": "الرجوع للرئيسية",
@@ -500,7 +509,7 @@
   },
   "Cart": {
     "Coupon": "  كود  الخصم",
-    "Message": "رسالة  التوصيل",
+    "Message": "رسالة  توضيحية",
     "UserName": "  اسم المستخدم  ",
     "PaymentWay": "طريقة الدفع",
     "choosePaymentWay": "اختر طريقة الدفع",
@@ -520,5 +529,30 @@
   "Products": {
     "AddToCart": "اضف الى السلة",
     "RelatedProducts": "منتجات ذات صلة"
+  },
+  "Orders": {
+    "orderNumber": "رقم الطلب",
+    "orderID": "رقم الطلب",
+    "orderPlacedOn": "تم تقديم الطلب في",
+    "shippingTo": "الشحن إلى",
+    "total": "الإجمالي",
+    "New": "جديد",
+    "Pending": "قيد الانتظار",
+    "Processing": " جاري التحضير",
+    "Success": "  تم بنجاح",
+    "Cancelled": "  ملغي",
+    "orderDetails": "تفاصيل الطلب",
+    "orderStatus": "حالة الطلب",
+    "viewDetails": "عرض تفاصيل المنتج",
+    "orderDate": "تاريخ الطلب",
+    "orderItems": "عناصر الطلب",
+    "productName":"اسم المنتج",
+    "requestDate": "تاريخ الطلب",
+    "phoneNumber": "رقم الهاتف",
+    "requestCode": "رقم الطلب",
+    "Message": "رسالة الطلب",
+    "orderTotal": "الإجمالي"
+
   }
+
 }

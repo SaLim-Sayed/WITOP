@@ -29,6 +29,7 @@ const CartSlider = ({ open, setCartSliderIsOpen }: IProps) => {
   const { orders, setOrders, addOrder, getOrderById } = useOrderStore();
   const { setProductsCart } = useProductStore();
   const getCartData = async () => {
+    
     const res = await getUserCart();
     const resOrder = await getUserOrders();
     console.log({ resOrder });

@@ -50,11 +50,19 @@
     "email": "Email",
     "phoneNumber": "Phone Number",
     "invitationCode": "Invitation Code",
+    "LoyaltySystem": "Loyalty System",
+    "whatsappSupport": "Whatsapp Support",
+    "termsAndConditions": "Terms & Conditions",
+    "termsText": "Terms & Conditions",
     "allOrders": "All Orders"
   },
   "Globals": {
     "userProfile": "User Profile",
-
+    "rateOrder": "Rate Order",
+    "vatIncluded": "VAT included",
+    "quantity": "Quantity",
+    "color": "Color",
+    "return": "Return",
     "Login": "Login",
     "Home": "Home",
     "Back": "Back to Home",
@@ -509,7 +517,7 @@
   },
   "Cart": {
     "Coupon": "  Coupon Code",
-    "Message": "Order Message",
+    "Message": "  Message ",
     "PaymentWay": "Payment Way",
     "choosePaymentWay": "Choose Payment Way",
     "selectPaymentMethod": "Select Payment Methode",
@@ -528,6 +536,29 @@
   },
   "Products": {
     "AddToCart": "Add To Cart",
-   "RelatedProducts": "Related Products"
+    "RelatedProducts": "Related Products"
+  },
+  "Orders": {
+    "orderNumber": "Order Number",
+    "orderID": "Order ID",
+    "orderPlacedOn": "Order Placed On",
+    "shippingTo": "Shipping To",
+    "total": "Total",
+    "New": "New",
+    "Processing": "Processing",
+    "Success": "Success",
+    "Cancelled": "Cancelled",
+    "orderDetails": "Order Details",
+    "orderStatus": "Order Status",
+    "orderItems": "Order Item",
+    "productName": "Product Name",
+    "phoneNumber": "Phone Number",
+    "requestCode": "Request Code",
+    "orderTotal": "Order Total",
+    "requestDate": "Request Date",
+    "orderDate": "Order Date",
+    "viewOrder": "View Order",
+    "Message": "Message",
+    "viewDetails": "View Details"
   }
 }

@@ -2,7 +2,12 @@
 import { useEffect, useState } from "react";
 
 import { useLocale, useTranslations } from "next-intl";
-import { MdAssignmentReturn, MdFavorite, MdKeyboardArrowRight } from "react-icons/md";
+import {
+  MdAssignmentReturn,
+  MdFavorite,
+  MdKeyboardArrowRight,
+  MdSystemSecurityUpdateWarning,
+} from "react-icons/md";
 
 import { cn } from "@/libs/cn";
 import { useProfileStore } from "@/store/futures/profileStore";
@@ -21,6 +26,7 @@ import Offers from "./Offers";
 import PersonalInfo from "./PersonalInfo";
 import Settings from "./Settings";
 import Wallet from "./Wallet";
+import LoyaltySystem from "./LoyaltySystem";
 
 export default function Profile() {
   const lang = useLocale();
@@ -57,6 +63,13 @@ export default function Profile() {
       lightIcon: BiWallet,
       alt: "airplaneIcon",
       label: t("Wallet"),
+    },
+    {
+      content: "LoyaltySystem",
+      darkIcon: MdSystemSecurityUpdateWarning,
+      lightIcon: MdSystemSecurityUpdateWarning,
+      alt: "airplaneIcon",
+      label: t("LoyaltySystem"),
     },
   ];
   const token = Cookies.get("token");
@@ -146,6 +159,9 @@ export default function Profile() {
             )}
             {profileStatus === "offers" && <Offers />}
             {profileStatus === "Wallet" && <Wallet />}
+            {profileStatus === "LoyaltySystem" && (
+              <LoyaltySystem userData={userData} />
+            )}
             {profileStatus === "allReturn" && <AllReturn />}
             {profileStatus === "allOrders" && <OrderPage exSt />}
           </div>

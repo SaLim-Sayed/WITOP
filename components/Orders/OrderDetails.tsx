@@ -3,21 +3,22 @@
 import { Button, Divider, useDisclosure } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import Center from "../Global/Ui/Center";
-
 import { useGetter, useSetter } from "@/store/hooks/clientApi";
 import { Order } from "@/store/types/orderTypes";
 import { Product } from "@/types/product";
 import { useTranslations } from "next-intl";
 import { useParams, useRouter } from "next/navigation";
 import ReviewModal from "../Cart/OrdersForm/ReviewModal";
-import OrderDetailsSkeleton from "../Global/Loaders/OrderDetailsSkeleton ";
 import ClientHydration from "../Global/Providers/ClientHydration";
 import MainImageGallury from "../Global/Sliders/MainImageGallury";
 import { showToast } from "../Global/Ui/Toast";
 import ReturnModal from "./ReturnModal";
+import OrderDetailsSkeleton from "../Global/Loaders/OrderDetailsSkeleton ";
+import OrderDetailsTable from "./OrderDetailsTable";
 
 export default function OrderDetails() {
   const t = useTranslations("Globals");
+  const t2 = useTranslations("Orders"); // For order-related translations
 
   const {
     isOpen: isReviewModalOpen,
@@ -48,35 +49,14 @@ export default function OrderDetails() {
 
   const { data: order, isLoading } = useGetter({
     endPoint: `/user/orderDetails/${orderId}`,
-
     key: "GET_ALL_ORDER",
   });
-
-  console.log(order?.order);
 
   useEffect(() => {
     if (order) {
       setOrderDetails(order?.order);
     }
   }, [order]);
-  // const getOrderDetails = async () => {
-  //   try {
-  //     setLoading(true);
-  //     const { data } = await axiosInstance.get(`/user/orderDetails/${orderId}`);
-  //     setLoading(false);
-
-  //     setOrderDetails(data?.order);
-  //     console.log(data?.order);
-  //   } catch (err: any) {
-  //     console.log(err);
-  //     setLoading(false);
-
-  //     showErrorToast("يجب تسجيل الدخول اولاََ");
-  //     setTimeout(() => {
-  //       router.push(`/auth/login`);
-  //     }, 5000);
-  //   }
-  // };
 
   const handleSubmit = (product: Product) => {
     mutate({
@@ -89,54 +69,27 @@ export default function OrderDetails() {
     if (isSuccess) showSuccessToast(data.message);
   };
 
-  // useEffect(() => {
-  //   getOrderDetails();
-  // }, []);
-
   if (isLoading) {
     return <OrderDetailsSkeleton />;
   }
+
+  console.log({orderDetails});
   return (
     <Center>
-      {/* Review Modal */}
       <ReviewModal
         isOpen={isReviewModalOpen}
         onOpen={openReviewModal}
         onOpenChange={toggleReviewModal}
       />
 
-      {/* Render order details */}
       <ClientHydration LoaderComponent={<OrderDetailsSkeleton />}>
         <div className="grid relative grid-cols-1 md:grid-cols-2 justify-start items-start lg:grid-cols-2 my-4 gap-8">
-          <div className=" z-20 sticky top-32  p-[1px]  border-2 bg-white shadow-sm">
-            <div className=" flex flex-col justify-between items-center md:flex-row   p-4 ">
-              <div>
-                <div className="flex justify-between items-center mb-2">
-                  <div>
-                    <p className="font-bold">رقم الطلب: {orderDetails?._id}</p>
-                    <p className="text-sm text-gray-600">
-                      تم تقديم الطلب في: {orderDetails?.orderDate}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex flex-col gap-2 justify-between items-Start mb-2">
-                  <p className="font-bold">
-                    الشحن إلى: {orderDetails?.userName}
-                  </p>
-                  <p className="font-bold">
-                    الإجمالي: {orderDetails?.cartTotal} جنيه
-                  </p>
-                  <p className="flex-1">{orderDetails?.message}</p>
-                </div>
-              </div>
-            </div>
-            <Button
-              radius="none"
-              className="w-full bg-cyan-600 text-white"
-              onClick={openReviewModal}
-            >
-              تقييم الطلب{" "}
-            </Button>
+          <div className="z-20 sticky top-32 p-[1px]   bg-white shadow-sm">
+            <OrderDetailsTable
+              orderDetails={orderDetails as any}
+              onReviewClick={openReviewModal}
+              title={t("rateOrder")}
+            />
           </div>
 
           <div className="flex flex-col gap-4">
@@ -169,21 +122,18 @@ export default function OrderDetails() {
 
                     <div className="text-green-500">أصلي 100%</div>
                   </div>
-                  <div className="text-gray-400 mt-4">
-                    شامل ضريبة القيمة المضافة
-                  </div>
+                  <div className="text-gray-400 mt-4">{t("vatIncluded")}</div>
                 </div>
 
                 <div className="flex justify-between items-center">
                   <div className="text-2xl font-bold">
-                    الكمية : {product?.count}
+                    {t("quantity")}: {product?.count}
                   </div>
                 </div>
                 <div className="flex gap-2 items-center">
                   {product?.color ? (
                     <>
-                      <div className="text-2xl font-bold">اللون :</div>
-
+                      <div className="text-2xl font-bold">{t("color")}:</div>
                       <div
                         className="w-6 h-6 rounded-full"
                         style={{ backgroundColor: product?.color }}
@@ -194,7 +144,6 @@ export default function OrderDetails() {
                   )}
                 </div>
 
-                {/* Return Modal */}
                 <ReturnModal
                   isOpen={isReturnModalOpen}
                   onOpen={openReturnModal}
@@ -209,7 +158,7 @@ export default function OrderDetails() {
                   radius="lg"
                   size="sm"
                 >
-                  استرجاع
+                  {t("return")}
                 </Button>
               </div>
             ))}

@@ -7,6 +7,10 @@ export type ReturnRequest = {
   phoneNumber: string;
   userID: string;
   orderID: string;
+  orderDate: string;
+  userName: string;
+  cartTotal: number;
+  orderStatus: string;
   __v: number;
 };
 
