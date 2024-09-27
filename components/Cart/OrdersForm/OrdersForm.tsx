@@ -11,22 +11,21 @@ import {
   AutocompleteItem,
   Button,
   Input,
-  useDisclosure,
+  Select,
+  SelectItem,
 } from "@nextui-org/react";
 import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
-import ReviewModal from "./ReviewModal";
 import useSchema from "./Schema";
+import { cities } from "./data";
 
 const OrderForm = () => {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const { navigateTo } = useNavigation();
 
-  const router = useRouter();
   const tr = useTranslations("Auth");
   const validationTr = useTranslations("Cart");
   const OrderSchema = useSchema();
@@ -34,7 +33,7 @@ const OrderForm = () => {
   const lang = useLocale();
   type Order = z.infer<typeof OrderSchema>;
   const [isLoading, setIsLoading] = useState(false);
-  const { CartAmount, discount, TotalCartAmount } = cartStore();
+  const { discount, TotalCartAmount } = cartStore();
   const {
     register,
     handleSubmit,
@@ -83,37 +82,9 @@ const OrderForm = () => {
     }
   };
 
-  const cities = [
-    { value: "Riyadh", label: "الرياض / Riyadh" },
-    { value: "Jeddah", label: "جدة / Jeddah" },
-    { value: "Mecca", label: "مكة المكرمة / Mecca" },
-    { value: "Medina", label: "المدينة المنورة / Medina" },
-    { value: "Dammam", label: "الدمام / Dammam" },
-    { value: "Al Khobar", label: "الخبر / Al Khobar" },
-    { value: "Jubail", label: "الجبيل / Jubail" },
-    { value: "Ta'if", label: "الطائف / Ta'if" },
-    { value: "Buraydah", label: "بريدة / Buraydah" },
-    { value: "Al Hofuf", label: "الهفوف / Al Hofuf" },
-    { value: "Qatif", label: "القطيف / Qatif" },
-    { value: "Yanbu", label: "ينبع / Yanbu" },
-    { value: "Dhahran", label: "الظهران / Dhahran" },
-    { value: "Hail", label: "حائل / Hail" },
-    { value: "Najran", label: "نجران / Najran" },
-    { value: "Tabuk", label: "تبوك / Tabuk" },
-    { value: "Abha", label: "أبها / Abha" },
-    { value: "Khamis Mushait", label: "خميس مشيط / Khamis Mushait" },
-    { value: "Jazan", label: "جازان / Jazan" },
-    { value: "Al Bahah", label: "الباحة / Al Bahah" },
-    { value: "Sakaka", label: "سكاكا / Sakaka" },
-    { value: "Arar", label: "عرعر / Arar" },
-    { value: "Rafha", label: "رفحاء / Rafha" },
-    { value: "Al Qurayyat", label: "القريات / Al Qurayyat" },
-    { value: "Al Qunfudhah", label: "القنفذة / Al Qunfudhah" },
-    { value: "Bisha", label: "بيشة / Bisha" },
-    { value: "Saihat", label: "سيهات / Saihat" },
-    { value: "Sharurah", label: "شرورة / Sharurah" },
-    { value: "Tarout", label: "تاروت / Tarout" },
-    { value: "Hotat Bani Tamim", label: "حوطة بني تميم / Hotat Bani Tamim" },
+  const paymentMethods = [
+    { value: "Cash on delivery", label: validationTr("CashOnDelivery") },
+    { value: "Cash by wallet", label: validationTr("CashByWallet") },
   ];
 
   return (
@@ -196,10 +167,26 @@ const OrderForm = () => {
               >
                 {(item) => (
                   <AutocompleteItem key={item.value} value={item.value}>
-                    {item.label}
+                    {lang === "en" ? item.enLabel : item.arLabel}
                   </AutocompleteItem>
                 )}
               </Autocomplete>
+            </div>
+            <div className="mb-4">
+              <Select
+                {...register("paymentWay")}
+                label={validationTr("choosePaymentWay")}
+                placeholder={validationTr("selectPaymentMethod")}
+                className="w-full"
+                isInvalid={!!errors.paymentWay}
+                errorMessage={errors.paymentWay?.message}
+              >
+                {paymentMethods.map((method) => (
+                  <SelectItem key={method.value} value={method.value}>
+                    {method.label}
+                  </SelectItem>
+                ))}
+              </Select>
             </div>
             <div>
               <Input

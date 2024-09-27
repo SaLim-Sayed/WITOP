@@ -510,6 +510,11 @@
   "Cart": {
     "Coupon": "  Coupon Code",
     "Message": "Order Message",
+    "PaymentWay": "Payment Way",
+    "choosePaymentWay": "Choose Payment Way",
+    "selectPaymentMethod": "Select Payment Methode",
+    "CashOnDelivery": "Cash on delivery",
+    "CashByWallet": "Cash by wallet",
     "UserName": "Username",
     "neighborhood": "neighborhood",
     "street": "street",
