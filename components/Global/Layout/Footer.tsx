@@ -54,7 +54,7 @@ export default function Footer() {
                 color="default"
                 className="hover:bg-cyan-500 text-lg text-white"
                 as={Link}
-                href={item}
+                href={`/${item}`}
               >
                 {t(item)}
               </Button>
