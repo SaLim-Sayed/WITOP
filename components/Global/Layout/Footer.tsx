@@ -6,7 +6,7 @@ import { Button, Card, Checkbox, Divider, Input } from "@nextui-org/react";
 
 import Title from "../Ui/Title";
 import { footerData } from "./footerData.module";
-import { MdEmail } from "react-icons/md";
+import { MdCopyright, MdEmail } from "react-icons/md";
 import { BsMailbox, BsPaypal } from "react-icons/bs";
 import {
   FaCcAmex,
@@ -22,6 +22,7 @@ import {
 } from "react-icons/fa";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { BiCopy } from "react-icons/bi";
 
 export default function Footer() {
   const t = useTranslations("Policy");
@@ -108,9 +109,10 @@ export default function Footer() {
       </div>
       <Divider className=" text-white bg-slate-600" />
       <div className="flex items-center  text-sm md:text-lg  gap-4 flex-col justify-center md:flex-row md:justify-between">
-        <div className="text-center">
-          {" "}
-          {t("copyRight")} © {new Date().getFullYear()}{" "}
+        <div className="flex items-center text-center">
+          <div>{t("copyRight")}</div>
+          <MdCopyright />
+          <div>{new Date().getFullYear()} </div>
         </div>
         <div className="flex gap-4">{t("CRN")}</div>
         <div className="flex gap-4">{t("TAX")}</div>
