@@ -52,7 +52,7 @@ export default function Footer() {
                 size="sm"
                 variant="light"
                 color="default"
-                className="hover:bg-cyan-500 text-lg text-white"
+                className="hover:bg-cyan-500  text-xs md:text-lg  text-white"
                 as={Link}
                 href={`/${item}`}
               >
@@ -107,8 +107,8 @@ export default function Footer() {
         </div>
       </div>
       <Divider className=" text-white bg-slate-600" />
-      <div className="flex items-center   gap-4 flex-col justify-center md:flex-row md:justify-between">
-        <div>
+      <div className="flex items-center  text-sm md:text-lg  gap-4 flex-col justify-center md:flex-row md:justify-between">
+        <div className="text-center">
           {" "}
           {t("copyRight")} © {new Date().getFullYear()}{" "}
         </div>
