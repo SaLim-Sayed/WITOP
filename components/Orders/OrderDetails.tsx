@@ -84,7 +84,7 @@ export default function OrderDetails() {
 
       <ClientHydration LoaderComponent={<OrderDetailsSkeleton />}>
         <div className="grid relative grid-cols-1 md:grid-cols-2 justify-start items-start lg:grid-cols-2 my-4 gap-8">
-          <div className="z-20 sticky top-32 p-[1px]   bg-white shadow-sm">
+          <div className="z-20 sticky -top-44 md:top-32 p-[1px]   bg-white shadow-sm">
             <OrderDetailsTable
               orderDetails={orderDetails as any}
               onReviewClick={openReviewModal}

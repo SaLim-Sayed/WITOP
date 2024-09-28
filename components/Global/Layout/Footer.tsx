@@ -15,19 +15,25 @@ import {
   FaCcVisa,
   FaFacebook,
   FaInstagram,
+  FaSnapchat,
+  FaTiktok,
+  FaTwitter,
+  FaWhatsapp,
 } from "react-icons/fa";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function Footer() {
+  const t = useTranslations("Policy");
   return (
-    <footer className="bg-black text-white relative   p-[3px] lg:p-[40px] flex flex-col justify-start gap-[30px] text-lightColor-900">
+    <footer className="bg-black text-white relative z-40   p-[3px] lg:p-[40px] flex flex-col justify-start gap-[30px] text-lightColor-900">
       <div className="mx-3">
         <Title
           exSt="mt-0"
           title="Maro Care"
           exStTitle="text-green-600"
           exStSubTitle="text-slate-400 uppercase text-sm font-normal"
-          subTitle="Genuine care - Best price"
+          subTitle={t("Genuine")}
         />
       </div>
       <Divider className=" text-white bg-slate-600" />
@@ -41,9 +47,17 @@ export default function Footer() {
           </Card>
           <div className="flex flex-col gap-2">
             {footerData.map((item, index) => (
-              <div key={index} className="flex gap-6 flex-col">
-                <p className="  text-lg font-light">{item}</p>
-              </div>
+              <Button
+                radius="sm"
+                size="sm"
+                variant="light"
+                color="default"
+                className="hover:bg-cyan-500 text-lg text-white"
+                as={Link}
+                href={item}
+              >
+                {t(item)}
+              </Button>
             ))}
           </div>
         </div>
@@ -51,13 +65,13 @@ export default function Footer() {
         <div className="flex flex-col gap-8 mx-12  w-[80%]">
           <div className="flex flex-col">
             <div className="flex items-center gap-2">
-              <MdEmail /> Email
+              <MdEmail /> {t("Email")}
             </div>
             <Link href="mailto:Admin@marocares.com" className=" text-slate-300">
               Admin@marocares.com
             </Link>
           </div>
-          <div className="flex flex-col   gap-4 mx-3">
+          {/* <div className="flex flex-col   gap-4 mx-3">
             <div className="flex items-center ">
               Stay up to date, get our newsletter!
             </div>
@@ -80,22 +94,26 @@ export default function Footer() {
                 promotions, campaigns and news.
               </Checkbox>
             </div>
-            <div className="flex gap-4">
-              <FaFacebook size={40} />
-              <FaInstagram size={40} />
-            </div>
+            
+          </div> */}
+          <div className="flex gap-4">
+            <FaFacebook size={40} />
+            <FaInstagram size={40} />
+            <FaTwitter size={40} />
+            <FaTiktok size={40} />
+            <FaSnapchat size={40} />
+            <FaWhatsapp size={40} />
           </div>
         </div>
       </div>
       <Divider className=" text-white bg-slate-600" />
-      <div className="flex items-center  gap-4 flex-col justify-center md:flex-row md:justify-between">
-        <div>© Maro Care {new Date().getFullYear()} - All rights reserved.</div>
-        <div className="flex gap-4">
-          <FaCcVisa size={40} />
-          <FaCcMastercard size={40} />
-          <FaCcAmex size={40} />
-          <FaCcPaypal size={40} />
+      <div className="flex items-center   gap-4 flex-col justify-center md:flex-row md:justify-between">
+        <div>
+          {" "}
+          {t("copyRight")} © {new Date().getFullYear()}{" "}
         </div>
+        <div className="flex gap-4">{t("CRN")}</div>
+        <div className="flex gap-4">{t("TAX")}</div>
       </div>
     </footer>
   );

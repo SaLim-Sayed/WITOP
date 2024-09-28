@@ -112,10 +112,11 @@ export default function GSlider({
             setFav(!fav);
           }}
           size="sm"
-          variant="light"
+          variant="ghost"
+          color="danger"
           isIconOnly
           radius="full"
-          className="absolute  top-6 left-2 text-gray-400   z-20"
+          className="absolute bg-white  top-6 left-2    z-20"
         >
           {!fav ? <BiHeart size={24} /> : <BsHeartFill size={24} />}
         </Button>
@@ -123,15 +124,14 @@ export default function GSlider({
           key={id}
           onClick={() => addToCartHandler()}
           size="sm"
-          variant="flat"
+          variant="ghost"
           color="secondary"
           isIconOnly
           radius="full"
-          className="absolute  top-40 left-2   z-20"
+          className="absolute  bg-white  top-40 left-2   z-20"
         >
           <BiCartAdd size={24} />
         </Button>
-
         <Card
           className="w-full h-[500px] pb-4"
           shadow="md"
@@ -148,29 +148,34 @@ export default function GSlider({
               />
             </div>
             <Divider className="mt-0 pt-0" />
-            <div className="flex flex-col  justify-between  gap-4  ">
+            <div className="flex flex-col  justify-between gap-2  md:gap-4  ">
               <div className="flex justify-between   mx-2">
                 <div className="flex flex-col gap-2 ">
                   <p
                     className="text-slate-950  font-[400]  text-sm text-start font-sans    "
                     title={title}
                   >
-                    {title.slice(0, 40)}
+                    {title.slice(0, 40)}.....
                   </p>
                 </div>
               </div>
-              <div className=" hidden md:flex   mx-2">
+              <div className="flex   mx-2">
                 <div className="flex w-[70%] flex-col gap-2 items-start">
-                  <p className=" text-slate-600">{category}</p>
+                  <p className=" text-xs md:text-[16px]  text-slate-600">
+                    {category}
+                  </p>
                 </div>
               </div>
-              <div className="flex    mx-2">
-                <div className="flex justify-between items-center gap-2">
-                  <div className="text-sm text-red-500 font-bold">
+              <div className="flex items-center   mx-2">
+                <span className=" line-through  text-xs md:text-[16px]  text-gray-500 font-normal">
+                  {priceBeforeDiscount}
+                </span>
+                <div className="flex gap-2">
+                  <div className="  text-red-500  text-xs md:text-[16px]  font-bold">
                     {price} {t("SAR")}
                   </div>
                   <Button
-                    className="bg-pink-50 text-red-500"
+                    className="bg-pink-50 h-4 md:h-6 text-red-500"
                     radius="lg"
                     size="sm"
                   >

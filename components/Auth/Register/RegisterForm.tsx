@@ -64,13 +64,7 @@ const RegisterForm = () => {
       setIsLoading(false);
     }
   };
-  const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-
-    if (!value.startsWith("+966")) {
-      setValue("phoneNumber", "+966" + value.replace(/^\+966/, ""));
-    }
-  };
+ 
   // Get query parameters from the URL
   const searchParams = useSearchParams();
 
@@ -105,7 +99,7 @@ const RegisterForm = () => {
               label={tr("PhoneNumber")}
               variant="bordered"
               className="w-full"
-              onChange={handlePhoneNumberChange}
+             
               isInvalid={errors.phoneNumber ? true : false}
               errorMessage={errors.phoneNumber?.message}
               classNames={{

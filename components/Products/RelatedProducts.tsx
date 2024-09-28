@@ -12,7 +12,7 @@ export default function RelatedProducts({
   }) {
   const t=useTranslations("Products")
   return (
-    <div className="mt-8 pt-4">
+    <div className="my-8 py-4 ">
     <Divider/>
         <Title title={t("RelatedProducts")} />
         <div className="flex   flex-wrap  justify-center gap-4">

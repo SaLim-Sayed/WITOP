@@ -560,5 +560,16 @@
     "viewOrder": "View Order",
     "Message": "Message",
     "viewDetails": "View Details"
+  },
+  "Policy": {
+    "privacy-policy": "Privacy Policy",
+    "terms-and-conditions": "Terms and Conditions",
+    "shipping-policy": "Shipping Policy",
+    "Email": "Email",
+    "Genuine": "Genuine care - Best price",
+    "return-policy": "Return Policy",
+    "CRN": "Commercial Registration Number / 2051253426",
+    "TAX": "Tax Number / 31202961070003",
+    "copyRight": "All rights reserved to Nabrat Al-Quwa Marketing Services Holding Company"
   }
 }

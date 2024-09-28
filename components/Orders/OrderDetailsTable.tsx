@@ -22,9 +22,9 @@ const OrderDetailsTable: React.FC<OrderDetailsTableProps> = ({
 }) => {
   const t2 = useTranslations("Orders");
   const t = useTranslations("Globals");
-
+ console.log({ orderDetails });
   return (
-    <div className="z-20 sticky top-32 p-[1px] border-2 bg-white  w-full shadow-sm">
+    <div className="z-20 sticky top-4 md:top-32 p-[1px] border-2 bg-white  w-full shadow-sm">
       <div className="overflow-x-auto">
         <table className="w-full text-start bg-white border border-gray-300 shadow-sm">
           <tbody>

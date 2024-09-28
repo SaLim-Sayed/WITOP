@@ -146,7 +146,7 @@ function ProductCard() {
   return (
     <Center>
       <ClientHydration LoaderComponent={<OrderDetailsSkeleton />}>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 relative">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 pt-8 relative">
           <div className="flex justify-center items-start w-full ">
             <ImageGallury
               images={productData?.images}

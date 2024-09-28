@@ -28,7 +28,7 @@ const LoginForm = () => {
   const {
     register,
     handleSubmit,
-
+    setValue,
     formState: { errors },
   } = useForm<Login>({
     resolver: zodResolver(LoginSchema),
@@ -76,7 +76,7 @@ const LoginForm = () => {
           <div>
             <Input
               {...register("phoneNumber")}
-              type="text"
+              type="number"
               label={tr("PhoneNumber")}
               variant="bordered"
               className="w-full"
@@ -85,6 +85,7 @@ const LoginForm = () => {
               classNames={{
                 input: "text-[1.2rem]",
               }}
+              startContent={<span className="text-[1.2rem]">+966</span>}
             />
           </div>
         </div>

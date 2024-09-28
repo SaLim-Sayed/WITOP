@@ -10,6 +10,7 @@ import { useGetter } from "@/store/hooks/clientApi";
 import Link from "next/link";
 import { BsWhatsapp } from "react-icons/bs";
 import { FaWallet } from "react-icons/fa";
+import Title from "../Global/Ui/Title";
 
 export default function LoyaltySystem({
   userData,
@@ -42,9 +43,16 @@ export default function LoyaltySystem({
 
   return (
     <ClientHydration LoaderComponent={<Spinner />}>
-      <div className="flex flex-col w-full gap-4 mb-4">
-        <div className="text-xl font-[600]">{trans("LoyaltySystem")}</div>
+      <div className="flex flex-col justify-start w-full gap-4 mb-4">
+        <div className="text-xl font-[800]">{trans("LoyaltySystem")}</div>
+        <div className=" text-gray-500 font-[400] mb-8">
+           
+          هو نظام يتم ارسال كود الدعوة الي صديق و عند تسجيل بواسطة كود الدعوة و
+          اتمام عملية الشراء بنجاح يتم ارسالة نسبة 10 % من قيمة الطلب الي مرسل
+          الكود علي محفظته لأستخدام في معاملات اخرى
+        </div>
 
+        
         {/* معلومات المستخدم */}
         <div className="flex flex-col gap-8">
           {/* كود الدعوة */}

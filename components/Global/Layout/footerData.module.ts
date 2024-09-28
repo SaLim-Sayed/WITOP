@@ -1,9 +1,7 @@
 export const footerData = [
-  "Blog",
-
-  "About us",
-
-  "Return & Exchange policy",
-  "Privacy policy",
-  "Track your order",
+ 
+  "return-policy",
+  "privacy-policy",
+  "shipping-policy",
+  "terms-and-conditions",
 ];
