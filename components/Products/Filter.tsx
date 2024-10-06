@@ -39,6 +39,7 @@ const FilterComponent: React.FC = ({ cat }: any) => {
 
   // Function to set the selected category from URL by default
   const trans = useTranslations("Categories");
+  const t=useTranslations("Globals")
   const local = useLocale();
 
   const jsonData = local === "ar" ? arData : enData;
@@ -131,9 +132,11 @@ const FilterComponent: React.FC = ({ cat }: any) => {
           size="lg"
           radius="none"
           className="w-full bg-cyan-600 font-[700] text-[22px]  font-serif text-white "
-          endContent={<GiSettingsKnobs className="text-2xl rotate-90  z-[60] " />}
+          endContent={
+            <GiSettingsKnobs className="text-2xl rotate-90  z-[60] " />
+          }
         >
-          Filter
+          {t("filter")}
         </Button>
         <Modal className="mb-12" isOpen={isOpen} onOpenChange={onOpenChange}>
           <ModalContent>
@@ -141,7 +144,7 @@ const FilterComponent: React.FC = ({ cat }: any) => {
               <>
                 <ModalBody>
                   <p className="font-bold  text-xl my-6 text-cyan-800">
-                    Filter Options
+                    {t("filterOpt")}
                   </p>
                   {allFilters.slice(page - 5, page).map((filter) => (
                     <div key={filter._id}>
@@ -187,7 +190,7 @@ const FilterComponent: React.FC = ({ cat }: any) => {
                     onValueChange={(selected) => setSelectedCategory(selected)}
                     label={
                       <p className="font-bold text-xl text-cyan-800">
-                        Filter Category{" "}
+                        {t("filterCategory")}
                       </p>
                     }
                     className="gap-4"
@@ -301,7 +304,7 @@ const FilterComponent: React.FC = ({ cat }: any) => {
         </Modal>
       </div>
       <div className="  flex-col gap-4 hidden md:flex">
-        <p className="font-bold text-xl text-cyan-800">Filter Options </p>
+        <p className="font-bold text-xl text-cyan-800">{t("filterOpt")} </p>
         {allFilters.slice(page - 5, page).map((filter) => (
           <div key={filter._id}>
             <Checkbox
@@ -346,7 +349,9 @@ const FilterComponent: React.FC = ({ cat }: any) => {
         <RadioGroup
           value={selectedCategory}
           label={
-            <p className="font-bold text-xl text-cyan-800">Filter Category </p>
+            <p className="font-bold text-xl text-cyan-800">
+              {t("filterCategory")}
+            </p>
           }
           onValueChange={(selected) => setSelectedCategory(selected)}
           className="gap-4"

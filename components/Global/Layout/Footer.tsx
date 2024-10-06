@@ -31,7 +31,7 @@ export default function Footer() {
       <div className="mx-3">
         <Title
           exSt="mt-0"
-          title="Maro Care"
+          title="MARO'CARES"
           exStTitle="text-green-600"
           exStSubTitle="text-slate-400 uppercase text-sm font-normal"
           subTitle={t("Genuine")}
