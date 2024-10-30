@@ -30,11 +30,11 @@ export default function Footer() {
     <footer className="bg-black text-white relative z-40   p-[3px] lg:p-[40px] flex flex-col justify-start gap-[30px] text-lightColor-900">
       <div className="mx-3">
         <Title
-          exSt="mt-0"
-          title="MARO'CARES"
-          exStTitle="text-green-600"
-          exStSubTitle="text-slate-400 uppercase text-sm font-normal"
-          subTitle={t("Genuine")}
+          exSt="mt-0 text-[#ffa458]"
+          title="WITOP DECOR"
+          
+          exStSubTitle="text-[#ffa458] uppercase text-sm font-normal"
+        
         />
       </div>
       <Divider className=" text-white bg-slate-600" />

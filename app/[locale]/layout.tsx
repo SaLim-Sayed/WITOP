@@ -1,18 +1,17 @@
 import type { Metadata } from "next";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { Changa } from "next/font/google";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 
-import "./globals.css";
-import NextUi from "@/components/Providers/NextUi";
 import Footer from "@/components/Global/Layout/Footer";
-import MainCategories from "@/components/Tooltip/MainCategories";
-import ToTop from "@/components/Global/Ui/ToTop";
-import { NextIntlClientProvider } from "next-intl";
-import GToast from "@/components/Global/Providers/GToast";
-import { notFound } from "next/navigation";
 import MainNavbar from "@/components/Global/Layout/MainNavbar";
+import GToast from "@/components/Global/Providers/GToast";
+import ToTop from "@/components/Global/Ui/ToTop";
+import NextUi from "@/components/Providers/NextUi";
+import { NextIntlClientProvider } from "next-intl";
 import Head from "next/head";
+import { notFound } from "next/navigation";
+import "./globals.css";
 
 const inter = Changa({
   subsets: ["arabic"],
@@ -52,7 +51,6 @@ export default async function RootLayout({
           <NextUi>
             <MainNavbar />
             <div className=" ">
-              <MainCategories />
               {children}
               <ToTop />
             </div>

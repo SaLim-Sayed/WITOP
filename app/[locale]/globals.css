@@ -25,6 +25,48 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+
+/*? -------------------------------------------------------------------------- !*/
+/*?                   OVER WRITE Scroll Bar => NextUi                          !*/
+/*? -------------------------------------------------------------------------- !*/
+/* Change the background color of the scrollbar track */
+::-webkit-scrollbar {
+  background-color: #ffa458;
+  width: 10px; /* Width of the vertical scrollbar */
+  height: 3px; /* Height of the horizontal scrollbar */
+  /* Change this to the desired background color */
+}
+
+/* Change the color of the scrollbar thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+  background-color: #130901;
+  /* Change this to the desired thumb color */
+}
+
+/* Change the color of the scrollbar arrows (up and down buttons) */
+::-webkit-scrollbar-button {
+  background-color: #c96514;
+  /* Change this to the desired arrow color */
+}
+
+/* Change the color of the scrollbar corner (between the thumb and track) */
+::-webkit-scrollbar-corner {
+  background-color: #c96514;
+  /* Change this to the desired corner color */
+}
+
+.hide-slide::-webkit-scrollbar {
+  width: 0 !important;
+}
+.min-slide-scroll::-webkit-scrollbar {
+  width: 2px !important;
+}
+ 
+/*! -------------------------------------------------------------------------- !*/
+/*?                   OVER WRITE Scroll Bar => NextUi                          !*/
+/*? -------------------------------------------------------------------------- !*/
+ 
 .swiper-slide {
   background-position: center;
   background-size: cover;

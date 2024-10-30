@@ -26,7 +26,7 @@ export default async function Home() {
       <GSliderSlot title={"ON SALE"} data={sale?.products} />
       <Offers />
       <GSliderSlot title={"OUR SELECTION"} data={selection?.products} />
-      <Feedbacks />
+   
       <WelcomeLayer />
     </div>
   );
