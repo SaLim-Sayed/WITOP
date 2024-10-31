@@ -9,7 +9,7 @@ const ToTop = ( ) => {
   color="#000"
   component={<BsArrowUpShort size={30} className=" text-slate-900 font-thin "/>}
   style={{
-    backgroundColor: "#bbb",
+    backgroundColor: "#f7a458",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",

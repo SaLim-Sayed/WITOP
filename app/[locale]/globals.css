@@ -43,6 +43,12 @@ body {
   background-color: #130901;
   /* Change this to the desired thumb color */
 }
+.slick-arrow .slick-prev{
+  display: none !important;
+}
+.slick-arrow .slick-next{
+  display: none !important;
+}
 
 /* Change the color of the scrollbar arrows (up and down buttons) */
 ::-webkit-scrollbar-button {

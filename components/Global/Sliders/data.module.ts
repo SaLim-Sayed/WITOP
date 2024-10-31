@@ -13,6 +13,20 @@ export const Category = [
   { id: 12, title: "MotherBabyCare", img: "/categories/baby and mom.png" },
   { id: 13, title: "Accessories", img: "/categories/access.png" },
 ];
+export const Cats = [
+  { id: 1, title: "BodyCare", img: "/cats/1.jpg" },
+  { id: 2, title: "BodyCare", img: "/cats/2.jpg" },
+  { id: 3, title: "BodyCare", img: "/cats/3.jpg" },
+  { id: 4, title: "BodyCare", img: "/cats/4.jpg" },
+  { id: 5, title: "BodyCare", img: "/cats/5.jpg" },
+  { id: 6, title: "BodyCare", img: "/cats/6.jpg" },
+  { id: 7, title: "BodyCare", img: "/cats/7.jpg" },
+  { id: 8, title: "BodyCare", img: "/cats/8.jpg" },
+  { id: 9, title: "BodyCare", img: "/cats/9.jpg" },
+  { id: 10, title: "BodyCare", img: "/cats/10.jpg" },
+  { id: 11, title: "BodyCare", img: "/cats/11.jpg" }, 
+ 
+];
 
 export const Brands = [
   {

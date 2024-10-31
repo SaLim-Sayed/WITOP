@@ -21,11 +21,11 @@ export default function NavbarMobile({
     },
     {
       name: "About Us",
-      path: "/about-us",
+      path: "/",
     },
     {
       name: "Contact Us",
-      path: "/contact-us",
+      path: "/",
     },
   ];
 
@@ -58,7 +58,7 @@ export default function NavbarMobile({
            
           )}
           as={Link}
-          href={`/product/${item.path}`}
+          href={`${item.path}`}
         >
           {item.name}
         </Button>

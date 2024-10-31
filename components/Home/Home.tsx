@@ -9,6 +9,9 @@ import Offers from "./Offers/Offers";
 import WelcomeLayer from "./WelcomeLayer/WelcomeLayer";
 import Feedbacks from "./Feedbacks/Feedbacks";
 import Hero from "./Hero";
+import Swipper from "../Global/Swipper";
+import { productCategories } from "./data/data";
+import Title from "../Global/Ui/Title";
 
 export default async function Home() {
   const trends = await getProductBySectionType({ type: "Trending" });
@@ -16,21 +19,32 @@ export default async function Home() {
   const sale = await getProductBySectionType({ type: "On Sale" });
 
   return (
-    <div>
+    <div className="w-full">
       <WelcomeLayer />
 
       {/* <Hero/> */}
       <SwipperPage />
+      <Title title="Categories" />
+
+     <div className="flex justify-center w-full">
+     <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 justify-center items-center gap-4 h-full m-4 w-full">
+        {productCategories.map((category, index) => (
+          <div key={index} className=" gap-4  w-[380px]">
+            <Swipper title={category?.title} images={category?.images} />
+          </div>
+        ))}
+      </div>
+     </div>
+
       {/* <SimpleSlider /> */}
-      <CategorySlider />
-      <Offers />
-      <GSliderSlot title={"TRENDING"} data={trends?.products} />
-      <Brands />
-      <Offers />
-      <GSliderSlot title={"ON SALE"} data={sale?.products} />
-      <Offers />
-      <GSliderSlot title={"OUR SELECTION"} data={selection?.products} />
-   
+      {/* <CategorySlider /> */}
+      {/* <Offers /> */}
+      {/* <GSliderSlot title={"TRENDING"} data={trends?.products} /> */}
+      {/* <Brands /> */}
+      {/* <Offers /> */}
+      {/* <GSliderSlot title={"ON SALE"} data={sale?.products} /> */}
+      {/* <Offers /> */}
+      {/* <GSliderSlot title={"OUR SELECTION"} data={selection?.products} /> */}
     </div>
   );
 }
