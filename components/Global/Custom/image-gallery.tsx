@@ -1,7 +1,6 @@
 import React, { ReactNode, useMemo, useState } from 'react';
 
 import placeHolderImage from '@/public/images/hotelPlaceholder.jpg';
-import { TImageCollection } from '@/src/@types/hotels/hotel-slice';
 import {
   Modal,
   ModalBody,
@@ -17,7 +16,7 @@ import ImageWithFallback from './image-with-fallback';
 type Props = {
   children: ReactNode | any;
   title: string | undefined;
-  images: TImageCollection[] | undefined;
+  images: any[] | undefined;
 };
 
 const SlideCard = ({ src, alt }: { src: string; alt: string }) => {
