@@ -43,10 +43,16 @@ body {
   background-color: #130901;
   /* Change this to the desired thumb color */
 }
-.slick-arrow .slick-prev{
+ .slick-prev{
   display: none !important;
 }
-.slick-arrow .slick-next{
+  .slick-next{
+  display: none !important;
+}
+.slick-arrow .slick-prev::before{
+  display: none !important;
+}
+.slick-arrow .slick-next::before{
   display: none !important;
 }
 

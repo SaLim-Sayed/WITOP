@@ -43,7 +43,7 @@ export default function Swipper({ images, isLarge, title }: Props) {
         <span>-</span>
         <span className="text-[14px]">{images?.length || 6}</span>
       </Button>
-      <div className="absolute border-2 border-t-none bottom-[0px] px-2 left-[0px] h-[49px] min-w-full rounded-b-[10px] bg-white text-orange-400">
+      <div className="absolute border-2 p-2 border-t-0 bottom-[0px] px-2 left-[0px] h-[49px] min-w-full  rounded-b-[10px] bg-white text-orange-600">
         {title}
       </div>
     </div>

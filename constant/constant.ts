@@ -136,11 +136,10 @@ export const arabianCountries: any = [
 export const slideSettings = {
   dots: false,
   infinite: true,
-  speed: 5000,
   slidesToShow: 1,
   slidesToScroll: 1,
-  // autoplay: true,
-  autoplaySpeed: 2000,
+  autoplay: true,
+  autoplaySpeed: 4000,
 };
 
 export const animationTransition = {

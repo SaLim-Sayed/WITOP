@@ -19,7 +19,7 @@ export default function SlideCard({
     <div>
       <div
         className={cn(
-          "group relative border-2  border-stone-300 cursor-grab overflow-hidden rounded-xl",
+          "group relative border-2 z-50 border-stone-300 cursor-grab overflow-hidden rounded-xl",
           isDrag && "cursor-grabbing",
           src && "rounded-md ",
           isLarge && "rounded-none"
@@ -27,11 +27,13 @@ export default function SlideCard({
       >
         <Image
         radius="md"
-          src={src}
-          sizes="100vw"
+          src={src} 
+          
           style={{
-            width: "400px",
-            height: "500px",
+            width: "100%",
+            minWidth:"350px",
+            objectFit: "cover",
+            height: "300px",
           }}
         />
       </div>
