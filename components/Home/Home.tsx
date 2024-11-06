@@ -1,23 +1,12 @@
 "use server";
 
-import getProductBySectionType from "@/store/actions/getProductBySectionType.module";
-import CategorySlider from "../Global/Sliders/CategorySlider";
 import SwipperPage from "../Global/Sliders/SwipperPage";
-import GSliderSlot from "./Brands/GSliderSlot";
-import Brands from "./Favorite/Brands";
-import Offers from "./Offers/Offers";
-import WelcomeLayer from "./WelcomeLayer/WelcomeLayer";
-import Feedbacks from "./Feedbacks/Feedbacks";
-import Hero from "./Hero";
 import Swipper from "../Global/Swipper";
-import { productCategories } from "./data/data";
 import Title from "../Global/Ui/Title";
+import { productCategories } from "./data/data";
+import WelcomeLayer from "./WelcomeLayer/WelcomeLayer";
 
-export default async function Home() {
-  const trends = await getProductBySectionType({ type: "Trending" });
-  const selection = await getProductBySectionType({ type: "Our Selection" });
-  const sale = await getProductBySectionType({ type: "On Sale" });
-
+export default async function Home() { 
   return (
     <div className="w-full">
       <WelcomeLayer />

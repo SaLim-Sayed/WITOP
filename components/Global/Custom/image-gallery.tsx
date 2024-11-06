@@ -1,6 +1,6 @@
 import React, { ReactNode, useMemo, useState } from 'react';
 
-import placeHolderImage from '@/public/images/hotelPlaceholder.jpg';
+ 
 import {
   Modal,
   ModalBody,
@@ -12,6 +12,7 @@ import {
 } from '@nextui-org/react';
 
 import ImageWithFallback from './image-with-fallback';
+import SlideCard from '../Swipper/slide-card';
 
 type Props = {
   children: ReactNode | any;
@@ -19,27 +20,7 @@ type Props = {
   images: any[] | undefined;
 };
 
-const SlideCard = ({ src, alt }: { src: string; alt: string }) => {
-  const [isFallError, setIsFallError] = useState(false);
-  return (
-    <div className='relative h-[140px] w-[160px] overflow-hidden rounded-md sm:h-[200px] sm:w-[280px]'>
-      <ImageWithFallback
-        setIsFallError={() => setIsFallError(true)}
-        fallbackSrc={placeHolderImage.src}
-        placeholder='blur'
-        blurDataURL={src}
-        layout='fill'
-        src={src}
-        alt={alt}
-      />
-      {alt && !isFallError && src && (
-        <div className='absolute bottom-0 left-1/2 w-full translate-x-[-50%] bg-black/10 text-center text-lightColor-900 shadow-medium backdrop-blur-[10px]'>
-          {alt}
-        </div>
-      )}
-    </div>
-  );
-};
+ 
 
 export default function Gallery({ children, images, title }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -54,6 +35,7 @@ export default function Gallery({ children, images, title }: Props) {
 
   return (
     <>
+    {title}
       {triggerButton}
       <Modal
         classNames={{ backdrop: 'z-[400]', wrapper: 'z-[401]' }}
@@ -69,8 +51,13 @@ export default function Gallery({ children, images, title }: Props) {
                 <ScrollShadow
                   className='grid h-[500px] grid-cols-2 gap-3 overflow-auto sm:grid-cols-3'
                   hideScrollBar>
-                  {images?.map((target) => (
-                    <SlideCard src={target.image_url} alt={target.caption} key={target.id} />
+                  {images?.map((target,index) => (
+                    <SlideCard
+                    isLarge
+                    src={target}
+                    key={index}
+                    alt={target}
+                  />
                   ))}
                 </ScrollShadow>
               </ModalBody>
