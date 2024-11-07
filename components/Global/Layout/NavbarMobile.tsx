@@ -1,11 +1,9 @@
 "use client";
 import { Button } from "@nextui-org/react";
-import { Accordion, AccordionItem } from "@nextui-org/react";
-import { NavbarMenuItem } from "@nextui-org/react";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
 import { useState } from "react";
-import { cn } from "@/libs/cn";
+import { FaFacebook, FaWhatsapp } from "react-icons/fa";
+import { IoLogoWechat } from "react-icons/io5";
 
 export default function NavbarMobile({
   setIsMenuOpen,
@@ -31,6 +29,8 @@ export default function NavbarMobile({
 
   const [selected, setSelected] = useState("");
   const [selectedItem, setSelectedItem] = useState("");
+  const phoneNumber = "+966547448149"; // The phone number for the chat (including country code)
+  const message = "Hello, I am interested in your products.";
   return (
     <>
       {/* {useCategory.map((category, index) => (
@@ -45,24 +45,40 @@ export default function NavbarMobile({
           </Button>
         </NavbarMenuItem>
       ))} */}
-      {routes.map((item, index) => (
-        <Button
-          size="md"
-          onClick={() => {
- 
-            onClose();
-          }}
-          key={index}
-          className={cn(
-            "w-full mb-2 text-lg",
-           
-          )}
-          as={Link}
-          href={`${item.path}`}
-        >
-          {item.name}
-        </Button>
-      ))}
+      <div className="flex gap-4">
+          <Button
+            variant="faded"
+            color="primary"
+            as={Link}
+            target="_blank"
+            href="https://www.facebook.com/profile.php?id=61565975191172&mibextid=ZbWKwL"
+            isIconOnly
+          >
+            <FaFacebook size={40} />
+          </Button>
+          <Button
+            variant="faded"
+            color="success"
+            as={Link}
+            target="_blank"
+            href="weixin://dl/officialaccounts?scene=108&need_open_webview=1&url=https://m.wechat.com/c/+966547448149"
+            isIconOnly
+          >
+            <IoLogoWechat size={40} />
+          </Button>
+          <Button
+            variant="faded"
+            color="success"
+            as={Link}
+            target="_blank"
+            href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+              message
+            )}`}
+            isIconOnly
+          >
+            <FaWhatsapp size={40} />
+          </Button>
+        </div>
     </>
   );
 }
