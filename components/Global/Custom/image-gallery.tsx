@@ -35,7 +35,7 @@ export default function Gallery({ children, images, title }: Props) {
 
   return (
     <>
-    {title}
+    
       {triggerButton}
       <Modal
         classNames={{ backdrop: 'z-[400]', wrapper: 'z-[401]' }}

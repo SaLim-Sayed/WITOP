@@ -50,7 +50,7 @@ export default function WithAction() {
 
       <Box bg={"#fff"} className="shadow-md " px={4}>
         <Flex h={20} alignItems={"center"} justifyContent={"space-between"}>
-          <Navbar className=" w-3  flex lg:hidden ">
+          <Navbar className=" w-3 z-[400] flex lg:hidden ">
             <Button
               onClick={discloserChakra.onOpen}
               isIconOnly
