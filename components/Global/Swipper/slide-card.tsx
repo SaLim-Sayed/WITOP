@@ -9,7 +9,7 @@ export default function SlideCard({
   alt,
   isLarge,
 }: {
-  src?: string;
+  src: string;
   alt?: string;
   isLarge?: boolean;
 }) {
@@ -23,7 +23,7 @@ export default function SlideCard({
          
         )}
       >
-        <Image className="border-2" width={800} height={500}   src={src&&src}  alt={alt}/>
+        <Image className="border-2" width={800} height={500}   src={src}  alt={alt}/>
       </div>
     </div>
   );
