@@ -102,7 +102,7 @@ const t=useTranslations("Buttons");
         <Layer
           title={category.title}
           />
-        <div className="grid -z-50   grid-cols-2 gap-3 overflow-auto sm:grid-cols-4">
+        <div className="grid -z-50   grid-cols-1 gap-3 overflow-auto justify-center md:grid-cols-2 lg:grid-cols-4">
           {category.images?.map((target, index) => (
             <SlideCard isLarge src={target} key={index} alt={target} />
           ))}
@@ -114,7 +114,7 @@ const t=useTranslations("Buttons");
         <Gallery title={category.title} images={category.images}>
           <Button
             size="md"
-            className="lg:text-md absolute z-50 ltr:left-4 rtl:right-4 top-2 flex cursor-pointer items-center gap-[10px] rounded-3xl bg-orange-200 px-5 py-3 text-xs text-mainColor-900 hover:bg-mainColor-900 hover:text-lightColor-900 sm:text-xl lg:rounded-full lg:py-8"
+            className="lg:text-md absolute z-50 ltr:left-4 rtl:right-4 top-20 sm:top-2 flex cursor-pointer items-center gap-[10px] rounded-3xl bg-orange-200 px-5 py-3 text-xs text-mainColor-900 hover:bg-mainColor-900 hover:text-lightColor-900 sm:text-xl lg:rounded-full lg:py-8"
           >
             <div>
               <HiOutlineSquares2X2 />

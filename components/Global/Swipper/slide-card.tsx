@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import ImageWithFallback from "../Custom/image-with-fallback";
 import { cn } from "@/libs/cn";
 import { Image } from "@nextui-org/react";
+import Center from "../Ui/Center";
 
 export default function SlideCard({
   src,
@@ -32,7 +33,7 @@ export default function SlideCard({
           style={{
             width: "100%",
             minWidth:"350px",
-            objectFit: "cover",
+            objectFit: "contain",
             height: "300px",
           }}
         />

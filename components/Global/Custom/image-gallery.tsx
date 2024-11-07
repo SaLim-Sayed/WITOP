@@ -1,6 +1,5 @@
-import React, { ReactNode, useMemo, useState } from 'react';
+import React, { ReactNode, useMemo, useState } from "react";
 
- 
 import {
   Modal,
   ModalBody,
@@ -9,18 +8,16 @@ import {
   ModalHeader,
   ScrollShadow,
   useDisclosure,
-} from '@nextui-org/react';
+} from "@nextui-org/react";
 
-import ImageWithFallback from './image-with-fallback';
-import SlideCard from '../Swipper/slide-card';
+import ImageWithFallback from "./image-with-fallback";
+import SlideCard from "../Swipper/slide-card";
 
 type Props = {
   children: ReactNode | any;
   title: string | undefined;
   images: any[] | undefined;
 };
-
- 
 
 export default function Gallery({ children, images, title }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -35,29 +32,25 @@ export default function Gallery({ children, images, title }: Props) {
 
   return (
     <>
-    
       {triggerButton}
       <Modal
-        classNames={{ backdrop: 'z-[400]', wrapper: 'z-[401]' }}
-        backdrop='blur'
+        classNames={{ backdrop: "z-[400]", wrapper: "z-[401]" }}
+        backdrop="blur"
         isOpen={isOpen}
         onClose={onClose}
-        size='5xl'>
-        <ModalContent className='h-[600px]'>
+        size="5xl"
+      >
+        <ModalContent className="h-[600px]">
           {(onClose) => (
             <>
-              <ModalHeader className='flex flex-col gap-1'>{title}</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">{title}</ModalHeader>
               <ModalBody>
                 <ScrollShadow
-                  className='grid h-[500px] grid-cols-2 gap-3 overflow-auto sm:grid-cols-3'
-                  hideScrollBar>
-                  {images?.map((target,index) => (
-                    <SlideCard
-                    isLarge
-                    src={target}
-                    key={index}
-                    alt={target}
-                  />
+                  className="grid h-[500px] grid-cols-2 gap-3 overflow-auto sm:grid-cols-3"
+                  hideScrollBar
+                >
+                  {images?.map((target, index) => (
+                    <SlideCard isLarge src={target} key={index} alt={target} />
                   ))}
                 </ScrollShadow>
               </ModalBody>
