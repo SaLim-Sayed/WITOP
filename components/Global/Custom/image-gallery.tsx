@@ -46,7 +46,7 @@ export default function Gallery({ children, images, title }: Props) {
               <ModalHeader className="flex flex-col gap-1">{title}</ModalHeader>
               <ModalBody>
                 <ScrollShadow
-                  className="grid h-[500px] grid-cols-2 gap-3 overflow-auto sm:grid-cols-3"
+                  className="grid h-[500px] grid-cols-1 gap-3 overflow-auto justify-center md:grid-cols-2 lg:grid-cols-3"
                   hideScrollBar
                 >
                   {images?.map((target, index) => (

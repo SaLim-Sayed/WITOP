@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 // import Banner from '@/public/images/banner-slide.png';
-import ImageWithFallback from "../Custom/image-with-fallback";
 import { cn } from "@/libs/cn";
-import { Image } from "@nextui-org/react";
-import Center from "../Ui/Center";
+import Image from "next/legacy/image";
 
 export default function SlideCard({
   src,
@@ -20,23 +18,12 @@ export default function SlideCard({
     <div>
       <div
         className={cn(
-          "group relative border-2 z-50 border-stone-300 cursor-grab overflow-hidden rounded-xl",
+          "group relative border-1 w-full  m-0 p-0 z-50   h-full cursor-grab overflow-hidden rounded-xl",
           isDrag && "cursor-grabbing",
-          src && "rounded-md ",
-          isLarge && "rounded-none"
+         
         )}
       >
-        <Image
-        radius="md"
-          src={src} 
-          
-          style={{
-            width: "100%",
-            minWidth:"350px",
-            objectFit: "contain",
-            height: "300px",
-          }}
-        />
+        <Image className="border-2" width={800} height={500}   src={src&&src}  alt={alt}/>
       </div>
     </div>
   );

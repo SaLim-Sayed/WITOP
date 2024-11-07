@@ -18,7 +18,7 @@ export default async function Home() {
      <div className="flex justify-center w-full">
      <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-4 justify-center items-center gap-4 h-full m-4 w-full">
         {productCategories.map((category, index) => (
-          <div key={index} className=" gap-4  w-[360px] md:w-full">
+          <div key={index} className=" gap-4  max-w-[360px] max-h-[400px]">
             <Swipper title={category?.title} images={category?.images} />
           </div>
         ))}
