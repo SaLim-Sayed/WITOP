@@ -80,8 +80,9 @@ export const productCategories = [
   
 export default function CategoryDetails() {
   const params = useParams();
-  const id = params?.id ? decodeURIComponent(params?.id) : "";
-  const category = productCategories.find((category) => category.title === id);
+  const id = Array.isArray(params?.id) ? params.id[0] : params?.id;
+  const decodedId = id ? decodeURIComponent(id) : "";
+  const category = productCategories.find((category) => category.title === decodedId);
 
   console.log({category})
   // Handle case if category is not found
