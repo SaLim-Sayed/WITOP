@@ -15,7 +15,7 @@ type Props = {
 
 export default function Swipper({ images, isLarge, title }: Props) {
   const [activeSlide, setActiveSlide] = useState(0);
-  const {navigateTo}=useNavigation()
+  const { navigateTo } = useNavigation();
   return (
     <div className="relative max-w-[100%]">
       {/*  @ts-ignore  */}
@@ -23,19 +23,16 @@ export default function Swipper({ images, isLarge, title }: Props) {
         {...slideSettings}
         afterChange={(current) => setActiveSlide(current)}
       >
-        {!images &&
-          new Array(4)
-            .fill(0)
-            .map((target, index) => <SlideCard key={index} />)}
         {images &&
           images.map((target, index: Key | null | undefined) => (
-            <div onClick={()=>navigateTo(`category/${title}`)}>
-            <SlideCard
-              isLarge={isLarge}
-              src={target}
-              key={index}
-              alt={target}
-            /></div>
+            <div onClick={() => navigateTo(`category/${title}`)}>
+              <SlideCard
+                isLarge={isLarge}
+                src={target}
+                key={index}
+                alt={target}
+              />
+            </div>
           ))}
       </Slider>
       <Button
