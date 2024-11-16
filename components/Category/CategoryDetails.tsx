@@ -9,6 +9,8 @@ import SlideCard from "../Global/Swipper/slide-card";
 import Center from "../Global/Ui/Center";
 import Layer from "../Global/Ui/Layer";
 import { useTranslations } from "next-intl";
+import { BiDownload } from "react-icons/bi";
+ 
 export const productCategories = [
   {
     title: "PU Stone",
@@ -19,6 +21,7 @@ export const productCategories = [
       "/productCategories/PVC/4.PNG",
       "/productCategories/PVC/5.PNG",
     ],
+        pdf:"/productCategories/PVC/PVC.pdf",
   },
   {
     title: "WPC Wall Panel",
@@ -29,6 +32,7 @@ export const productCategories = [
       "/productCategories/WPCWallPanel/4.PNG",
       "/productCategories/WPCWallPanel/5.PNG",
     ],
+        pdf:"/productCategories/WPCWallPanel/WPCWallPanel.pdf",
   },
   {
     title: "PVC Film Marble Sheet",
@@ -39,6 +43,7 @@ export const productCategories = [
       "/productCategories/PVCFilmMarbleSheet/4.PNG",
       "/productCategories/PVCFilmMarbleSheet/5.PNG",
     ],
+        pdf:"/productCategories/PVCFilmMarbleSheet/PVCFilmMarbleSheet.pdf",
   },
   {
     title: "Gilded Marble Sheet",
@@ -49,6 +54,7 @@ export const productCategories = [
       "/productCategories/GildedMarbleSheet/4.PNG",
       "/productCategories/GildedMarbleSheet/5.PNG",
     ],
+        pdf:"/productCategories/GildedMarbleSheet/GildedMarbleSheet.pdf",
   },
   {
     title: "3D Print Marble Sheet",
@@ -59,6 +65,7 @@ export const productCategories = [
       "/productCategories/3DPrintMarbleSheet/4.PNG",
       "/productCategories/3DPrintMarbleSheet/5.PNG",
     ],
+        pdf:"/productCategories/SoftStone/SoftStone.pdf",
   },
   {
     title: "Bamboo Charcoal Wall Panel",
@@ -69,6 +76,7 @@ export const productCategories = [
       "/productCategories/BambooCharcoalWallPanel/4.PNG",
       "/productCategories/BambooCharcoalWallPanel/5.PNG",
     ],
+    pdf:"/productCategories/BambooCharcoalWallPanel/BambooCharcoalWallPanel.pdf",
   },
   {
     title: "Soft Stone",
@@ -79,6 +87,7 @@ export const productCategories = [
       "/productCategories/SoftStone/4.PNG",
       "/productCategories/SoftStone/5.PNG",
     ],
+        pdf:"/productCategories/SoftStone/SoftStone.pdf",
   },
 ];
 
@@ -89,7 +98,7 @@ export default function CategoryDetails() {
   const category = productCategories.find(
     (category) => category.title === decodedId
   );
-const t=useTranslations("Buttons");
+  const t = useTranslations("Buttons");
   console.log({ category });
   // Handle case if category is not found
   if (!category) {
@@ -99,9 +108,7 @@ const t=useTranslations("Buttons");
   return (
     <div className="z-0">
       <Center className="relative ">
-        <Layer
-          title={category.title}
-          />
+        <Layer title={category.title} />
         <div className="grid -z-50   grid-cols-1 gap-3 overflow-auto justify-center md:grid-cols-2 lg:grid-cols-4">
           {category.images?.map((target, index) => (
             <SlideCard isLarge src={target} key={index} alt={target} />
@@ -122,6 +129,28 @@ const t=useTranslations("Buttons");
             <div>{t("view_all")} </div>
           </Button>
         </Gallery>
+        <Button
+          size="md"
+          className="lg:text-md absolute z-50 ltr:right-4 rtl:left-4 top-20 sm:top-2 flex cursor-pointer items-center gap-[10px] rounded-3xl bg-orange-200 px-5 py-3 text-xs text-mainColor-900 hover:bg-mainColor-900 hover:text-lightColor-900 sm:text-xl lg:rounded-full lg:py-8"
+          onClick={() => {
+            if (category?.pdf) {
+              const pdfUrl = category.pdf;
+              window.open(pdfUrl, "_blank"); // Opens the PDF in a new tab
+            } else {
+              console.error("PDF URL not found!");
+            }
+          }}
+        >
+          <div>
+            <BiDownload />
+          </div>
+          <div>{t("download")}</div>
+        </Button>
+        <iframe
+  src={category.pdf}
+  className="w-full h-screen"
+  title="PDF Viewer"
+/>
       </Center>
     </div>
   );

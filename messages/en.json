@@ -1,5 +1,6 @@
 {
   "Buttons": {
-    "view_all":"View All Images"
+    "view_all":"View All Images",
+    "download":"download"
   }
 }
