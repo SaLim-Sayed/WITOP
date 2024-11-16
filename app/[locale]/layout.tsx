@@ -23,8 +23,8 @@ export function generateStaticParams() {
 }
 
 export const metadata: Metadata = {
-  title: "MaroCare",
-  description: "GENUINE CARE - BEST PRICE",
+  title: "WITOP",
+  description: " Creating WPC Walls for Green Stylish Living",
 };
 
 export default async function RootLayout({
